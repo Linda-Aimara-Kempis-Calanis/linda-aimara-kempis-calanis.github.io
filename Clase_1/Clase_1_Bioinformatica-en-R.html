@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Introducción a R</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Dra. Linda Kempis Calanis" />
+    <meta name="date" content="2025-08-20" />
+    <script src="Clase_1_Bioinformatica-en-R_files/header-attrs-2.29/header-attrs.js"></script>
+    <link href="Clase_1_Bioinformatica-en-R_files/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="Clase_1_Bioinformatica-en-R_files/remark-css-0.0.1/rladies.css" rel="stylesheet" />
+    <link href="Clase_1_Bioinformatica-en-R_files/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Introducción a R
+]
+.subtitle[
+## Clase 1
+]
+.author[
+### Dra. Linda Kempis Calanis
+]
+.date[
+### 2025-08-20
+]
+
+---
+
+
+
+## El entorno de R
+**R es un lenguaje de programación y un entorno para el análisis estadístico y gráficas de datos**
+
+- R (Ihaka y Gentleman) puede considerarse derivado del lenguaje S (Chambers) y proporciona:
+- Almacenamiento y manipulación de datos.
+Operadores para cálculo sobre variables indexadas (Arrays), matrices.
+
+- Una amplia colección de herramientas para análisis de datos
+
+- Posibilidades gráficas para análisis de datos.
+
+- Un lenguaje de programación simple, que incluye condicionales, ciclos, funciones recursivas y posibilidad de entradas y salidas.
+
+- Existen librerías y manuales que apoyan para análisis específicos.
+
+- Multiplataforma, acceso libre.
+---
+!['fig'](Clase_1/fig_R.png)
+
+Instalar R: https://www.r-project.org
+Instalar RStudio: https://www.rstudio.com/
+---
+## Instalando R
+!['fig_install'](Clase_1/fig_install.png)
+---
+## Intalar Rstudio/ posit
+!['fig1'](Clase_1/fig_posit.png)
+
+---
+## Panel de RStudio posit
+
+!['fig1'](Clase_1/fig_1.png)
+
+---
+## Entorno de R studio
+!['fig_entorno'](Clase_1/fig_entorno.png)
+
+
+---
+R opera de la siguiente forma “leer, evaluar, mostrar” (tú escribes comandos, R intenta ejecutarlos y luego devuelve un resultado).
+
+Usando R como una calculadora
+
+
+``` r
+2 + 2 
+```
+
+```
+## [1] 4
+```
+Si escribes un comando incompleto R esperará a que lo completes:
+
+2 +
+
+Cada vez que presionas Enter y R te muestra un “+” en lugar de “&gt;”, significa que está esperando que completes el comando. Si deseas cancelar un comando, simplemente presiona “Esc” y RStudio te devolverá el “&gt;” prompt.
+
+---
+## Datos más comunes
+Los tipos de datos de uso más común en R son los siguientes.
+
+!['fig2'](Clase_1/fig_2.png)
+---
+## Entero y numérico
+Como su nombre lo indica, los datos enteros representan números enteros, sin una parte decimal o fraccionaria, que pueden ser usados en operaciones matemáticas.
+
+Por su parte, como su nombre lo indica, los datos numéricos representan números, la diferencia de estos con los datos enteros es que tiene una parte decimal o fraccionaria
+---
+## Cadena de texto
+El tipo character representa texto y es fácil reconocerlo porque un dato siempre esta rodeado de comillas, simples o dobles. De manera convencional, nos referimos a este tipo de datos como cadenas de texto, es decir, secuencias de caracteres.
+
+Este es el tipo de datos más flexible de R, pues una cadena de texto puede contener letras, números, espacios, signos de puntuación y símbolos especiales.
+---
+## Factor
+Un factor es un tipo de datos específico a R. Puede ser descrito como un dato numérico representado por una etiqueta.
+
+Supongamos que tenemos un conjunto de datos que representan el sexo de personas encuestadas por teléfono, pero estos se encuentran capturados con los números 1 y 2. El número 1 corresponde a femenino y el 2 a masculino.
+
+En R, podemos indicar que se nos muestre, en la consola y para otros análisis, los 1 como femenino y los 2 como masculino. Aunque para nuestra computadora, femenino tiene un valor de 1, pero a nosotros se nos muestra la palabra femenino. De esta manera reducimos el espacio de almacenamiento necesario para nuestros datos
+---
+# Lógico
+Los datos de tipo lógico sólo tienen dos valores posibles: verdadero (TRUE) y falso (FALSE). Representan si una condición o estado se cumple, es verdadero, o no, es falso.
+
+Este tipo de dato es, generalmente, el resultado de operaciones relacionales y lógicas, son esenciales para trabajar con álgebra Booleana.
+
+---
+## NA y NULL
+
+En R, usamos NA para representar datos perdidos, mientras que NULL representa la ausencia de datos.
+
+La diferencia entre las dos es que un dato NULL aparece sólo cuando R intenta recuperar un dato y no encuentra nada, mientras que NA es usado para representar explícitamente datos perdidos, omitidos o que por alguna razón son faltantes.
+
+Por ejemplo, si tratamos de recuperar la edad de una persona encuestada que no existe, obtendríamos un NULL, pues no hay ningún dato que corresponda con ello. En cambio, si tratamos de recuperar su estado civil, y la persona encuestada no contestó esta pregunta, obtendríamos un NA.
+
+NA además puede aparecer como resultado de una operación realizada, pero no tuvo éxito en su ejecución.
+---
+## Verificar el tipo de un dato
+
+En ocasiones, tenemos datos pero no sabemos de simple vistazo de qué tipo son. Para esto casos, podemos usar la función class() para determinar el tipo de un dato. Esto es de utilidad para asegurarnos que las operaciones que deseamos realizar tendrán los datos apropiados para llevarse a cabo con éxito.
+
+class() recibe como argumento un dato o vector y devuelve el nombre del tipo al que pertenece, en inglés.
+
+Por ejemplo, verificamos el tipo de datos que son 3, “3” y TRUE.
+
+
+``` r
+class(3)
+class("3")
+class(TRUE)
+```
+
+---
+# Coerción
+En R, los datos pueden ser coercionados, es decir, forzados, para transformarlos de un tipo a otro.
+
+!['fig3'](Clase_1/fig_3.png)
+
+---
+## R como calculadora
+Cuando usas R como calculadora, el orden de las operaciones es el mismo que has aprendido en la escuela.
+
+De mayor a menor precedencia:
+- Paréntesis: (, )
+- Exponente: ^ o **
+- División: /
+- Multiplicación: *
+- Suma: +
+- Resta: -
+
+
+``` r
+3 + 5 * 2
+```
+
+```
+## [1] 13
+```
+
+``` r
+(3 + 5) * 2
+```
+
+```
+## [1] 16
+```
+
+``` r
+(3 + (5 * (2 ^ 2))) # difícil de leer
+```
+
+```
+## [1] 23
+```
+
+``` r
+3 + 5 * 2 ^ 2       # claro, si recuerdas las reglas
+```
+
+```
+## [1] 23
+```
+---
+
+``` r
+3 + 5 * (2 ^ 2)     #si olvidas algunas reglas, esto podría ayudar
+```
+
+```
+## [1] 23
+```
+El texto después de cada línea de código se llama “comentario”. Todo lo que sigue después del símbolo hash (o numeral) # es ignorado por R cuando se ejecuta el código.
+
+Los números pequeños o grandes tienen una notación científica:
+
+
+``` r
+2/10000
+```
+
+```
+## [1] 2e-04
+```
+
+Es la abreviatura de “multiplicado por 10 ^ XX”. Entonces 2e-4 es la abreviatura de 2 * 10^(-4).
+
+Tú también puedes escribir números en notación científica:
+
+
+``` r
+5e3  # nota la falta del signo menos aquí
+```
+
+```
+## [1] 5000
+```
+---
+##Funciones matemáticas
+
+R tiene muchas funciones matemáticas integradas. Para llamar a una función, simplemente escribimos su nombre seguido de paréntesis ( ). Todo lo que escribas dentro de los paréntesis se llaman argumentos de la función:
+
+
+``` r
+sin(1)  # función trigonométrica
+```
+
+```
+## [1] 0.841471
+```
+
+``` r
+log(1) #logaritmo natural
+```
+
+```
+## [1] 0
+```
+- No te preocupes si no recuerdas todas las funciones en R. Simplemente puedes buscarlas en Google, o si puedes recordar el comienzo del nombre de la función, puedes usar el **tabulador** para completar su nombre en RStudio.
+
+- Esta es una de las ventajas que RStudio tiene sobre R, tiene capacidades de autocompletado que te permiten buscar funciones, sus argumentos y los valores que toman más fácilmente.
+
+- Escribir un ? antes del nombre de un comando abrirá la página de ayuda para ese comando
+?sin
+---
+## Comparaciones
+Podemos realizar comparaciones en R:
+
+
+``` r
+2 == 2 # igualdad (observa dos signos iguales, se lee como "es igual a")
+```
+
+```
+## [1] TRUE
+```
+
+``` r
+4 != 2  # desigualdad (leída como "no es igual a")
+```
+
+```
+## [1] TRUE
+```
+
+``` r
+4 &lt; 8  # menor que
+```
+
+```
+## [1] TRUE
+```
+
+``` r
+1 &lt;= 1  # menor o igual que
+```
+
+```
+## [1] TRUE
+```
+
+``` r
+1 &gt; 0  # mayor que
+```
+
+```
+## [1] TRUE
+```
+
+---
+## Variables y asignaciones
+Podemos almacenar valores en variables usando el operador de asignación &lt;-. Veamos un ejemplo:
+
+
+``` r
+x &lt;- 3
+x
+```
+
+```
+## [1] 3
+```
+Busca la pestaña Environment en uno de los paneles de RStudio, y verás que x y su valor han aparecido. Nuestra variable x se puede usar en lugar de un número en cualquier cálculo que espere un número:
+
+
+``` r
+log(x)
+```
+
+```
+## [1] 1.098612
+```
+Ten en cuenta que las variables pueden reasignarse, es decir, puedes cambiar el valor almacenado en la variable:
+
+``` r
+x &lt;-20/5
+x
+```
+
+```
+## [1] 4
+```
+---
+También, los valores de asignación pueden contener la variable asignada:
+
+
+``` r
+x &lt;- x + 2 # observa cómo RStudio actualiza la descripción de x en la pestaña superior derecha
+y &lt;- x * 3
+y
+```
+
+```
+## [1] 18
+```
+Los nombres de las variables pueden contener letras, números, guiones bajos y puntos. No pueden comenzar con un número ni contener espacios en absoluto. Diferentes personas usan diferentes convenciones para nombres largos de variables, estos incluyen
+
+puntos.entre.palabras
+guiones_bajos_entre_palabras
+MayúsculasMinúsculasParaSepararPalabras
+Lo que uses depende de ti, pero sé consistente.
+
+---
+## Desafío 1
+De los siguientes ejemplos, ¿Cuáles son nombres de variables válidas en R?
+
+min_height
+max.height
+_age
+.mass
+MaxLength
+min-length
+2widths
+celsius2kelvin
+---
+## Respuesta
+- min_height
+- max.height
+- MaxLength
+- celsius2kelvin
+---
+## Paquetes en R
+Es posible agregar funciones a R escribiendo un paquete u obteniendo un paquete escrito por otra persona. Hay más de 10.000 paquetes disponibles en CRAN (la red completa de archivos R). R y RStudio tienen funcionalidad para administrar paquetes:
+
+- Puedes ver qué paquetes están instalados escribiendo **installed.packages()**
+
+- Puedes instalar paquetes escribiendo **install.packages("nombre_de_paquete")**
+
+- Puedes actualizar los paquetes instalados escribiendo update.packages()
+
+- Puedes eliminar un paquete con **remove.packages("nombre_de_paquete")**
+
+- Puedes hacer que un paquete esté disponible para su uso con **library(nombre_de_paquete)**
+
+``` r
+install.packages("ggplot2")
+```
+
+
+---
+- &lt;- para asignar valores a variables.
+- ls() para listar las variables en el programa.
+- rm() para eliminar objetos en el programa.
+- install.packages() para instalar paquetes (libraries).
+---
+## R es mucho más que una calculadora. Es un programa, y un lenguaje de programación
+## Indicar el directorio de trabajo
+
+
+``` r
+setwd("D:/Docs/")
+getwd()
+
+# Mostrar como cambiar el directorio en la pestaña de Files
+# 
+#Verificar que se encuentren los archivos necesarios
+list.files()
+```
+---
+## Abrir un archivo
+
+## Puedes leer datos a partir de archivos guardados en tu computadora
+
+
+``` r
+tabla_ZAS&lt;-read.table("ZAS.txt")
+head(tabla_ZAS)
+```
+
+```
+##   V1
+## 1 31
+## 2 32
+## 3 35
+## 4 35
+## 5 36
+## 6 36
+```
+---
+## Scripts
+
+Los scripts son documentos de texto con la extensión de archivo .R, por ejemplo mi_script.R.
+
+Estos archivos son iguales a cualquier documentos de texto, pero R los puede leer y ejecutar el código que contienen.
+
+Aunque R permite el uso interactivo, es recomendable que guardes tu código en un archivo .R, de esta manera puedes usarlo después y compartirlo con otras personas. 
+
+
+
+
+---
+## Bibliografía
+
+
+https://swcarpentry.github.io/r-novice-gapminder-es/04-data-structures-part1.html
+
+
+https://bookdown.org/jboscomendoza/r-principiantes4/tipos-de-datos.html
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
