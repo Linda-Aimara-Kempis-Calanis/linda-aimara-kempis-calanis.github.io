@@ -362,7 +362,7 @@ mi_df$numero * 2
 ```
 ---
 ## Data frame
-!['fig'](Clase_2_2025/fig_1.png)
+!['fig'](Clase_2_2026/fig_1.png)
 
 ---
 ## Desafío
@@ -684,7 +684,7 @@ getwd()
 ```
 
 ```
-## [1] "C:/Users/aimar/Documents/Intoduccion_a_la_computacion_2026/Tema_2"
+## [1] "C:/Users/aimar/Documents/linda-aimara-kempis-calanis.github.io/Clase_2/Tema_2"
 ```
 
 ``` r
@@ -807,7 +807,7 @@ str(iris)
 ##  $ Species     : Factor w/ 3 levels "setosa","versicolor",..: 1 1 1 1 1 1 1 1 1 1 ...
 ```
 ---
-!['fig2'](Clase_2_2025/fig_2.png)
+!['fig2'](Clase_2_2026/fig_2.png)
 ---
 
 ``` r
@@ -990,10 +990,6 @@ Del data set iris recupera los datos de iris, seleciona la especie versicolor qu
 ## Respuesta
 
 
-``` r
-iris[iris[,"Petal.Length"]&gt;=4.2 &amp; iris[,"Species"]=="versicolor",]
-```
-
 ```
 ##    Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
 ## 51          7.0         3.2          4.7         1.4 versicolor
@@ -1031,9 +1027,6 @@ iris[iris[,"Petal.Length"]&gt;=4.2 &amp; iris[,"Species"]=="versicolor",]
 ---
 
 
-``` r
-versicolor &lt;- subset(iris, Petal.Length &gt;= 4.2  &amp; Species == "versicolor")
-```
 ---
 ## Leyendo archivos de datos (delimitados)
 

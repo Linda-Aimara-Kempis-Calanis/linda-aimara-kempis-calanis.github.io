@@ -453,13 +453,13 @@ Del data set iris recupera los datos de iris, seleciona la especie versicolor qu
 ---
 ## Respuesta
 
-```{r}
+```{r,echo = FALSE}
 iris[iris[,"Petal.Length"]>=4.2 & iris[,"Species"]=="versicolor",]
 
 ```
 ---
 
-```{r}
+```{r,echo = FALSE}
 versicolor <- subset(iris, Petal.Length >= 4.2  & Species == "versicolor")
 ```
 ---
