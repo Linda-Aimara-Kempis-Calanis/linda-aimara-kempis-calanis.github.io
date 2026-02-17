@@ -193,7 +193,7 @@ mi_df$numero * 2
 ```
 ---
 ## Data frame
-!['fig'](Clase_2_2025/fig_1.png)
+!['fig'](Clase_2_2026/fig_1.png)
 
 ---
 ## Desafío
@@ -410,7 +410,7 @@ Trabajemos con el data set “iris” (Edgar Anderson’s Iris Data)
 str(iris)
 ```
 ---
-!['fig2'](Clase_2_2025/fig_2.png)
+!['fig2'](Clase_2_2026/fig_2.png)
 ---
 ```{r}
 iris[, "Species"] # todas las observaciones de la columna 'Species'
