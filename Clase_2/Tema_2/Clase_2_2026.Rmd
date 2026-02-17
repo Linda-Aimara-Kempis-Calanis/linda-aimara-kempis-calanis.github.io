@@ -1,0 +1,490 @@
+---
+title: " Estructura de datos en R "
+subtitle: " Clase 2"
+author: "Dra.Linda Kempis Calanis"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    css: ["default", "rladies", "rladies-fonts"]
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: true
+---     
+
+##  Vectores
+
+- Elemento más básico en R.
+- Contiene elementos de la misma clase.
+- Se crea con la función c(), que significa ‘concatenar’ o ‘combinar’.
+
+```{r}
+v <- c(1.1, 10, 3.14)
+v
+```
+```{r}
+c(v,555,v)
+```
+
+## Operaciones con vectores
+```{r}
+a <- 10
+a
+v * 2 + 100
+```
+---
+
+```{r}
+b <- c (2,4,6,8,10) # Crear un vector numérico
+c <- c ("esto", "eso", "lo otro") # crea un vector de caracteres
+d <- c (1,2, "esto") # crea un vector de tipo mixto?
+d
+```
+Al crear d, los números se convierten en caracteres automáticamente porque un vector no puede tener tipos mixtos.
+
+Se puede acceder a los elementos de un vector, manipularlos y cambiarlos:
+
+```{r eval=FALSE}
+b[3] # Los corchetes se usan para acceder a los elementos.
+
+```
+
+```{r eval=FALSE}
+b[3]+b[5]
+```
+```{r}
+b[6] <- 12
+b
+```
+
+---
+## Listas
+
+A diferencia de un vector, una lista es una colección de elementos que pueden ser de diferente tipo. Los componentes de una lista son típicamente pares clave-valor.
+```{r}
+list <- list(1, TRUE, "Hello world!", c(1,2,3,4))
+```
+
+---
+```{r}
+mi_lista_nombres <- list(A = "Andrea", B = "Paola", C = "Sara" )
+mi_lista_nombres
+mi_lista_nombres["B"]
+mi_lista_nombres[2]
+mi_lista_nombres$B
+```
+---
+## Desafío
+
+Crea una lista de listas 
+Crea una lista que contenga 3 listas, que contenga la clave y valor 
+nombre=
+edad=
+hobbie=
+
+Por ultimo accede a la edad de la tercera lista 
+
+
+
+---
+```{r}
+lista_persona <- list(list(name = "Max White", age = 27, hobbies = c("Programming, movies")), list(name = "Mia Black", age = 32, hobbies = c("Theater, computer games")), list(name = "Mika Brown", age =23, hobbies = c("Sports, music")))
+
+lista_persona[[2]][[3]]
+
+```
+
+---
+## Matrices y Data Frames
+
+Ambos representan tipos de datos “rectangulares”, lo que significa que se usan para almacenar datos tabulares, con filas y columnas.
+
+La principal diferencia, es que las matrices solo pueden contener una única clase de datos (al igual que los vectores), mientras que los data frames pueden consistir en muchas clases diferentes de datos.
+
+---
+## Matrices 
+
+```{r}
+mi_vector <- 1:20
+mi_vector
+dim(mi_vector)
+```
+Dado que la variable es un vector, no tiene un atributo dim (entonces es simplemente NULL).
+
+¿Qué ocurre si le damos a mi_vector un atributo dim?
+```{r}
+dim(mi_vector) <- c(4, 5)
+mi_vector
+```
+
+---
+## Matrices
+
+```{r}
+class(mi_vector)
+```
+Una matriz es simplemente un vector con un atributo de dimensión.
+
+Para crear la misma matriz utiliza la función **matrix**.
+```{r}
+mat <- matrix(1:20, nrow = 5, ncol = 4)
+mat
+mi_matriz2 <- matrix(1:20, 4, 5)
+mi_matriz2
+```
+---
+## Data Frames
+- Un data frame es una estructura de datos bidimensional similar a una matriz, pero funciona de manera muy diferente. Si bien un data frame parece una tabla simple, de hecho es una lista de vectores de la misma longitud. 
+
+- La principal diferencia es que un data frame permite tipos de datos mixtos (por ejemplo, numérico, lógico, caracter). 
+
+- Esto les permite almacenar diferentes tipos de variables, lo cual es muy útil en el análisis estadístico.
+
+```{r}
+mi_df <- data.frame(
+  "entero" = 1:4, 
+  "factor" = c("a", "b", "c", "d"), 
+  "numero" = c(1.2, 3.4, 4.5, 5.6),
+  "cadena" = as.character(c("a", "b", "c", "d"))
+)
+
+mi_df
+```
+---
+
+```{r}
+# Podemos usar dim() en un data frame
+dim(mi_df)
+
+# El largo de un data frame es igual a su número de columnas
+length(mi_df)
+
+# names() nos permite ver los nombres de las columnas
+names(mi_df)
+```
+
+Si los vectores que usamos para construir el data frame no son del mismo largo, los datos no se reciclaran. Se nos devolverá un error.
+
+```{r eval=FALSE}
+data.frame(
+  "entero" = 1:3, 
+  "factor" = c("a", "b", "c", "d"), 
+  "numero" = c(1.2, 3.4, 4.5, 5.6),
+  "cadena" = as.character(c("a", "b", "c", "d"))
+)
+
+```
+
+---
+## Propiedades de un data frame
+Al igual que con una matriz, si aplicamos una operación aritmética a un data frame, esta se vectorizará.
+
+Los resultados que obtendremos dependerán del tipo de datos de cada columna. R nos devolverá todas las advertencias que ocurran como resultado de las operaciones realizadas.
+
+```{r}
+mi_df <- data.frame(
+  "entero" = 1:4, 
+  "factor" = c("a", "b", "c", "d"), 
+  "numero" = c(1.2, 3.4, 4.5, 5.6),
+  "cadena" = as.character(c("a", "b", "c", "d"))
+)
+
+mi_df$numero * 2
+```
+---
+## Data frame
+!['fig'](Clase_2_2025/fig_1.png)
+
+---
+## Desafío
+Crea un dataframe con la información de gatos, que contega las siguientes columnas
+color,peso,le_gusta_cuerda(1,0)
+---
+## Respuesta
+
+```{r}
+gatos <- data.frame(color = c("mixto", "negro", "atigrado"), peso = c(2.1, 5.0, 3.2),le_gusta_cuerda = c(1, 0, 1))                    
+gatos   
+```
+---
+## Función data.frame
+
+```{r}
+mi_df <- data.frame(
+  "Edad" = c(35,29,21,40), 
+  "Ejercicio" = c(TRUE, FALSE, TRUE, FALSE),
+  "Pais" = as.character(c("Malta", "Francia", "Colombia","España"))
+)
+mi_df
+```
+---
+## Data frame
+**datos <- edit(data.frame())** # Abre un editor para introducir los datos datos
+
+Se puede acceder a los datos de un data frame como se hace con una matriz,especificando las filas y columnas con la siguiente sintaxis:
+
+**mi_df[renglones, columnas]**
+
+índices positivos y negativos
+cadenas de caracteres
+valores lógicos
+
+```{r}
+mi_df[c(1, 3), ] # Índices positivos: renglones 1 y 3
+```
+---
+## Acceso a los elementos con formato matriz
+```{r}
+mi_df[, -2]                  # Índices negativos: excluir columna 2
+
+mi_df[, c("Ejercicio", "Edad")] # cadenas de caracteres
+
+mi_df[mi_df[, "Ejercicio"] == TRUE, ] # valores lógicos
+
+#Observa que si se deja en blanco la parte de filas o columnas se seleccionan todos los elementos de la dimensión
+
+```
+
+---
+## Acceso a los elementos con formato lista
+Un data frame se implementa como una lista cuyos componentes son las columnas del data frame. Esto permite acceder con formato de lista para seleccionar las columnas,los operadores de acceso a lista son: [], [[]] y $.
+```{r}
+mi_df[1:2] # primeras 2 columnas
+mi_df[c("Ejercicio", "Edad")] # columnas de nombres: Ejercicio y Edad
+
+```
+---
+```{r}
+mean(mi_df[[1]])      # Media de la columna 1
+mean(mi_df[["Edad"]]) # Media de la columna Edad
+
+
+```
+Por último, el operador **$** se utiliza para acceder al contenido de una columna mediante su nombre. 
+```{r}
+mi_df$Pais
+
+mi_df[mi_df$Ejercicio,]# Muestra sólo las personas que hacen Ejercicio
+```
+
+---
+##Trabajando con data frames
+Las posibilidades de procesamiento de un data frame son enormes
+
+```{r}
+#Podemos usar dim() en un data frame
+dim(mi_df)
+# El largo de un data frame es igual a su número de columnas
+length(mi_df)
+# names() nos permite ver los nombres de las columnas
+names(mi_df)
+rownames(mi_df) # nombres de los renglones
+
+```
+---
+Las funciones str y summary (funciones genéricas aplicables a distintos objetos, no solo a data frames) nos dan información sobre un data frame:
+
+```{r}
+str(mi_df)
+summary(mi_df)
+```
+---
+##Modificación de un data frame
+```{r}
+rownames(mi_df) <- c("Primero", "Segundo", "Tercero","Cuarto") #Modificamos el nombre de los renglones
+mi_df
+mi_df[3, 2] <- FALSE 
+mi_df
+```
+
+---
+Es posible también añadir o eliminar nuevas filas y columnas de diferentes formas. Veamos algunos ejemplos:
+
+```{r}
+mi_df$Peso <- c(81,85,70,82) # se añade una columna de peso
+mi_df
+quinto_dato <- data.frame(Edad = 25, Ejercicio = TRUE, Pais = "Argentina", Peso = 67)
+mi_df <- rbind(mi_df, quinto_dato) # se añade una fila
+mi_df
+#Las funciones cbind y rbind permiten concatenar data frames horizontal y vertical.
+```
+
+---
+##read.table()
+La función read.table tiene muchas funciones
+
+***?read.table***
+- file #El nombre del archivo o conexión
+- header #De tipo lógico indicando si el archivo contiene una línia de cabecera
+- sep #Una cadena indicando como están separadas las columnas
+- col.names # Vector de nombres
+- row.names # Número o vector de nombres
+- comment.char # Símbolo para comentarios
+
+En donde esta nuestra tabla
+- **getwd()** #Imprime la dirección de trabajo
+- **setwd()** #Cambiar la dirección de trabajo 
+
+```{r}
+getwd()
+Tabla_GDE <- read.table("Tabla/Tabla_GDE.txt",header = TRUE,sep ="\t")
+View(Tabla_GDE)
+filtrados <- read.table("Tabla/filtrados.txt",header = TRUE,sep ="\t")
+View(filtrados)
+filtrados2 <- read.table("Tabla/filtrados.txt",sep ="\t")
+View(filtrados2)
+filtrados3 <- read.table("Tabla/filtrados.txt",header=TRUE)
+View(filtrados3)
+
+```
+
+---
+##Como guardar un archivo .txt
+
+```{r}
+write.table(mi_df, file="mi_dataframe.txt", sep="\t", col.names = TRUE)
+mi_df_2 <- read.table("mi_dataframe.txt")
+View(mi_df_2)
+```
+
+---
+
+## Factores
+
+- Un factor en R es una estructura de datos utilizada para representar un vector como datos categóricos. 
+
+- El objeto factor toma un número acotado de diferentes valores llamados niveles. Los factores son muy útiles cuando se trabaja con columnas de caracteres de data frames, para crear gráficos de barras y crear resúmenes estadísticos de variables categóricas.
+```{r}
+dias <- c("Viernes", "Martes", "Jueves", "Lunes", "Miércoles", "Lunes",
+          "Miércoles", "Lunes", "Lunes", "Miércoles", "Domingo", "Sábado")
+
+# Niveles en orden alfabético
+mi_factor <- factor(dias)
+mi_factor
+```
+---
+## Factores
+
+Se pueden devolver y convertir los niveles de los factores en caracteres con la función levels.
+
+```{r}
+levels(mi_factor)
+```
+
+Supongamos ahora que has registrado el municipio de seis personas con la siguiente codificación:
+
+- 1: Cuernavaca.
+- 2: Cuautla,
+- 3: Jiutepec.
+- 4: Yautepec.
+Por lo tanto, tendrás datos almacenados en un vector numérico como los siguientes:
+
+```{r}
+municipio <- c(1,4,3,2)
+```
+---
+## Factores
+Ahora puedes llamar a la función factor para convertir y obtener los datos categorizados para su posterior análisis.
+```{r}
+mi_factor_municipio <- factor(municipio)
+mi_factor_municipio
+```
+
+Si el vector de entrada es numérico, la etiqueta correspondiente (el municipio) no queda reflejada. Para resolver este problema, puedes almacenar los datos en un objeto de tipo factor utilizando la función factor e indicar las etiquetas correspondientes de los niveles en el argumento labels y así cambiar el nombre de los niveles del factor.
+
+```{r}
+# Especificando las etiquetas en el orden correspondiente
+factor_municipios_nacimiento <- factor(municipio, labels = c("Cuernavaca", "Cuautla","Jiutepec", "Yautepec"))
+
+# Imprimir el resultado
+factor_municipios_nacimiento
+```
+
+---
+## Conjunto de datos en R
+Varios conjuntos de datos tabulados o data sets se icluyen en la instalación de R (en el paquete datasets) y por defecto se ecuentran cargados para su uso. la funcion data() lista todos los data sets de R.
+
+Trabajemos con el data set “iris” (Edgar Anderson’s Iris Data)
+
+```{r}
+str(iris)
+```
+---
+!['fig2'](Clase_2_2025/fig_2.png)
+---
+```{r}
+iris[, "Species"] # todas las observaciones de la columna 'Species'
+```
+---
+```{r}
+```
+
+
+```{r}
+iris$Species      # Lo mismo.
+```
+
+---
+
+Cuando queremos extraer datos del data frame según una condicion, esto se complica.
+```{r}
+#iris[iris[,"Species"]=="setosa", ]
+iris[iris$Species=="setosa", ] 
+
+```
+---
+Así mismo, si se desea obtener las observaciones donde el ancho del sépalo sea menor a 3 y la especie sea “setosa”.
+```{r}
+iris[iris[,"Sepal.Width"]<=3 & iris[,"Species"]=="setosa", ]
+```
+---
+
+## Subsetting
+
+La función subset nos facilita el recuperar datos cuando queremos que se cumplan ciertas condiciones.
+
+```{r}
+subset(iris, Sepal.Width <= 3  & Species == "setosa")
+```
+
+---
+## Desafío
+Del data set iris recupera los datos de iris, seleciona la especie versicolor que tenga una longitud mayor o igualde 4.2 
+---
+## Respuesta
+
+```{r}
+iris[iris[,"Petal.Length"]>=4.2 & iris[,"Species"]=="versicolor",]
+
+```
+---
+
+```{r}
+versicolor <- subset(iris, Petal.Length >= 4.2  & Species == "versicolor")
+```
+---
+## Leyendo archivos de datos (delimitados)
+
+- x<-read.table("ZAS.txt", sep= " " ) # Por espacios
+- x<-read.table("ZAS.txt", sep= "\t" ) # Por tabulaciones
+- x<-read.csv("ZAS.csv" ) # Por comas
+- X<-read.delim("ZAS.txt" ) #Lee tablas
+
+## Exportar dataframes o matrices desde R.
+
+
+```{r eval=FALSE}
+write.table(x, file, sep = " ", row.names = TRUE, col.names = TRUE)
+```
+
+```{r}
+write.csv(versicolor, file = "Resultados/my_data.csv")
+write.table(versicolor,file="Resultados/my_data.txt")
+```
+
+---
+## Bibligrafía
+
+https://bookdown.org/jboscomendoza/r-principiantes4/nombres.html
+
+https://swcarpentry.github.io/r-novice-gapminder-es/05-data-structures-part2.html
