@@ -461,6 +461,7 @@ iris[iris[,"Petal.Length"]>=4.2 & iris[,"Species"]=="versicolor",]
 
 ```{r,echo = FALSE}
 versicolor <- subset(iris, Petal.Length >= 4.2  & Species == "versicolor")
+View(versicolor)
 ```
 ---
 ## Leyendo archivos de datos (delimitados)
@@ -474,12 +475,12 @@ versicolor <- subset(iris, Petal.Length >= 4.2  & Species == "versicolor")
 
 
 ```{r eval=FALSE}
-write.table(x, file, sep = " ", row.names = TRUE, col.names = TRUE)
+write.table(versicolor, file, sep = " ", row.names = TRUE, col.names = TRUE)
 ```
 
 ```{r}
-write.csv(versicolor, file = "Resultados/my_data.csv")
-write.table(versicolor,file="Resultados/my_data.txt")
+write.csv(versicolor, file = "my_data.csv")
+write.table(versicolor,file="my_data_versicolor.txt")
 ```
 
 ---
