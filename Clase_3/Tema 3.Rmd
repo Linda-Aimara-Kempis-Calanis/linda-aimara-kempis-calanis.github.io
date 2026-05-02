@@ -383,8 +383,7 @@ for (x in fruits) {
 ```{r}
 for (x in fruits) {
   if (x == "banana") {
-    break
-  }
+    break }
   print(x)
 }
 ```
@@ -424,12 +423,12 @@ Imagina que cada hora las células en cultivo aumentan su número en un 30 % deb
 
 ```{r}
 # Crecimiento celular simulado
-poblacion <- 100     # Población inicial
+poblacion <- 1000     # Población inicial
 objetivo <- 50000
 horas <- 0
 
 while (poblacion < objetivo) {
-  poblacion <- poblacion * 1.3  # Crecimiento del 30%
+  poblacion <- poblacion * 1.3#Crecimiento del 30%
   horas <- horas + 1
 }
 mensaje <- paste0(
@@ -475,7 +474,7 @@ donde necesitamos información del Sexo, A=Altura, P=Peso y E=Edad de cada perso
 calcularTMB <- function(sexo, peso, altura, edad) {
   
   # Convertir a minúsculas por si el usuario escribe "Hombre" o "MUJER"
-  sexo <- tolower(sexo)
+  sexo <- sexo
   
   # 🧠 Validar el sexo y aplicar la fórmula adecuada
   if (sexo == "hombre") {
@@ -487,7 +486,6 @@ calcularTMB <- function(sexo, peso, altura, edad) {
   } else {
     stop("⚠️ Sexo no válido. Usa 'hombre' o 'mujer'.")
   }
-  
   # Retornar el resultado
   #return(tmb)
   return(paste(
@@ -497,6 +495,37 @@ calcularTMB <- function(sexo, peso, altura, edad) {
 
 }
 ```
+---
+```{r}
+TMB <- function(Sexo,Altura,Peso,Edad){
+  if(Sexo=="mujer"){ 655 + (9.6 * Peso) + 
+    (1.8 * Altura) - (4.7 * Edad) }
+  else{ 66 + (13.7 * Peso) + (5 * Altura) - 
+        (6.8 * Edad) }
+  } 
+TMB("mujer",170,57,32)
+```
+
+---
+```{r echo=FALSE}
+# 📊 Función para calcular TMB
+calcularTMB <- function(sexo, peso, altura, edad) {
+  
+  # Convertir a minúsculas por si el usuario escribe "Hombre" o "MUJER"
+  sexo <- sexo
+  
+  # 🧠 Validar el sexo y aplicar la fórmula adecuada
+  if (sexo == "hombre") {
+    # Fórmula para hombre
+    tmb <- 66 + (13.7 * peso) + (5 * altura) - (6.8 * edad)}
+  tmb <- 655 + (9.6 * peso) + (1.8 * altura) - (4.7 * edad)
+  } 
+  # Retornar el resultado
+  #return(tmb)
+ return(paste("Tu TMB es", tmb,"kcal/día — no deberías consumir menos que esto."))
+}
+```
+---
 ---
 ```{r}
 # ♀️ Mujer de ejemplo
