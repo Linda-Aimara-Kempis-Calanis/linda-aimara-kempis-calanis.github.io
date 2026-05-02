@@ -1,5 +1,0 @@
----
-title: Proyecto grupal
----
-
-Si aplica, se puede incluir un proyecto grupal.
