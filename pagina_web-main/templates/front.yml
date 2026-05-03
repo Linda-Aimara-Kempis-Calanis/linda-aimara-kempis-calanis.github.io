@@ -1,6 +1,7 @@
-name: "Curso"
-term: "Semestre y año académico"
+name: "Curso Bioquímica"
+term: "Semestre 2, año 2026"
 program: "Programas / carreras"
-institution: "Universidad / Facultad"
-times: "Horario de clases"
-hero_image: "imgs/hero.png"
+institution: "UAEM - Universidad Autónoma del Estado de Morelos
+"
+times: "Horarios de actualización de los temas martes y jueves"
+hero_image: "imgs/hero.jpg"
