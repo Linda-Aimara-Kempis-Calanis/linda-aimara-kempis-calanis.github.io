@@ -327,7 +327,7 @@ Rudin, Walter. 1976. <em>Principles of Mathematical Analysis</em>. 3.ª ed. McGr
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/Linda-Aimara-Kempis-Calanis\.github\.io\/linda-aimara-kempis-calanis\.github\.io\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
