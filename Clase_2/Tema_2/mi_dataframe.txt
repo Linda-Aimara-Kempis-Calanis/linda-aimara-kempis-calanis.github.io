@@ -1,6 +1,0 @@
-"Edad"	"Ejercicio"	"Pais"	"Peso"
-"Primero"	35	TRUE	"Malta"	81
-"Segundo"	29	FALSE	"Francia"	85
-"Tercero"	21	FALSE	"Colombia"	70
-"Cuarto"	40	FALSE	"España"	82
-"1"	25	TRUE	"Argentina"	67
