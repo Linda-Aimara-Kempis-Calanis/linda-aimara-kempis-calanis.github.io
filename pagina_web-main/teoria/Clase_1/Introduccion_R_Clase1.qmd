@@ -1,0 +1,95 @@
+---
+title: "Introducción a R"
+subtitle: "Clase 1"
+author: "Dra. Linda Kempis Calanis"
+date: today
+format:
+  revealjs:
+    theme: default
+    highlight-style: github
+    incremental: true
+execute:
+  echo: true
+---
+
+## El entorno de R
+
+**R es un lenguaje de programación y un entorno para el análisis estadístico y gráficas de datos**
+
+- R (Ihaka y Gentleman) puede considerarse derivado del lenguaje S (Chambers)
+- Almacenamiento y manipulación de datos
+- Operadores para cálculo sobre variables indexadas (arrays) y matrices
+- Amplia colección de herramientas para análisis de datos
+- Capacidades gráficas
+- Lenguaje de programación con condicionales, ciclos y funciones
+- Multiplataforma y de acceso libre
+
+---
+
+![](Clase_1/fig_R.png)
+
+Instalar R: https://www.r-project.org  
+Instalar RStudio / Posit: https://posit.co
+
+---
+
+## Instalando R
+
+![](Clase_1/fig_install.png)
+
+---
+
+## Instalar RStudio / Posit
+
+![](Clase_1/fig_posit.png)
+
+---
+
+## Panel de RStudio / Posit
+
+![](Clase_1/fig_1.png)
+
+---
+
+## Entorno de RStudio
+
+![](Clase_1/fig_entorno.png)
+
+---
+
+R opera de la siguiente forma: **leer → evaluar → mostrar**
+
+```{r}
+2 + 2
+```
+
+---
+
+## Datos más comunes
+
+![](Clase_1/fig_2.png)
+
+---
+
+## Verificar el tipo de un dato
+
+```{r eval=FALSE}
+class(3)
+class("3")
+class(TRUE)
+```
+
+---
+
+## Paquetes en R
+
+```{r eval=FALSE}
+install.packages("ggplot2")
+```
+
+---
+
+## Bibliografía
+
+https://swcarpentry.github.io/r-novice-gapminder-es/04-data-structures-part1.html  
+https://bookdown.org/jboscomendoza/r-principiantes4/tipos-de-datos.html

@@ -1,15 +1,4 @@
-# Salida de Quarto
-_site/
-.quarto/
-
-# Archivos temporales
-*.DS_Store
+.Rproj.user
 .Rhistory
 .RData
-.Rproj.user/
-
-/.quarto/
-
-/.luarc.json
-
-**/*.quarto_ipynb
+.Ruserdata
