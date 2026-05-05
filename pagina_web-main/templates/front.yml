@@ -1,7 +1,6 @@
-name: "Curso Bioquímica"
+name: "Introducción a la Computación"
 term: "Semestre 2, año 2026"
-program: "Programas / carreras"
-institution: "UAEM - Universidad Autónoma del Estado de Morelos
-"
-times: "Horarios de actualización de los temas martes y jueves"
-hero_image: "imgs/hero.jpg"
+program: "Programas / Carreras"
+institution: "UAEM - Universidad Autónoma del Estado de Morelos"
+times: "Horarios de actualización de los temas: miércoles y viernes"
+hero_image: "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExcm94OWk2MWlnbDUwdWRxdXNhZDYwZXJ3aGRtbjcwaGQ1c25peTczMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Sm9AfJRiZofjlrkAAl/giphy.gif"
