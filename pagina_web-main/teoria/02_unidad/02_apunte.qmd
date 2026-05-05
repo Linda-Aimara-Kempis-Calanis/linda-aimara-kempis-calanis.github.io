@@ -3,11 +3,18 @@ title: "Introducción a R"
 subtitle: "Clase 1"
 author: "Dra. Linda Kempis Calanis"
 date: today
+
 format:
   revealjs:
-    theme: default
-    highlight-style: github
+    theme: night
+    transition: slide
+    background-transition: fade
+    highlight-style: monokai
     incremental: true
+    center: true
+    slide-number: true
+    css: styles/purple-theme.css
+
 execute:
   echo: true
 ---
