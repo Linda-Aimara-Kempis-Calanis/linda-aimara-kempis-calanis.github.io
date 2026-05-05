@@ -1,66 +1,80 @@
 [
   {
-    "objectID": "teoria/Clase_1/Introduccion_R_Clase1.html#el-entorno-de-r",
-    "href": "teoria/Clase_1/Introduccion_R_Clase1.html#el-entorno-de-r",
+    "objectID": "teoria/02_unidad/Introduccion_a_R_Clase_1.html",
+    "href": "teoria/02_unidad/Introduccion_a_R_Clase_1.html",
     "title": "Introducción a R",
-    "section": "El entorno de R",
-    "text": "El entorno de R\nR es un lenguaje de programación y un entorno para el análisis estadístico y gráficas de datos\n\nR (Ihaka y Gentleman) puede considerarse derivado del lenguaje S (Chambers)\nAlmacenamiento y manipulación de datos\nOperadores para cálculo sobre variables indexadas (arrays) y matrices\nAmplia colección de herramientas para análisis de datos\nCapacidades gráficas\nLenguaje de programación con condicionales, ciclos y funciones\nMultiplataforma y de acceso libre"
+    "section": "",
+    "text": "R es un lenguaje de programación y un entorno para el análisis estadístico y gráficas de datos\n\nR (Ihaka y Gentleman) puede considerarse derivado del lenguaje S (Chambers)\nAlmacenamiento y manipulación de datos\nOperadores para cálculo sobre variables indexadas (arrays) y matrices\nAmplia colección de herramientas para análisis de datos\nCapacidades gráficas\nLenguaje de programación con condicionales, ciclos y funciones\nMultiplataforma y de acceso libre\n\n\nInstalar R: https://www.r-project.org\nInstalar RStudio / Posit: https://posit.co"
   },
   {
-    "objectID": "teoria/Clase_1/Introduccion_R_Clase1.html#instalando-r",
-    "href": "teoria/Clase_1/Introduccion_R_Clase1.html#instalando-r",
+    "objectID": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#el-entorno-de-r",
+    "href": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#el-entorno-de-r",
+    "title": "Introducción a R",
+    "section": "",
+    "text": "R es un lenguaje de programación y un entorno para el análisis estadístico y gráficas de datos\n\nR (Ihaka y Gentleman) puede considerarse derivado del lenguaje S (Chambers)\nAlmacenamiento y manipulación de datos\nOperadores para cálculo sobre variables indexadas (arrays) y matrices\nAmplia colección de herramientas para análisis de datos\nCapacidades gráficas\nLenguaje de programación con condicionales, ciclos y funciones\nMultiplataforma y de acceso libre\n\n\nInstalar R: https://www.r-project.org\nInstalar RStudio / Posit: https://posit.co"
+  },
+  {
+    "objectID": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#instalando-r",
+    "href": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#instalando-r",
     "title": "Introducción a R",
     "section": "Instalando R",
     "text": "Instalando R"
   },
   {
-    "objectID": "teoria/Clase_1/Introduccion_R_Clase1.html#instalar-rstudio-posit",
-    "href": "teoria/Clase_1/Introduccion_R_Clase1.html#instalar-rstudio-posit",
+    "objectID": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#instalar-rstudio-posit",
+    "href": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#instalar-rstudio-posit",
     "title": "Introducción a R",
     "section": "Instalar RStudio / Posit",
     "text": "Instalar RStudio / Posit"
   },
   {
-    "objectID": "teoria/Clase_1/Introduccion_R_Clase1.html#panel-de-rstudio-posit",
-    "href": "teoria/Clase_1/Introduccion_R_Clase1.html#panel-de-rstudio-posit",
+    "objectID": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#panel-de-rstudio-posit",
+    "href": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#panel-de-rstudio-posit",
     "title": "Introducción a R",
     "section": "Panel de RStudio / Posit",
     "text": "Panel de RStudio / Posit"
   },
   {
-    "objectID": "teoria/Clase_1/Introduccion_R_Clase1.html#entorno-de-rstudio",
-    "href": "teoria/Clase_1/Introduccion_R_Clase1.html#entorno-de-rstudio",
+    "objectID": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#entorno-de-rstudio",
+    "href": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#entorno-de-rstudio",
     "title": "Introducción a R",
     "section": "Entorno de RStudio",
     "text": "Entorno de RStudio"
   },
   {
-    "objectID": "teoria/Clase_1/Introduccion_R_Clase1.html#datos-más-comunes",
-    "href": "teoria/Clase_1/Introduccion_R_Clase1.html#datos-más-comunes",
+    "objectID": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#cómo-opera-r",
+    "href": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#cómo-opera-r",
+    "title": "Introducción a R",
+    "section": "¿Cómo opera R?",
+    "text": "¿Cómo opera R?\nR opera de la siguiente forma: leer → evaluar → mostrar\n2 + 2"
+  },
+  {
+    "objectID": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#datos-más-comunes",
+    "href": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#datos-más-comunes",
     "title": "Introducción a R",
     "section": "Datos más comunes",
     "text": "Datos más comunes"
   },
   {
-    "objectID": "teoria/Clase_1/Introduccion_R_Clase1.html#verificar-el-tipo-de-un-dato",
-    "href": "teoria/Clase_1/Introduccion_R_Clase1.html#verificar-el-tipo-de-un-dato",
+    "objectID": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#verificar-el-tipo-de-un-dato",
+    "href": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#verificar-el-tipo-de-un-dato",
     "title": "Introducción a R",
     "section": "Verificar el tipo de un dato",
-    "text": "Verificar el tipo de un dato\n\nclass(3)\nclass(\"3\")\nclass(TRUE)"
+    "text": "Verificar el tipo de un dato\nclass(3)\nclass(\"3\")\nclass(TRUE)"
   },
   {
-    "objectID": "teoria/Clase_1/Introduccion_R_Clase1.html#paquetes-en-r",
-    "href": "teoria/Clase_1/Introduccion_R_Clase1.html#paquetes-en-r",
+    "objectID": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#paquetes-en-r",
+    "href": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#paquetes-en-r",
     "title": "Introducción a R",
     "section": "Paquetes en R",
-    "text": "Paquetes en R\n\ninstall.packages(\"ggplot2\")"
+    "text": "Paquetes en R\ninstall.packages(\"ggplot2\")"
   },
   {
-    "objectID": "teoria/Clase_1/Introduccion_R_Clase1.html#bibliografía",
-    "href": "teoria/Clase_1/Introduccion_R_Clase1.html#bibliografía",
+    "objectID": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#bibliografía",
+    "href": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#bibliografía",
     "title": "Introducción a R",
     "section": "Bibliografía",
-    "text": "Bibliografía\nhttps://swcarpentry.github.io/r-novice-gapminder-es/04-data-structures-part1.html\nhttps://bookdown.org/jboscomendoza/r-principiantes4/tipos-de-datos.html"
+    "text": "Bibliografía\n\nhttps://swcarpentry.github.io/r-novice-gapminder-es/04-data-structures-part1.html\n\nhttps://bookdown.org/jboscomendoza/r-principiantes4/tipos-de-datos.html"
   },
   {
     "objectID": "teoria/02_unidad/01_apunte.html",
@@ -315,11 +329,23 @@
     ]
   },
   {
+    "objectID": "teoria/02_unidad/02_apunte.html",
+    "href": "teoria/02_unidad/02_apunte.html",
+    "title": "Introducción a R",
+    "section": "",
+    "text": "R es un lenguaje de programación y un entorno para el análisis estadístico y gráficas de datos\n\nR (Ihaka y Gentleman) puede considerarse derivado del lenguaje S (Chambers)\nAlmacenamiento y manipulación de datos\nOperadores para cálculo sobre variables indexadas (arrays) y matrices\nAmplia colección de herramientas para análisis de datos\nCapacidades gráficas\nLenguaje de programación con condicionales, ciclos y funciones\nMultiplataforma y de acceso libre\n\n\nInstalar R: https://www.r-project.org\nInstalar RStudio / Posit: https://posit.co",
+    "crumbs": [
+      "Teoría",
+      "Unidad 2",
+      "Introducción a R"
+    ]
+  },
+  {
     "objectID": "teoria/02_unidad/02_apunte.html#el-entorno-de-r",
     "href": "teoria/02_unidad/02_apunte.html#el-entorno-de-r",
     "title": "Introducción a R",
-    "section": "El entorno de R",
-    "text": "El entorno de R\nR es un lenguaje de programación y un entorno para el análisis estadístico y gráficas de datos\n\nR (Ihaka y Gentleman) puede considerarse derivado del lenguaje S (Chambers)\nAlmacenamiento y manipulación de datos\nOperadores para cálculo sobre variables indexadas (arrays) y matrices\nAmplia colección de herramientas para análisis de datos\nCapacidades gráficas\nLenguaje de programación con condicionales, ciclos y funciones\nMultiplataforma y de acceso libre",
+    "section": "",
+    "text": "R es un lenguaje de programación y un entorno para el análisis estadístico y gráficas de datos\n\nR (Ihaka y Gentleman) puede considerarse derivado del lenguaje S (Chambers)\nAlmacenamiento y manipulación de datos\nOperadores para cálculo sobre variables indexadas (arrays) y matrices\nAmplia colección de herramientas para análisis de datos\nCapacidades gráficas\nLenguaje de programación con condicionales, ciclos y funciones\nMultiplataforma y de acceso libre\n\n\nInstalar R: https://www.r-project.org\nInstalar RStudio / Posit: https://posit.co",
     "crumbs": [
       "Teoría",
       "Unidad 2",
@@ -375,6 +401,18 @@
     ]
   },
   {
+    "objectID": "teoria/02_unidad/02_apunte.html#cómo-opera-r",
+    "href": "teoria/02_unidad/02_apunte.html#cómo-opera-r",
+    "title": "Introducción a R",
+    "section": "¿Cómo opera R?",
+    "text": "¿Cómo opera R?\nR opera de la siguiente forma: leer → evaluar → mostrar\n2 + 2",
+    "crumbs": [
+      "Teoría",
+      "Unidad 2",
+      "Introducción a R"
+    ]
+  },
+  {
     "objectID": "teoria/02_unidad/02_apunte.html#datos-más-comunes",
     "href": "teoria/02_unidad/02_apunte.html#datos-más-comunes",
     "title": "Introducción a R",
@@ -391,7 +429,7 @@
     "href": "teoria/02_unidad/02_apunte.html#verificar-el-tipo-de-un-dato",
     "title": "Introducción a R",
     "section": "Verificar el tipo de un dato",
-    "text": "Verificar el tipo de un dato\n\nclass(3)\nclass(\"3\")\nclass(TRUE)",
+    "text": "Verificar el tipo de un dato\nclass(3)\nclass(\"3\")\nclass(TRUE)",
     "crumbs": [
       "Teoría",
       "Unidad 2",
@@ -403,7 +441,7 @@
     "href": "teoria/02_unidad/02_apunte.html#paquetes-en-r",
     "title": "Introducción a R",
     "section": "Paquetes en R",
-    "text": "Paquetes en R\n\ninstall.packages(\"ggplot2\")",
+    "text": "Paquetes en R\ninstall.packages(\"ggplot2\")",
     "crumbs": [
       "Teoría",
       "Unidad 2",
@@ -415,7 +453,7 @@
     "href": "teoria/02_unidad/02_apunte.html#bibliografía",
     "title": "Introducción a R",
     "section": "Bibliografía",
-    "text": "Bibliografía\nhttps://swcarpentry.github.io/r-novice-gapminder-es/04-data-structures-part1.html\nhttps://bookdown.org/jboscomendoza/r-principiantes4/tipos-de-datos.html",
+    "text": "Bibliografía\n\nhttps://swcarpentry.github.io/r-novice-gapminder-es/04-data-structures-part1.html\n\nhttps://bookdown.org/jboscomendoza/r-principiantes4/tipos-de-datos.html",
     "crumbs": [
       "Teoría",
       "Unidad 2",
