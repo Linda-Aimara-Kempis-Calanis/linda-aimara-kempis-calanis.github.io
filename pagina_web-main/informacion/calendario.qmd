@@ -2,6 +2,6 @@
 title: Calendario
 ---
 
-Cronograma de las actividades de la clase
+## Cronograma de las actividades de la clase
 
-[Descargar PDF](cronograma.pdf)
+Puedes consultar el cronograma aquí: [PDF del cronograma](https://dra-lindaaimara.github.io/cronograma.pdf)

@@ -2,4 +2,5 @@
 title: Programa
 ---
 
-Se describen los objetivos, competencias y contenidos generales del curso.
+Introduce al estudiante a conceptos y prácticas básicas de programación, incluye conocimientos adquiridos en el desarrollo de programas que permitan ser aplicados en escenarios relevantes para el área de Bioquímica y Biología Molecular, con un entorno
+de responsabilidad social y ética.
