@@ -82,9 +82,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-d3f387b2490998008262a04b43a1a0b1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-1a595d4147cde4faffca3dc780215505.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-1a595d4147cde4faffca3dc780215505.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-1a595d4147cde4faffca3dc780215505.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-a2f26670d656a5ededa087c91914b793.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-a2f26670d656a5ededa087c91914b793.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-a2f26670d656a5ededa087c91914b793.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -114,7 +114,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<link rel="stylesheet" href="styles/minimal.css">
 </head>
 
 <body class="nav-sidebar floating nav-fixed quarto-light">
@@ -245,11 +244,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">En esta página</h2>
    
   <ul>
-  <li><a href="#vectores" id="toc-vectores" class="nav-link active" data-scroll-target="#vectores">Vectores</a></li>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción">Introducción</a>
+  <ul class="collapse">
+  <li><a href="#vectores" id="toc-vectores" class="nav-link" data-scroll-target="#vectores">Vectores</a></li>
   <li><a href="#operaciones-con-vectores" id="toc-operaciones-con-vectores" class="nav-link" data-scroll-target="#operaciones-con-vectores">Operaciones con vectores</a></li>
-  <li><a href="#desafío" id="toc-desafío" class="nav-link" data-scroll-target="#desafío">Desafío</a></li>
   <li><a href="#matrices-y-data-frames" id="toc-matrices-y-data-frames" class="nav-link" data-scroll-target="#matrices-y-data-frames">Matrices y Data Frames</a></li>
   <li><a href="#matrices" id="toc-matrices" class="nav-link" data-scroll-target="#matrices">Matrices</a></li>
+  <li><a href="#data-frames" id="toc-data-frames" class="nav-link" data-scroll-target="#data-frames">Data Frames</a></li>
+  <li><a href="#propiedades-de-un-data-frame" id="toc-propiedades-de-un-data-frame" class="nav-link" data-scroll-target="#propiedades-de-un-data-frame">Propiedades de un data frame</a></li>
+  <li><a href="#data-frame" id="toc-data-frame" class="nav-link" data-scroll-target="#data-frame">Data frame</a></li>
+  <li><a href="#desafío" id="toc-desafío" class="nav-link" data-scroll-target="#desafío">Desafío</a></li>
+  <li><a href="#respuesta" id="toc-respuesta" class="nav-link" data-scroll-target="#respuesta">Respuesta</a></li>
+  <li><a href="#función-data.frame" id="toc-función-data.frame" class="nav-link" data-scroll-target="#función-data.frame">Función data.frame</a></li>
+  <li><a href="#data-frame-1" id="toc-data-frame-1" class="nav-link" data-scroll-target="#data-frame-1">Data frame</a></li>
+  <li><a href="#acceso-a-los-elementos-con-formato-matriz" id="toc-acceso-a-los-elementos-con-formato-matriz" class="nav-link" data-scroll-target="#acceso-a-los-elementos-con-formato-matriz">Acceso a los elementos con formato matriz</a></li>
+  <li><a href="#acceso-a-los-elementos-con-formato-lista" id="toc-acceso-a-los-elementos-con-formato-lista" class="nav-link" data-scroll-target="#acceso-a-los-elementos-con-formato-lista">Acceso a los elementos con formato lista</a></li>
+  <li><a href="#factores" id="toc-factores" class="nav-link" data-scroll-target="#factores">Factores</a></li>
+  <li><a href="#factores-1" id="toc-factores-1" class="nav-link" data-scroll-target="#factores-1">Factores</a></li>
+  <li><a href="#factores-2" id="toc-factores-2" class="nav-link" data-scroll-target="#factores-2">Factores</a></li>
+  <li><a href="#conjunto-de-datos-en-r" id="toc-conjunto-de-datos-en-r" class="nav-link" data-scroll-target="#conjunto-de-datos-en-r">Conjunto de datos en R</a></li>
+  <li><a href="#subsetting" id="toc-subsetting" class="nav-link" data-scroll-target="#subsetting">Subsetting</a></li>
+  <li><a href="#desafío-1" id="toc-desafío-1" class="nav-link" data-scroll-target="#desafío-1">Desafío</a></li>
+  <li><a href="#respuesta-1" id="toc-respuesta-1" class="nav-link" data-scroll-target="#respuesta-1">Respuesta</a></li>
+  <li><a href="#leyendo-archivos-de-datos-delimitados" id="toc-leyendo-archivos-de-datos-delimitados" class="nav-link" data-scroll-target="#leyendo-archivos-de-datos-delimitados">Leyendo archivos de datos (delimitados)</a></li>
+  <li><a href="#exportar-dataframes-o-matrices-desde-r." id="toc-exportar-dataframes-o-matrices-desde-r." class="nav-link" data-scroll-target="#exportar-dataframes-o-matrices-desde-r.">Exportar dataframes o matrices desde R.</a></li>
+  <li><a href="#bibligrafía" id="toc-bibligrafía" class="nav-link" data-scroll-target="#bibligrafía">Bibligrafía</a></li>
+  </ul></li>
   </ul>
 </nav>
 </nav>
@@ -263,7 +283,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../teoria/02_unidad/02_apunte.html">Unidad 2</a></li><li class="breadcrumb-item"><a href="../../teoria/02_unidad/02_apunte.html">Introducción a R</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Introducción a R</h1>
-<p class="subtitle lead">Clase 1</p>
+<p class="subtitle lead">Clase 3</p>
 </div>
 
 
@@ -292,57 +312,55 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<section id="introducción" class="level1">
+<h1>Introducción</h1>
 <section id="vectores" class="level2">
 <h2 class="anchored" data-anchor-id="vectores">Vectores</h2>
 <ul>
 <li>Elemento más básico en R.</li>
 <li>Contiene elementos de la misma clase.</li>
-<li>Se crea con la función c(), que significa ‘concatenar’ o ‘combinar’.</li>
+<li>Se crea con la función <code>c()</code>.</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.1</span>, <span class="dv">10</span>, <span class="fl">3.14</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>v</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(v,<span class="dv">555</span>,v)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.1</span>, <span class="dv">10</span>, <span class="fl">3.14</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(v, <span class="dv">555</span>, v)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]   1.10  10.00   3.14 555.00   1.10  10.00   3.14</code></pre>
+</div>
+</div>
 </section>
 <section id="operaciones-con-vectores" class="level2">
 <h2 class="anchored" data-anchor-id="operaciones-con-vectores">Operaciones con vectores</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>a</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>v <span class="sc">*</span> <span class="dv">2</span> <span class="sc">+</span> <span class="dv">100</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">c</span> (<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">8</span>,<span class="dv">10</span>) <span class="co"># Crear un vector numérico</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="fu">c</span> (<span class="st">"esto"</span>, <span class="st">"eso"</span>, <span class="st">"lo otro"</span>) <span class="co"># crea un vector de caracteres</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">c</span> (<span class="dv">1</span>,<span class="dv">2</span>, <span class="st">"esto"</span>) <span class="co"># crea un vector de tipo mixto?</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>d</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Al crear d, los números se convierten en caracteres automáticamente porque un vector no puede tener tipos mixtos.</p>
-<p>Se puede acceder a los elementos de un vector, manipularlos y cambiarlos:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>b[<span class="dv">3</span>] <span class="co"># Los corchetes se usan para acceder a los elementos.</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>b[<span class="dv">3</span>]<span class="sc">+</span>b[<span class="dv">5</span>]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>b[<span class="dv">6</span>] <span class="ot">&lt;-</span> <span class="dv">12</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>b</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 100%">
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>## Listas</td>
-</tr>
-<tr class="even">
-<td>A diferencia de un vector, una lista es una colección de elementos que pueden ser de diferente tipo. Los componentes de una lista son típicamente pares clave-valor.</td>
-</tr>
-</tbody>
-</table>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>mi_lista_nombres <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">A =</span> <span class="st">"Andrea"</span>, <span class="at">B =</span> <span class="st">"Paola"</span>, <span class="at">C =</span> <span class="st">"Sara"</span> )</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>mi_lista_nombres</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>mi_lista_nombres[<span class="st">"B"</span>]</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>mi_lista_nombres[<span class="dv">2</span>]</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>mi_lista_nombres<span class="sc">$</span>B</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="desafío" class="level2">
-<h2 class="anchored" data-anchor-id="desafío">Desafío</h2>
-<p>Crea una lista de listas Crea una lista que contenga 3 listas, que contenga la clave y valor nombre= edad= hobbie= Por ultimo accede a la edad de la tercera lista</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>lista_persona <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fu">list</span>(<span class="at">name =</span> <span class="st">"Max White"</span>, <span class="at">age =</span> <span class="dv">27</span>, <span class="at">hobbies =</span> <span class="fu">c</span>(<span class="st">"Programming, movies"</span>)), <span class="fu">list</span>(<span class="at">name =</span> <span class="st">"Mia Black"</span>, <span class="at">age =</span> <span class="dv">32</span>, <span class="at">hobbies =</span> <span class="fu">c</span>(<span class="st">"Theater, computer games"</span>)), <span class="fu">list</span>(<span class="at">name =</span> <span class="st">"Mika Brown"</span>, <span class="at">age =</span><span class="dv">23</span>, <span class="at">hobbies =</span> <span class="fu">c</span>(<span class="st">"Sports, music"</span>)))</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>lista_persona[[<span class="dv">2</span>]][[<span class="dv">3</span>]]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>a</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>v <span class="sc">*</span> <span class="dv">2</span> <span class="sc">+</span> <span class="dv">100</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 102.20 120.00 106.28</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">10</span>) <span class="co"># vector numérico</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>texto <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"esto"</span>, <span class="st">"eso"</span>, <span class="st">"lo otro"</span>) <span class="co"># ⚠️ evitar usar "c" como nombre</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="st">"esto"</span>) <span class="co"># coerción a character</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>d</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "1"    "2"    "esto"</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>lista_persona <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fu">list</span>(<span class="at">name =</span> <span class="st">"Max White"</span>, <span class="at">age =</span> <span class="dv">27</span>, <span class="at">hobbies =</span> <span class="fu">c</span>(<span class="st">"Programming, movies"</span>)), <span class="fu">list</span>(<span class="at">name =</span> <span class="st">"Mia Black"</span>, <span class="at">age =</span> <span class="dv">32</span>, <span class="at">hobbies =</span> <span class="fu">c</span>(<span class="st">"Theater, computer games"</span>)), <span class="fu">list</span>(<span class="at">name =</span> <span class="st">"Mika Brown"</span>, <span class="at">age =</span><span class="dv">23</span>, <span class="at">hobbies =</span> <span class="fu">c</span>(<span class="st">"Sports, music"</span>)))</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>lista_persona[[<span class="dv">2</span>]][[<span class="dv">3</span>]]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Theater, computer games"</code></pre>
+</div>
+</div>
 </section>
 <section id="matrices-y-data-frames" class="level2">
 <h2 class="anchored" data-anchor-id="matrices-y-data-frames">Matrices y Data Frames</h2>
@@ -351,15 +369,686 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="matrices" class="level2">
 <h2 class="anchored" data-anchor-id="matrices">Matrices</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>mi_vector <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>mi_vector</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(mi_vector)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>mi_vector <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>mi_vector</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(mi_vector)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>NULL</code></pre>
+</div>
+</div>
 <p>Dado que la variable es un vector, no tiene un atributo dim (entonces es simplemente NULL).</p>
 <p>¿Qué ocurre si le damos a mi_vector un atributo dim?</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(mi_vector) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">5</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>mi_vector</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(mi_vector) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>mi_vector</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2] [,3] [,4] [,5]
+[1,]    1    5    9   13   17
+[2,]    2    6   10   14   18
+[3,]    3    7   11   15   19
+[4,]    4    8   12   16   20</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(mi_vector)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "matrix" "array" </code></pre>
+</div>
+</div>
+<p>Una matriz es simplemente un vector con un atributo de dimensión.</p>
+<p>Para crear la misma matriz utiliza la función <strong>matrix</strong>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, <span class="at">nrow =</span> <span class="dv">5</span>, <span class="at">ncol =</span> <span class="dv">4</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>mat</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2] [,3] [,4]
+[1,]    1    6   11   16
+[2,]    2    7   12   17
+[3,]    3    8   13   18
+[4,]    4    9   14   19
+[5,]    5   10   15   20</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>mi_matriz2 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>mi_matriz2</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2] [,3] [,4] [,5]
+[1,]    1    5    9   13   17
+[2,]    2    6   10   14   18
+[3,]    3    7   11   15   19
+[4,]    4    8   12   16   20</code></pre>
+</div>
+</div>
+</section>
+<section id="data-frames" class="level2">
+<h2 class="anchored" data-anchor-id="data-frames">Data Frames</h2>
+<ul>
+<li><p>Un data frame es una estructura de datos bidimensional similar a una matriz, pero funciona de manera muy diferente. Si bien un data frame parece una tabla simple, de hecho es una lista de vectores de la misma longitud.</p></li>
+<li><p>La principal diferencia es que un data frame permite tipos de datos mixtos (por ejemplo, numérico, lógico, caracter).</p></li>
+<li><p>Esto les permite almacenar diferentes tipos de variables, lo cual es muy útil en el análisis estadístico.</p></li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>mi_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"entero"</span> <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, </span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"factor"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>), </span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"numero"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">1.2</span>, <span class="fl">3.4</span>, <span class="fl">4.5</span>, <span class="fl">5.6</span>),</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"cadena"</span> <span class="ot">=</span> <span class="fu">as.character</span>(<span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>))</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>mi_df</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  entero factor numero cadena
+1      1      a    1.2      a
+2      2      b    3.4      b
+3      3      c    4.5      c
+4      4      d    5.6      d</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Podemos usar dim() en un data frame</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(mi_df)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4 4</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># El largo de un data frame es igual a su número de columnas</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(mi_df)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># names() nos permite ver los nombres de las columnas</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(mi_df)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "entero" "factor" "numero" "cadena"</code></pre>
+</div>
+</div>
+<p>Si los vectores que usamos para construir el data frame no son del mismo largo, los datos no se reciclaran. Se nos devolverá un error.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"entero"</span> <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, </span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"factor"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>), </span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"numero"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">1.2</span>, <span class="fl">3.4</span>, <span class="fl">4.5</span>, <span class="fl">5.6</span>),</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"cadena"</span> <span class="ot">=</span> <span class="fu">as.character</span>(<span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>))</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="propiedades-de-un-data-frame" class="level2">
+<h2 class="anchored" data-anchor-id="propiedades-de-un-data-frame">Propiedades de un data frame</h2>
+<p>Al igual que con una matriz, si aplicamos una operación aritmética a un data frame, esta se vectorizará.</p>
+<p>Los resultados que obtendremos dependerán del tipo de datos de cada columna. R nos devolverá todas las advertencias que ocurran como resultado de las operaciones realizadas.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>mi_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"entero"</span> <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, </span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"factor"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>), </span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"numero"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">1.2</span>, <span class="fl">3.4</span>, <span class="fl">4.5</span>, <span class="fl">5.6</span>),</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"cadena"</span> <span class="ot">=</span> <span class="fu">as.character</span>(<span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>))</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>mi_df<span class="sc">$</span>numero <span class="sc">*</span> <span class="dv">2</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  2.4  6.8  9.0 11.2</code></pre>
+</div>
+</div>
+</section>
+<section id="data-frame" class="level2">
+<h2 class="anchored" data-anchor-id="data-frame">Data frame</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Clase_2_2026/fig_1.png" class="img-fluid figure-img"></p>
+<figcaption>‘fig’</figcaption>
+</figure>
+</div>
+</section>
+<section id="desafío" class="level2">
+<h2 class="anchored" data-anchor-id="desafío">Desafío</h2>
+<p>Crea un dataframe con la información de gatos, que contega las siguientes columnas color,peso,le_gusta_cuerda(1,0)</p>
+</section>
+<section id="respuesta" class="level2">
+<h2 class="anchored" data-anchor-id="respuesta">Respuesta</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>gatos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">color =</span> <span class="fu">c</span>(<span class="st">"mixto"</span>, <span class="st">"negro"</span>, <span class="st">"atigrado"</span>), <span class="at">peso =</span> <span class="fu">c</span>(<span class="fl">2.1</span>, <span class="fl">5.0</span>, <span class="fl">3.2</span>),<span class="at">le_gusta_cuerda =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>))                    </span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>gatos   </span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     color peso le_gusta_cuerda
+1    mixto  2.1               1
+2    negro  5.0               0
+3 atigrado  3.2               1</code></pre>
+</div>
+</div>
+</section>
+<section id="función-data.frame" class="level2">
+<h2 class="anchored" data-anchor-id="función-data.frame">Función data.frame</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>mi_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Edad"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">35</span>,<span class="dv">29</span>,<span class="dv">21</span>,<span class="dv">40</span>), </span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Ejercicio"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>),</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Pais"</span> <span class="ot">=</span> <span class="fu">as.character</span>(<span class="fu">c</span>(<span class="st">"Malta"</span>, <span class="st">"Francia"</span>, <span class="st">"Colombia"</span>,<span class="st">"España"</span>))</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>mi_df</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Edad Ejercicio     Pais
+1   35      TRUE    Malta
+2   29     FALSE  Francia
+3   21      TRUE Colombia
+4   40     FALSE   España</code></pre>
+</div>
+</div>
+</section>
+<section id="data-frame-1" class="level2">
+<h2 class="anchored" data-anchor-id="data-frame-1">Data frame</h2>
+<p><strong>datos &lt;- edit(data.frame())</strong> # Abre un editor para introducir los datos datos</p>
+<p>Se puede acceder a los datos de un data frame como se hace con una matriz,especificando las filas y columnas con la siguiente sintaxis:</p>
+<p><strong>mi_df[renglones, columnas]</strong></p>
+<p>índices positivos y negativos cadenas de caracteres valores lógicos</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>mi_df[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), ] <span class="co"># Índices positivos: renglones 1 y 3</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Edad Ejercicio     Pais
+1   35      TRUE    Malta
+3   21      TRUE Colombia</code></pre>
+</div>
+</div>
+</section>
+<section id="acceso-a-los-elementos-con-formato-matriz" class="level2">
+<h2 class="anchored" data-anchor-id="acceso-a-los-elementos-con-formato-matriz">Acceso a los elementos con formato matriz</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>mi_df[, <span class="sc">-</span><span class="dv">2</span>]                  <span class="co"># Índices negativos: excluir columna 2</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Edad     Pais
+1   35    Malta
+2   29  Francia
+3   21 Colombia
+4   40   España</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>mi_df[, <span class="fu">c</span>(<span class="st">"Ejercicio"</span>, <span class="st">"Edad"</span>)] <span class="co"># cadenas de caracteres</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Ejercicio Edad
+1      TRUE   35
+2     FALSE   29
+3      TRUE   21
+4     FALSE   40</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>mi_df[mi_df[, <span class="st">"Ejercicio"</span>] <span class="sc">==</span> <span class="cn">TRUE</span>, ] <span class="co"># valores lógicos</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Edad Ejercicio     Pais
+1   35      TRUE    Malta
+3   21      TRUE Colombia</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Observa que si se deja en blanco la parte de filas o columnas se seleccionan todos los elementos de la dimensión</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="acceso-a-los-elementos-con-formato-lista" class="level2">
+<h2 class="anchored" data-anchor-id="acceso-a-los-elementos-con-formato-lista">Acceso a los elementos con formato lista</h2>
+<p>Un data frame se implementa como una lista cuyos componentes son las columnas del data frame. Esto permite acceder con formato de lista para seleccionar las columnas,los operadores de acceso a lista son: [], [[]] y $.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>mi_df[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>] <span class="co"># primeras 2 columnas</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Edad Ejercicio
+1   35      TRUE
+2   29     FALSE
+3   21      TRUE
+4   40     FALSE</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>mi_df[<span class="fu">c</span>(<span class="st">"Ejercicio"</span>, <span class="st">"Edad"</span>)] <span class="co"># columnas de nombres: Ejercicio y Edad</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Ejercicio Edad
+1      TRUE   35
+2     FALSE   29
+3      TRUE   21
+4     FALSE   40</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(mi_df[[<span class="dv">1</span>]])      <span class="co"># Media de la columna 1</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 31.25</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(mi_df[[<span class="st">"Edad"</span>]]) <span class="co"># Media de la columna Edad</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 31.25</code></pre>
+</div>
+</div>
+<p>Por último, el operador <strong>$</strong> se utiliza para acceder al contenido de una columna mediante su nombre.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>mi_df<span class="sc">$</span>Pais</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Malta"    "Francia"  "Colombia" "España"  </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>mi_df[mi_df<span class="sc">$</span>Ejercicio,]<span class="co"># Muestra sólo las personas que hacen Ejercicio</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Edad Ejercicio     Pais
+1   35      TRUE    Malta
+3   21      TRUE Colombia</code></pre>
+</div>
+</div>
+<p>##Trabajando con data frames Las posibilidades de procesamiento de un data frame son enormes</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Podemos usar dim() en un data frame</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(mi_df)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4 3</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># El largo de un data frame es igual a su número de columnas</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(mi_df)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># names() nos permite ver los nombres de las columnas</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(mi_df)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Edad"      "Ejercicio" "Pais"     </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(mi_df) <span class="co"># nombres de los renglones</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "1" "2" "3" "4"</code></pre>
+</div>
+</div>
+<p>Las funciones str y summary (funciones genéricas aplicables a distintos objetos, no solo a data frames) nos dan información sobre un data frame:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(mi_df)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   4 obs. of  3 variables:
+ $ Edad     : num  35 29 21 40
+ $ Ejercicio: logi  TRUE FALSE TRUE FALSE
+ $ Pais     : chr  "Malta" "Francia" "Colombia" "España"</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mi_df)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Edad       Ejercicio           Pais          
+ Min.   :21.00   Mode :logical   Length:4          
+ 1st Qu.:27.00   FALSE:2         Class :character  
+ Median :32.00   TRUE :2         Mode  :character  
+ Mean   :31.25                                     
+ 3rd Qu.:36.25                                     
+ Max.   :40.00                                     </code></pre>
+</div>
+</div>
+<p>##Modificación de un data frame</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(mi_df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Primero"</span>, <span class="st">"Segundo"</span>, <span class="st">"Tercero"</span>,<span class="st">"Cuarto"</span>) <span class="co">#Modificamos el nombre de los renglones</span></span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>mi_df</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        Edad Ejercicio     Pais
+Primero   35      TRUE    Malta
+Segundo   29     FALSE  Francia
+Tercero   21      TRUE Colombia
+Cuarto    40     FALSE   España</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>mi_df[<span class="dv">3</span>, <span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="cn">FALSE</span> </span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>mi_df</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        Edad Ejercicio     Pais
+Primero   35      TRUE    Malta
+Segundo   29     FALSE  Francia
+Tercero   21     FALSE Colombia
+Cuarto    40     FALSE   España</code></pre>
+</div>
+</div>
+<p>Es posible también añadir o eliminar nuevas filas y columnas de diferentes formas. Veamos algunos ejemplos:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>mi_df<span class="sc">$</span>Peso <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">81</span>,<span class="dv">85</span>,<span class="dv">70</span>,<span class="dv">82</span>) <span class="co"># se añade una columna de peso</span></span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>mi_df</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        Edad Ejercicio     Pais Peso
+Primero   35      TRUE    Malta   81
+Segundo   29     FALSE  Francia   85
+Tercero   21     FALSE Colombia   70
+Cuarto    40     FALSE   España   82</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>quinto_dato <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Edad =</span> <span class="dv">25</span>, <span class="at">Ejercicio =</span> <span class="cn">TRUE</span>, <span class="at">Pais =</span> <span class="st">"Argentina"</span>, <span class="at">Peso =</span> <span class="dv">67</span>)</span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>mi_df <span class="ot">&lt;-</span> <span class="fu">rbind</span>(mi_df, quinto_dato) <span class="co"># se añade una fila</span></span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a>mi_df</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        Edad Ejercicio      Pais Peso
+Primero   35      TRUE     Malta   81
+Segundo   29     FALSE   Francia   85
+Tercero   21     FALSE  Colombia   70
+Cuarto    40     FALSE    España   82
+1         25      TRUE Argentina   67</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Las funciones cbind y rbind permiten concatenar data frames horizontal y vertical.</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>##read.table() La función read.table tiene muchas funciones</p>
+<p><strong><em>?read.table</em></strong> - file #El nombre del archivo o conexión - header #De tipo lógico indicando si el archivo contiene una línia de cabecera - sep #Una cadena indicando como están separadas las columnas - col.names # Vector de nombres - row.names # Número o vector de nombres - comment.char # Símbolo para comentarios</p>
+<p>En donde esta nuestra tabla - <strong>getwd()</strong> #Imprime la dirección de trabajo - <strong>setwd()</strong> #Cambiar la dirección de trabajo</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "C:/Users/aimar/Documents/linda-aimara-kempis-calanis.github.io/pagina_web-main/teoria/02_unidad"</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>Tabla_GDE <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">"Tabla/Tabla_GDE.txt"</span>,<span class="at">header =</span> <span class="cn">TRUE</span>,<span class="at">sep =</span><span class="st">"</span><span class="sc">\t</span><span class="st">"</span>)</span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(Tabla_GDE)</span>
+<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>filtrados <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">"Tabla/filtrados.txt"</span>,<span class="at">header =</span> <span class="cn">TRUE</span>,<span class="at">sep =</span><span class="st">"</span><span class="sc">\t</span><span class="st">"</span>)</span>
+<span id="cb83-4"><a href="#cb83-4" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(filtrados)</span>
+<span id="cb83-5"><a href="#cb83-5" aria-hidden="true" tabindex="-1"></a>filtrados2 <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">"Tabla/filtrados.txt"</span>,<span class="at">sep =</span><span class="st">"</span><span class="sc">\t</span><span class="st">"</span>)</span>
+<span id="cb83-6"><a href="#cb83-6" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(filtrados2)</span>
+<span id="cb83-7"><a href="#cb83-7" aria-hidden="true" tabindex="-1"></a>filtrados3 <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">"Tabla/filtrados.txt"</span>,<span class="at">header=</span><span class="cn">TRUE</span>)</span>
+<span id="cb83-8"><a href="#cb83-8" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(filtrados3)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>##Como guardar un archivo .txt</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(mi_df, <span class="at">file=</span><span class="st">"mi_dataframe.txt"</span>, <span class="at">sep=</span><span class="st">"</span><span class="sc">\t</span><span class="st">"</span>, <span class="at">col.names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>mi_df_2 <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">"mi_dataframe.txt"</span>)</span>
+<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(mi_df_2)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="factores" class="level2">
+<h2 class="anchored" data-anchor-id="factores">Factores</h2>
+<ul>
+<li><p>Un factor en R es una estructura de datos utilizada para representar un vector como datos categóricos.</p></li>
+<li><p>El objeto factor toma un número acotado de diferentes valores llamados niveles. Los factores son muy útiles cuando se trabaja con columnas de caracteres de data frames, para crear gráficos de barras y crear resúmenes estadísticos de variables categóricas.</p></li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>dias <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Viernes"</span>, <span class="st">"Martes"</span>, <span class="st">"Jueves"</span>, <span class="st">"Lunes"</span>, <span class="st">"Miércoles"</span>, <span class="st">"Lunes"</span>,</span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Miércoles"</span>, <span class="st">"Lunes"</span>, <span class="st">"Lunes"</span>, <span class="st">"Miércoles"</span>, <span class="st">"Domingo"</span>, <span class="st">"Sábado"</span>)</span>
+<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb85-4"><a href="#cb85-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Niveles en orden alfabético</span></span>
+<span id="cb85-5"><a href="#cb85-5" aria-hidden="true" tabindex="-1"></a>mi_factor <span class="ot">&lt;-</span> <span class="fu">factor</span>(dias)</span>
+<span id="cb85-6"><a href="#cb85-6" aria-hidden="true" tabindex="-1"></a>mi_factor</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] Viernes   Martes    Jueves    Lunes     Miércoles Lunes     Miércoles
+ [8] Lunes     Lunes     Miércoles Domingo   Sábado   
+Levels: Domingo Jueves Lunes Martes Miércoles Sábado Viernes</code></pre>
+</div>
+</div>
+</section>
+<section id="factores-1" class="level2">
+<h2 class="anchored" data-anchor-id="factores-1">Factores</h2>
+<p>Se pueden devolver y convertir los niveles de los factores en caracteres con la función levels.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(mi_factor)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Domingo"   "Jueves"    "Lunes"     "Martes"    "Miércoles" "Sábado"   
+[7] "Viernes"  </code></pre>
+</div>
+</div>
+<p>Supongamos ahora que has registrado el municipio de seis personas con la siguiente codificación:</p>
+<ul>
+<li>1: Cuernavaca.</li>
+<li>2: Cuautla,</li>
+<li>3: Jiutepec.</li>
+<li>4: Yautepec. Por lo tanto, tendrás datos almacenados en un vector numérico como los siguientes:</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>municipio <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">2</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="factores-2" class="level2">
+<h2 class="anchored" data-anchor-id="factores-2">Factores</h2>
+<p>Ahora puedes llamar a la función factor para convertir y obtener los datos categorizados para su posterior análisis.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>mi_factor_municipio <span class="ot">&lt;-</span> <span class="fu">factor</span>(municipio)</span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a>mi_factor_municipio</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 4 3 2
+Levels: 1 2 3 4</code></pre>
+</div>
+</div>
+<p>Si el vector de entrada es numérico, la etiqueta correspondiente (el municipio) no queda reflejada. Para resolver este problema, puedes almacenar los datos en un objeto de tipo factor utilizando la función factor e indicar las etiquetas correspondientes de los niveles en el argumento labels y así cambiar el nombre de los niveles del factor.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Especificando las etiquetas en el orden correspondiente</span></span>
+<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a>factor_municipios_nacimiento <span class="ot">&lt;-</span> <span class="fu">factor</span>(municipio, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Cuernavaca"</span>, <span class="st">"Cuautla"</span>,<span class="st">"Jiutepec"</span>, <span class="st">"Yautepec"</span>))</span>
+<span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb92-4"><a href="#cb92-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Imprimir el resultado</span></span>
+<span id="cb92-5"><a href="#cb92-5" aria-hidden="true" tabindex="-1"></a>factor_municipios_nacimiento</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] Cuernavaca Yautepec   Jiutepec   Cuautla   
+Levels: Cuernavaca Cuautla Jiutepec Yautepec</code></pre>
+</div>
+</div>
+</section>
+<section id="conjunto-de-datos-en-r" class="level2">
+<h2 class="anchored" data-anchor-id="conjunto-de-datos-en-r">Conjunto de datos en R</h2>
+<p>Varios conjuntos de datos tabulados o data sets se icluyen en la instalación de R (en el paquete datasets) y por defecto se ecuentran cargados para su uso. la funcion data() lista todos los data sets de R.</p>
+<p>Trabajemos con el data set “iris” (Edgar Anderson’s Iris Data)</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(iris)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   150 obs. of  5 variables:
+ $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
+ $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
+ $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
+ $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
+ $ Species     : Factor w/ 3 levels "setosa","versicolor",..: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Clase_2_2026/fig_2.png" class="img-fluid figure-img"></p>
+<figcaption>‘fig2’</figcaption>
+</figure>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>iris[, <span class="st">"Species"</span>] <span class="co"># todas las observaciones de la columna 'Species'</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  [1] setosa     setosa     setosa     setosa     setosa     setosa    
+  [7] setosa     setosa     setosa     setosa     setosa     setosa    
+ [13] setosa     setosa     setosa     setosa     setosa     setosa    
+ [19] setosa     setosa     setosa     setosa     setosa     setosa    
+ [25] setosa     setosa     setosa     setosa     setosa     setosa    
+ [31] setosa     setosa     setosa     setosa     setosa     setosa    
+ [37] setosa     setosa     setosa     setosa     setosa     setosa    
+ [43] setosa     setosa     setosa     setosa     setosa     setosa    
+ [49] setosa     setosa     versicolor versicolor versicolor versicolor
+ [55] versicolor versicolor versicolor versicolor versicolor versicolor
+ [61] versicolor versicolor versicolor versicolor versicolor versicolor
+ [67] versicolor versicolor versicolor versicolor versicolor versicolor
+ [73] versicolor versicolor versicolor versicolor versicolor versicolor
+ [79] versicolor versicolor versicolor versicolor versicolor versicolor
+ [85] versicolor versicolor versicolor versicolor versicolor versicolor
+ [91] versicolor versicolor versicolor versicolor versicolor versicolor
+ [97] versicolor versicolor versicolor versicolor virginica  virginica 
+[103] virginica  virginica  virginica  virginica  virginica  virginica 
+[109] virginica  virginica  virginica  virginica  virginica  virginica 
+[115] virginica  virginica  virginica  virginica  virginica  virginica 
+[121] virginica  virginica  virginica  virginica  virginica  virginica 
+[127] virginica  virginica  virginica  virginica  virginica  virginica 
+[133] virginica  virginica  virginica  virginica  virginica  virginica 
+[139] virginica  virginica  virginica  virginica  virginica  virginica 
+[145] virginica  virginica  virginica  virginica  virginica  virginica 
+Levels: setosa versicolor virginica</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>iris<span class="sc">$</span>Species      <span class="co"># Lo mismo.</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  [1] setosa     setosa     setosa     setosa     setosa     setosa    
+  [7] setosa     setosa     setosa     setosa     setosa     setosa    
+ [13] setosa     setosa     setosa     setosa     setosa     setosa    
+ [19] setosa     setosa     setosa     setosa     setosa     setosa    
+ [25] setosa     setosa     setosa     setosa     setosa     setosa    
+ [31] setosa     setosa     setosa     setosa     setosa     setosa    
+ [37] setosa     setosa     setosa     setosa     setosa     setosa    
+ [43] setosa     setosa     setosa     setosa     setosa     setosa    
+ [49] setosa     setosa     versicolor versicolor versicolor versicolor
+ [55] versicolor versicolor versicolor versicolor versicolor versicolor
+ [61] versicolor versicolor versicolor versicolor versicolor versicolor
+ [67] versicolor versicolor versicolor versicolor versicolor versicolor
+ [73] versicolor versicolor versicolor versicolor versicolor versicolor
+ [79] versicolor versicolor versicolor versicolor versicolor versicolor
+ [85] versicolor versicolor versicolor versicolor versicolor versicolor
+ [91] versicolor versicolor versicolor versicolor versicolor versicolor
+ [97] versicolor versicolor versicolor versicolor virginica  virginica 
+[103] virginica  virginica  virginica  virginica  virginica  virginica 
+[109] virginica  virginica  virginica  virginica  virginica  virginica 
+[115] virginica  virginica  virginica  virginica  virginica  virginica 
+[121] virginica  virginica  virginica  virginica  virginica  virginica 
+[127] virginica  virginica  virginica  virginica  virginica  virginica 
+[133] virginica  virginica  virginica  virginica  virginica  virginica 
+[139] virginica  virginica  virginica  virginica  virginica  virginica 
+[145] virginica  virginica  virginica  virginica  virginica  virginica 
+Levels: setosa versicolor virginica</code></pre>
+</div>
+</div>
+<p>Cuando queremos extraer datos del data frame según una condicion, esto se complica.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="co">#iris[iris[,"Species"]=="setosa", ]</span></span>
+<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>iris[iris<span class="sc">$</span>Species<span class="sc">==</span><span class="st">"setosa"</span>, ] </span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+1           5.1         3.5          1.4         0.2  setosa
+2           4.9         3.0          1.4         0.2  setosa
+3           4.7         3.2          1.3         0.2  setosa
+4           4.6         3.1          1.5         0.2  setosa
+5           5.0         3.6          1.4         0.2  setosa
+6           5.4         3.9          1.7         0.4  setosa
+7           4.6         3.4          1.4         0.3  setosa
+8           5.0         3.4          1.5         0.2  setosa
+9           4.4         2.9          1.4         0.2  setosa
+10          4.9         3.1          1.5         0.1  setosa
+11          5.4         3.7          1.5         0.2  setosa
+12          4.8         3.4          1.6         0.2  setosa
+13          4.8         3.0          1.4         0.1  setosa
+14          4.3         3.0          1.1         0.1  setosa
+15          5.8         4.0          1.2         0.2  setosa
+16          5.7         4.4          1.5         0.4  setosa
+17          5.4         3.9          1.3         0.4  setosa
+18          5.1         3.5          1.4         0.3  setosa
+19          5.7         3.8          1.7         0.3  setosa
+20          5.1         3.8          1.5         0.3  setosa
+21          5.4         3.4          1.7         0.2  setosa
+22          5.1         3.7          1.5         0.4  setosa
+23          4.6         3.6          1.0         0.2  setosa
+24          5.1         3.3          1.7         0.5  setosa
+25          4.8         3.4          1.9         0.2  setosa
+26          5.0         3.0          1.6         0.2  setosa
+27          5.0         3.4          1.6         0.4  setosa
+28          5.2         3.5          1.5         0.2  setosa
+29          5.2         3.4          1.4         0.2  setosa
+30          4.7         3.2          1.6         0.2  setosa
+31          4.8         3.1          1.6         0.2  setosa
+32          5.4         3.4          1.5         0.4  setosa
+33          5.2         4.1          1.5         0.1  setosa
+34          5.5         4.2          1.4         0.2  setosa
+35          4.9         3.1          1.5         0.2  setosa
+36          5.0         3.2          1.2         0.2  setosa
+37          5.5         3.5          1.3         0.2  setosa
+38          4.9         3.6          1.4         0.1  setosa
+39          4.4         3.0          1.3         0.2  setosa
+40          5.1         3.4          1.5         0.2  setosa
+41          5.0         3.5          1.3         0.3  setosa
+42          4.5         2.3          1.3         0.3  setosa
+43          4.4         3.2          1.3         0.2  setosa
+44          5.0         3.5          1.6         0.6  setosa
+45          5.1         3.8          1.9         0.4  setosa
+46          4.8         3.0          1.4         0.3  setosa
+47          5.1         3.8          1.6         0.2  setosa
+48          4.6         3.2          1.4         0.2  setosa
+49          5.3         3.7          1.5         0.2  setosa
+50          5.0         3.3          1.4         0.2  setosa</code></pre>
+</div>
+</div>
+<p>Así mismo, si se desea obtener las observaciones donde el ancho del sépalo sea menor a 3 y la especie sea “setosa”.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>iris[iris[,<span class="st">"Sepal.Width"</span>]<span class="sc">&lt;=</span><span class="dv">3</span> <span class="sc">&amp;</span> iris[,<span class="st">"Species"</span>]<span class="sc">==</span><span class="st">"setosa"</span>, ]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+2           4.9         3.0          1.4         0.2  setosa
+9           4.4         2.9          1.4         0.2  setosa
+13          4.8         3.0          1.4         0.1  setosa
+14          4.3         3.0          1.1         0.1  setosa
+26          5.0         3.0          1.6         0.2  setosa
+39          4.4         3.0          1.3         0.2  setosa
+42          4.5         2.3          1.3         0.3  setosa
+46          4.8         3.0          1.4         0.3  setosa</code></pre>
+</div>
+</div>
+</section>
+<section id="subsetting" class="level2">
+<h2 class="anchored" data-anchor-id="subsetting">Subsetting</h2>
+<p>La función subset nos facilita el recuperar datos cuando queremos que se cumplan ciertas condiciones.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">subset</span>(iris, Sepal.Width <span class="sc">&lt;=</span> <span class="dv">3</span>  <span class="sc">&amp;</span> Species <span class="sc">==</span> <span class="st">"setosa"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+2           4.9         3.0          1.4         0.2  setosa
+9           4.4         2.9          1.4         0.2  setosa
+13          4.8         3.0          1.4         0.1  setosa
+14          4.3         3.0          1.1         0.1  setosa
+26          5.0         3.0          1.6         0.2  setosa
+39          4.4         3.0          1.3         0.2  setosa
+42          4.5         2.3          1.3         0.3  setosa
+46          4.8         3.0          1.4         0.3  setosa</code></pre>
+</div>
+</div>
+</section>
+<section id="desafío-1" class="level2">
+<h2 class="anchored" data-anchor-id="desafío-1">Desafío</h2>
+<p>Del data set iris recupera los datos de iris, seleciona la especie versicolor que tenga una longitud mayor o igualde 4.2</p>
+</section>
+<section id="respuesta-1" class="level2">
+<h2 class="anchored" data-anchor-id="respuesta-1">Respuesta</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a>iris[iris[,<span class="st">"Petal.Length"</span>]<span class="sc">&gt;=</span><span class="fl">4.2</span> <span class="sc">&amp;</span> iris[,<span class="st">"Species"</span>]<span class="sc">==</span><span class="st">"versicolor"</span>,]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
+51          7.0         3.2          4.7         1.4 versicolor
+52          6.4         3.2          4.5         1.5 versicolor
+53          6.9         3.1          4.9         1.5 versicolor
+55          6.5         2.8          4.6         1.5 versicolor
+56          5.7         2.8          4.5         1.3 versicolor
+57          6.3         3.3          4.7         1.6 versicolor
+59          6.6         2.9          4.6         1.3 versicolor
+62          5.9         3.0          4.2         1.5 versicolor
+64          6.1         2.9          4.7         1.4 versicolor
+66          6.7         3.1          4.4         1.4 versicolor
+67          5.6         3.0          4.5         1.5 versicolor
+69          6.2         2.2          4.5         1.5 versicolor
+71          5.9         3.2          4.8         1.8 versicolor
+73          6.3         2.5          4.9         1.5 versicolor
+74          6.1         2.8          4.7         1.2 versicolor
+75          6.4         2.9          4.3         1.3 versicolor
+76          6.6         3.0          4.4         1.4 versicolor
+77          6.8         2.8          4.8         1.4 versicolor
+78          6.7         3.0          5.0         1.7 versicolor
+79          6.0         2.9          4.5         1.5 versicolor
+84          6.0         2.7          5.1         1.6 versicolor
+85          5.4         3.0          4.5         1.5 versicolor
+86          6.0         3.4          4.5         1.6 versicolor
+87          6.7         3.1          4.7         1.5 versicolor
+88          6.3         2.3          4.4         1.3 versicolor
+91          5.5         2.6          4.4         1.2 versicolor
+92          6.1         3.0          4.6         1.4 versicolor
+95          5.6         2.7          4.2         1.3 versicolor
+96          5.7         3.0          4.2         1.2 versicolor
+97          5.7         2.9          4.2         1.3 versicolor
+98          6.2         2.9          4.3         1.3 versicolor</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb108"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a>versicolor <span class="ot">&lt;-</span> <span class="fu">subset</span>(iris, Petal.Length <span class="sc">&gt;=</span> <span class="fl">4.2</span>  <span class="sc">&amp;</span> Species <span class="sc">==</span> <span class="st">"versicolor"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="leyendo-archivos-de-datos-delimitados" class="level2">
+<h2 class="anchored" data-anchor-id="leyendo-archivos-de-datos-delimitados">Leyendo archivos de datos (delimitados)</h2>
+<ul>
+<li>x&lt;-read.table(“ZAS.txt”, sep= ” ” ) # Por espacios</li>
+<li>x&lt;-read.table(“ZAS.txt”, sep= “ ) # Por tabulaciones</li>
+<li>x&lt;-read.csv(“ZAS.csv” ) # Por comas</li>
+<li>X&lt;-read.delim(“ZAS.txt” ) #Lee tablas</li>
+</ul>
+</section>
+<section id="exportar-dataframes-o-matrices-desde-r." class="level2">
+<h2 class="anchored" data-anchor-id="exportar-dataframes-o-matrices-desde-r.">Exportar dataframes o matrices desde R.</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb109"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(x, file, <span class="at">sep =</span> <span class="st">" "</span>, <span class="at">row.names =</span> <span class="cn">TRUE</span>, <span class="at">col.names =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb110"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(versicolor, <span class="at">file =</span> <span class="st">"Resultados/my_data.csv"</span>)</span>
+<span id="cb110-2"><a href="#cb110-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(versicolor,<span class="at">file=</span><span class="st">"Resultados/my_data.txt"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="bibligrafía" class="level2">
+<h2 class="anchored" data-anchor-id="bibligrafía">Bibligrafía</h2>
+<ul>
+<li><a href="https://bookdown.org/jboscomendoza/r-principiantes4/nombres.html">r para principiantes</a></li>
+<li><a href="https://swcarpentry.github.io/r-novice-gapminder-es/05-data-structures-part2.html">R para Análisis Científicos Reproducibles</a></li>
+</ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
