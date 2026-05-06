@@ -16,13 +16,15 @@ format:
 
 En esta sesión aprenderemos los principios básicos de manipulación de datos en R utilizando el paquete dplyr, que forma parte del ecosistema tidyverse.
 
+- [Tidyverse para análisis de datos](https://rpubs.com/paraneda/tidyverse)
+
 El objetivo principal es que el estudiantado:
 
-Comprenda la lógica de la manipulación de datos tipo tidy
-Aprenda a leer y escribir código más claro y reproducible
-Se familiarice con funciones esenciales para el análisis de datos
+- Comprenda la lógica de la manipulación de datos tipo tidy
+- Aprenda a leer y escribir código más claro y reproducible
+- Se familiarice con funciones esenciales para el análisis de datos
 
-Trabajaremos con un conjunto de datos real: penguins, ampliamente utilizado con fines educativos.
+- Trabajaremos con un conjunto de datos real: penguins, ampliamente utilizado con fines educativos.
 
 ## Paquetes necesarios
 
@@ -63,7 +65,7 @@ Algunas variables incluyen:
 - longitud de la aleta
 - masa corporal
 - sexo
-Puedes explorar el dataset en [este sitio](https://allisonhorst.github.io/palmerpenguins/).
+- Puedes explorar el dataset en [este sitio](https://allisonhorst.github.io/palmerpenguins/).
 
 Veamos los nombres de las variables disponibles:
 
