@@ -1,5 +1,5 @@
 ---
-title: "Introducción a R"
+title: "Introducción a R Clase 1"
 subtitle: "Clase 1"
 author: "Dra. Linda Kempis Calanis"
 date: today
