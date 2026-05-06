@@ -1,0 +1,52 @@
+/* Base */
+.reveal {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 22px;   /* letra pequeña */
+  color: #222222;
+  background-color: #ffffff;
+}
+
+/* Títulos */
+.reveal h1 {
+  font-size: 1.6em;
+  margin-bottom: 0.4em;
+}
+
+.reveal h2 {
+  font-size: 1.3em;
+  margin-bottom: 0.3em;
+}
+
+.reveal h3 {
+  font-size: 1.15em;
+}
+
+/* Texto */
+.reveal p, .reveal li {
+  line-height: 1.45;
+}
+
+/* Listas compactas */
+.reveal ul, .reveal ol {
+  margin-left: 1.2em;
+}
+
+/* Código */
+.reveal pre code {
+  font-size: 0.7em;
+  background-color: #f6f8fa;
+  border-left: 4px solid #cccccc;
+  padding: 0.4em;
+}
+
+/* Quitar adornos */
+.reveal section {
+  box-shadow: none;
+  border: none;
+}
+
+/* Número de diapositiva */
+.reveal .slide-number {
+  font-size: 0.6em;
+  color: #999999;
+}

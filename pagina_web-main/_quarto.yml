@@ -36,11 +36,17 @@ website:
         - informacion/bibliografia.qmd
     - title: Teoría
       contents:
-        - teoria/01_unidad.qmd
+      
+        - text: Unidad 1
+          contents: 
+            - teoria/01_unidad/01_apunte.qmd
         - text: Unidad 2
           contents:
-            - teoria/02_unidad/01_apunte.ipynb
             - teoria/02_unidad/02_apunte.qmd
+        - text: Unidad 3
+          contents:
+            - teoria/03_unidad/03_apunte.qmd
+        
     - title: Práctica
       contents:
         - auto: practica/*.qmd
