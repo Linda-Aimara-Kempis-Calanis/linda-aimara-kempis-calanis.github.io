@@ -1,6 +1,6 @@
 ---
 title: "Introducción a R"
-subtitle: "Clase 3"
+subtitle: "Clase 2"
 author: "Dra. Linda Kempis Calanis"
 date: today
 
