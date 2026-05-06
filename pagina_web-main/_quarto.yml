@@ -45,7 +45,7 @@ website:
             - teoria/02_unidad/02_apunte.qmd
         - text: Unidad 3
           contents:
-            - teoria/03_unidad/03_apunte.qmd
+            - teoria/03_unidad/Clase_3_y_4_estructuras_condicionales_09_2025.html
     - title: Práctica
       contents:
         - auto: practica/*.qmd

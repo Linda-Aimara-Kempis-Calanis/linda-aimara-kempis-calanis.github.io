@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Introducción a R</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Dra.Linda Kempis" />
+    <meta name="date" content="2026-02-20" />
+    <script src="libs/header-attrs-2.30/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/rladies.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
+    <script src="libs/clipboard-2.0.6/clipboard.min.js"></script>
+    <link href="libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Introducción a R
+]
+.subtitle[
+## Funciones y Estructuras condicionales
+]
+.author[
+### Dra.Linda Kempis
+]
+.date[
+### 2026-02-20
+]
+
+---
+
+
+
+---
+class: inverse, middle, center
+
+# Funciones
+&lt;img src="img_clase_3/function_machine.png" width="50%"
+alt="funciones"/&gt;
+---
+
+## Funciones
+
+¿Qué es una función en programación?
+
+Una función tiene:
+
+📛 un nombre
+
+📦 uno o más argumentos
+
+🧱 un cuerpo que define lo que hace
+
+📌 ¿Cómo se define una función?
+
+Las funciones definidas por el usuario se crean usando la siguiente estructura:
+
+
+``` r
+suma &lt;- function(x, y) {
+  resultado &lt;- x + y
+  return(resultado)
+}
+```
+---
+Partimos del algoritmo para calcular el área de un cuadrilátero: lado x lado.
+
+Podemos convertir esto a operaciones de R y asignarlas a una función llamada area_cuad
+
+
+
+
+``` r
+area_cuad &lt;- function(lado1,lado2) {
+  lado1 * lado2
+}
+```
+
+
+``` r
+area_cuad(lado1 = 4, lado2 = 6)
+```
+
+```
+## [1] 24
+```
+
+``` r
+area_cuad(4, 6)
+```
+
+```
+## [1] 24
+```
+---
+class: inverse, middle, center
+
+# if, else
+
+---
+##if, else
+.pull-left[
+**if** (si) es usado cuando queremos que una operación se ejecute únicamente cuando una condición se cumple.
+]
+.pull-right[**else** (de otro modo) es usado para indicarle a R qué hacer en caso de la condición de un if no se cumpla.
+]
+
+Un if es la manera de decirle a R:
+
+&lt;mark&gt;SI esta condición es cierta, ENTONCES haz estas operaciones.&lt;/mark&gt;.
+
+El modelo para un if es:
+
+
+``` r
+if(Condición) {
+operaciones_si_la_condición_es_TRUE
+}
+```
+
+Si la condición se cumple, es decir, es verdadera (TRUE), entonces se realizan las operaciones. En caso contrario, no ocurre nada y el código con las operaciones no es ejecutado.
+---
+Por ejemplo, le pedimos a R que nos muestre el texto “Verdadero” si la condición se cumple.
+
+
+``` r
+# Se cumple la condición y se muestra "verdadero"
+if(10 &gt; 5) {
+  "Verdadero"
+}
+```
+
+```
+## [1] "Verdadero"
+```
+
+
+``` r
+# No se cumple la condición y no pasa nada
+if(4 &gt; 5) {
+  "Verdadero"
+}
+```
+
+
+**else** complementa un if, pues indica qué ocurrirá cuando la condición no se cumple, es falsa (FALSE), en lugar de no hacer nada.
+
+
+Un **if** con **else** es la manera de decirle a R:
+
+
+&lt;mark&gt;***SI esta condición es es cierta, ENTONCES haz estas operaciones, DE OTRO MODO haz estas otras operaciones.***&lt;/mark&gt;
+---
+El modelo para un if con un else es:
+
+
+``` r
+if(condición) {
+  operaciones_si_la_condición_es_TRUE
+} else {
+  operaciones_si_la_condición_es_FALSE
+}
+```
+Agregando el else
+
+``` r
+# Se cumple la condición y se muestra "Verdadero"
+if(4 &gt; 5) {
+  "Verdadero"
+} else {
+  "Falso"
+}
+```
+
+```
+## [1] "Falso"
+```
+
+
+``` r
+# No se cumple la condición y se muestra "Falso"
+if(4 &gt; 5) {
+  "Verdadero"
+} else {
+  "Falso"
+}
+```
+
+```
+## [1] "Falso"
+```
+---
+&lt;img src="img_clase_3/if_else.png" width="70%"
+alt="if_else"/&gt;
+---
+##Stop
+
+``` r
+dividir &lt;- function(a, b) {
+  if (b == 0) {
+    stop("Error: No se puede dividir por cero.")
+  }
+  return(a / b)
+}
+
+# Uso:
+# dividir(10, 0) # Lanza error: Error: No se puede dividir por cero.
+```
+&lt;img src="img_clase_3/stop_cat.gif" width="50%"
+alt="stop"/&gt;
+
+---
+##Usando if y else
+
+🎯 Objetivo:
+Para ejemplificar el uso de **if / else**, crearemos una función que calcule el promedio de calificaciones de un estudiante y, según el resultado, muestre un mensaje específico 📩.
+
+🔧 Paso 1. Definir función de promedio
+Primero creamos una función que calcule el promedio usando la función base mean() de R 📊. Más adelante la ampliaremos para incluir lógica condicional.
+
+
+``` r
+nombre &lt;- function(argumentos) {
+  operaciones
+}
+```
+
+
+``` r
+promedio &lt;- function(calificaciones) {
+  mean(calificaciones)
+}
+
+promedio(c(6, 7, 8, 9))
+```
+
+```
+## [1] 7.5
+```
+---
+Si asumimos que un estudiante necesita obtener 6 o más de promedio para aprobar, podemos decir que:
+
+SI el promedio de un estudiante es igual o mayor a 6, ENTONCES mostrar “Aprobado”, DE OTRO MODO, mostrar “Reprobado”.
+Aplicamso esta lógica con un if, else en la función promedio()
+
+
+``` r
+promedio &lt;- function(calificaciones) {
+  media &lt;- mean(calificaciones)
+  if(media &gt;= 6) {
+    "Aprobado"
+  } else {
+    "Reprobado"
+  }
+}
+promedio &lt;- function(calificaciones){
+  media &lt;-mean(calificaciones)
+  if(media &gt;=6){
+    "Aprobado"
+  } else{
+    "Reprobado"
+  }
+}
+promedio(c(6, 7, 8, 9, 5))
+```
+
+```
+## [1] "Aprobado"
+```
+---
+Está funcionando, aunque los resultados podrían tener una mejor presentación.
+
+Usaremos la función paste0() para pegar el promedio de calificaciones, como texto, con el resultado de “Aprobado” o “Reprobado”. Esta función acepta como argumentos cadenas de texto y las pega (concatena) entre sí, devolviendo como resultado una nueva cadena
+
+
+``` r
+promedio &lt;- function(calificaciones) {
+  media &lt;- mean(calificaciones)
+  texto &lt;- paste0("Calificación: ",media,", ")
+  if(media &gt;= 6) {
+    paste0(texto, "aprobado")
+  } else {
+    paste0(texto, "reprobado")
+  }
+}
+promedio(c(5, 8, 5, 6, 5))
+```
+
+```
+## [1] "Calificación: 5.8, reprobado"
+```
+
+
+---
+##paste0 o paste
+
+``` r
+#Une las cadenas e incluye un separador entre ellas.
+
+cadena1 &lt;- "Machine"
+cadena2 &lt;- "Learning"
+resultado &lt;- paste0(cadena1,cadena2)
+resultado
+```
+
+```
+## [1] "MachineLearning"
+```
+
+``` r
+#Funciona de manera similar a paste(), pero no incluye ningún separador entre las cadenas.
+
+cadena1 &lt;- "Data"
+cadena2 &lt;- "Science"
+resultado &lt;- paste0(cadena1, cadena2)
+```
+
+---
+class: inverse, middle, center
+
+#ifelse
+---
+##ifelse
+🔁 La función **ifelse()** en R nos permite vectorizar la lógica de if / else, es decir, &lt;mark&gt;aplicar una condición a todos los elementos de un vector sin necesidad de escribir múltiples sentencias.&lt;/mark&gt;
+
+📌 Cuando intentamos usar una estructura tradicional de **if / else** con un vector, R solo evalúa el primer elemento y muestra una advertencia, porque **if** espera una sola condición lógica.
+
+⚡ En cambio, con ifelse() obtenemos directamente un resultado para cada elemento del vector según si cumple o no la condición.
+
+
+``` r
+if(1:10 &lt; 3) {
+  "Verdadero"
+}
+## Warning in if (1:10 &lt; 3) {: la condición tiene longitud &gt; 1 y sólo el
+## primer elemento será usado
+```
+
+En cambio, con ifelse se nos devolverá un valor para cada elemento de un vector en el que la condición sea TRUE, además nos devolverá otro valor para los elementos en que la condición sea FALSE
+
+
+``` r
+ifelse(vector, valor_si_TRUE, valor_si_FALSE)
+```
+---
+##ifelse
+
+``` r
+ifelse(1:10 &lt; 3,"Verdadero","Falso")
+```
+
+```
+##  [1] "Verdadero" "Verdadero" "Falso"     "Falso"     "Falso"     "Falso"    
+##  [7] "Falso"     "Falso"     "Falso"     "Falso"
+```
+
+
+``` r
+#Por ejemplo, pedimos sólo los números que son exactamente divisibles entre 2 y 3.
+
+num &lt;- 1:20
+
+ifelse(num %% 2 == 0 &amp; num %% 3, "Divisible", "No divisible")
+```
+
+```
+##  [1] "No divisible" "Divisible"    "No divisible" "Divisible"    "No divisible"
+##  [6] "No divisible" "No divisible" "Divisible"    "No divisible" "Divisible"   
+## [11] "No divisible" "No divisible" "No divisible" "Divisible"    "No divisible"
+## [16] "Divisible"    "No divisible" "No divisible" "No divisible" "Divisible"
+```
+---
+##ifelse y dataframe
+
+``` r
+#Desde luego, esto es particularmente útil para recodificar datos.
+
+tabla_estudiantes &lt;- data.frame(
+  Estudiantes=c("Ron","Jake","Ava","Sophia","Mia"),
+  Calificaciones=c(3.5,7.5,4.5,3.0,8.5))
+
+tabla_estudiantes
+```
+
+```
+##   Estudiantes Calificaciones
+## 1         Ron            3.5
+## 2        Jake            7.5
+## 3         Ava            4.5
+## 4      Sophia            3.0
+## 5         Mia            8.5
+```
+
+``` r
+tabla_estudiantes$Resultado =   
+  ifelse(tabla_estudiantes$Calificaciones&gt;6,
+         "Aprobado","Reprobado")
+
+tabla_estudiantes
+```
+
+```
+##   Estudiantes Calificaciones Resultado
+## 1         Ron            3.5 Reprobado
+## 2        Jake            7.5  Aprobado
+## 3         Ava            4.5 Reprobado
+## 4      Sophia            3.0 Reprobado
+## 5         Mia            8.5  Aprobado
+```
+
+
+---
+##Ejercicio
+
+``` r
+# Create dataframe
+df &lt;- data.frame(id=c(11,22,33,44,55),
+                        pages=c(32,45,33,22,56),
+                        name=c("spark","python","R","java","jsp"),
+                        chapters=c(76,86,11,15,7),
+                        price=c(144,553,321,567,890))
+df
+```
+
+```
+##   id pages   name chapters price
+## 1 11    32  spark       76   144
+## 2 22    45 python       86   553
+## 3 33    33      R       11   321
+## 4 44    22   java       15   567
+## 5 55    56    jsp        7   890
+```
+Agrega una nueva columna al dataframe para saber si el libro es pequeño (Small) o grande(Big).
+Sera pequeño si tiene menos de 20 capítulos  y más de 10 páginas
+---
+
+```
+##   id pages   name chapters price  size
+## 1 11    32  spark       76   144   BIG
+## 2 22    45 python       86   553   BIG
+## 3 33    33      R       11   321 SMALL
+## 4 44    22   java       15   567 SMALL
+## 5 55    56    jsp        7   890 SMALL
+```
+---
+class: inverse, middle, center
+#Sentencia for
+
+---
+##Sentencia for
+La instrucción for itera por los elementos de un vector o lista, ejecutando un conjunto de instrucciones en cada iteración. Su sintaxis es:
+
+
+``` r
+for (item in vector) {
+  conjunto_de_instrucciones
+}
+
+for (i in lista) {
+  # Código
+}
+```
+
+
+``` r
+for (x in c(20, 4, 6)) {
+  print(x)
+}
+```
+
+```
+## [1] 20
+## [1] 4
+## [1] 6
+```
+
+
+``` r
+for (alumno in tabla_estudiantes$Estudiantes) {
+  print(alumno)
+}
+```
+
+```
+## [1] "Ron"
+## [1] "Jake"
+## [1] "Ava"
+## [1] "Sophia"
+## [1] "Mia"
+```
+---
+##Ejercicio
+
+- Realiza un lista de tus frutas favoritas
+- Crea un ciclo for para leer la lista
+- El ciclo for debe regresar cada fruta de la lista
+---
+
+```
+## [1] "apple"
+## [1] "banana"
+## [1] "grape"
+```
+
+
+
+``` r
+for (x in fruits) {
+  if (x == "banana") {
+    break
+  }
+  print(x)
+}
+```
+
+```
+## [1] "apple"
+```
+---
+class: inverse, middle, center
+
+#Sentencia While
+
+---
+##Sentencia While
+Este es un tipo de bucle que ocurre mientras una condición es verdadera (TRUE). La operación se realiza hasta que se se llega a cumplir un criterio previamente establecido.
+
+``` r
+while(condicion) {
+  operaciones
+}
+```
+Probemos sumar +1 a un valor, mientras que este sea menor que 5. Al igual que con for, necesitamos la función print() para mostrar los resultados en la consola.
+
+
+``` r
+umbral &lt;- 5
+valor &lt;- 0
+
+while(valor &lt; umbral) {
+  print("Todavía no.")
+  valor &lt;- valor + 1
+}
+```
+
+```
+## [1] "Todavía no."
+## [1] "Todavía no."
+## [1] "Todavía no."
+## [1] "Todavía no."
+## [1] "Todavía no."
+```
+---
+&lt;img src="img_clase_3/While.png" width="60%"
+alt="while"/&gt;
+
+---
+## Ejemplo While
+### Simulación de crecimiento de una población de células en cultivo
+
+Imagina que cada hora las células en cultivo aumentan su número en un 30 % debido a la división celular. Queremos simular cuántas horas pasan hasta que la población supera cierto umbral, por ejemplo 50 000 células.
+
+
+``` r
+# Crecimiento celular simulado
+poblacion &lt;- 100     # Población inicial
+objetivo &lt;- 50000
+horas &lt;- 0
+
+while (poblacion &lt; objetivo) {
+  poblacion &lt;- poblacion * 1.3  # Crecimiento del 30%
+  horas &lt;- horas + 1
+}
+mensaje &lt;- paste0(
+  "Horas necesarias: ", horas, 
+  " |Población final: ", round(poblacion))
+mensaje
+```
+
+```
+## [1] "Horas necesarias: 24 |Población final: 54280"
+```
+
+---
+## Cálculo de la tasa de metabolismo basal
+
+La Tasa de Metabolismo Basal (TMB), es la cantidad mínima de energía que necesita tu
+cuerpo para funcionar. Nunca debemos ingerir menos cantidad de calorías de las que
+marca la tasa metabólica. La TMB se calcula siguiendo las siguientes ecuaciones
+TMB Mujer = 655 + (9.6 * P) + (1.8 * A) – (4.7 * E)
+TMB Hombre = 66 + (13.7 * P) + (5 * A) – (6.8 * E)
+donde necesitamos información del Sexo, A=Altura, P=Peso y E=Edad de cada persona, nuestros argumentos.
+---
+##📌 Instrucciones del ejercicio:
+
+1. Escribe una función en R llamada calcularTMB() que reciba cuatro argumentos:
+  * sexo (carácter: "hombre" o "mujer")
+  * peso (numérico, en kg)
+  * altura (numérico, en cm)
+  * edad (numérico, en años)
+
+2. Dentro de la función, utiliza if / else o ifelse() para decidir qué fórmula aplicar según el valor de sexo.
+
+3. La función debe retornar el valor de la TMB calculado.
+
+4. Luego de definirla, prueba tu función con estos datos:
+
+  * Persona A: "mujer", peso = 70 kg, altura = 168 cm, edad = 38 años
+
+  * Persona B: "hombre", peso = 78 kg, altura = 167 cm, edad = 40 años
+
+🔎 Opcional: modifica la función para que, además de retornar el valor numérico de la TMB, muestre un mensaje indicando la cantidad mínima de calorías que esa persona necesita, por ejemplo:
+
+“ Tu TMB es 1451 kcal/día — no deberías consumir menos que esto.”
+---
+
+---
+
+``` r
+# ♀️ Mujer de ejemplo
+tmb_mujer &lt;- calcularTMB("mujer", 70, 168, 38)
+tmb_mujer
+```
+
+```
+## [1] "Tu TMB es 1450.8 kcal/día — no deberías consumir menos que esto."
+```
+
+``` r
+# ♂️ Hombre de ejemplo
+tmb_hombre &lt;- calcularTMB("hombre", 78, 167, 40)
+tmb_hombre
+```
+
+```
+## [1] "Tu TMB es 1697.6 kcal/día — no deberías consumir menos que esto."
+```
+---
+##Referencias
+
+- https://bookdown.org/jboscomendoza/r-principiantes4/estructuras-de-control.html
+- https://rpubs.com/ydmarinb/429756
+- https://r-coder.com/grepl-grep-en-r/
+- https://www.digitalocean.com/community/tutorials/sub-and-gsub-function-r
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "countIncrementalSlides": false,
+  "ratio": "4:3"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
