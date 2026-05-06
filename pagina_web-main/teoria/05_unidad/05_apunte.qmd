@@ -63,6 +63,7 @@ Algunas variables incluyen:
 - longitud de la aleta
 - masa corporal
 - sexo
+Puedes explorar el dataset en [este sitio](https://allisonhorst.github.io/palmerpenguins/).
 
 Veamos los nombres de las variables disponibles:
 
