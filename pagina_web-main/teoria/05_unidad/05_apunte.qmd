@@ -43,6 +43,7 @@ Si ya tienen estos paquetes instalados, NO es necesario volver a instalarlos.
 # remotes::install_github("allisonhorst/palmerpenguins")
 ```
 
+
 Cargamos los paquetes en la sesión de R:
 ```{r}
 library(dplyr)
