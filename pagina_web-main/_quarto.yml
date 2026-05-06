@@ -36,8 +36,9 @@ website:
         - informacion/bibliografia.qmd
     - title: Teoría
       contents:
+        - teoria/01_unidad.qmd
         - text: Unidad 1
-          contents: 
+          contents:
             - teoria/01_unidad/01_apunte.qmd
         - text: Unidad 2
           contents:
@@ -45,7 +46,6 @@ website:
         - text: Unidad 3
           contents:
             - teoria/03_unidad/03_apunte.qmd
-        
     - title: Práctica
       contents:
         - auto: practica/*.qmd
