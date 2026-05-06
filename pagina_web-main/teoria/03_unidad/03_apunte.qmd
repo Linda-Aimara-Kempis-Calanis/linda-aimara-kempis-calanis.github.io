@@ -58,7 +58,7 @@ area_cuad(4, 6)
 # if, else
 
 
-  ##if, else
+## if, else
   .pull-left[
     **if** (si) es usado cuando queremos que una operación se ejecute únicamente cuando una condición se cumple.
   ]
@@ -102,9 +102,9 @@ if(4 > 5) {
 Un **if** con **else** es la manera de decirle a R:
   
   
-  <mark>***SI esta condición es es cierta, ENTONCES haz estas operaciones, DE OTRO MODO haz estas otras operaciones.***</mark>
+<mark>***SI esta condición es es cierta, ENTONCES haz estas operaciones, DE OTRO MODO haz estas otras operaciones.***</mark>
   
-  El modelo para un if con un else es:
+El modelo para un if con un else es:
   
 ```{r eval=FALSE}
 if(condición) {
@@ -132,8 +132,7 @@ if(4 > 5) {
 }
 ```
 
-  <img src="img_clase_3/if_else.png" width="70%"
-alt="if_else"/>
+<img src="img_clase_3/if_else.png" width="70%" alt="if_else"/>
   
   ##Stop
 ```{r}
@@ -148,11 +147,11 @@ dividir <- function(a, b) {
 # dividir(10, 0) # Lanza error: Error: No se puede dividir por cero.
 
 ```
-<img src="img_clase_3/stop_cat.gif" width="50%"
-alt="stop"/>
+
+<img src="img_clase_3/stop_cat.gif" width="50%" alt="stop"/>
   
   
-  ##Usando if y else
+## Usando if y else
   
   🎯 Objetivo:
   Para ejemplificar el uso de **if / else**, crearemos una función que calcule el promedio de calificaciones de un estudiante y, según el resultado, muestre un mensaje específico 📩.
