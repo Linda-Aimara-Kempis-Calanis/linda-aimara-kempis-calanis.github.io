@@ -1,332 +1,45 @@
 [
   {
-    "objectID": "teoria/02_unidad/Introduccion_a_R_Clase_1.html",
-    "href": "teoria/02_unidad/Introduccion_a_R_Clase_1.html",
+    "objectID": "teoria/03_unidad/Clase_2_2026.html",
+    "href": "teoria/03_unidad/Clase_2_2026.html",
     "title": "Introducción a R",
     "section": "",
-    "text": "R es un lenguaje de programación y un entorno para el análisis estadístico y gráficas de datos\n\nR (Ihaka y Gentleman) puede considerarse derivado del lenguaje S (Chambers)\nAlmacenamiento y manipulación de datos\nOperadores para cálculo sobre variables indexadas (arrays) y matrices\nAmplia colección de herramientas para análisis de datos\nCapacidades gráficas\nLenguaje de programación con condicionales, ciclos y funciones\nMultiplataforma y de acceso libre\n\n\nInstalar R: https://www.r-project.org\nInstalar RStudio / Posit: https://posit.co"
+    "text": "Elemento más básico en R.\nContiene elementos de la misma clase.\nSe crea con la función c(), que significa ‘concatenar’ o ‘combinar’.\n\nv &lt;- c(1.1, 10, 3.14)\nv\nc(v,555,v)"
   },
   {
-    "objectID": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#el-entorno-de-r",
-    "href": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#el-entorno-de-r",
+    "objectID": "teoria/03_unidad/Clase_2_2026.html#vectores",
+    "href": "teoria/03_unidad/Clase_2_2026.html#vectores",
     "title": "Introducción a R",
     "section": "",
-    "text": "R es un lenguaje de programación y un entorno para el análisis estadístico y gráficas de datos\n\nR (Ihaka y Gentleman) puede considerarse derivado del lenguaje S (Chambers)\nAlmacenamiento y manipulación de datos\nOperadores para cálculo sobre variables indexadas (arrays) y matrices\nAmplia colección de herramientas para análisis de datos\nCapacidades gráficas\nLenguaje de programación con condicionales, ciclos y funciones\nMultiplataforma y de acceso libre\n\n\nInstalar R: https://www.r-project.org\nInstalar RStudio / Posit: https://posit.co"
+    "text": "Elemento más básico en R.\nContiene elementos de la misma clase.\nSe crea con la función c(), que significa ‘concatenar’ o ‘combinar’.\n\nv &lt;- c(1.1, 10, 3.14)\nv\nc(v,555,v)"
   },
   {
-    "objectID": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#instalando-r",
-    "href": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#instalando-r",
+    "objectID": "teoria/03_unidad/Clase_2_2026.html#operaciones-con-vectores",
+    "href": "teoria/03_unidad/Clase_2_2026.html#operaciones-con-vectores",
     "title": "Introducción a R",
-    "section": "Instalando R",
-    "text": "Instalando R"
+    "section": "Operaciones con vectores",
+    "text": "Operaciones con vectores\na &lt;- 10\na\nv * 2 + 100\nb &lt;- c (2,4,6,8,10) # Crear un vector numérico\nc &lt;- c (\"esto\", \"eso\", \"lo otro\") # crea un vector de caracteres\nd &lt;- c (1,2, \"esto\") # crea un vector de tipo mixto?\nd\nAl crear d, los números se convierten en caracteres automáticamente porque un vector no puede tener tipos mixtos.\nSe puede acceder a los elementos de un vector, manipularlos y cambiarlos:\nb[3] # Los corchetes se usan para acceder a los elementos.\nb[3]+b[5]\nb[6] &lt;- 12\nb\n\n\n\n\n\n\n## Listas\n\n\nA diferencia de un vector, una lista es una colección de elementos que pueden ser de diferente tipo. Los componentes de una lista son típicamente pares clave-valor.\n\n\n\nmi_lista_nombres &lt;- list(A = \"Andrea\", B = \"Paola\", C = \"Sara\" )\nmi_lista_nombres\nmi_lista_nombres[\"B\"]\nmi_lista_nombres[2]\nmi_lista_nombres$B"
   },
   {
-    "objectID": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#instalar-rstudio-posit",
-    "href": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#instalar-rstudio-posit",
+    "objectID": "teoria/03_unidad/Clase_2_2026.html#desafío",
+    "href": "teoria/03_unidad/Clase_2_2026.html#desafío",
     "title": "Introducción a R",
-    "section": "Instalar RStudio / Posit",
-    "text": "Instalar RStudio / Posit"
+    "section": "Desafío",
+    "text": "Desafío\nCrea una lista de listas Crea una lista que contenga 3 listas, que contenga la clave y valor nombre= edad= hobbie= Por ultimo accede a la edad de la tercera lista\nlista_persona &lt;- list(list(name = \"Max White\", age = 27, hobbies = c(\"Programming, movies\")), list(name = \"Mia Black\", age = 32, hobbies = c(\"Theater, computer games\")), list(name = \"Mika Brown\", age =23, hobbies = c(\"Sports, music\")))\n\nlista_persona[[2]][[3]]"
   },
   {
-    "objectID": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#panel-de-rstudio-posit",
-    "href": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#panel-de-rstudio-posit",
+    "objectID": "teoria/03_unidad/Clase_2_2026.html#matrices-y-data-frames",
+    "href": "teoria/03_unidad/Clase_2_2026.html#matrices-y-data-frames",
     "title": "Introducción a R",
-    "section": "Panel de RStudio / Posit",
-    "text": "Panel de RStudio / Posit"
+    "section": "Matrices y Data Frames",
+    "text": "Matrices y Data Frames\nAmbos representan tipos de datos “rectangulares”, lo que significa que se usan para almacenar datos tabulares, con filas y columnas.\nLa principal diferencia, es que las matrices solo pueden contener una única clase de datos (al igual que los vectores), mientras que los data frames pueden consistir en muchas clases diferentes de datos."
   },
   {
-    "objectID": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#entorno-de-rstudio",
-    "href": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#entorno-de-rstudio",
+    "objectID": "teoria/03_unidad/Clase_2_2026.html#matrices",
+    "href": "teoria/03_unidad/Clase_2_2026.html#matrices",
     "title": "Introducción a R",
-    "section": "Entorno de RStudio",
-    "text": "Entorno de RStudio"
-  },
-  {
-    "objectID": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#cómo-opera-r",
-    "href": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#cómo-opera-r",
-    "title": "Introducción a R",
-    "section": "¿Cómo opera R?",
-    "text": "¿Cómo opera R?\nR opera de la siguiente forma: leer → evaluar → mostrar\n2 + 2"
-  },
-  {
-    "objectID": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#datos-más-comunes",
-    "href": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#datos-más-comunes",
-    "title": "Introducción a R",
-    "section": "Datos más comunes",
-    "text": "Datos más comunes"
-  },
-  {
-    "objectID": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#verificar-el-tipo-de-un-dato",
-    "href": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#verificar-el-tipo-de-un-dato",
-    "title": "Introducción a R",
-    "section": "Verificar el tipo de un dato",
-    "text": "Verificar el tipo de un dato\nclass(3)\nclass(\"3\")\nclass(TRUE)"
-  },
-  {
-    "objectID": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#paquetes-en-r",
-    "href": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#paquetes-en-r",
-    "title": "Introducción a R",
-    "section": "Paquetes en R",
-    "text": "Paquetes en R\ninstall.packages(\"ggplot2\")"
-  },
-  {
-    "objectID": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#bibliografía",
-    "href": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#bibliografía",
-    "title": "Introducción a R",
-    "section": "Bibliografía",
-    "text": "Bibliografía\n\nhttps://swcarpentry.github.io/r-novice-gapminder-es/04-data-structures-part1.html\n\nhttps://bookdown.org/jboscomendoza/r-principiantes4/tipos-de-datos.html"
-  },
-  {
-    "objectID": "teoria/02_unidad/01_apunte.html",
-    "href": "teoria/02_unidad/01_apunte.html",
-    "title": "Unidad 2 - Apunte 1",
-    "section": "",
-    "text": "Este es un apunte generado a partir de una Jupyter Notebook.\n\nprint(\"¡Hola, mundo!\")\n\n¡Hola, mundo!",
-    "crumbs": [
-      "Teoría",
-      "Unidad 2",
-      "Unidad 2 - Apunte 1"
-    ]
-  },
-  {
-    "objectID": "recursos/tutoriales/instalacion_python.html",
-    "href": "recursos/tutoriales/instalacion_python.html",
-    "title": "Instalación de Python y Positron en Windows",
-    "section": "",
-    "text": "Este es un recurso de ejemplo donde se usa el shortcode {{&lt; video &gt;}} para incluir un video alojado en YouTube.",
-    "crumbs": [
-      "Recursos",
-      "Tutoriales",
-      "Instalación de Python y Positron en Windows"
-    ]
-  },
-  {
-    "objectID": "proyectos/individual.html",
-    "href": "proyectos/individual.html",
-    "title": "Proyecto individual",
-    "section": "",
-    "text": "Luego del proyecto grupal, podría realizarse un proyecto individual.",
-    "crumbs": [
-      "Proyectos",
-      "Proyecto individual"
-    ]
-  },
-  {
-    "objectID": "practica/03.html",
-    "href": "practica/03.html",
-    "title": "Unidad 3",
-    "section": "",
-    "text": "¿Por qué el siguiente bloque muestra solo un número como salida?\n\nfor i in range(3):\n    print(i)\n    break\n\n0",
-    "crumbs": [
-      "Práctica",
-      "Unidad 3"
-    ]
-  },
-  {
-    "objectID": "practica/03.html#programando",
-    "href": "practica/03.html#programando",
-    "title": "Unidad 3",
-    "section": "",
-    "text": "¿Por qué el siguiente bloque muestra solo un número como salida?\n\nfor i in range(3):\n    print(i)\n    break\n\n0",
-    "crumbs": [
-      "Práctica",
-      "Unidad 3"
-    ]
-  },
-  {
-    "objectID": "practica/01.html",
-    "href": "practica/01.html",
-    "title": "Unidad 1",
-    "section": "",
-    "text": "La práctica se genera automáticamente a partir de archivos .qmd y .ipynb. No es necesario enumerarlos manualmente, porque en _quarto.yml se incluye:\nque incorpora todos los archivos con extensión .qmd o .ipynb dentro de la carpeta practica.",
-    "crumbs": [
-      "Práctica",
-      "Unidad 1"
-    ]
-  },
-  {
-    "objectID": "practica/01.html#suma",
-    "href": "practica/01.html#suma",
-    "title": "Unidad 1",
-    "section": "1 Suma",
-    "text": "1 Suma\n¿Cuánto es 2 + 2?",
-    "crumbs": [
-      "Práctica",
-      "Unidad 1"
-    ]
-  },
-  {
-    "objectID": "practica/01.html#resta",
-    "href": "practica/01.html#resta",
-    "title": "Unidad 1",
-    "section": "2 Resta",
-    "text": "2 Resta\n¿Cuánto es 2 - 2?",
-    "crumbs": [
-      "Práctica",
-      "Unidad 1"
-    ]
-  },
-  {
-    "objectID": "informacion/calendario.html",
-    "href": "informacion/calendario.html",
-    "title": "Calendario",
-    "section": "",
-    "text": "En esta sección se puede incluir una tabla con el cronograma de las actividades del curso.\n\n\n\nSemana\nTema\nMaterial\n\n\n\n\n1\nIntroducción\nDiapositivas + notas\n\n\n2\nTema 2\nLectura recomendada\n\n\n3\nTema 3\nNotebook de ejemplo",
-    "crumbs": [
-      "Información",
-      "Calendario"
-    ]
-  },
-  {
-    "objectID": "informacion/aprobacion.html",
-    "href": "informacion/aprobacion.html",
-    "title": "Aprobación",
-    "section": "",
-    "text": "Se explican los criterios de aprobación, regularidad y promoción. Se pueden incluir:\n\nPorcentaje de asistencia requerido.\nEntregas obligatorias y fechas clave.\nExámenes parciales y recuperatorios.\nModalidad de evaluación final.",
-    "crumbs": [
-      "Información",
-      "Aprobación"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Curso",
-    "section": "",
-    "text": "Introducción a la Computación\n      \n\n      \n      \n        \n        \n          \n           \n          Programas / Carreras\n        \n        \n        \n          \n           \n          UAEM - Universidad Autónoma del Estado de Morelos\n        \n        \n        \n          \n           \n          Semestre 2, año 2026\n        \n        \n        \n          \n           \n          Horarios de actualización de los temas: miércoles y viernes\n        \n        \n      \n      \n    \n  \n\n  \n  \n    \n  \n  \n\nNo hay resultados\n\n\n\n  \n    Docentes\n\n    \n\n    \n    \n        \n\n        Dra.Linda Aimara Kempis Calanis\n        \n          \n          \n            \n            Titular\n          \n          \n          \n          \n            \n            aimara.kempiscal@gmail.com\n          \n          \n          \n          \n            \n            Consultas virtuales solicitadas seran agendadas\n          \n          \n        \n      \n    \n        \n\n        Sebastian Mijares Guevara\n        \n          \n          \n            \n            Ayudante\n          \n          \n          \n          \n            \n            sebastian.mijares@uaem.edu.mx\n          \n          \n          \n          \n            \n            Consultas: agendar por correo\n          \n          \n        \n      \n    \n    \n  \n\nNo hay resultados"
-  },
-  {
-    "objectID": "informacion/bibliografia.html",
-    "href": "informacion/bibliografia.html",
-    "title": "Bibliografía",
-    "section": "",
-    "text": "En esta sección se incluye la bibliografía, la cual puede dividirse en diferentes subsecciones gracias al filtro section-bibliographies.\nPara generar la bibliografía de manera automática, se utilizan divs invisibles en los que se incluyen los identificadores BibTeX que se desean citar, por ejemplo @CasellaBerger2024, @Gelman2013, etc.\nEstos identificadores deben corresponder a una entrada en el archivo .bib, el cual se especifica en el archivo de configuración _quarto.yml.",
-    "crumbs": [
-      "Información",
-      "Bibliografía"
-    ]
-  },
-  {
-    "objectID": "informacion/bibliografia.html#principal",
-    "href": "informacion/bibliografia.html#principal",
-    "title": "Bibliografía",
-    "section": "Principal",
-    "text": "Principal\n\nCasella y Berger (2024) Hastie, Tibshirani, y Friedman (2009) Gelman et al. (2013)\n\n\n\nCasella, George, y Roger L. Berger. 2024. Statistical Inference. 2.ª ed. Chapman & Hall/CRC.\n\n\nGelman, Andrew, John B. Carlin, Hal S. Stern, David B. Dunson, Aki Vehtari, y Donald B. Rubin. 2013. Bayesian Data Analysis. 3.ª ed. CRC Press.\n\n\nHastie, Trevor, Robert Tibshirani, y Jerome Friedman. 2009. The Elements of Statistical Learning: Data Mining, Inference, and Prediction. 2.ª ed. Springer.",
-    "crumbs": [
-      "Información",
-      "Bibliografía"
-    ]
-  },
-  {
-    "objectID": "informacion/bibliografia.html#complementaria",
-    "href": "informacion/bibliografia.html#complementaria",
-    "title": "Bibliografía",
-    "section": "Complementaria",
-    "text": "Complementaria\n\nJaynes (2003) Rudin (1976)\n\n\n\n\n\nJaynes, E. T. 2003. Probability Theory: The Logic of Science. Cambridge University Press.\n\n\nRudin, Walter. 1976. Principles of Mathematical Analysis. 3.ª ed. McGraw-Hill.",
-    "crumbs": [
-      "Información",
-      "Bibliografía"
-    ]
-  },
-  {
-    "objectID": "informacion/programa.html",
-    "href": "informacion/programa.html",
-    "title": "Programa",
-    "section": "",
-    "text": "Se describen los objetivos, competencias y contenidos generales del curso.",
-    "crumbs": [
-      "Información",
-      "Programa"
-    ]
-  },
-  {
-    "objectID": "practica/02.html",
-    "href": "practica/02.html",
-    "title": "Unidad 2",
-    "section": "",
-    "text": "¿De qué color era el caballo blanco de San Martín?",
-    "crumbs": [
-      "Práctica",
-      "Unidad 2"
-    ]
-  },
-  {
-    "objectID": "practica/02.html#adivinanza",
-    "href": "practica/02.html#adivinanza",
-    "title": "Unidad 2",
-    "section": "",
-    "text": "¿De qué color era el caballo blanco de San Martín?",
-    "crumbs": [
-      "Práctica",
-      "Unidad 2"
-    ]
-  },
-  {
-    "objectID": "proyectos/grupal.html",
-    "href": "proyectos/grupal.html",
-    "title": "Proyecto grupal",
-    "section": "",
-    "text": "Si aplica, se puede incluir un proyecto grupal.",
-    "crumbs": [
-      "Proyectos",
-      "Proyecto grupal"
-    ]
-  },
-  {
-    "objectID": "recursos/ejemplos/clases.html",
-    "href": "recursos/ejemplos/clases.html",
-    "title": "Cómo crear una clase en Python",
-    "section": "",
-    "text": "Se pueden incluir ejemplos de código.\nclass Persona:\n    def __init__(self, nombre, edad):\n        self.nombre = nombre\n        self.edad = edad\n\n    def saludar(self):\n        return f\"Hola, me llamo {self.nombre} y tengo {self.edad} años.\"\n\n    def es_mayor_de_edad(self):\n        return self.edad &gt;= 18\npersona = Persona(\"Matías\", 30)\npersona.saludar()\nHola, me llamo Matías y tengo 30 años.",
-    "crumbs": [
-      "Recursos",
-      "Ejemplos",
-      "Cómo crear una clase en Python"
-    ]
-  },
-  {
-    "objectID": "teoria/01_unidad.html",
-    "href": "teoria/01_unidad.html",
-    "title": "Unidad 1",
-    "section": "",
-    "text": "Apunte de la primera unidad, generada a partir de un archivo .qmd. Se incluye toc: true los metadatos del archivo para generar la tabla de contenidos que se observa a la derecha.",
-    "crumbs": [
-      "Teoría",
-      "Unidad 1"
-    ]
-  },
-  {
-    "objectID": "teoria/01_unidad.html#sección-1",
-    "href": "teoria/01_unidad.html#sección-1",
-    "title": "Unidad 1",
-    "section": "Sección 1",
-    "text": "Sección 1\nContenido de la primera sección.",
-    "crumbs": [
-      "Teoría",
-      "Unidad 1"
-    ]
-  },
-  {
-    "objectID": "teoria/01_unidad.html#sección-2",
-    "href": "teoria/01_unidad.html#sección-2",
-    "title": "Unidad 1",
-    "section": "Sección 2",
-    "text": "Sección 2",
-    "crumbs": [
-      "Teoría",
-      "Unidad 1"
-    ]
-  },
-  {
-    "objectID": "teoria/01_unidad.html#sección-2.a",
-    "href": "teoria/01_unidad.html#sección-2.a",
-    "title": "Unidad 1",
-    "section": "Sección 2.A",
-    "text": "Sección 2.A\nAlgún texto interesante.\n\nSección 2.B\nOtro texto interesante.",
-    "crumbs": [
-      "Teoría",
-      "Unidad 1"
-    ]
+    "section": "Matrices",
+    "text": "Matrices\nmi_vector &lt;- 1:20\nmi_vector\ndim(mi_vector)\nDado que la variable es un vector, no tiene un atributo dim (entonces es simplemente NULL).\n¿Qué ocurre si le damos a mi_vector un atributo dim?\ndim(mi_vector) &lt;- c(4, 5)\nmi_vector"
   },
   {
     "objectID": "teoria/02_unidad/02_apunte.html",
@@ -459,5 +172,334 @@
       "Unidad 2",
       "Introducción a R"
     ]
+  },
+  {
+    "objectID": "teoria/01_unidad.html",
+    "href": "teoria/01_unidad.html",
+    "title": "Unidad 1",
+    "section": "",
+    "text": "Apunte de la primera unidad, generada a partir de un archivo .qmd. Se incluye toc: true los metadatos del archivo para generar la tabla de contenidos que se observa a la derecha.",
+    "crumbs": [
+      "Teoría",
+      "Unidad 1"
+    ]
+  },
+  {
+    "objectID": "teoria/01_unidad.html#sección-1",
+    "href": "teoria/01_unidad.html#sección-1",
+    "title": "Unidad 1",
+    "section": "Sección 1",
+    "text": "Sección 1\nContenido de la primera sección.",
+    "crumbs": [
+      "Teoría",
+      "Unidad 1"
+    ]
+  },
+  {
+    "objectID": "teoria/01_unidad.html#sección-2",
+    "href": "teoria/01_unidad.html#sección-2",
+    "title": "Unidad 1",
+    "section": "Sección 2",
+    "text": "Sección 2",
+    "crumbs": [
+      "Teoría",
+      "Unidad 1"
+    ]
+  },
+  {
+    "objectID": "teoria/01_unidad.html#sección-2.a",
+    "href": "teoria/01_unidad.html#sección-2.a",
+    "title": "Unidad 1",
+    "section": "Sección 2.A",
+    "text": "Sección 2.A\nAlgún texto interesante.\n\nSección 2.B\nOtro texto interesante.",
+    "crumbs": [
+      "Teoría",
+      "Unidad 1"
+    ]
+  },
+  {
+    "objectID": "recursos/ejemplos/clases.html",
+    "href": "recursos/ejemplos/clases.html",
+    "title": "Cómo crear una clase en Python",
+    "section": "",
+    "text": "Se pueden incluir ejemplos de código.\nclass Persona:\n    def __init__(self, nombre, edad):\n        self.nombre = nombre\n        self.edad = edad\n\n    def saludar(self):\n        return f\"Hola, me llamo {self.nombre} y tengo {self.edad} años.\"\n\n    def es_mayor_de_edad(self):\n        return self.edad &gt;= 18\npersona = Persona(\"Matías\", 30)\npersona.saludar()\nHola, me llamo Matías y tengo 30 años.",
+    "crumbs": [
+      "Recursos",
+      "Ejemplos",
+      "Cómo crear una clase en Python"
+    ]
+  },
+  {
+    "objectID": "proyectos/grupal.html",
+    "href": "proyectos/grupal.html",
+    "title": "Proyecto grupal",
+    "section": "",
+    "text": "Si aplica, se puede incluir un proyecto grupal.",
+    "crumbs": [
+      "Proyectos",
+      "Proyecto grupal"
+    ]
+  },
+  {
+    "objectID": "practica/02.html",
+    "href": "practica/02.html",
+    "title": "Unidad 2",
+    "section": "",
+    "text": "¿De qué color era el caballo blanco de San Martín?",
+    "crumbs": [
+      "Práctica",
+      "Unidad 2"
+    ]
+  },
+  {
+    "objectID": "practica/02.html#adivinanza",
+    "href": "practica/02.html#adivinanza",
+    "title": "Unidad 2",
+    "section": "",
+    "text": "¿De qué color era el caballo blanco de San Martín?",
+    "crumbs": [
+      "Práctica",
+      "Unidad 2"
+    ]
+  },
+  {
+    "objectID": "informacion/programa.html",
+    "href": "informacion/programa.html",
+    "title": "Programa",
+    "section": "",
+    "text": "Se describen los objetivos, competencias y contenidos generales del curso.",
+    "crumbs": [
+      "Información",
+      "Programa"
+    ]
+  },
+  {
+    "objectID": "informacion/bibliografia.html",
+    "href": "informacion/bibliografia.html",
+    "title": "Bibliografía",
+    "section": "",
+    "text": "En esta sección se incluye la bibliografía, la cual puede dividirse en diferentes subsecciones gracias al filtro section-bibliographies.\nPara generar la bibliografía de manera automática, se utilizan divs invisibles en los que se incluyen los identificadores BibTeX que se desean citar, por ejemplo @CasellaBerger2024, @Gelman2013, etc.\nEstos identificadores deben corresponder a una entrada en el archivo .bib, el cual se especifica en el archivo de configuración _quarto.yml.",
+    "crumbs": [
+      "Información",
+      "Bibliografía"
+    ]
+  },
+  {
+    "objectID": "informacion/bibliografia.html#principal",
+    "href": "informacion/bibliografia.html#principal",
+    "title": "Bibliografía",
+    "section": "Principal",
+    "text": "Principal\n\nCasella y Berger (2024) Hastie, Tibshirani, y Friedman (2009) Gelman et al. (2013)\n\n\n\nCasella, George, y Roger L. Berger. 2024. Statistical Inference. 2.ª ed. Chapman & Hall/CRC.\n\n\nGelman, Andrew, John B. Carlin, Hal S. Stern, David B. Dunson, Aki Vehtari, y Donald B. Rubin. 2013. Bayesian Data Analysis. 3.ª ed. CRC Press.\n\n\nHastie, Trevor, Robert Tibshirani, y Jerome Friedman. 2009. The Elements of Statistical Learning: Data Mining, Inference, and Prediction. 2.ª ed. Springer.",
+    "crumbs": [
+      "Información",
+      "Bibliografía"
+    ]
+  },
+  {
+    "objectID": "informacion/bibliografia.html#complementaria",
+    "href": "informacion/bibliografia.html#complementaria",
+    "title": "Bibliografía",
+    "section": "Complementaria",
+    "text": "Complementaria\n\nJaynes (2003) Rudin (1976)\n\n\n\n\n\nJaynes, E. T. 2003. Probability Theory: The Logic of Science. Cambridge University Press.\n\n\nRudin, Walter. 1976. Principles of Mathematical Analysis. 3.ª ed. McGraw-Hill.",
+    "crumbs": [
+      "Información",
+      "Bibliografía"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Curso",
+    "section": "",
+    "text": "Introducción a la Computación\n      \n\n      \n      \n        \n        \n          \n           \n          Programas / Carreras\n        \n        \n        \n          \n           \n          UAEM - Universidad Autónoma del Estado de Morelos\n        \n        \n        \n          \n           \n          Semestre 2, año 2026\n        \n        \n        \n          \n           \n          Horarios de actualización de los temas: miércoles y viernes\n        \n        \n      \n      \n    \n  \n\n  \n  \n    \n  \n  \n\nNo hay resultados\n\n\n\n  \n    Docentes\n\n    \n\n    \n    \n        \n\n        Dra.Linda Aimara Kempis Calanis\n        \n          \n          \n            \n            Titular\n          \n          \n          \n          \n            \n            aimara.kempiscal@gmail.com\n          \n          \n          \n          \n            \n            Consultas virtuales solicitadas seran agendadas\n          \n          \n        \n      \n    \n        \n\n        Sebastian Mijares Guevara\n        \n          \n          \n            \n            Ayudante\n          \n          \n          \n          \n            \n            sebastian.mijares@uaem.edu.mx\n          \n          \n          \n          \n            \n            Consultas: agendar por correo\n          \n          \n        \n      \n    \n    \n  \n\nNo hay resultados"
+  },
+  {
+    "objectID": "informacion/aprobacion.html",
+    "href": "informacion/aprobacion.html",
+    "title": "Aprobación",
+    "section": "",
+    "text": "Se explican los criterios de aprobación, regularidad y promoción. Se pueden incluir:\n\nPorcentaje de asistencia requerido.\nEntregas obligatorias y fechas clave.\nExámenes parciales y recuperatorios.\nModalidad de evaluación final.",
+    "crumbs": [
+      "Información",
+      "Aprobación"
+    ]
+  },
+  {
+    "objectID": "informacion/calendario.html",
+    "href": "informacion/calendario.html",
+    "title": "Calendario",
+    "section": "",
+    "text": "En esta sección se puede incluir una tabla con el cronograma de las actividades del curso.\n\n\n\nSemana\nTema\nMaterial\n\n\n\n\n1\nIntroducción\nDiapositivas + notas\n\n\n2\nTema 2\nLectura recomendada\n\n\n3\nTema 3\nNotebook de ejemplo",
+    "crumbs": [
+      "Información",
+      "Calendario"
+    ]
+  },
+  {
+    "objectID": "practica/01.html",
+    "href": "practica/01.html",
+    "title": "Unidad 1",
+    "section": "",
+    "text": "La práctica se genera automáticamente a partir de archivos .qmd y .ipynb. No es necesario enumerarlos manualmente, porque en _quarto.yml se incluye:\nque incorpora todos los archivos con extensión .qmd o .ipynb dentro de la carpeta practica.",
+    "crumbs": [
+      "Práctica",
+      "Unidad 1"
+    ]
+  },
+  {
+    "objectID": "practica/01.html#suma",
+    "href": "practica/01.html#suma",
+    "title": "Unidad 1",
+    "section": "1 Suma",
+    "text": "1 Suma\n¿Cuánto es 2 + 2?",
+    "crumbs": [
+      "Práctica",
+      "Unidad 1"
+    ]
+  },
+  {
+    "objectID": "practica/01.html#resta",
+    "href": "practica/01.html#resta",
+    "title": "Unidad 1",
+    "section": "2 Resta",
+    "text": "2 Resta\n¿Cuánto es 2 - 2?",
+    "crumbs": [
+      "Práctica",
+      "Unidad 1"
+    ]
+  },
+  {
+    "objectID": "practica/03.html",
+    "href": "practica/03.html",
+    "title": "Unidad 3",
+    "section": "",
+    "text": "¿Por qué el siguiente bloque muestra solo un número como salida?\n\nfor i in range(3):\n    print(i)\n    break\n\n0",
+    "crumbs": [
+      "Práctica",
+      "Unidad 3"
+    ]
+  },
+  {
+    "objectID": "practica/03.html#programando",
+    "href": "practica/03.html#programando",
+    "title": "Unidad 3",
+    "section": "",
+    "text": "¿Por qué el siguiente bloque muestra solo un número como salida?\n\nfor i in range(3):\n    print(i)\n    break\n\n0",
+    "crumbs": [
+      "Práctica",
+      "Unidad 3"
+    ]
+  },
+  {
+    "objectID": "proyectos/individual.html",
+    "href": "proyectos/individual.html",
+    "title": "Proyecto individual",
+    "section": "",
+    "text": "Luego del proyecto grupal, podría realizarse un proyecto individual.",
+    "crumbs": [
+      "Proyectos",
+      "Proyecto individual"
+    ]
+  },
+  {
+    "objectID": "recursos/tutoriales/instalacion_python.html",
+    "href": "recursos/tutoriales/instalacion_python.html",
+    "title": "Instalación de Python y Positron en Windows",
+    "section": "",
+    "text": "Este es un recurso de ejemplo donde se usa el shortcode {{&lt; video &gt;}} para incluir un video alojado en YouTube.",
+    "crumbs": [
+      "Recursos",
+      "Tutoriales",
+      "Instalación de Python y Positron en Windows"
+    ]
+  },
+  {
+    "objectID": "teoria/02_unidad/01_apunte.html",
+    "href": "teoria/02_unidad/01_apunte.html",
+    "title": "Unidad 2 - Apunte 1",
+    "section": "",
+    "text": "Este es un apunte generado a partir de una Jupyter Notebook.\n\nprint(\"¡Hola, mundo!\")\n\n¡Hola, mundo!",
+    "crumbs": [
+      "Teoría",
+      "Unidad 2",
+      "Unidad 2 - Apunte 1"
+    ]
+  },
+  {
+    "objectID": "teoria/02_unidad/Introduccion_a_R_Clase_1.html",
+    "href": "teoria/02_unidad/Introduccion_a_R_Clase_1.html",
+    "title": "Introducción a R",
+    "section": "",
+    "text": "R es un lenguaje de programación y un entorno para el análisis estadístico y gráficas de datos\n\nR (Ihaka y Gentleman) puede considerarse derivado del lenguaje S (Chambers)\nAlmacenamiento y manipulación de datos\nOperadores para cálculo sobre variables indexadas (arrays) y matrices\nAmplia colección de herramientas para análisis de datos\nCapacidades gráficas\nLenguaje de programación con condicionales, ciclos y funciones\nMultiplataforma y de acceso libre\n\n\nInstalar R: https://www.r-project.org\nInstalar RStudio / Posit: https://posit.co"
+  },
+  {
+    "objectID": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#el-entorno-de-r",
+    "href": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#el-entorno-de-r",
+    "title": "Introducción a R",
+    "section": "",
+    "text": "R es un lenguaje de programación y un entorno para el análisis estadístico y gráficas de datos\n\nR (Ihaka y Gentleman) puede considerarse derivado del lenguaje S (Chambers)\nAlmacenamiento y manipulación de datos\nOperadores para cálculo sobre variables indexadas (arrays) y matrices\nAmplia colección de herramientas para análisis de datos\nCapacidades gráficas\nLenguaje de programación con condicionales, ciclos y funciones\nMultiplataforma y de acceso libre\n\n\nInstalar R: https://www.r-project.org\nInstalar RStudio / Posit: https://posit.co"
+  },
+  {
+    "objectID": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#instalando-r",
+    "href": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#instalando-r",
+    "title": "Introducción a R",
+    "section": "Instalando R",
+    "text": "Instalando R"
+  },
+  {
+    "objectID": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#instalar-rstudio-posit",
+    "href": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#instalar-rstudio-posit",
+    "title": "Introducción a R",
+    "section": "Instalar RStudio / Posit",
+    "text": "Instalar RStudio / Posit"
+  },
+  {
+    "objectID": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#panel-de-rstudio-posit",
+    "href": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#panel-de-rstudio-posit",
+    "title": "Introducción a R",
+    "section": "Panel de RStudio / Posit",
+    "text": "Panel de RStudio / Posit"
+  },
+  {
+    "objectID": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#entorno-de-rstudio",
+    "href": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#entorno-de-rstudio",
+    "title": "Introducción a R",
+    "section": "Entorno de RStudio",
+    "text": "Entorno de RStudio"
+  },
+  {
+    "objectID": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#cómo-opera-r",
+    "href": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#cómo-opera-r",
+    "title": "Introducción a R",
+    "section": "¿Cómo opera R?",
+    "text": "¿Cómo opera R?\nR opera de la siguiente forma: leer → evaluar → mostrar\n2 + 2"
+  },
+  {
+    "objectID": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#datos-más-comunes",
+    "href": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#datos-más-comunes",
+    "title": "Introducción a R",
+    "section": "Datos más comunes",
+    "text": "Datos más comunes"
+  },
+  {
+    "objectID": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#verificar-el-tipo-de-un-dato",
+    "href": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#verificar-el-tipo-de-un-dato",
+    "title": "Introducción a R",
+    "section": "Verificar el tipo de un dato",
+    "text": "Verificar el tipo de un dato\nclass(3)\nclass(\"3\")\nclass(TRUE)"
+  },
+  {
+    "objectID": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#paquetes-en-r",
+    "href": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#paquetes-en-r",
+    "title": "Introducción a R",
+    "section": "Paquetes en R",
+    "text": "Paquetes en R\ninstall.packages(\"ggplot2\")"
+  },
+  {
+    "objectID": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#bibliografía",
+    "href": "teoria/02_unidad/Introduccion_a_R_Clase_1.html#bibliografía",
+    "title": "Introducción a R",
+    "section": "Bibliografía",
+    "text": "Bibliografía\n\nhttps://swcarpentry.github.io/r-novice-gapminder-es/04-data-structures-part1.html\n\nhttps://bookdown.org/jboscomendoza/r-principiantes4/tipos-de-datos.html"
   }
 ]
