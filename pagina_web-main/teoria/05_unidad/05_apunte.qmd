@@ -71,11 +71,17 @@ Veamos los nombres de las variables disponibles:
 
 ```{r}
 names(penguins)
+
 ```
 
 ## El operador pipe %>%
 
 <mark>Una de las ideas centrales de dplyr es el uso del operador pipe (%>%).<mark>
+
+- %>% o |>
+- Atajos en el teclado
+- Windows / Linux: Ctrl + Shift + 
+- MmacOS: Cmd + Shift + M
 
 Este operador permite encadenar funciones, haciendo que el código:
 
