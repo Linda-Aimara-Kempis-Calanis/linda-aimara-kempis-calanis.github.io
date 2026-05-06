@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Dra. Linda Kempis Calanis">
+
+<title>Introducción a R Clase 3 ggplot – Curso</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../teoria/03_unidad/03_apunte.html" rel="prev">
+<link href="../../imgs/favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-d3f387b2490998008262a04b43a1a0b1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-d3f387b2490998008262a04b43a1a0b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-d3f387b2490998008262a04b43a1a0b1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-a2f26670d656a5ededa087c91914b793.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-a2f26670d656a5ededa087c91914b793.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-a2f26670d656a5ededa087c91914b793.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No se han encontrado resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+<link href="../../site_libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
+
+<script src="../../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
+<script src="../../site_libs/plotly-binding-4.12.0/plotly.js"></script>
+
+<script src="../../site_libs/typedarray-0.1/typedarray.min.js"></script>
+
+<script src="../../site_libs/jquery-3.5.1/jquery.min.js"></script>
+
+<link href="../../site_libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet">
+
+<script src="../../site_libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
+
+<link href="../../site_libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet">
+
+<script src="../../site_libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
+
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Curso</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Buscar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../informacion/programa.html"> 
+<span class="menu-text">Información</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../teoria/01_unidad.html" aria-current="page"> 
+<span class="menu-text">Teoría</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../practica/01.html"> 
+<span class="menu-text">Práctica</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../proyectos/grupal.html"> 
+<span class="menu-text">Proyectos</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../recursos/tutoriales/instalacion_python.html"> 
+<span class="menu-text">Recursos</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../none"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../teoria/04_unidad/04_apunte.html">Unidad 4</a></li><li class="breadcrumb-item"><a href="../../teoria/04_unidad/04_apunte.html">Introducción a R Clase 3 ggplot</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_unidad.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unidad 1</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+ <span class="menu-text">Unidad 1</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_unidad/01_apunte.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introducción a R Clase 1</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+ <span class="menu-text">Unidad 2</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/02_unidad/02_apunte.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introducción a R Clase 2</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+ <span class="menu-text">Unidad 3</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/03_unidad/03_apunte.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introducción a R Clase 3</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+ <span class="menu-text">Unidad 4</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/04_unidad/04_apunte.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Introducción a R Clase 3 ggplot</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#ggplot2" id="toc-ggplot2" class="nav-link active" data-scroll-target="#ggplot2">ggplot2</a>
+  <ul class="collapse">
+  <li><a href="#ggplot2-1" id="toc-ggplot2-1" class="nav-link" data-scroll-target="#ggplot2-1">ggplot2</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">data</a></li>
+  <li><a href="#aesthetics" id="toc-aesthetics" class="nav-link" data-scroll-target="#aesthetics">aesthetics</a></li>
+  <li><a href="#geometry" id="toc-geometry" class="nav-link" data-scroll-target="#geometry">geometry</a></li>
+  <li><a href="#theme" id="toc-theme" class="nav-link" data-scroll-target="#theme">theme</a></li>
+  <li><a href="#bar-plot" id="toc-bar-plot" class="nav-link" data-scroll-target="#bar-plot">Bar plot</a></li>
+  <li><a href="#box-plot" id="toc-box-plot" class="nav-link" data-scroll-target="#box-plot">Box plot</a></li>
+  <li><a href="#scatter-plot" id="toc-scatter-plot" class="nav-link" data-scroll-target="#scatter-plot">scatter plot</a>
+  <ul class="collapse">
+  <li><a href="#modificar-el-tamaño-de-los-puntos-con-size" id="toc-modificar-el-tamaño-de-los-puntos-con-size" class="nav-link" data-scroll-target="#modificar-el-tamaño-de-los-puntos-con-size">Modificar el tamaño de los puntos con size</a></li>
+  <li><a href="#modificar-el-tamaño-en-función-del-peso" id="toc-modificar-el-tamaño-en-función-del-peso" class="nav-link" data-scroll-target="#modificar-el-tamaño-en-función-del-peso">Modificar el tamaño en función del peso</a></li>
+  <li><a href="#figuras-en-multiples-paneles-face_grid" id="toc-figuras-en-multiples-paneles-face_grid" class="nav-link" data-scroll-target="#figuras-en-multiples-paneles-face_grid">Figuras en multiples paneles face_grid</a></li>
+  </ul></li>
+  <li><a href="#cambiar-la-transparencia-con-alpha" id="toc-cambiar-la-transparencia-con-alpha" class="nav-link" data-scroll-target="#cambiar-la-transparencia-con-alpha">Cambiar la transparencia con alpha</a>
+  <ul class="collapse">
+  <li><a href="#cambiar-los-simblos-con-respecto-a-la-dieta-con-shape" id="toc-cambiar-los-simblos-con-respecto-a-la-dieta-con-shape" class="nav-link" data-scroll-target="#cambiar-los-simblos-con-respecto-a-la-dieta-con-shape">Cambiar los simblos con respecto a la dieta con shape</a></li>
+  </ul></li>
+  <li><a href="#formas-de-puntos-en-r" id="toc-formas-de-puntos-en-r" class="nav-link" data-scroll-target="#formas-de-puntos-en-r">Formas de puntos en R</a></li>
+  <li><a href="#seleccionar-colores-con-una-paqueteria" id="toc-seleccionar-colores-con-una-paqueteria" class="nav-link" data-scroll-target="#seleccionar-colores-con-una-paqueteria">Seleccionar colores con una paqueteria</a>
+  <ul class="collapse">
+  <li><a href="#r-charts" id="toc-r-charts" class="nav-link" data-scroll-target="#r-charts">R charts</a></li>
+  </ul></li>
+  <li><a href="#paleta-magica-con-ghibli" id="toc-paleta-magica-con-ghibli" class="nav-link" data-scroll-target="#paleta-magica-con-ghibli">Paleta magica con ghibli</a></li>
+  <li><a href="#espolvorea-un-poco-de-la-magia-de-la-paleta-de-studio-ghibli-sobre-tus-gráficas" id="toc-espolvorea-un-poco-de-la-magia-de-la-paleta-de-studio-ghibli-sobre-tus-gráficas" class="nav-link" data-scroll-target="#espolvorea-un-poco-de-la-magia-de-la-paleta-de-studio-ghibli-sobre-tus-gráficas">｡◕‿‿◕｡ Espolvorea un poco de la magia de la paleta de Studio Ghibli sobre tus gráficas ｡◕‿‿◕｡</a></li>
+  <li><a href="#guardar-la-imagen-con-ggsave" id="toc-guardar-la-imagen-con-ggsave" class="nav-link" data-scroll-target="#guardar-la-imagen-con-ggsave">Guardar la imagen con ggsave</a></li>
+  </ul></li>
+  <li><a href="#plotly" id="toc-plotly" class="nav-link" data-scroll-target="#plotly">plotly</a>
+  <ul class="collapse">
+  <li><a href="#barplot" id="toc-barplot" class="nav-link" data-scroll-target="#barplot">Barplot</a></li>
+  <li><a href="#barplot-1" id="toc-barplot-1" class="nav-link" data-scroll-target="#barplot-1">Barplot</a></li>
+  <li><a href="#barplot-2" id="toc-barplot-2" class="nav-link" data-scroll-target="#barplot-2">Barplot</a></li>
+  <li><a href="#barplot-3" id="toc-barplot-3" class="nav-link" data-scroll-target="#barplot-3">Barplot</a></li>
+  <li><a href="#barplot-4" id="toc-barplot-4" class="nav-link" data-scroll-target="#barplot-4">Barplot</a></li>
+  <li><a href="#pie-chart" id="toc-pie-chart" class="nav-link" data-scroll-target="#pie-chart">Pie chart</a></li>
+  <li><a href="#cuál-es-la-distribución-porcentual-de-las-especies-de-pingüinos-en-cada-isla-del-conjunto-de-datos-penguins" id="toc-cuál-es-la-distribución-porcentual-de-las-especies-de-pingüinos-en-cada-isla-del-conjunto-de-datos-penguins" class="nav-link" data-scroll-target="#cuál-es-la-distribución-porcentual-de-las-especies-de-pingüinos-en-cada-isla-del-conjunto-de-datos-penguins">¿Cuál es la distribución porcentual de las especies de pingüinos en cada isla del conjunto de datos penguins?</a></li>
+  <li><a href="#pie-chart-en-ggplot2" id="toc-pie-chart-en-ggplot2" class="nav-link" data-scroll-target="#pie-chart-en-ggplot2">🥧 Pie chart en ggplot2</a></li>
+  <li><a href="#recursos-ggplot2" id="toc-recursos-ggplot2" class="nav-link" data-scroll-target="#recursos-ggplot2">📊 Recursos ggplot2</a>
+  <ul class="collapse">
+  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción">Introducción</a></li>
+  <li><a href="#libro" id="toc-libro" class="nav-link" data-scroll-target="#libro">Libro</a></li>
+  <li><a href="#datos" id="toc-datos" class="nav-link" data-scroll-target="#datos">Datos</a></li>
+  <li><a href="#personalización" id="toc-personalización" class="nav-link" data-scroll-target="#personalización">Personalización</a></li>
+  <li><a href="#avanzado" id="toc-avanzado" class="nav-link" data-scroll-target="#avanzado">Avanzado</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../teoria/04_unidad/04_apunte.html">Unidad 4</a></li><li class="breadcrumb-item"><a href="../../teoria/04_unidad/04_apunte.html">Introducción a R Clase 3 ggplot</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Introducción a R Clase 3 ggplot</h1>
+<p class="subtitle lead">Clase 3</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Autor/a</div>
+    <div class="quarto-title-meta-contents">
+             <p>Dra. Linda Kempis Calanis </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Fecha de publicación</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">6 de mayo de 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="ggplot2" class="level1">
+<h1>ggplot2</h1>
+<p><img src="Imagenes/logo_ggplot.png" class="img-fluid" style="width:50.0%" alt="ggplot2"> <a href="https://github.com/rstudio/cheatsheets/blob/main/data-visualization.pdf">Guía rápida de ggplot2 (cheatsheet)</a></p>
+<section id="ggplot2-1" class="level2">
+<h2 class="anchored" data-anchor-id="ggplot2-1">ggplot2</h2>
+<p>El término gg, viene de “grammar of graphics”. set de componentes: - data = debe ser un data.frame - aesthetics: cómo se representarán visualmente los datos en términos ejes (x,y), color, tamaño, forma, etc. - geometry: Geometría de los objetos a graficar, Puntos,Líneas,Etc.</p>
+<img src="Imagenes/overview_graphic1.png" width="80%" alt="ggplot1">
+</section>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">data</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(ChickWeight)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ChickWeight)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  weight Time Chick Diet
+1     42    0     1    1
+2     51    2     1    1
+3     59    4     1    1
+4     64    6     1    1
+5     76    8     1    1
+6     93   10     1    1</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ChickWeight)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     weight           Time           Chick     Diet   
+ Min.   : 35.0   Min.   : 0.00   13     : 12   1:220  
+ 1st Qu.: 63.0   1st Qu.: 4.00   9      : 12   2:120  
+ Median :103.0   Median :10.00   20     : 12   3:120  
+ Mean   :121.8   Mean   :10.72   10     : 12   4:118  
+ 3rd Qu.:163.8   3rd Qu.:16.00   17     : 12          
+ Max.   :373.0   Max.   :21.00   19     : 12          
+                                 (Other):506          </code></pre>
+</div>
+</div>
+</section>
+<section id="aesthetics" class="level2">
+<h2 class="anchored" data-anchor-id="aesthetics">aesthetics</h2>
+<p>Esto incluye cosas como qué variable va en el eje X, qué variable va en el eje Y y qué tamaño, forma o color desea para sus puntos/líneas/barras/etc. ggplot2_image2 <img src="Imagenes/ggplot2_image2.png" class="img-fluid" alt="‘ggplot 2’"></p>
+</section>
+<section id="geometry" class="level2">
+<h2 class="anchored" data-anchor-id="geometry">geometry</h2>
+<p>Una vez que definimos cómo asignar los datos a elementos estéticos de nuestra elección, la forma en que presentamos los datos es utilizando un objeto geométrico, el cual puede ser un diagrama de dispersión, un diagrama de caja, un diagrama de líneas, etc. <img src="Imagenes/ggplot2_image3.png" class="img-fluid" alt="‘ggplot 2’"></p>
+</section>
+<section id="theme" class="level2">
+<h2 class="anchored" data-anchor-id="theme">theme</h2>
+<p>Te permite decidir cómo se ve el gráfico en términos de como el color, fuente de letra, tamaño de fuente. Si no los especifica, ggplot simplemente usará la configuración predeterminada. ### Ejemplo Digamos que queremos crear un diagrama de dispersión que muestre el peso versus el tiempo de estos polluelos.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#ggplot(ChickWeight)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#ggplot(data, aes(x, y))</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ChickWeight, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> weight))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_apunte_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="bar-plot" class="level2">
+<h2 class="anchored" data-anchor-id="bar-plot">Bar plot</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crea un bar plot con ggplot2</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ChickWeight, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> weight))<span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_apunte_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="box-plot" class="level2">
+<h2 class="anchored" data-anchor-id="box-plot">Box plot</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crea un box plot con ggplot2</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ChickWeight, <span class="fu">aes</span>(<span class="at">x =</span> Diet, <span class="at">y =</span> weight))<span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_apunte_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="scatter-plot" class="level2">
+<h2 class="anchored" data-anchor-id="scatter-plot">scatter plot</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#ggplot(data, aes(x, y))</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ChickWeight, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> weight))<span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_apunte_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ChickWeight, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> weight,<span class="at">color =</span> Diet)) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_apunte_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="modificar-el-tamaño-de-los-puntos-con-size" class="level3">
+<h3 class="anchored" data-anchor-id="modificar-el-tamaño-de-los-puntos-con-size">Modificar el tamaño de los puntos con size</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ChickWeight, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> weight,<span class="at">color =</span> Diet)) <span class="sc">+</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">5</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_apunte_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="modificar-el-tamaño-en-función-del-peso" class="level3">
+<h3 class="anchored" data-anchor-id="modificar-el-tamaño-en-función-del-peso">Modificar el tamaño en función del peso</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ChickWeight, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> weight,<span class="at">color =</span> Diet,<span class="at">size =</span> weight)) <span class="sc">+</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_apunte_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="figuras-en-multiples-paneles-face_grid" class="level3">
+<h3 class="anchored" data-anchor-id="figuras-en-multiples-paneles-face_grid">Figuras en multiples paneles face_grid</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ChickWeight, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> weight,<span class="at">color =</span> Diet)) <span class="sc">+</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span> <span class="fu">facet_grid</span>(<span class="sc">~</span>Diet)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_apunte_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="cambiar-la-transparencia-con-alpha" class="level2">
+<h2 class="anchored" data-anchor-id="cambiar-la-transparencia-con-alpha">Cambiar la transparencia con alpha</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ChickWeight, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> weight,<span class="at">color =</span> Diet,<span class="at">size=</span>weight)) <span class="sc">+</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_apunte_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="cambiar-los-simblos-con-respecto-a-la-dieta-con-shape" class="level3">
+<h3 class="anchored" data-anchor-id="cambiar-los-simblos-con-respecto-a-la-dieta-con-shape">Cambiar los simblos con respecto a la dieta con shape</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ChickWeight, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> weight,<span class="at">color =</span> Diet,</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="at">size=</span>weight,<span class="at">shape=</span>Diet))<span class="sc">+</span> </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_apunte_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="formas-de-puntos-en-r" class="level2">
+<h2 class="anchored" data-anchor-id="formas-de-puntos-en-r">Formas de puntos en R</h2>
+<p><img src="Imagenes/shape.png" width="500" height="500"></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ChickWeight, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> weight,<span class="at">size=</span>weight)) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">shape=</span><span class="dv">23</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_apunte_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>fig <span class="ot">&lt;-</span><span class="fu">ggplot</span>(ChickWeight, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> weight,<span class="at">color =</span> Diet)) <span class="sc">+</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">shape=</span> Diet)) <span class="sc">+</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_shape_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">16</span>, <span class="dv">17</span>, <span class="dv">6</span>)) <span class="sc">+</span>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">'#999999'</span>,<span class="st">'#E69F00'</span>, <span class="st">'#56B4E9'</span>,<span class="st">'pink'</span>))</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>fig</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_apunte_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="seleccionar-colores-con-una-paqueteria" class="level2">
+<h2 class="anchored" data-anchor-id="seleccionar-colores-con-una-paqueteria">Seleccionar colores con una paqueteria</h2>
+<section id="r-charts" class="level3">
+<h3 class="anchored" data-anchor-id="r-charts">R charts</h3>
+<ul>
+<li>https://r-charts.com/colors/</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#RColorBrewer tiene una bonita paleta de colores. install.packages("RColorBrewer").</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">display.brewer.all</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_apunte_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li>scale_fill_brewer() for box plot, bar plot, violin plot, dot plot, etc</li>
+<li>scale_color_brewer() for lines and points</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>fig2<span class="ot">&lt;-</span><span class="fu">ggplot</span>(ChickWeight, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> weight,<span class="at">color =</span> Diet)) <span class="sc">+</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>)<span class="sc">+</span> <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>fig2</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_apunte_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="paleta-magica-con-ghibli" class="level2">
+<h2 class="anchored" data-anchor-id="paleta-magica-con-ghibli">Paleta magica con ghibli</h2>
+<ul>
+<li>https://github.com/ewenme/ghibli/tree/master?tab=readme-ov-file</li>
+</ul>
+<p><img src="Imagenes/ghibli.png" width="40%"></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages('ghibli')</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># load package</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ghibli)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>ghibli_palettes<span class="sc">$</span>TotoroMedium</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;colors&gt;
+#0A1215FF #2D2A25FF #583B2BFF #534C53FF #446590FF #AD8152FF #BBA78CFF </code></pre>
+</div>
+</div>
+</section>
+<section id="espolvorea-un-poco-de-la-magia-de-la-paleta-de-studio-ghibli-sobre-tus-gráficas" class="level2">
+<h2 class="anchored" data-anchor-id="espolvorea-un-poco-de-la-magia-de-la-paleta-de-studio-ghibli-sobre-tus-gráficas">｡◕‿‿◕｡ Espolvorea un poco de la magia de la paleta de Studio Ghibli sobre tus gráficas ｡◕‿‿◕｡</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># display palettes w/ names</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">3</span>))</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">names</span>(ghibli_palettes)) <span class="fu">print</span>(<span class="fu">ghibli_palette</span>(i))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_apunte_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="do">##scale_[colour|fill]_ghibli_[c|d]()</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>fig3<span class="ot">&lt;-</span><span class="fu">ggplot</span>(ChickWeight, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> weight,<span class="at">color =</span> Diet)) <span class="sc">+</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>)<span class="sc">+</span> <span class="co"># ghibli stuff</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_ghibli_d</span>(<span class="st">"MarnieMedium1"</span>, <span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>fig3</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_apunte_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="títulos-con-ggtitle" class="level4">
+<h4 class="anchored" data-anchor-id="títulos-con-ggtitle">Títulos con ggtitle</h4>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="do">##scale_[colour|fill]_ghibli_[c|d]()</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>fig4<span class="ot">&lt;-</span><span class="fu">ggplot</span>(ChickWeight, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> weight,<span class="at">color =</span> Diet)) <span class="sc">+</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>)<span class="sc">+</span> <span class="co"># ghibli stuff</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_ghibli_d</span>(<span class="st">"MarnieMedium1"</span>, <span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"Datos de la prueba de la dieta en pollitos "</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Peso de los pollitos(gm)"</span>) <span class="sc">+</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="fu">xlab</span>(<span class="st">"Tiempo(d)"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>fig4</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_apunte_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>####Modificar el estilo de la etiquetas y ejes con theme y labs - https://ggplot2.tidyverse.org/reference/theme.html <img src="Imagenes/theme.jpg" class="img-fluid" alt="‘theme’"></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>fig4 <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold.italic"</span>,<span class="at">colour=</span><span class="st">"blue"</span>,<span class="at">size=</span><span class="dv">14</span>))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_apunte_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages('extrafont')</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co">#library(extrafont)</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="co">#font_import()</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co">#loadfonts(device = "win")</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="co">#fonts()</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>fig5 <span class="ot">&lt;-</span> fig4 <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">plot.title=</span><span class="fu">element_text</span>(<span class="at">hjust=</span><span class="fl">0.5</span>,<span class="at">size=</span><span class="dv">15</span>,<span class="at">family=</span><span class="st">"Comic Sans MS"</span>,<span class="at">face=</span><span class="st">"bold.italic"</span>,<span class="at">colour=</span><span class="st">"red"</span>))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>fig5</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_apunte_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("cowplot")</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cowplot)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>cowplot<span class="sc">::</span><span class="fu">plot_grid</span>(fig,fig2,fig3,fig4, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">'A)'</span>,<span class="st">'B)'</span>,<span class="st">'C)'</span>,<span class="st">'D)'</span>)) <span class="co">#nrow=4</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_apunte_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">#figura_convertida&lt;-as.ggplot(figura_que_no_se_genero_con_ggplot2)</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</section>
+<section id="guardar-la-imagen-con-ggsave" class="level2">
+<h2 class="anchored" data-anchor-id="guardar-la-imagen-con-ggsave">Guardar la imagen con ggsave</h2>
+<ul>
+<li>https://ggplot2.tidyverse.org/reference/ggsave.html</li>
+<li>Si la figura que generaste no fue realizada con ggplot 2,conviértela con as.ggplot figura_convertida&lt;-as.ggplot(figura_que_no_se_genero_con_ggplot2)</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"Imagenes/plot.png"</span>, fig5, <span class="at">width =</span> <span class="dv">5</span>, <span class="at">height =</span> <span class="dv">5</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Imagenes/colores.jpg" class="img-fluid figure-img"></p>
+<figcaption>‘theme’</figcaption>
+</figure>
+</div>
+<p><img src="Imagenes/visually_impaired.jpg" width="600" height="650"></p>
+</section>
+</section>
+<section id="plotly" class="level1">
+<h1>plotly</h1>
+<p>Plotly (https://plot.ly/) es un servicio comercial y un producto de código abierto para crear visualizaciones interactivas de alta gama. El paquete plotly permite crear gráficos interactivos plotly desde dentro de R. Además, cualquier gráfico ggplot2 se puede convertir en un gráfico plotly.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("plotly")</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Adjuntando el paquete: 'plotly'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:ggplot2':
+
+    last_plot</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:stats':
+
+    filter</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:graphics':
+
+    layout</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(fig4)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-d1d7e3d6d302b1441e80" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-d1d7e3d6d302b1441e80">{"x":{"data":[{"x":[0,2,4,6,8,10,12,14,16,18,20,21,0,2,4,6,8,10,12,14,16,18,20,21,0,2,4,6,8,10,12,14,16,18,20,21,0,2,4,6,8,10,12,14,16,18,20,21,0,2,4,6,8,10,12,14,16,18,20,21,0,2,4,6,8,10,12,14,16,18,20,21,0,2,4,6,8,10,12,14,16,18,20,21,0,2,4,6,8,10,12,14,16,18,20,0,2,4,6,8,10,12,14,16,18,20,21,0,2,4,6,8,10,12,14,16,18,20,21,0,2,4,6,8,10,12,14,16,18,20,21,0,2,4,6,8,10,12,14,16,18,20,21,0,2,4,6,8,10,12,14,16,18,20,21,0,2,4,6,8,10,12,14,16,18,20,21,0,2,4,6,8,10,12,14,0,2,4,6,8,10,12,0,2,4,6,8,10,12,14,16,18,20,21,0,2,0,2,4,6,8,10,12,14,16,18,20,21,0,2,4,6,8,10,12,14,16,18,20,21],"y":[42,51,59,64,76,93,106,125,149,171,199,205,40,49,58,72,84,103,122,138,162,187,209,215,43,39,55,67,84,99,115,138,163,187,198,202,42,49,56,67,74,87,102,108,136,154,160,157,41,42,48,60,79,106,141,164,197,199,220,223,41,49,59,74,97,124,141,148,155,160,160,157,41,49,57,71,89,112,146,174,218,250,288,305,42,50,61,71,84,93,110,116,126,134,125,42,51,59,68,85,96,90,92,93,100,100,98,41,44,52,63,74,81,89,96,101,112,120,124,43,51,63,84,112,139,168,177,182,184,181,175,41,49,56,62,72,88,119,135,162,185,195,205,41,48,53,60,65,67,71,70,71,81,91,96,41,49,62,79,101,128,164,192,227,248,259,266,41,49,56,64,68,68,67,68,41,45,49,51,57,51,54,42,51,61,72,83,89,98,103,113,123,133,142,39,35,43,48,55,62,65,71,82,88,106,120,144,157,41,47,54,58,65,73,77,89,98,107,115,117],"text":["Time:  0<br />weight:  42<br />Diet: 1","Time:  2<br />weight:  51<br />Diet: 1","Time:  4<br />weight:  59<br />Diet: 1","Time:  6<br />weight:  64<br />Diet: 1","Time:  8<br />weight:  76<br />Diet: 1","Time: 10<br />weight:  93<br />Diet: 1","Time: 12<br />weight: 106<br />Diet: 1","Time: 14<br />weight: 125<br />Diet: 1","Time: 16<br />weight: 149<br />Diet: 1","Time: 18<br />weight: 171<br />Diet: 1","Time: 20<br />weight: 199<br />Diet: 1","Time: 21<br />weight: 205<br />Diet: 1","Time:  0<br />weight:  40<br />Diet: 1","Time:  2<br />weight:  49<br />Diet: 1","Time:  4<br />weight:  58<br />Diet: 1","Time:  6<br />weight:  72<br />Diet: 1","Time:  8<br />weight:  84<br />Diet: 1","Time: 10<br />weight: 103<br />Diet: 1","Time: 12<br />weight: 122<br />Diet: 1","Time: 14<br />weight: 138<br />Diet: 1","Time: 16<br />weight: 162<br />Diet: 1","Time: 18<br />weight: 187<br />Diet: 1","Time: 20<br />weight: 209<br />Diet: 1","Time: 21<br />weight: 215<br />Diet: 1","Time:  0<br />weight:  43<br />Diet: 1","Time:  2<br />weight:  39<br />Diet: 1","Time:  4<br />weight:  55<br />Diet: 1","Time:  6<br />weight:  67<br />Diet: 1","Time:  8<br />weight:  84<br />Diet: 1","Time: 10<br />weight:  99<br />Diet: 1","Time: 12<br />weight: 115<br />Diet: 1","Time: 14<br />weight: 138<br />Diet: 1","Time: 16<br />weight: 163<br />Diet: 1","Time: 18<br />weight: 187<br />Diet: 1","Time: 20<br />weight: 198<br />Diet: 1","Time: 21<br />weight: 202<br />Diet: 1","Time:  0<br />weight:  42<br />Diet: 1","Time:  2<br />weight:  49<br />Diet: 1","Time:  4<br />weight:  56<br />Diet: 1","Time:  6<br />weight:  67<br />Diet: 1","Time:  8<br />weight:  74<br />Diet: 1","Time: 10<br />weight:  87<br />Diet: 1","Time: 12<br />weight: 102<br />Diet: 1","Time: 14<br />weight: 108<br />Diet: 1","Time: 16<br />weight: 136<br />Diet: 1","Time: 18<br />weight: 154<br />Diet: 1","Time: 20<br />weight: 160<br />Diet: 1","Time: 21<br />weight: 157<br />Diet: 1","Time:  0<br />weight:  41<br />Diet: 1","Time:  2<br />weight:  42<br />Diet: 1","Time:  4<br />weight:  48<br />Diet: 1","Time:  6<br />weight:  60<br />Diet: 1","Time:  8<br />weight:  79<br />Diet: 1","Time: 10<br />weight: 106<br />Diet: 1","Time: 12<br />weight: 141<br />Diet: 1","Time: 14<br />weight: 164<br />Diet: 1","Time: 16<br />weight: 197<br />Diet: 1","Time: 18<br />weight: 199<br />Diet: 1","Time: 20<br />weight: 220<br />Diet: 1","Time: 21<br />weight: 223<br />Diet: 1","Time:  0<br />weight:  41<br />Diet: 1","Time:  2<br />weight:  49<br />Diet: 1","Time:  4<br />weight:  59<br />Diet: 1","Time:  6<br />weight:  74<br />Diet: 1","Time:  8<br />weight:  97<br />Diet: 1","Time: 10<br />weight: 124<br />Diet: 1","Time: 12<br />weight: 141<br />Diet: 1","Time: 14<br />weight: 148<br />Diet: 1","Time: 16<br />weight: 155<br />Diet: 1","Time: 18<br />weight: 160<br />Diet: 1","Time: 20<br />weight: 160<br />Diet: 1","Time: 21<br />weight: 157<br />Diet: 1","Time:  0<br />weight:  41<br />Diet: 1","Time:  2<br />weight:  49<br />Diet: 1","Time:  4<br />weight:  57<br />Diet: 1","Time:  6<br />weight:  71<br />Diet: 1","Time:  8<br />weight:  89<br />Diet: 1","Time: 10<br />weight: 112<br />Diet: 1","Time: 12<br />weight: 146<br />Diet: 1","Time: 14<br />weight: 174<br />Diet: 1","Time: 16<br />weight: 218<br />Diet: 1","Time: 18<br />weight: 250<br />Diet: 1","Time: 20<br />weight: 288<br />Diet: 1","Time: 21<br />weight: 305<br />Diet: 1","Time:  0<br />weight:  42<br />Diet: 1","Time:  2<br />weight:  50<br />Diet: 1","Time:  4<br />weight:  61<br />Diet: 1","Time:  6<br />weight:  71<br />Diet: 1","Time:  8<br />weight:  84<br />Diet: 1","Time: 10<br />weight:  93<br />Diet: 1","Time: 12<br />weight: 110<br />Diet: 1","Time: 14<br />weight: 116<br />Diet: 1","Time: 16<br />weight: 126<br />Diet: 1","Time: 18<br />weight: 134<br />Diet: 1","Time: 20<br />weight: 125<br />Diet: 1","Time:  0<br />weight:  42<br />Diet: 1","Time:  2<br />weight:  51<br />Diet: 1","Time:  4<br />weight:  59<br />Diet: 1","Time:  6<br />weight:  68<br />Diet: 1","Time:  8<br />weight:  85<br />Diet: 1","Time: 10<br />weight:  96<br />Diet: 1","Time: 12<br />weight:  90<br />Diet: 1","Time: 14<br />weight:  92<br />Diet: 1","Time: 16<br />weight:  93<br />Diet: 1","Time: 18<br />weight: 100<br />Diet: 1","Time: 20<br />weight: 100<br />Diet: 1","Time: 21<br />weight:  98<br />Diet: 1","Time:  0<br />weight:  41<br />Diet: 1","Time:  2<br />weight:  44<br />Diet: 1","Time:  4<br />weight:  52<br />Diet: 1","Time:  6<br />weight:  63<br />Diet: 1","Time:  8<br />weight:  74<br />Diet: 1","Time: 10<br />weight:  81<br />Diet: 1","Time: 12<br />weight:  89<br />Diet: 1","Time: 14<br />weight:  96<br />Diet: 1","Time: 16<br />weight: 101<br />Diet: 1","Time: 18<br />weight: 112<br />Diet: 1","Time: 20<br />weight: 120<br />Diet: 1","Time: 21<br />weight: 124<br />Diet: 1","Time:  0<br />weight:  43<br />Diet: 1","Time:  2<br />weight:  51<br />Diet: 1","Time:  4<br />weight:  63<br />Diet: 1","Time:  6<br />weight:  84<br />Diet: 1","Time:  8<br />weight: 112<br />Diet: 1","Time: 10<br />weight: 139<br />Diet: 1","Time: 12<br />weight: 168<br />Diet: 1","Time: 14<br />weight: 177<br />Diet: 1","Time: 16<br />weight: 182<br />Diet: 1","Time: 18<br />weight: 184<br />Diet: 1","Time: 20<br />weight: 181<br />Diet: 1","Time: 21<br />weight: 175<br />Diet: 1","Time:  0<br />weight:  41<br />Diet: 1","Time:  2<br />weight:  49<br />Diet: 1","Time:  4<br />weight:  56<br />Diet: 1","Time:  6<br />weight:  62<br />Diet: 1","Time:  8<br />weight:  72<br />Diet: 1","Time: 10<br />weight:  88<br />Diet: 1","Time: 12<br />weight: 119<br />Diet: 1","Time: 14<br />weight: 135<br />Diet: 1","Time: 16<br />weight: 162<br />Diet: 1","Time: 18<br />weight: 185<br />Diet: 1","Time: 20<br />weight: 195<br />Diet: 1","Time: 21<br />weight: 205<br />Diet: 1","Time:  0<br />weight:  41<br />Diet: 1","Time:  2<br />weight:  48<br />Diet: 1","Time:  4<br />weight:  53<br />Diet: 1","Time:  6<br />weight:  60<br />Diet: 1","Time:  8<br />weight:  65<br />Diet: 1","Time: 10<br />weight:  67<br />Diet: 1","Time: 12<br />weight:  71<br />Diet: 1","Time: 14<br />weight:  70<br />Diet: 1","Time: 16<br />weight:  71<br />Diet: 1","Time: 18<br />weight:  81<br />Diet: 1","Time: 20<br />weight:  91<br />Diet: 1","Time: 21<br />weight:  96<br />Diet: 1","Time:  0<br />weight:  41<br />Diet: 1","Time:  2<br />weight:  49<br />Diet: 1","Time:  4<br />weight:  62<br />Diet: 1","Time:  6<br />weight:  79<br />Diet: 1","Time:  8<br />weight: 101<br />Diet: 1","Time: 10<br />weight: 128<br />Diet: 1","Time: 12<br />weight: 164<br />Diet: 1","Time: 14<br />weight: 192<br />Diet: 1","Time: 16<br />weight: 227<br />Diet: 1","Time: 18<br />weight: 248<br />Diet: 1","Time: 20<br />weight: 259<br />Diet: 1","Time: 21<br />weight: 266<br />Diet: 1","Time:  0<br />weight:  41<br />Diet: 1","Time:  2<br />weight:  49<br />Diet: 1","Time:  4<br />weight:  56<br />Diet: 1","Time:  6<br />weight:  64<br />Diet: 1","Time:  8<br />weight:  68<br />Diet: 1","Time: 10<br />weight:  68<br />Diet: 1","Time: 12<br />weight:  67<br />Diet: 1","Time: 14<br />weight:  68<br />Diet: 1","Time:  0<br />weight:  41<br />Diet: 1","Time:  2<br />weight:  45<br />Diet: 1","Time:  4<br />weight:  49<br />Diet: 1","Time:  6<br />weight:  51<br />Diet: 1","Time:  8<br />weight:  57<br />Diet: 1","Time: 10<br />weight:  51<br />Diet: 1","Time: 12<br />weight:  54<br />Diet: 1","Time:  0<br />weight:  42<br />Diet: 1","Time:  2<br />weight:  51<br />Diet: 1","Time:  4<br />weight:  61<br />Diet: 1","Time:  6<br />weight:  72<br />Diet: 1","Time:  8<br />weight:  83<br />Diet: 1","Time: 10<br />weight:  89<br />Diet: 1","Time: 12<br />weight:  98<br />Diet: 1","Time: 14<br />weight: 103<br />Diet: 1","Time: 16<br />weight: 113<br />Diet: 1","Time: 18<br />weight: 123<br />Diet: 1","Time: 20<br />weight: 133<br />Diet: 1","Time: 21<br />weight: 142<br />Diet: 1","Time:  0<br />weight:  39<br />Diet: 1","Time:  2<br />weight:  35<br />Diet: 1","Time:  0<br />weight:  43<br />Diet: 1","Time:  2<br />weight:  48<br />Diet: 1","Time:  4<br />weight:  55<br />Diet: 1","Time:  6<br />weight:  62<br />Diet: 1","Time:  8<br />weight:  65<br />Diet: 1","Time: 10<br />weight:  71<br />Diet: 1","Time: 12<br />weight:  82<br />Diet: 1","Time: 14<br />weight:  88<br />Diet: 1","Time: 16<br />weight: 106<br />Diet: 1","Time: 18<br />weight: 120<br />Diet: 1","Time: 20<br />weight: 144<br />Diet: 1","Time: 21<br />weight: 157<br />Diet: 1","Time:  0<br />weight:  41<br />Diet: 1","Time:  2<br />weight:  47<br />Diet: 1","Time:  4<br />weight:  54<br />Diet: 1","Time:  6<br />weight:  58<br />Diet: 1","Time:  8<br />weight:  65<br />Diet: 1","Time: 10<br />weight:  73<br />Diet: 1","Time: 12<br />weight:  77<br />Diet: 1","Time: 14<br />weight:  89<br />Diet: 1","Time: 16<br />weight:  98<br />Diet: 1","Time: 18<br />weight: 107<br />Diet: 1","Time: 20<br />weight: 115<br />Diet: 1","Time: 21<br />weight: 117<br />Diet: 1"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(233,208,151,1)","opacity":1,"size":15.118110236220474,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(233,208,151,1)"}},"hoveron":"points","name":"1","legendgroup":"1","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0,2,4,6,8,10,12,14,16,18,20,21,0,2,4,6,8,10,12,14,16,18,20,21,0,2,4,6,8,10,12,14,16,18,20,21,0,2,4,6,8,10,12,14,16,18,20,21,0,2,4,6,8,10,12,14,16,18,20,21,0,2,4,6,8,10,12,14,16,18,20,21,0,2,4,6,8,10,12,14,16,18,20,21,0,2,4,6,8,10,12,14,16,18,20,21,0,2,4,6,8,10,12,14,16,18,20,21,0,2,4,6,8,10,12,14,16,18,20,21],"y":[40,50,62,86,125,163,217,240,275,307,318,331,41,55,64,77,90,95,108,111,131,148,164,167,43,52,61,73,90,103,127,135,145,163,170,175,42,52,58,74,66,68,70,71,72,72,76,74,40,49,62,78,102,124,146,164,197,231,259,265,42,48,57,74,93,114,136,147,169,205,236,251,39,46,58,73,87,100,115,123,144,163,185,192,39,46,58,73,92,114,145,156,184,207,212,233,39,48,59,74,87,106,134,150,187,230,279,309,42,48,59,72,85,98,115,122,143,151,157,150],"text":["Time:  0<br />weight:  40<br />Diet: 2","Time:  2<br />weight:  50<br />Diet: 2","Time:  4<br />weight:  62<br />Diet: 2","Time:  6<br />weight:  86<br />Diet: 2","Time:  8<br />weight: 125<br />Diet: 2","Time: 10<br />weight: 163<br />Diet: 2","Time: 12<br />weight: 217<br />Diet: 2","Time: 14<br />weight: 240<br />Diet: 2","Time: 16<br />weight: 275<br />Diet: 2","Time: 18<br />weight: 307<br />Diet: 2","Time: 20<br />weight: 318<br />Diet: 2","Time: 21<br />weight: 331<br />Diet: 2","Time:  0<br />weight:  41<br />Diet: 2","Time:  2<br />weight:  55<br />Diet: 2","Time:  4<br />weight:  64<br />Diet: 2","Time:  6<br />weight:  77<br />Diet: 2","Time:  8<br />weight:  90<br />Diet: 2","Time: 10<br />weight:  95<br />Diet: 2","Time: 12<br />weight: 108<br />Diet: 2","Time: 14<br />weight: 111<br />Diet: 2","Time: 16<br />weight: 131<br />Diet: 2","Time: 18<br />weight: 148<br />Diet: 2","Time: 20<br />weight: 164<br />Diet: 2","Time: 21<br />weight: 167<br />Diet: 2","Time:  0<br />weight:  43<br />Diet: 2","Time:  2<br />weight:  52<br />Diet: 2","Time:  4<br />weight:  61<br />Diet: 2","Time:  6<br />weight:  73<br />Diet: 2","Time:  8<br />weight:  90<br />Diet: 2","Time: 10<br />weight: 103<br />Diet: 2","Time: 12<br />weight: 127<br />Diet: 2","Time: 14<br />weight: 135<br />Diet: 2","Time: 16<br />weight: 145<br />Diet: 2","Time: 18<br />weight: 163<br />Diet: 2","Time: 20<br />weight: 170<br />Diet: 2","Time: 21<br />weight: 175<br />Diet: 2","Time:  0<br />weight:  42<br />Diet: 2","Time:  2<br />weight:  52<br />Diet: 2","Time:  4<br />weight:  58<br />Diet: 2","Time:  6<br />weight:  74<br />Diet: 2","Time:  8<br />weight:  66<br />Diet: 2","Time: 10<br />weight:  68<br />Diet: 2","Time: 12<br />weight:  70<br />Diet: 2","Time: 14<br />weight:  71<br />Diet: 2","Time: 16<br />weight:  72<br />Diet: 2","Time: 18<br />weight:  72<br />Diet: 2","Time: 20<br />weight:  76<br />Diet: 2","Time: 21<br />weight:  74<br />Diet: 2","Time:  0<br />weight:  40<br />Diet: 2","Time:  2<br />weight:  49<br />Diet: 2","Time:  4<br />weight:  62<br />Diet: 2","Time:  6<br />weight:  78<br />Diet: 2","Time:  8<br />weight: 102<br />Diet: 2","Time: 10<br />weight: 124<br />Diet: 2","Time: 12<br />weight: 146<br />Diet: 2","Time: 14<br />weight: 164<br />Diet: 2","Time: 16<br />weight: 197<br />Diet: 2","Time: 18<br />weight: 231<br />Diet: 2","Time: 20<br />weight: 259<br />Diet: 2","Time: 21<br />weight: 265<br />Diet: 2","Time:  0<br />weight:  42<br />Diet: 2","Time:  2<br />weight:  48<br />Diet: 2","Time:  4<br />weight:  57<br />Diet: 2","Time:  6<br />weight:  74<br />Diet: 2","Time:  8<br />weight:  93<br />Diet: 2","Time: 10<br />weight: 114<br />Diet: 2","Time: 12<br />weight: 136<br />Diet: 2","Time: 14<br />weight: 147<br />Diet: 2","Time: 16<br />weight: 169<br />Diet: 2","Time: 18<br />weight: 205<br />Diet: 2","Time: 20<br />weight: 236<br />Diet: 2","Time: 21<br />weight: 251<br />Diet: 2","Time:  0<br />weight:  39<br />Diet: 2","Time:  2<br />weight:  46<br />Diet: 2","Time:  4<br />weight:  58<br />Diet: 2","Time:  6<br />weight:  73<br />Diet: 2","Time:  8<br />weight:  87<br />Diet: 2","Time: 10<br />weight: 100<br />Diet: 2","Time: 12<br />weight: 115<br />Diet: 2","Time: 14<br />weight: 123<br />Diet: 2","Time: 16<br />weight: 144<br />Diet: 2","Time: 18<br />weight: 163<br />Diet: 2","Time: 20<br />weight: 185<br />Diet: 2","Time: 21<br />weight: 192<br />Diet: 2","Time:  0<br />weight:  39<br />Diet: 2","Time:  2<br />weight:  46<br />Diet: 2","Time:  4<br />weight:  58<br />Diet: 2","Time:  6<br />weight:  73<br />Diet: 2","Time:  8<br />weight:  92<br />Diet: 2","Time: 10<br />weight: 114<br />Diet: 2","Time: 12<br />weight: 145<br />Diet: 2","Time: 14<br />weight: 156<br />Diet: 2","Time: 16<br />weight: 184<br />Diet: 2","Time: 18<br />weight: 207<br />Diet: 2","Time: 20<br />weight: 212<br />Diet: 2","Time: 21<br />weight: 233<br />Diet: 2","Time:  0<br />weight:  39<br />Diet: 2","Time:  2<br />weight:  48<br />Diet: 2","Time:  4<br />weight:  59<br />Diet: 2","Time:  6<br />weight:  74<br />Diet: 2","Time:  8<br />weight:  87<br />Diet: 2","Time: 10<br />weight: 106<br />Diet: 2","Time: 12<br />weight: 134<br />Diet: 2","Time: 14<br />weight: 150<br />Diet: 2","Time: 16<br />weight: 187<br />Diet: 2","Time: 18<br />weight: 230<br />Diet: 2","Time: 20<br />weight: 279<br />Diet: 2","Time: 21<br />weight: 309<br />Diet: 2","Time:  0<br />weight:  42<br />Diet: 2","Time:  2<br />weight:  48<br />Diet: 2","Time:  4<br />weight:  59<br />Diet: 2","Time:  6<br />weight:  72<br />Diet: 2","Time:  8<br />weight:  85<br />Diet: 2","Time: 10<br />weight:  98<br />Diet: 2","Time: 12<br />weight: 115<br />Diet: 2","Time: 14<br />weight: 122<br />Diet: 2","Time: 16<br />weight: 143<br />Diet: 2","Time: 18<br />weight: 151<br />Diet: 2","Time: 20<br />weight: 157<br />Diet: 2","Time: 21<br />weight: 150<br />Diet: 2"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(103,184,214,1)","opacity":1,"size":15.118110236220474,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(103,184,214,1)"}},"hoveron":"points","name":"2","legendgroup":"2","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0,2,4,6,8,10,12,14,16,18,20,21,0,2,4,6,8,10,12,14,16,18,20,21,0,2,4,6,8,10,12,14,16,18,20,21,0,2,4,6,8,10,12,14,16,18,20,21,0,2,4,6,8,10,12,14,16,18,20,21,0,2,4,6,8,10,12,14,16,18,20,21,0,2,4,6,8,10,12,14,16,18,20,21,0,2,4,6,8,10,12,14,16,18,20,21,0,2,4,6,8,10,12,14,16,18,20,21,0,2,4,6,8,10,12,14,16,18,20,21],"y":[42,53,62,73,85,102,123,138,170,204,235,256,41,49,65,82,107,129,159,179,221,263,291,305,39,50,63,77,96,111,137,144,151,146,156,147,41,49,63,85,107,134,164,186,235,294,327,341,41,53,64,87,123,158,201,238,287,332,361,373,39,48,61,76,98,116,145,166,198,227,225,220,41,48,56,68,80,83,103,112,135,157,169,178,41,49,61,74,98,109,128,154,192,232,280,290,42,50,61,78,89,109,130,146,170,214,250,272,41,55,66,79,101,120,154,182,215,262,295,321],"text":["Time:  0<br />weight:  42<br />Diet: 3","Time:  2<br />weight:  53<br />Diet: 3","Time:  4<br />weight:  62<br />Diet: 3","Time:  6<br />weight:  73<br />Diet: 3","Time:  8<br />weight:  85<br />Diet: 3","Time: 10<br />weight: 102<br />Diet: 3","Time: 12<br />weight: 123<br />Diet: 3","Time: 14<br />weight: 138<br />Diet: 3","Time: 16<br />weight: 170<br />Diet: 3","Time: 18<br />weight: 204<br />Diet: 3","Time: 20<br />weight: 235<br />Diet: 3","Time: 21<br />weight: 256<br />Diet: 3","Time:  0<br />weight:  41<br />Diet: 3","Time:  2<br />weight:  49<br />Diet: 3","Time:  4<br />weight:  65<br />Diet: 3","Time:  6<br />weight:  82<br />Diet: 3","Time:  8<br />weight: 107<br />Diet: 3","Time: 10<br />weight: 129<br />Diet: 3","Time: 12<br />weight: 159<br />Diet: 3","Time: 14<br />weight: 179<br />Diet: 3","Time: 16<br />weight: 221<br />Diet: 3","Time: 18<br />weight: 263<br />Diet: 3","Time: 20<br />weight: 291<br />Diet: 3","Time: 21<br />weight: 305<br />Diet: 3","Time:  0<br />weight:  39<br />Diet: 3","Time:  2<br />weight:  50<br />Diet: 3","Time:  4<br />weight:  63<br />Diet: 3","Time:  6<br />weight:  77<br />Diet: 3","Time:  8<br />weight:  96<br />Diet: 3","Time: 10<br />weight: 111<br />Diet: 3","Time: 12<br />weight: 137<br />Diet: 3","Time: 14<br />weight: 144<br />Diet: 3","Time: 16<br />weight: 151<br />Diet: 3","Time: 18<br />weight: 146<br />Diet: 3","Time: 20<br />weight: 156<br />Diet: 3","Time: 21<br />weight: 147<br />Diet: 3","Time:  0<br />weight:  41<br />Diet: 3","Time:  2<br />weight:  49<br />Diet: 3","Time:  4<br />weight:  63<br />Diet: 3","Time:  6<br />weight:  85<br />Diet: 3","Time:  8<br />weight: 107<br />Diet: 3","Time: 10<br />weight: 134<br />Diet: 3","Time: 12<br />weight: 164<br />Diet: 3","Time: 14<br />weight: 186<br />Diet: 3","Time: 16<br />weight: 235<br />Diet: 3","Time: 18<br />weight: 294<br />Diet: 3","Time: 20<br />weight: 327<br />Diet: 3","Time: 21<br />weight: 341<br />Diet: 3","Time:  0<br />weight:  41<br />Diet: 3","Time:  2<br />weight:  53<br />Diet: 3","Time:  4<br />weight:  64<br />Diet: 3","Time:  6<br />weight:  87<br />Diet: 3","Time:  8<br />weight: 123<br />Diet: 3","Time: 10<br />weight: 158<br />Diet: 3","Time: 12<br />weight: 201<br />Diet: 3","Time: 14<br />weight: 238<br />Diet: 3","Time: 16<br />weight: 287<br />Diet: 3","Time: 18<br />weight: 332<br />Diet: 3","Time: 20<br />weight: 361<br />Diet: 3","Time: 21<br />weight: 373<br />Diet: 3","Time:  0<br />weight:  39<br />Diet: 3","Time:  2<br />weight:  48<br />Diet: 3","Time:  4<br />weight:  61<br />Diet: 3","Time:  6<br />weight:  76<br />Diet: 3","Time:  8<br />weight:  98<br />Diet: 3","Time: 10<br />weight: 116<br />Diet: 3","Time: 12<br />weight: 145<br />Diet: 3","Time: 14<br />weight: 166<br />Diet: 3","Time: 16<br />weight: 198<br />Diet: 3","Time: 18<br />weight: 227<br />Diet: 3","Time: 20<br />weight: 225<br />Diet: 3","Time: 21<br />weight: 220<br />Diet: 3","Time:  0<br />weight:  41<br />Diet: 3","Time:  2<br />weight:  48<br />Diet: 3","Time:  4<br />weight:  56<br />Diet: 3","Time:  6<br />weight:  68<br />Diet: 3","Time:  8<br />weight:  80<br />Diet: 3","Time: 10<br />weight:  83<br />Diet: 3","Time: 12<br />weight: 103<br />Diet: 3","Time: 14<br />weight: 112<br />Diet: 3","Time: 16<br />weight: 135<br />Diet: 3","Time: 18<br />weight: 157<br />Diet: 3","Time: 20<br />weight: 169<br />Diet: 3","Time: 21<br />weight: 178<br />Diet: 3","Time:  0<br />weight:  41<br />Diet: 3","Time:  2<br />weight:  49<br />Diet: 3","Time:  4<br />weight:  61<br />Diet: 3","Time:  6<br />weight:  74<br />Diet: 3","Time:  8<br />weight:  98<br />Diet: 3","Time: 10<br />weight: 109<br />Diet: 3","Time: 12<br />weight: 128<br />Diet: 3","Time: 14<br />weight: 154<br />Diet: 3","Time: 16<br />weight: 192<br />Diet: 3","Time: 18<br />weight: 232<br />Diet: 3","Time: 20<br />weight: 280<br />Diet: 3","Time: 21<br />weight: 290<br />Diet: 3","Time:  0<br />weight:  42<br />Diet: 3","Time:  2<br />weight:  50<br />Diet: 3","Time:  4<br />weight:  61<br />Diet: 3","Time:  6<br />weight:  78<br />Diet: 3","Time:  8<br />weight:  89<br />Diet: 3","Time: 10<br />weight: 109<br />Diet: 3","Time: 12<br />weight: 130<br />Diet: 3","Time: 14<br />weight: 146<br />Diet: 3","Time: 16<br />weight: 170<br />Diet: 3","Time: 18<br />weight: 214<br />Diet: 3","Time: 20<br />weight: 250<br />Diet: 3","Time: 21<br />weight: 272<br />Diet: 3","Time:  0<br />weight:  41<br />Diet: 3","Time:  2<br />weight:  55<br />Diet: 3","Time:  4<br />weight:  66<br />Diet: 3","Time:  6<br />weight:  79<br />Diet: 3","Time:  8<br />weight: 101<br />Diet: 3","Time: 10<br />weight: 120<br />Diet: 3","Time: 12<br />weight: 154<br />Diet: 3","Time: 14<br />weight: 182<br />Diet: 3","Time: 16<br />weight: 215<br />Diet: 3","Time: 18<br />weight: 262<br />Diet: 3","Time: 20<br />weight: 295<br />Diet: 3","Time: 21<br />weight: 321<br />Diet: 3"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(197,163,135,1)","opacity":1,"size":15.118110236220474,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(197,163,135,1)"}},"hoveron":"points","name":"3","legendgroup":"3","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0,2,4,6,8,10,12,14,16,18,20,21,0,2,4,6,8,10,12,14,16,18,20,21,0,2,4,6,8,10,12,14,16,18,20,21,0,2,4,6,8,10,12,14,16,18,0,2,4,6,8,10,12,14,16,18,20,21,0,2,4,6,8,10,12,14,16,18,20,21,0,2,4,6,8,10,12,14,16,18,20,21,0,2,4,6,8,10,12,14,16,18,20,21,0,2,4,6,8,10,12,14,16,18,20,21,0,2,4,6,8,10,12,14,16,18,20,21],"y":[42,51,66,85,103,124,155,153,175,184,199,204,42,49,63,84,103,126,160,174,204,234,269,281,42,55,69,96,131,157,184,188,197,198,199,200,42,51,65,86,103,118,127,138,145,146,41,50,61,78,98,117,135,141,147,174,197,196,40,52,62,82,101,120,144,156,173,210,231,238,41,53,66,79,100,123,148,157,168,185,210,205,39,50,62,80,104,125,154,170,222,261,303,322,40,53,64,85,108,128,152,166,184,203,233,237,41,54,67,84,105,122,155,175,205,234,264,264],"text":["Time:  0<br />weight:  42<br />Diet: 4","Time:  2<br />weight:  51<br />Diet: 4","Time:  4<br />weight:  66<br />Diet: 4","Time:  6<br />weight:  85<br />Diet: 4","Time:  8<br />weight: 103<br />Diet: 4","Time: 10<br />weight: 124<br />Diet: 4","Time: 12<br />weight: 155<br />Diet: 4","Time: 14<br />weight: 153<br />Diet: 4","Time: 16<br />weight: 175<br />Diet: 4","Time: 18<br />weight: 184<br />Diet: 4","Time: 20<br />weight: 199<br />Diet: 4","Time: 21<br />weight: 204<br />Diet: 4","Time:  0<br />weight:  42<br />Diet: 4","Time:  2<br />weight:  49<br />Diet: 4","Time:  4<br />weight:  63<br />Diet: 4","Time:  6<br />weight:  84<br />Diet: 4","Time:  8<br />weight: 103<br />Diet: 4","Time: 10<br />weight: 126<br />Diet: 4","Time: 12<br />weight: 160<br />Diet: 4","Time: 14<br />weight: 174<br />Diet: 4","Time: 16<br />weight: 204<br />Diet: 4","Time: 18<br />weight: 234<br />Diet: 4","Time: 20<br />weight: 269<br />Diet: 4","Time: 21<br />weight: 281<br />Diet: 4","Time:  0<br />weight:  42<br />Diet: 4","Time:  2<br />weight:  55<br />Diet: 4","Time:  4<br />weight:  69<br />Diet: 4","Time:  6<br />weight:  96<br />Diet: 4","Time:  8<br />weight: 131<br />Diet: 4","Time: 10<br />weight: 157<br />Diet: 4","Time: 12<br />weight: 184<br />Diet: 4","Time: 14<br />weight: 188<br />Diet: 4","Time: 16<br />weight: 197<br />Diet: 4","Time: 18<br />weight: 198<br />Diet: 4","Time: 20<br />weight: 199<br />Diet: 4","Time: 21<br />weight: 200<br />Diet: 4","Time:  0<br />weight:  42<br />Diet: 4","Time:  2<br />weight:  51<br />Diet: 4","Time:  4<br />weight:  65<br />Diet: 4","Time:  6<br />weight:  86<br />Diet: 4","Time:  8<br />weight: 103<br />Diet: 4","Time: 10<br />weight: 118<br />Diet: 4","Time: 12<br />weight: 127<br />Diet: 4","Time: 14<br />weight: 138<br />Diet: 4","Time: 16<br />weight: 145<br />Diet: 4","Time: 18<br />weight: 146<br />Diet: 4","Time:  0<br />weight:  41<br />Diet: 4","Time:  2<br />weight:  50<br />Diet: 4","Time:  4<br />weight:  61<br />Diet: 4","Time:  6<br />weight:  78<br />Diet: 4","Time:  8<br />weight:  98<br />Diet: 4","Time: 10<br />weight: 117<br />Diet: 4","Time: 12<br />weight: 135<br />Diet: 4","Time: 14<br />weight: 141<br />Diet: 4","Time: 16<br />weight: 147<br />Diet: 4","Time: 18<br />weight: 174<br />Diet: 4","Time: 20<br />weight: 197<br />Diet: 4","Time: 21<br />weight: 196<br />Diet: 4","Time:  0<br />weight:  40<br />Diet: 4","Time:  2<br />weight:  52<br />Diet: 4","Time:  4<br />weight:  62<br />Diet: 4","Time:  6<br />weight:  82<br />Diet: 4","Time:  8<br />weight: 101<br />Diet: 4","Time: 10<br />weight: 120<br />Diet: 4","Time: 12<br />weight: 144<br />Diet: 4","Time: 14<br />weight: 156<br />Diet: 4","Time: 16<br />weight: 173<br />Diet: 4","Time: 18<br />weight: 210<br />Diet: 4","Time: 20<br />weight: 231<br />Diet: 4","Time: 21<br />weight: 238<br />Diet: 4","Time:  0<br />weight:  41<br />Diet: 4","Time:  2<br />weight:  53<br />Diet: 4","Time:  4<br />weight:  66<br />Diet: 4","Time:  6<br />weight:  79<br />Diet: 4","Time:  8<br />weight: 100<br />Diet: 4","Time: 10<br />weight: 123<br />Diet: 4","Time: 12<br />weight: 148<br />Diet: 4","Time: 14<br />weight: 157<br />Diet: 4","Time: 16<br />weight: 168<br />Diet: 4","Time: 18<br />weight: 185<br />Diet: 4","Time: 20<br />weight: 210<br />Diet: 4","Time: 21<br />weight: 205<br />Diet: 4","Time:  0<br />weight:  39<br />Diet: 4","Time:  2<br />weight:  50<br />Diet: 4","Time:  4<br />weight:  62<br />Diet: 4","Time:  6<br />weight:  80<br />Diet: 4","Time:  8<br />weight: 104<br />Diet: 4","Time: 10<br />weight: 125<br />Diet: 4","Time: 12<br />weight: 154<br />Diet: 4","Time: 14<br />weight: 170<br />Diet: 4","Time: 16<br />weight: 222<br />Diet: 4","Time: 18<br />weight: 261<br />Diet: 4","Time: 20<br />weight: 303<br />Diet: 4","Time: 21<br />weight: 322<br />Diet: 4","Time:  0<br />weight:  40<br />Diet: 4","Time:  2<br />weight:  53<br />Diet: 4","Time:  4<br />weight:  64<br />Diet: 4","Time:  6<br />weight:  85<br />Diet: 4","Time:  8<br />weight: 108<br />Diet: 4","Time: 10<br />weight: 128<br />Diet: 4","Time: 12<br />weight: 152<br />Diet: 4","Time: 14<br />weight: 166<br />Diet: 4","Time: 16<br />weight: 184<br />Diet: 4","Time: 18<br />weight: 203<br />Diet: 4","Time: 20<br />weight: 233<br />Diet: 4","Time: 21<br />weight: 237<br />Diet: 4","Time:  0<br />weight:  41<br />Diet: 4","Time:  2<br />weight:  54<br />Diet: 4","Time:  4<br />weight:  67<br />Diet: 4","Time:  6<br />weight:  84<br />Diet: 4","Time:  8<br />weight: 105<br />Diet: 4","Time: 10<br />weight: 122<br />Diet: 4","Time: 12<br />weight: 155<br />Diet: 4","Time: 14<br />weight: 175<br />Diet: 4","Time: 16<br />weight: 205<br />Diet: 4","Time: 18<br />weight: 234<br />Diet: 4","Time: 20<br />weight: 264<br />Diet: 4","Time: 21<br />weight: 264<br />Diet: 4"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(28,119,163,1)","opacity":1,"size":15.118110236220474,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(28,119,163,1)"}},"hoveron":"points","name":"4","legendgroup":"4","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":40.840182648401829,"r":7.3059360730593621,"b":37.260273972602747,"l":43.105022831050235},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"title":{"text":"Datos de la prueba de la dieta en pollitos ","font":{"color":"rgba(0,0,0,1)","family":"","size":17.534246575342465},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-1.05,22.050000000000001],"tickmode":"array","ticktext":["0","5","10","15","20"],"tickvals":[0,5,10,15,20],"categoryorder":"array","categoryarray":["0","5","10","15","20"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"Tiempo(d)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[18.099999999999998,389.89999999999998],"tickmode":"array","ticktext":["100","200","300"],"tickvals":[100,200,300],"categoryorder":"array","categoryarray":["100","200","300"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"Peso de los pollitos(gm)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"Diet","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"8e7034a6350f":{"x":{},"y":{},"colour":{},"type":"scatter"}},"cur_data":"8e7034a6350f","visdat":{"8e7034a6350f":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create plotly graph.</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Adjuntando el paquete: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="ot">&lt;-</span> mpg <span class="sc">%&gt;%</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mylabel =</span> <span class="fu">paste</span>(<span class="st">"This is a"</span>, manufacturer, model, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>                         <span class="st">"released in"</span>, year, <span class="st">"."</span>))</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x=</span>displ, </span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">y=</span>hwy, </span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">color=</span>class,</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">text =</span> mylabel)) <span class="sc">+</span></span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Engine displacement"</span>,</span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Highway Mileage"</span>,</span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Car Class"</span>) <span class="sc">+</span></span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(p, <span class="at">tooltip =</span> <span class="fu">c</span>(<span class="st">"mylabel"</span>))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-c00e1b94aed5dd5326c7" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-c00e1b94aed5dd5326c7">{"x":{"data":[{"x":[5.7000000000000002,5.7000000000000002,6.2000000000000002,6.2000000000000002,7],"y":[26,23,26,25,24],"text":["This is a chevrolet corvette <br /> released in 1999 .","This is a chevrolet corvette <br /> released in 1999 .","This is a chevrolet corvette <br /> released in 2008 .","This is a chevrolet corvette <br /> released in 2008 .","This is a chevrolet corvette <br /> released in 2008 ."],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":11.338582677165356,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"2seater","legendgroup":"2seater","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1.8,1.8,2,2,2.7999999999999998,2.7999999999999998,3.1000000000000001,1.8,1.8,2,2,2.7999999999999998,2.7999999999999998,3.1000000000000001,3.1000000000000001,2.3999999999999999,2.3999999999999999,2.5,2.5,2.5,2.5,2.2000000000000002,2.2000000000000002,2.3999999999999999,2.3999999999999999,3,3,3.2999999999999998,1.8,1.8,1.8,1.8,1.8,2,2,2,2,2.7999999999999998,1.8999999999999999,2,2,2,2,2.5,2.5,2.7999999999999998,2.7999999999999998],"y":[29,29,31,30,26,26,27,26,25,28,27,25,25,25,25,29,27,25,27,25,27,27,29,31,31,26,26,27,30,33,35,37,35,29,26,29,29,24,44,29,26,29,29,29,29,23,24],"text":["This is a audi a4 <br /> released in 1999 .","This is a audi a4 <br /> released in 1999 .","This is a audi a4 <br /> released in 2008 .","This is a audi a4 <br /> released in 2008 .","This is a audi a4 <br /> released in 1999 .","This is a audi a4 <br /> released in 1999 .","This is a audi a4 <br /> released in 2008 .","This is a audi a4 quattro <br /> released in 1999 .","This is a audi a4 quattro <br /> released in 1999 .","This is a audi a4 quattro <br /> released in 2008 .","This is a audi a4 quattro <br /> released in 2008 .","This is a audi a4 quattro <br /> released in 1999 .","This is a audi a4 quattro <br /> released in 1999 .","This is a audi a4 quattro <br /> released in 2008 .","This is a audi a4 quattro <br /> released in 2008 .","This is a nissan altima <br /> released in 1999 .","This is a nissan altima <br /> released in 1999 .","This is a subaru impreza awd <br /> released in 2008 .","This is a subaru impreza awd <br /> released in 2008 .","This is a subaru impreza awd <br /> released in 2008 .","This is a subaru impreza awd <br /> released in 2008 .","This is a toyota camry solara <br /> released in 1999 .","This is a toyota camry solara <br /> released in 1999 .","This is a toyota camry solara <br /> released in 2008 .","This is a toyota camry solara <br /> released in 2008 .","This is a toyota camry solara <br /> released in 1999 .","This is a toyota camry solara <br /> released in 1999 .","This is a toyota camry solara <br /> released in 2008 .","This is a toyota corolla <br /> released in 1999 .","This is a toyota corolla <br /> released in 1999 .","This is a toyota corolla <br /> released in 1999 .","This is a toyota corolla <br /> released in 2008 .","This is a toyota corolla <br /> released in 2008 .","This is a volkswagen gti <br /> released in 1999 .","This is a volkswagen gti <br /> released in 1999 .","This is a volkswagen gti <br /> released in 2008 .","This is a volkswagen gti <br /> released in 2008 .","This is a volkswagen gti <br /> released in 1999 .","This is a volkswagen jetta <br /> released in 1999 .","This is a volkswagen jetta <br /> released in 1999 .","This is a volkswagen jetta <br /> released in 1999 .","This is a volkswagen jetta <br /> released in 2008 .","This is a volkswagen jetta <br /> released in 2008 .","This is a volkswagen jetta <br /> released in 2008 .","This is a volkswagen jetta <br /> released in 2008 .","This is a volkswagen jetta <br /> released in 1999 .","This is a volkswagen jetta <br /> released in 1999 ."],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(196,154,0,1)","opacity":1,"size":11.338582677165356,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(196,154,0,1)"}},"hoveron":"points","name":"compact","legendgroup":"compact","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2.7999999999999998,3.1000000000000001,4.2000000000000002,2.3999999999999999,2.3999999999999999,3.1000000000000001,3.5,3.6000000000000001,2.3999999999999999,2.3999999999999999,2.3999999999999999,2.3999999999999999,2.5,2.5,3.2999999999999998,2.5,2.5,3.5,3.5,3,3,3.5,3.1000000000000001,3.7999999999999998,3.7999999999999998,3.7999999999999998,5.2999999999999998,2.2000000000000002,2.2000000000000002,2.3999999999999999,2.3999999999999999,3,3,3.5,1.8,1.8,2,2,2.7999999999999998,2.7999999999999998,3.6000000000000001],"y":[24,25,23,27,30,26,29,26,26,27,30,31,26,26,28,31,32,27,26,26,25,25,26,26,27,28,25,29,27,31,31,26,26,28,29,29,28,29,26,26,26],"text":["This is a audi a6 quattro <br /> released in 1999 .","This is a audi a6 quattro <br /> released in 2008 .","This is a audi a6 quattro <br /> released in 2008 .","This is a chevrolet malibu <br /> released in 1999 .","This is a chevrolet malibu <br /> released in 2008 .","This is a chevrolet malibu <br /> released in 1999 .","This is a chevrolet malibu <br /> released in 2008 .","This is a chevrolet malibu <br /> released in 2008 .","This is a hyundai sonata <br /> released in 1999 .","This is a hyundai sonata <br /> released in 1999 .","This is a hyundai sonata <br /> released in 2008 .","This is a hyundai sonata <br /> released in 2008 .","This is a hyundai sonata <br /> released in 1999 .","This is a hyundai sonata <br /> released in 1999 .","This is a hyundai sonata <br /> released in 2008 .","This is a nissan altima <br /> released in 2008 .","This is a nissan altima <br /> released in 2008 .","This is a nissan altima <br /> released in 2008 .","This is a nissan altima <br /> released in 2008 .","This is a nissan maxima <br /> released in 1999 .","This is a nissan maxima <br /> released in 1999 .","This is a nissan maxima <br /> released in 2008 .","This is a pontiac grand prix <br /> released in 1999 .","This is a pontiac grand prix <br /> released in 1999 .","This is a pontiac grand prix <br /> released in 1999 .","This is a pontiac grand prix <br /> released in 2008 .","This is a pontiac grand prix <br /> released in 2008 .","This is a toyota camry <br /> released in 1999 .","This is a toyota camry <br /> released in 1999 .","This is a toyota camry <br /> released in 2008 .","This is a toyota camry <br /> released in 2008 .","This is a toyota camry <br /> released in 1999 .","This is a toyota camry <br /> released in 1999 .","This is a toyota camry <br /> released in 2008 .","This is a volkswagen passat <br /> released in 1999 .","This is a volkswagen passat <br /> released in 1999 .","This is a volkswagen passat <br /> released in 2008 .","This is a volkswagen passat <br /> released in 2008 .","This is a volkswagen passat <br /> released in 1999 .","This is a volkswagen passat <br /> released in 1999 .","This is a volkswagen passat <br /> released in 2008 ."],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(83,180,0,1)","opacity":1,"size":11.338582677165356,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(83,180,0,1)"}},"hoveron":"points","name":"midsize","legendgroup":"midsize","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2.3999999999999999,3,3.2999999999999998,3.2999999999999998,3.2999999999999998,3.2999999999999998,3.2999999999999998,3.7999999999999998,3.7999999999999998,3.7999999999999998,4],"y":[24,24,22,22,24,24,17,22,21,23,23],"text":["This is a dodge caravan 2wd <br /> released in 1999 .","This is a dodge caravan 2wd <br /> released in 1999 .","This is a dodge caravan 2wd <br /> released in 1999 .","This is a dodge caravan 2wd <br /> released in 1999 .","This is a dodge caravan 2wd <br /> released in 2008 .","This is a dodge caravan 2wd <br /> released in 2008 .","This is a dodge caravan 2wd <br /> released in 2008 .","This is a dodge caravan 2wd <br /> released in 1999 .","This is a dodge caravan 2wd <br /> released in 1999 .","This is a dodge caravan 2wd <br /> released in 2008 .","This is a dodge caravan 2wd <br /> released in 2008 ."],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,192,148,1)","opacity":1,"size":11.338582677165356,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,192,148,1)"}},"hoveron":"points","name":"minivan","legendgroup":"minivan","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[3.7000000000000002,3.7000000000000002,3.8999999999999999,3.8999999999999999,4.7000000000000002,4.7000000000000002,4.7000000000000002,5.2000000000000002,5.2000000000000002,4.7000000000000002,4.7000000000000002,4.7000000000000002,4.7000000000000002,4.7000000000000002,4.7000000000000002,5.2000000000000002,5.2000000000000002,5.7000000000000002,5.9000000000000004,4.2000000000000002,4.2000000000000002,4.5999999999999996,4.5999999999999996,4.5999999999999996,5.4000000000000004,5.4000000000000004,2.7000000000000002,2.7000000000000002,2.7000000000000002,3.3999999999999999,3.3999999999999999,4,4],"y":[19,18,17,17,19,19,12,17,15,16,12,17,17,16,12,15,16,17,15,17,17,16,16,17,15,17,20,20,22,17,19,18,20],"text":["This is a dodge dakota pickup 4wd <br /> released in 2008 .","This is a dodge dakota pickup 4wd <br /> released in 2008 .","This is a dodge dakota pickup 4wd <br /> released in 1999 .","This is a dodge dakota pickup 4wd <br /> released in 1999 .","This is a dodge dakota pickup 4wd <br /> released in 2008 .","This is a dodge dakota pickup 4wd <br /> released in 2008 .","This is a dodge dakota pickup 4wd <br /> released in 2008 .","This is a dodge dakota pickup 4wd <br /> released in 1999 .","This is a dodge dakota pickup 4wd <br /> released in 1999 .","This is a dodge ram 1500 pickup 4wd <br /> released in 2008 .","This is a dodge ram 1500 pickup 4wd <br /> released in 2008 .","This is a dodge ram 1500 pickup 4wd <br /> released in 2008 .","This is a dodge ram 1500 pickup 4wd <br /> released in 2008 .","This is a dodge ram 1500 pickup 4wd <br /> released in 2008 .","This is a dodge ram 1500 pickup 4wd <br /> released in 2008 .","This is a dodge ram 1500 pickup 4wd <br /> released in 1999 .","This is a dodge ram 1500 pickup 4wd <br /> released in 1999 .","This is a dodge ram 1500 pickup 4wd <br /> released in 2008 .","This is a dodge ram 1500 pickup 4wd <br /> released in 1999 .","This is a ford f150 pickup 4wd <br /> released in 1999 .","This is a ford f150 pickup 4wd <br /> released in 1999 .","This is a ford f150 pickup 4wd <br /> released in 1999 .","This is a ford f150 pickup 4wd <br /> released in 1999 .","This is a ford f150 pickup 4wd <br /> released in 2008 .","This is a ford f150 pickup 4wd <br /> released in 1999 .","This is a ford f150 pickup 4wd <br /> released in 2008 .","This is a toyota toyota tacoma 4wd <br /> released in 1999 .","This is a toyota toyota tacoma 4wd <br /> released in 1999 .","This is a toyota toyota tacoma 4wd <br /> released in 2008 .","This is a toyota toyota tacoma 4wd <br /> released in 1999 .","This is a toyota toyota tacoma 4wd <br /> released in 1999 .","This is a toyota toyota tacoma 4wd <br /> released in 2008 .","This is a toyota toyota tacoma 4wd <br /> released in 2008 ."],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,182,235,1)","opacity":1,"size":11.338582677165356,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,182,235,1)"}},"hoveron":"points","name":"pickup","legendgroup":"pickup","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[3.7999999999999998,3.7999999999999998,4,4,4.5999999999999996,4.5999999999999996,4.5999999999999996,4.5999999999999996,5.4000000000000004,1.6000000000000001,1.6000000000000001,1.6000000000000001,1.6000000000000001,1.6000000000000001,1.8,1.8,1.8,2,2,2,2,2,2.7000000000000002,2.7000000000000002,2.7000000000000002,2.2000000000000002,2.2000000000000002,2.5,2.5,1.8999999999999999,1.8999999999999999,2,2,2.5,2.5],"y":[26,25,26,24,21,22,23,22,20,33,32,32,29,32,34,36,36,29,26,29,28,27,24,24,24,26,26,26,26,44,41,29,26,28,29],"text":["This is a ford mustang <br /> released in 1999 .","This is a ford mustang <br /> released in 1999 .","This is a ford mustang <br /> released in 2008 .","This is a ford mustang <br /> released in 2008 .","This is a ford mustang <br /> released in 1999 .","This is a ford mustang <br /> released in 1999 .","This is a ford mustang <br /> released in 2008 .","This is a ford mustang <br /> released in 2008 .","This is a ford mustang <br /> released in 2008 .","This is a honda civic <br /> released in 1999 .","This is a honda civic <br /> released in 1999 .","This is a honda civic <br /> released in 1999 .","This is a honda civic <br /> released in 1999 .","This is a honda civic <br /> released in 1999 .","This is a honda civic <br /> released in 2008 .","This is a honda civic <br /> released in 2008 .","This is a honda civic <br /> released in 2008 .","This is a honda civic <br /> released in 2008 .","This is a hyundai tiburon <br /> released in 1999 .","This is a hyundai tiburon <br /> released in 1999 .","This is a hyundai tiburon <br /> released in 2008 .","This is a hyundai tiburon <br /> released in 2008 .","This is a hyundai tiburon <br /> released in 2008 .","This is a hyundai tiburon <br /> released in 2008 .","This is a hyundai tiburon <br /> released in 2008 .","This is a subaru impreza awd <br /> released in 1999 .","This is a subaru impreza awd <br /> released in 1999 .","This is a subaru impreza awd <br /> released in 1999 .","This is a subaru impreza awd <br /> released in 1999 .","This is a volkswagen new beetle <br /> released in 1999 .","This is a volkswagen new beetle <br /> released in 1999 .","This is a volkswagen new beetle <br /> released in 1999 .","This is a volkswagen new beetle <br /> released in 1999 .","This is a volkswagen new beetle <br /> released in 2008 .","This is a volkswagen new beetle <br /> released in 2008 ."],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(165,138,255,1)","opacity":1,"size":11.338582677165356,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(165,138,255,1)"}},"hoveron":"points","name":"subcompact","legendgroup":"subcompact","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[5.2999999999999998,5.2999999999999998,5.2999999999999998,5.7000000000000002,6,5.2999999999999998,5.2999999999999998,5.7000000000000002,6.5,3.8999999999999999,4.7000000000000002,4.7000000000000002,4.7000000000000002,5.2000000000000002,5.7000000000000002,5.9000000000000004,4.5999999999999996,5.4000000000000004,5.4000000000000004,4,4,4,4,4.5999999999999996,5,3,3.7000000000000002,4,4.7000000000000002,4.7000000000000002,4.7000000000000002,5.7000000000000002,6.0999999999999996,4,4.2000000000000002,4.4000000000000004,4.5999999999999996,5.4000000000000004,5.4000000000000004,5.4000000000000004,4,4,4.5999999999999996,5,3.2999999999999998,3.2999999999999998,4,5.5999999999999996,2.5,2.5,2.5,2.5,2.5,2.5,2.7000000000000002,2.7000000000000002,3.3999999999999999,3.3999999999999999,4,4.7000000000000002,4.7000000000000002,5.7000000000000002],"y":[20,15,20,17,17,19,14,15,17,17,17,12,17,16,18,15,17,17,18,17,19,17,19,19,17,22,19,20,17,12,19,18,14,15,18,18,15,17,16,18,17,19,19,17,17,17,20,18,25,24,27,25,26,23,20,20,19,17,20,17,15,18],"text":["This is a chevrolet c1500 suburban 2wd <br /> released in 2008 .","This is a chevrolet c1500 suburban 2wd <br /> released in 2008 .","This is a chevrolet c1500 suburban 2wd <br /> released in 2008 .","This is a chevrolet c1500 suburban 2wd <br /> released in 1999 .","This is a chevrolet c1500 suburban 2wd <br /> released in 2008 .","This is a chevrolet k1500 tahoe 4wd <br /> released in 2008 .","This is a chevrolet k1500 tahoe 4wd <br /> released in 2008 .","This is a chevrolet k1500 tahoe 4wd <br /> released in 1999 .","This is a chevrolet k1500 tahoe 4wd <br /> released in 1999 .","This is a dodge durango 4wd <br /> released in 1999 .","This is a dodge durango 4wd <br /> released in 2008 .","This is a dodge durango 4wd <br /> released in 2008 .","This is a dodge durango 4wd <br /> released in 2008 .","This is a dodge durango 4wd <br /> released in 1999 .","This is a dodge durango 4wd <br /> released in 2008 .","This is a dodge durango 4wd <br /> released in 1999 .","This is a ford expedition 2wd <br /> released in 1999 .","This is a ford expedition 2wd <br /> released in 1999 .","This is a ford expedition 2wd <br /> released in 2008 .","This is a ford explorer 4wd <br /> released in 1999 .","This is a ford explorer 4wd <br /> released in 1999 .","This is a ford explorer 4wd <br /> released in 1999 .","This is a ford explorer 4wd <br /> released in 2008 .","This is a ford explorer 4wd <br /> released in 2008 .","This is a ford explorer 4wd <br /> released in 1999 .","This is a jeep grand cherokee 4wd <br /> released in 2008 .","This is a jeep grand cherokee 4wd <br /> released in 2008 .","This is a jeep grand cherokee 4wd <br /> released in 1999 .","This is a jeep grand cherokee 4wd <br /> released in 1999 .","This is a jeep grand cherokee 4wd <br /> released in 2008 .","This is a jeep grand cherokee 4wd <br /> released in 2008 .","This is a jeep grand cherokee 4wd <br /> released in 2008 .","This is a jeep grand cherokee 4wd <br /> released in 2008 .","This is a land rover range rover <br /> released in 1999 .","This is a land rover range rover <br /> released in 2008 .","This is a land rover range rover <br /> released in 2008 .","This is a land rover range rover <br /> released in 1999 .","This is a lincoln navigator 2wd <br /> released in 1999 .","This is a lincoln navigator 2wd <br /> released in 1999 .","This is a lincoln navigator 2wd <br /> released in 2008 .","This is a mercury mountaineer 4wd <br /> released in 1999 .","This is a mercury mountaineer 4wd <br /> released in 2008 .","This is a mercury mountaineer 4wd <br /> released in 2008 .","This is a mercury mountaineer 4wd <br /> released in 1999 .","This is a nissan pathfinder 4wd <br /> released in 1999 .","This is a nissan pathfinder 4wd <br /> released in 1999 .","This is a nissan pathfinder 4wd <br /> released in 2008 .","This is a nissan pathfinder 4wd <br /> released in 2008 .","This is a subaru forester awd <br /> released in 1999 .","This is a subaru forester awd <br /> released in 1999 .","This is a subaru forester awd <br /> released in 2008 .","This is a subaru forester awd <br /> released in 2008 .","This is a subaru forester awd <br /> released in 2008 .","This is a subaru forester awd <br /> released in 2008 .","This is a toyota 4runner 4wd <br /> released in 1999 .","This is a toyota 4runner 4wd <br /> released in 1999 .","This is a toyota 4runner 4wd <br /> released in 1999 .","This is a toyota 4runner 4wd <br /> released in 1999 .","This is a toyota 4runner 4wd <br /> released in 2008 .","This is a toyota 4runner 4wd <br /> released in 2008 .","This is a toyota land cruiser wagon 4wd <br /> released in 1999 .","This is a toyota land cruiser wagon 4wd <br /> released in 2008 ."],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(251,97,215,1)","opacity":1,"size":11.338582677165356,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(251,97,215,1)"}},"hoveron":"points","name":"suv","legendgroup":"suv","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":23.305936073059364,"r":7.3059360730593621,"b":37.260273972602747,"l":37.260273972602747},"plot_bgcolor":"rgba(255,255,255,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[1.3300000000000001,7.2699999999999996],"tickmode":"array","ticktext":["2","3","4","5","6","7"],"tickvals":[2,3,4,5,6,7],"categoryorder":"array","categoryarray":["2","3","4","5","6","7"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"Engine displacement","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[10.4,45.600000000000001],"tickmode":"array","ticktext":["20","30","40"],"tickvals":[20,30,40],"categoryorder":"array","categoryarray":["20","30","40"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"Highway Mileage","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":"rgba(255,255,255,1)","line":{"color":"rgba(51,51,51,1)","width":0.66417600664176002,"linetype":"solid"},"yref":"paper","xref":"paper","layer":"below","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"Car Class","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"8e7073211ace":{"x":{},"y":{},"colour":{},"text":{},"type":"scatter"}},"cur_data":"8e7073211ace","visdat":{"8e7073211ace":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<section id="barplot" class="level2">
+<h2 class="anchored" data-anchor-id="barplot">Barplot</h2>
+<p><em>Libreria palmerpenguins</em> ## 🐧 Palmer Penguins</p>
+<p>Dataset ideal para aprender visualización en R.</p>
+<ul>
+<li>3 especies de pingüinos</li>
+<li>Datos reales de la Antártida</li>
+<li>Alternativa moderna a <code>iris</code></li>
+</ul>
+<p>🔗 <a href="https://allisonhorst.github.io/palmerpenguins/">Explorar dataset</a></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> species))<span class="sc">+</span> <span class="fu">geom_bar</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_apunte_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="barplot-1" class="level2">
+<h2 class="anchored" data-anchor-id="barplot-1">Barplot</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the distribution of race with modified colors and labels</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins,<span class="fu">aes</span>(<span class="at">x =</span> species,<span class="at">fill =</span> species)) <span class="sc">+</span> <span class="fu">geom_bar</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Species"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>,<span class="at">title =</span> <span class="st">"Penguins"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_apunte_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="barplot-2" class="level2">
+<h2 class="anchored" data-anchor-id="barplot-2">Barplot</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the distribution as percentages</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> species,<span class="at">fill =</span> species, <span class="at">y =</span> <span class="fu">after_stat</span>(count<span class="sc">/</span><span class="fu">sum</span>(count)))) <span class="sc">+</span> <span class="fu">geom_bar</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Species"</span>, <span class="at">y =</span> <span class="st">"Percent"</span>, <span class="at">title  =</span> <span class="st">"Penguins"</span>) <span class="sc">+</span> <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_apunte_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="barplot-3" class="level2">
+<h2 class="anchored" data-anchor-id="barplot-3">Barplot</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, </span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> species,<span class="at">fill=</span>species, <span class="at">y =</span> <span class="fu">after_stat</span>(count<span class="sc">/</span><span class="fu">sum</span>(count)))) <span class="sc">+</span> </span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Species"</span>, </span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Percent"</span>, </span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">title  =</span> <span class="st">"Penguins"</span>) <span class="sc">+</span></span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent)<span class="sc">+</span>  <span class="fu">coord_flip</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_apunte_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="barplot-4" class="level2">
+<h2 class="anchored" data-anchor-id="barplot-4">Barplot</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, </span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> species,<span class="at">fill=</span>species, <span class="at">y =</span> <span class="fu">after_stat</span>(count<span class="sc">/</span><span class="fu">sum</span>(count)))) <span class="sc">+</span> </span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Species"</span>, </span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Percent"</span>, </span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">title  =</span> <span class="st">"Penguins"</span>) <span class="sc">+</span></span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent)<span class="sc">+</span></span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>,</span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">hjust =</span> <span class="dv">1</span>))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_apunte_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="pie-chart" class="level2">
+<h2 class="anchored" data-anchor-id="pie-chart">Pie chart</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a basic ggplot2 pie chart</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="co">#if(!require(remotes)){</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   install.packages("remotes")</span></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="co">#}</span></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a><span class="co">#remotes::install_github("rkabacoff/ggpie")</span></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpie)</span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpie</span>(penguins, species,<span class="at">offset =</span> <span class="fl">1.5</span>,<span class="at">legend=</span><span class="cn">FALSE</span>,<span class="at">title=</span><span class="st">"% de especies"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in geom_col(width = 1, size = border.width, col = border.color):
+Ignoring unknown parameters: `size`</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_apunte_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpie</span>(penguins, species,<span class="at">offset =</span> <span class="fl">1.5</span>,<span class="at">legend=</span>F,<span class="at">title=</span><span class="st">"% de especies"</span>) <span class="sc">+</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette=</span><span class="st">"Set1"</span>) <span class="sc">+</span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in geom_col(width = 1, size = border.width, col = border.color):
+Ignoring unknown parameters: `size`</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_apunte_files/figure-html/unnamed-chunk-37-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="cuál-es-la-distribución-porcentual-de-las-especies-de-pingüinos-en-cada-isla-del-conjunto-de-datos-penguins" class="level2">
+<h2 class="anchored" data-anchor-id="cuál-es-la-distribución-porcentual-de-las-especies-de-pingüinos-en-cada-isla-del-conjunto-de-datos-penguins">¿Cuál es la distribución porcentual de las especies de pingüinos en cada isla del conjunto de datos penguins?</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpie</span>(penguins,species,island, </span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">offset=</span><span class="fl">1.3</span>, </span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">label.size=</span><span class="dv">3</span>,</span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">legend=</span><span class="cn">FALSE</span>, </span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">title=</span><span class="st">"% de especies por isla"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in geom_col(width = 1, size = border.width, col = border.color):
+Ignoring unknown parameters: `size`</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_apunte_files/figure-html/unnamed-chunk-38-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="pie-chart-en-ggplot2" class="level2">
+<h2 class="anchored" data-anchor-id="pie-chart-en-ggplot2">🥧 Pie chart en ggplot2</h2>
+<p><a href="https://rkabacoff.github.io/ggpie/articles/ggpie.html">Ver tutorial de ggpie</a></p>
+</section>
+<section id="recursos-ggplot2" class="level2">
+<h2 class="anchored" data-anchor-id="recursos-ggplot2">📊 Recursos ggplot2</h2>
+<section id="introducción" class="level3">
+<h3 class="anchored" data-anchor-id="introducción">Introducción</h3>
+<ul>
+<li><a href="https://www.rforecology.com/post/a-simple-introduction-to-ggplot2/">Intro ggplot2</a></li>
+<li><a href="https://r-statistics.co/Complete-Ggplot2-Tutorial-Part1-With-R-Code.html">Tutorial completo</a></li>
+</ul>
+</section>
+<section id="libro" class="level3">
+<h3 class="anchored" data-anchor-id="libro">Libro</h3>
+<ul>
+<li><a href="https://ggplot2-book.org/getting-started">ggplot2 book</a></li>
+</ul>
+</section>
+<section id="datos" class="level3">
+<h3 class="anchored" data-anchor-id="datos">Datos</h3>
+<ul>
+<li><a href="https://www.rdocumentation.org/packages/datasets/versions/3.6.2/topics/ChickWeight">ChickWeight dataset</a></li>
+</ul>
+</section>
+<section id="personalización" class="level3">
+<h3 class="anchored" data-anchor-id="personalización">Personalización</h3>
+<ul>
+<li><a href="http://www.sthda.com/english/wiki/ggplot2-point-shapes">Shapes</a></li>
+<li><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></li>
+</ul>
+</section>
+<section id="avanzado" class="level3">
+<h3 class="anchored" data-anchor-id="avanzado">Avanzado</h3>
+<ul>
+<li><a href="https://github.com/wch/fontcm">Fuentes</a></li>
+<li><a href="https://rkabacoff.github.io/datavis/Interactive.html#ggiraph">Interactividad ggiraph</a></li>
+<li><a href="https://cran.r-project.org/web/packages/ggpie/vignettes/ggpie.html">ggpie</a></li>
+</ul>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiado");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiado");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/Linda-Aimara-Kempis-Calanis\.github\.io\/linda-aimara-kempis-calanis\.github\.io\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../teoria/03_unidad/03_apunte.html" class="pagination-link" aria-label="Introducción a R Clase 3">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Introducción a R Clase 3</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Esta página fue hecha con ❤️ y <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
