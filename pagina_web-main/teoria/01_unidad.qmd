@@ -1,23 +1,31 @@
 ---
-title: Unidad 1
+title: Presentaciones de las Unidades
 toc: true
 toc-dept: 2
 ---
 
-Apunte de la primera unidad, generada a partir de un archivo `.qmd`.
-Se incluye `toc: true` los metadatos del archivo para generar la tabla de
-contenidos que se observa a la derecha.
+Presentaciones de las lecciones.
 
-## Sección 1
+## Unidad 1 
 
-Contenido de la primera sección.
+Material introductorio para comenzar a utilizar R:
 
-## Sección 2
+🔗 [Acceder a la clase](https://dra-lindaaimara.github.io/Clase_1/Clase_1_Bioinformatica-en-R.html#1)
 
-## Sección 2.A
+## Unidad 2 📄 Estructura de datos en R 
 
-Algún texto interesante.
+Material de la clase sobre el tema 2 Estructura de datos en R:
 
-### Sección 2.B
+🔗 [Acceder a la clase](https://dra-lindaaimara.github.io/Clase_2/Tema_2/Clase_2_2026.html#1)
 
-Otro texto interesante.
+## Unidad 3 ⚙️ Funciones y estructuras condicionales
+
+Material de la clase sobre funciones y control de flujo en R:
+
+🔗 [Acceder a la clase](https://dra-lindaaimara.github.io/Clase_3/Tema-3.html#1)
+
+## Unidad 4 📊 ggplot
+
+Material completo sobre visualización con ggplot2:
+
+🔗 [Acceder a la clase 4](https://dra-lindaaimara.github.io/Tema_4_ggplot/Clase_ggplot2.html#1)
