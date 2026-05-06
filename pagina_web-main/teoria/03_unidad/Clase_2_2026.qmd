@@ -1,0 +1,111 @@
+---
+title: "Introducción a R"
+subtitle: "Clase 1"
+author: "Dra. Linda Kempis Calanis"
+date: today
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-location: left
+    code-copy: true
+    code-overflow: wrap
+    css: styles/minimal.css
+
+execute:
+  echo: true
+---
+
+## Vectores
+
+-   Elemento más básico en R.
+-   Contiene elementos de la misma clase.
+-   Se crea con la función c(), que significa ‘concatenar’ o ‘combinar’.
+
+``` r
+v <- c(1.1, 10, 3.14)
+v
+```
+
+``` r
+c(v,555,v)
+```
+
+## Operaciones con vectores
+
+``` r
+a <- 10
+a
+v * 2 + 100
+```
+
+``` r
+b <- c (2,4,6,8,10) # Crear un vector numérico
+c <- c ("esto", "eso", "lo otro") # crea un vector de caracteres
+d <- c (1,2, "esto") # crea un vector de tipo mixto?
+d
+```
+
+Al crear d, los números se convierten en caracteres automáticamente porque un vector no puede tener tipos mixtos.
+
+Se puede acceder a los elementos de un vector, manipularlos y cambiarlos:
+
+``` r
+b[3] # Los corchetes se usan para acceder a los elementos.
+```
+
+``` r
+b[3]+b[5]
+```
+
+``` r
+b[6] <- 12
+b
+```
+
+|  |
+|----|
+| \## Listas |
+| A diferencia de un vector, una lista es una colección de elementos que pueden ser de diferente tipo. Los componentes de una lista son típicamente pares clave-valor. |
+
+``` r
+mi_lista_nombres <- list(A = "Andrea", B = "Paola", C = "Sara" )
+mi_lista_nombres
+mi_lista_nombres["B"]
+mi_lista_nombres[2]
+mi_lista_nombres$B
+```
+
+## Desafío
+
+Crea una lista de listas Crea una lista que contenga 3 listas, que contenga la clave y valor nombre= edad= hobbie= Por ultimo accede a la edad de la tercera lista
+
+``` r
+lista_persona <- list(list(name = "Max White", age = 27, hobbies = c("Programming, movies")), list(name = "Mia Black", age = 32, hobbies = c("Theater, computer games")), list(name = "Mika Brown", age =23, hobbies = c("Sports, music")))
+
+lista_persona[[2]][[3]]
+```
+
+## Matrices y Data Frames
+
+Ambos representan tipos de datos “rectangulares”, lo que significa que se usan para almacenar datos tabulares, con filas y columnas.
+
+La principal diferencia, es que las matrices solo pueden contener una única clase de datos (al igual que los vectores), mientras que los data frames pueden consistir en muchas clases diferentes de datos.
+
+## Matrices
+
+``` r
+mi_vector <- 1:20
+mi_vector
+dim(mi_vector)
+```
+
+Dado que la variable es un vector, no tiene un atributo dim (entonces es simplemente NULL).
+
+¿Qué ocurre si le damos a mi_vector un atributo dim?
+
+``` r
+dim(mi_vector) <- c(4, 5)
+mi_vector
+```

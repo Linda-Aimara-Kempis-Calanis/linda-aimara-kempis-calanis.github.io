@@ -21,17 +21,17 @@ execute:
 
 **R es un lenguaje de programación y un entorno para el análisis estadístico y gráficas de datos**
 
-- R (Ihaka y Gentleman) puede considerarse derivado del lenguaje S (Chambers)
-- Almacenamiento y manipulación de datos
-- Operadores para cálculo sobre variables indexadas (arrays) y matrices
-- Amplia colección de herramientas para análisis de datos
-- Capacidades gráficas
-- Lenguaje de programación con condicionales, ciclos y funciones
-- Multiplataforma y de acceso libre
+-   R (Ihaka y Gentleman) puede considerarse derivado del lenguaje S (Chambers)
+-   Almacenamiento y manipulación de datos
+-   Operadores para cálculo sobre variables indexadas (arrays) y matrices
+-   Amplia colección de herramientas para análisis de datos
+-   Capacidades gráficas
+-   Lenguaje de programación con condicionales, ciclos y funciones
+-   Multiplataforma y de acceso libre
 
 ![](Clase_1/fig_R.png)
 
-**Instalar R:** https://www.r-project.org  
+**Instalar R:** https://www.r-project.org\
 **Instalar RStudio / Posit:** https://posit.co
 
 ## Instalando R
@@ -54,7 +54,7 @@ execute:
 
 R opera de la siguiente forma: **leer → evaluar → mostrar**
 
-```r
+``` r
 2 + 2
 ```
 
@@ -64,7 +64,7 @@ R opera de la siguiente forma: **leer → evaluar → mostrar**
 
 ## Verificar el tipo de un dato
 
-```r
+``` r
 class(3)
 class("3")
 class(TRUE)
@@ -72,11 +72,11 @@ class(TRUE)
 
 ## Paquetes en R
 
-```r
+``` r
 install.packages("ggplot2")
 ```
 
 ## Bibliografía
 
-- https://swcarpentry.github.io/r-novice-gapminder-es/04-data-structures-part1.html  
-- https://bookdown.org/jboscomendoza/r-principiantes4/tipos-de-datos.html
+-   https://swcarpentry.github.io/r-novice-gapminder-es/04-data-structures-part1.html\
+-   https://bookdown.org/jboscomendoza/r-principiantes4/tipos-de-datos.html
