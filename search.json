@@ -6,6 +6,7 @@
     "section": "",
     "text": "Elemento más básico en R.\nContiene elementos de la misma clase.\nSe crea con la función c(), que significa ‘concatenar’ o ‘combinar’.\n\nv &lt;- c(1.1, 10, 3.14)\nv\nc(v,555,v)",
     "crumbs": [
+      "Teoría",
       "Unidad 3",
       "Introducción a R"
     ]
@@ -17,6 +18,7 @@
     "section": "",
     "text": "Elemento más básico en R.\nContiene elementos de la misma clase.\nSe crea con la función c(), que significa ‘concatenar’ o ‘combinar’.\n\nv &lt;- c(1.1, 10, 3.14)\nv\nc(v,555,v)",
     "crumbs": [
+      "Teoría",
       "Unidad 3",
       "Introducción a R"
     ]
@@ -28,6 +30,7 @@
     "section": "Operaciones con vectores",
     "text": "Operaciones con vectores\na &lt;- 10\na\nv * 2 + 100\nb &lt;- c (2,4,6,8,10) # Crear un vector numérico\nc &lt;- c (\"esto\", \"eso\", \"lo otro\") # crea un vector de caracteres\nd &lt;- c (1,2, \"esto\") # crea un vector de tipo mixto?\nd\nAl crear d, los números se convierten en caracteres automáticamente porque un vector no puede tener tipos mixtos.\nSe puede acceder a los elementos de un vector, manipularlos y cambiarlos:\nb[3] # Los corchetes se usan para acceder a los elementos.\nb[3]+b[5]\nb[6] &lt;- 12\nb\n\n\n\n\n\n\n## Listas\n\n\nA diferencia de un vector, una lista es una colección de elementos que pueden ser de diferente tipo. Los componentes de una lista son típicamente pares clave-valor.\n\n\n\nmi_lista_nombres &lt;- list(A = \"Andrea\", B = \"Paola\", C = \"Sara\" )\nmi_lista_nombres\nmi_lista_nombres[\"B\"]\nmi_lista_nombres[2]\nmi_lista_nombres$B",
     "crumbs": [
+      "Teoría",
       "Unidad 3",
       "Introducción a R"
     ]
@@ -39,6 +42,7 @@
     "section": "Desafío",
     "text": "Desafío\nCrea una lista de listas Crea una lista que contenga 3 listas, que contenga la clave y valor nombre= edad= hobbie= Por ultimo accede a la edad de la tercera lista\nlista_persona &lt;- list(list(name = \"Max White\", age = 27, hobbies = c(\"Programming, movies\")), list(name = \"Mia Black\", age = 32, hobbies = c(\"Theater, computer games\")), list(name = \"Mika Brown\", age =23, hobbies = c(\"Sports, music\")))\n\nlista_persona[[2]][[3]]",
     "crumbs": [
+      "Teoría",
       "Unidad 3",
       "Introducción a R"
     ]
@@ -50,6 +54,7 @@
     "section": "Matrices y Data Frames",
     "text": "Matrices y Data Frames\nAmbos representan tipos de datos “rectangulares”, lo que significa que se usan para almacenar datos tabulares, con filas y columnas.\nLa principal diferencia, es que las matrices solo pueden contener una única clase de datos (al igual que los vectores), mientras que los data frames pueden consistir en muchas clases diferentes de datos.",
     "crumbs": [
+      "Teoría",
       "Unidad 3",
       "Introducción a R"
     ]
@@ -61,6 +66,7 @@
     "section": "Matrices",
     "text": "Matrices\nmi_vector &lt;- 1:20\nmi_vector\ndim(mi_vector)\nDado que la variable es un vector, no tiene un atributo dim (entonces es simplemente NULL).\n¿Qué ocurre si le damos a mi_vector un atributo dim?\ndim(mi_vector) &lt;- c(4, 5)\nmi_vector",
     "crumbs": [
+      "Teoría",
       "Unidad 3",
       "Introducción a R"
     ]
@@ -70,28 +76,44 @@
     "href": "teoria/01_unidad.html",
     "title": "Unidad 1",
     "section": "",
-    "text": "Apunte de la primera unidad, generada a partir de un archivo .qmd. Se incluye toc: true los metadatos del archivo para generar la tabla de contenidos que se observa a la derecha."
+    "text": "Apunte de la primera unidad, generada a partir de un archivo .qmd. Se incluye toc: true los metadatos del archivo para generar la tabla de contenidos que se observa a la derecha.",
+    "crumbs": [
+      "Teoría",
+      "Unidad 1"
+    ]
   },
   {
     "objectID": "teoria/01_unidad.html#sección-1",
     "href": "teoria/01_unidad.html#sección-1",
     "title": "Unidad 1",
     "section": "Sección 1",
-    "text": "Sección 1\nContenido de la primera sección."
+    "text": "Sección 1\nContenido de la primera sección.",
+    "crumbs": [
+      "Teoría",
+      "Unidad 1"
+    ]
   },
   {
     "objectID": "teoria/01_unidad.html#sección-2",
     "href": "teoria/01_unidad.html#sección-2",
     "title": "Unidad 1",
     "section": "Sección 2",
-    "text": "Sección 2"
+    "text": "Sección 2",
+    "crumbs": [
+      "Teoría",
+      "Unidad 1"
+    ]
   },
   {
     "objectID": "teoria/01_unidad.html#sección-2.a",
     "href": "teoria/01_unidad.html#sección-2.a",
     "title": "Unidad 1",
     "section": "Sección 2.A",
-    "text": "Sección 2.A\nAlgún texto interesante.\n\nSección 2.B\nOtro texto interesante."
+    "text": "Sección 2.A\nAlgún texto interesante.\n\nSección 2.B\nOtro texto interesante.",
+    "crumbs": [
+      "Teoría",
+      "Unidad 1"
+    ]
   },
   {
     "objectID": "recursos/tutoriales/instalacion_python.html",
@@ -296,6 +318,7 @@
     "section": "",
     "text": "R es un lenguaje de programación y un entorno para el análisis estadístico y gráficas de datos\n\nR (Ihaka y Gentleman) puede considerarse derivado del lenguaje S (Chambers)\nAlmacenamiento y manipulación de datos\nOperadores para cálculo sobre variables indexadas (arrays) y matrices\nAmplia colección de herramientas para análisis de datos\nCapacidades gráficas\nLenguaje de programación con condicionales, ciclos y funciones\nMultiplataforma y de acceso libre\n\n\nInstalar R: https://www.r-project.org\nInstalar RStudio / Posit: https://posit.co",
     "crumbs": [
+      "Teoría",
       "Unidad 1",
       "Introducción a R"
     ]
@@ -307,6 +330,7 @@
     "section": "",
     "text": "R es un lenguaje de programación y un entorno para el análisis estadístico y gráficas de datos\n\nR (Ihaka y Gentleman) puede considerarse derivado del lenguaje S (Chambers)\nAlmacenamiento y manipulación de datos\nOperadores para cálculo sobre variables indexadas (arrays) y matrices\nAmplia colección de herramientas para análisis de datos\nCapacidades gráficas\nLenguaje de programación con condicionales, ciclos y funciones\nMultiplataforma y de acceso libre\n\n\nInstalar R: https://www.r-project.org\nInstalar RStudio / Posit: https://posit.co",
     "crumbs": [
+      "Teoría",
       "Unidad 1",
       "Introducción a R"
     ]
@@ -318,6 +342,7 @@
     "section": "Instalando R",
     "text": "Instalando R",
     "crumbs": [
+      "Teoría",
       "Unidad 1",
       "Introducción a R"
     ]
@@ -329,6 +354,7 @@
     "section": "Instalar RStudio / Posit",
     "text": "Instalar RStudio / Posit",
     "crumbs": [
+      "Teoría",
       "Unidad 1",
       "Introducción a R"
     ]
@@ -340,6 +366,7 @@
     "section": "Panel de RStudio / Posit",
     "text": "Panel de RStudio / Posit",
     "crumbs": [
+      "Teoría",
       "Unidad 1",
       "Introducción a R"
     ]
@@ -351,6 +378,7 @@
     "section": "Entorno de RStudio",
     "text": "Entorno de RStudio",
     "crumbs": [
+      "Teoría",
       "Unidad 1",
       "Introducción a R"
     ]
@@ -362,6 +390,7 @@
     "section": "¿Cómo opera R?",
     "text": "¿Cómo opera R?\nR opera de la siguiente forma: leer → evaluar → mostrar\n2 + 2",
     "crumbs": [
+      "Teoría",
       "Unidad 1",
       "Introducción a R"
     ]
@@ -373,6 +402,7 @@
     "section": "Datos más comunes",
     "text": "Datos más comunes",
     "crumbs": [
+      "Teoría",
       "Unidad 1",
       "Introducción a R"
     ]
@@ -384,6 +414,7 @@
     "section": "Verificar el tipo de un dato",
     "text": "Verificar el tipo de un dato\nclass(3)\nclass(\"3\")\nclass(TRUE)",
     "crumbs": [
+      "Teoría",
       "Unidad 1",
       "Introducción a R"
     ]
@@ -395,6 +426,7 @@
     "section": "Paquetes en R",
     "text": "Paquetes en R\ninstall.packages(\"ggplot2\")",
     "crumbs": [
+      "Teoría",
       "Unidad 1",
       "Introducción a R"
     ]
@@ -406,6 +438,7 @@
     "section": "Bibliografía",
     "text": "Bibliografía\n\nhttps://swcarpentry.github.io/r-novice-gapminder-es/04-data-structures-part1.html\n\nhttps://bookdown.org/jboscomendoza/r-principiantes4/tipos-de-datos.html",
     "crumbs": [
+      "Teoría",
       "Unidad 1",
       "Introducción a R"
     ]
@@ -417,6 +450,7 @@
     "section": "",
     "text": "Elemento más básico en R.\nContiene elementos de la misma clase.\nSe crea con la función c(), que significa ‘concatenar’ o ‘combinar’.\n\nv &lt;- c(1.1, 10, 3.14)\nv\nc(v,555,v)",
     "crumbs": [
+      "Teoría",
       "Unidad 2",
       "Introducción a R"
     ]
@@ -428,6 +462,7 @@
     "section": "",
     "text": "Elemento más básico en R.\nContiene elementos de la misma clase.\nSe crea con la función c(), que significa ‘concatenar’ o ‘combinar’.\n\nv &lt;- c(1.1, 10, 3.14)\nv\nc(v,555,v)",
     "crumbs": [
+      "Teoría",
       "Unidad 2",
       "Introducción a R"
     ]
@@ -439,6 +474,7 @@
     "section": "Operaciones con vectores",
     "text": "Operaciones con vectores\na &lt;- 10\na\nv * 2 + 100\nb &lt;- c (2,4,6,8,10) # Crear un vector numérico\nc &lt;- c (\"esto\", \"eso\", \"lo otro\") # crea un vector de caracteres\nd &lt;- c (1,2, \"esto\") # crea un vector de tipo mixto?\nd\nAl crear d, los números se convierten en caracteres automáticamente porque un vector no puede tener tipos mixtos.\nSe puede acceder a los elementos de un vector, manipularlos y cambiarlos:\nb[3] # Los corchetes se usan para acceder a los elementos.\nb[3]+b[5]\nb[6] &lt;- 12\nb\n\n\n\n\n\n\n## Listas\n\n\nA diferencia de un vector, una lista es una colección de elementos que pueden ser de diferente tipo. Los componentes de una lista son típicamente pares clave-valor.\n\n\n\nmi_lista_nombres &lt;- list(A = \"Andrea\", B = \"Paola\", C = \"Sara\" )\nmi_lista_nombres\nmi_lista_nombres[\"B\"]\nmi_lista_nombres[2]\nmi_lista_nombres$B",
     "crumbs": [
+      "Teoría",
       "Unidad 2",
       "Introducción a R"
     ]
@@ -450,6 +486,7 @@
     "section": "Desafío",
     "text": "Desafío\nCrea una lista de listas Crea una lista que contenga 3 listas, que contenga la clave y valor nombre= edad= hobbie= Por ultimo accede a la edad de la tercera lista\nlista_persona &lt;- list(list(name = \"Max White\", age = 27, hobbies = c(\"Programming, movies\")), list(name = \"Mia Black\", age = 32, hobbies = c(\"Theater, computer games\")), list(name = \"Mika Brown\", age =23, hobbies = c(\"Sports, music\")))\n\nlista_persona[[2]][[3]]",
     "crumbs": [
+      "Teoría",
       "Unidad 2",
       "Introducción a R"
     ]
@@ -461,6 +498,7 @@
     "section": "Matrices y Data Frames",
     "text": "Matrices y Data Frames\nAmbos representan tipos de datos “rectangulares”, lo que significa que se usan para almacenar datos tabulares, con filas y columnas.\nLa principal diferencia, es que las matrices solo pueden contener una única clase de datos (al igual que los vectores), mientras que los data frames pueden consistir en muchas clases diferentes de datos.",
     "crumbs": [
+      "Teoría",
       "Unidad 2",
       "Introducción a R"
     ]
@@ -472,6 +510,7 @@
     "section": "Matrices",
     "text": "Matrices\nmi_vector &lt;- 1:20\nmi_vector\ndim(mi_vector)\nDado que la variable es un vector, no tiene un atributo dim (entonces es simplemente NULL).\n¿Qué ocurre si le damos a mi_vector un atributo dim?\ndim(mi_vector) &lt;- c(4, 5)\nmi_vector",
     "crumbs": [
+      "Teoría",
       "Unidad 2",
       "Introducción a R"
     ]
