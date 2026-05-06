@@ -8,7 +8,7 @@
 
 <meta name="author" content="Dra. Linda Kempis Calanis">
 
-<title>Introducción a R Clase 1 – Curso</title>
+<title>Introducción a R Clase 5 dplyr – Curso</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -68,8 +68,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../teoria/02_unidad/02_apunte.html" rel="next">
-<link href="../../teoria/01_unidad.html" rel="prev">
+<link href="../../teoria/04_unidad/04_apunte.html" rel="prev">
 <link href="../../imgs/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -82,9 +81,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-d3f387b2490998008262a04b43a1a0b1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-1a595d4147cde4faffca3dc780215505.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-1a595d4147cde4faffca3dc780215505.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-1a595d4147cde4faffca3dc780215505.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-a2f26670d656a5ededa087c91914b793.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-a2f26670d656a5ededa087c91914b793.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-a2f26670d656a5ededa087c91914b793.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -114,7 +113,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<link rel="stylesheet" href="styles/minimal.css">
 </head>
 
 <body class="nav-sidebar floating nav-fixed quarto-light">
@@ -170,7 +168,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../teoria/01_unidad/01_apunte.html">Unidad 1</a></li><li class="breadcrumb-item"><a href="../../teoria/01_unidad/01_apunte.html">Introducción a R Clase 1</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../teoria/05_unidad/05_apunte.html">Unidad 5</a></li><li class="breadcrumb-item"><a href="../../teoria/05_unidad/05_apunte.html">Introducción a R Clase 5 dplyr</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -199,7 +197,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../teoria/01_unidad/01_apunte.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../teoria/01_unidad/01_apunte.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introducción a R Clase 1</span></a>
   </div>
 </li>
@@ -267,7 +265,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../teoria/05_unidad/05_apunte.html" class="sidebar-item-text sidebar-link">
+  <a href="../../teoria/05_unidad/05_apunte.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Introducción a R Clase 5 dplyr</span></a>
   </div>
 </li>
@@ -279,16 +277,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">En esta página</h2>
    
   <ul>
-  <li><a href="#el-entorno-de-r" id="toc-el-entorno-de-r" class="nav-link active" data-scroll-target="#el-entorno-de-r">El entorno de R</a></li>
-  <li><a href="#instalando-r" id="toc-instalando-r" class="nav-link" data-scroll-target="#instalando-r">Instalando R</a></li>
-  <li><a href="#instalar-rstudio-posit" id="toc-instalar-rstudio-posit" class="nav-link" data-scroll-target="#instalar-rstudio-posit">Instalar RStudio / Posit</a></li>
-  <li><a href="#panel-de-rstudio-posit" id="toc-panel-de-rstudio-posit" class="nav-link" data-scroll-target="#panel-de-rstudio-posit">Panel de RStudio / Posit</a></li>
-  <li><a href="#entorno-de-rstudio" id="toc-entorno-de-rstudio" class="nav-link" data-scroll-target="#entorno-de-rstudio">Entorno de RStudio</a></li>
-  <li><a href="#cómo-opera-r" id="toc-cómo-opera-r" class="nav-link" data-scroll-target="#cómo-opera-r">¿Cómo opera R?</a></li>
-  <li><a href="#datos-más-comunes" id="toc-datos-más-comunes" class="nav-link" data-scroll-target="#datos-más-comunes">Datos más comunes</a></li>
-  <li><a href="#verificar-el-tipo-de-un-dato" id="toc-verificar-el-tipo-de-un-dato" class="nav-link" data-scroll-target="#verificar-el-tipo-de-un-dato">Verificar el tipo de un dato</a></li>
-  <li><a href="#paquetes-en-r" id="toc-paquetes-en-r" class="nav-link" data-scroll-target="#paquetes-en-r">Paquetes en R</a></li>
-  <li><a href="#bibliografía" id="toc-bibliografía" class="nav-link" data-scroll-target="#bibliografía">Bibliografía</a></li>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción">Introducción</a>
+  <ul class="collapse">
+  <li><a href="#paquetes-necesarios" id="toc-paquetes-necesarios" class="nav-link" data-scroll-target="#paquetes-necesarios">Paquetes necesarios</a></li>
+  <li><a href="#el-conjunto-de-datos-penguins" id="toc-el-conjunto-de-datos-penguins" class="nav-link" data-scroll-target="#el-conjunto-de-datos-penguins">El conjunto de datos penguins</a></li>
+  <li><a href="#el-operador-pipe" id="toc-el-operador-pipe" class="nav-link" data-scroll-target="#el-operador-pipe">El operador pipe %&gt;%</a></li>
+  <li><a href="#pingüinos-de-la-isla-torgersen" id="toc-pingüinos-de-la-isla-torgersen" class="nav-link" data-scroll-target="#pingüinos-de-la-isla-torgersen">Pingüinos de la isla Torgersen</a></li>
+  <li><a href="#filtrar-con-una-condición-numérica" id="toc-filtrar-con-una-condición-numérica" class="nav-link" data-scroll-target="#filtrar-con-una-condición-numérica">Filtrar con una condición numérica</a></li>
+  <li><a href="#filtrar-usando-between" id="toc-filtrar-usando-between" class="nav-link" data-scroll-target="#filtrar-usando-between">Filtrar usando between()</a></li>
+  <li><a href="#arrange-ordenar-datos" id="toc-arrange-ordenar-datos" class="nav-link" data-scroll-target="#arrange-ordenar-datos">arrange(): Ordenar datos</a>
+  <ul class="collapse">
+  <li><a href="#orden-ascendente-por-defecto" id="toc-orden-ascendente-por-defecto" class="nav-link" data-scroll-target="#orden-ascendente-por-defecto">Orden ascendente (por defecto)</a></li>
+  <li><a href="#orden-descendente" id="toc-orden-descendente" class="nav-link" data-scroll-target="#orden-descendente">Orden descendente</a></li>
+  </ul></li>
+  <li><a href="#select-seleccionar-variables-columnas" id="toc-select-seleccionar-variables-columnas" class="nav-link" data-scroll-target="#select-seleccionar-variables-columnas">select(): Seleccionar variables (columnas)</a>
+  <ul class="collapse">
+  <li><a href="#selección-por-tipo-de-variable" id="toc-selección-por-tipo-de-variable" class="nav-link" data-scroll-target="#selección-por-tipo-de-variable">Selección por tipo de variable</a></li>
+  </ul></li>
+  <li><a href="#mutate-crear-nuevas-variables" id="toc-mutate-crear-nuevas-variables" class="nav-link" data-scroll-target="#mutate-crear-nuevas-variables">mutate(): Crear nuevas variables</a></li>
+  <li><a href="#summarize-resumir-datos" id="toc-summarize-resumir-datos" class="nav-link" data-scroll-target="#summarize-resumir-datos">summarize(): Resumir datos</a></li>
+  <li><a href="#conclusiones-de-la-sesión" id="toc-conclusiones-de-la-sesión" class="nav-link" data-scroll-target="#conclusiones-de-la-sesión">Conclusiones de la sesión</a></li>
+  </ul></li>
   </ul>
 </nav>
 </nav>
@@ -299,10 +308,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../teoria/01_unidad/01_apunte.html">Unidad 1</a></li><li class="breadcrumb-item"><a href="../../teoria/01_unidad/01_apunte.html">Introducción a R Clase 1</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../teoria/05_unidad/05_apunte.html">Unidad 5</a></li><li class="breadcrumb-item"><a href="../../teoria/05_unidad/05_apunte.html">Introducción a R Clase 5 dplyr</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Introducción a R Clase 1</h1>
-<p class="subtitle lead">Clase 1</p>
+<h1 class="title">Introducción a R Clase 5 dplyr</h1>
+<p class="subtitle lead">Clase 5</p>
 </div>
 
 
@@ -331,66 +340,328 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="el-entorno-de-r" class="level2">
-<h2 class="anchored" data-anchor-id="el-entorno-de-r">El entorno de R</h2>
-<p><strong>R es un lenguaje de programación y un entorno para el análisis estadístico y gráficas de datos</strong></p>
+<section id="introducción" class="level1">
+<h1>Introducción</h1>
+<p>En esta sesión aprenderemos los principios básicos de manipulación de datos en R utilizando el paquete dplyr, que forma parte del ecosistema tidyverse.</p>
+<p>El objetivo principal es que el estudiantado:</p>
+<p>Comprenda la lógica de la manipulación de datos tipo tidy Aprenda a leer y escribir código más claro y reproducible Se familiarice con funciones esenciales para el análisis de datos</p>
+<p>Trabajaremos con un conjunto de datos real: penguins, ampliamente utilizado con fines educativos.</p>
+<section id="paquetes-necesarios" class="level2">
+<h2 class="anchored" data-anchor-id="paquetes-necesarios">Paquetes necesarios</h2>
+<p>En R, gran parte de la funcionalidad se encuentra en paquetes. Para esta clase utilizaremos:</p>
+<p>dplyr: manipulación de datos tidyverse: colección de paquetes para ciencia de datos palmerpenguins: conjunto de datos de pingüinos antárticos</p>
+<p>⚠️ Nota Si ya tienen estos paquetes instalados, NO es necesario volver a instalarlos.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("dplyr")</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("tidyverse")</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("remotes")</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># remotes::install_github("allisonhorst/palmerpenguins")</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Cargamos los paquetes en la sesión de R:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Adjuntando el paquete: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ forcats   1.0.1     ✔ readr     2.1.6
+✔ ggplot2   4.0.2     ✔ stringr   1.6.0
+✔ lubridate 1.9.4     ✔ tibble    3.3.1
+✔ purrr     1.2.0     ✔ tidyr     1.3.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Adjuntando el paquete: 'palmerpenguins'
+
+The following objects are masked from 'package:datasets':
+
+    penguins, penguins_raw</code></pre>
+</div>
+</div>
+</section>
+<section id="el-conjunto-de-datos-penguins" class="level2">
+<h2 class="anchored" data-anchor-id="el-conjunto-de-datos-penguins">El conjunto de datos penguins</h2>
+<p>El conjunto de datos penguins contiene información morfológica de tres especies de pingüinos observados en distintas islas de la Antártida.</p>
+<p>Algunas variables incluyen:</p>
 <ul>
-<li>R (Ihaka y Gentleman) puede considerarse derivado del lenguaje S (Chambers)</li>
-<li>Almacenamiento y manipulación de datos</li>
-<li>Operadores para cálculo sobre variables indexadas (arrays) y matrices</li>
-<li>Amplia colección de herramientas para análisis de datos</li>
-<li>Capacidades gráficas</li>
-<li>Lenguaje de programación con condicionales, ciclos y funciones</li>
-<li>Multiplataforma y de acceso libre</li>
+<li>especie</li>
+<li>isla</li>
+<li>longitud y profundidad del pico</li>
+<li>longitud de la aleta</li>
+<li>masa corporal</li>
+<li>sexo</li>
 </ul>
-<p><img src="Clase_1/fig_R.png" class="img-fluid"></p>
-<p><strong>Instalar R:</strong> https://www.r-project.org<br>
-<strong>Instalar RStudio / Posit:</strong> https://posit.co</p>
+<p>Veamos los nombres de las variables disponibles:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(penguins)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "species"           "island"            "bill_length_mm"   
+[4] "bill_depth_mm"     "flipper_length_mm" "body_mass_g"      
+[7] "sex"               "year"             </code></pre>
+</div>
+</div>
 </section>
-<section id="instalando-r" class="level2">
-<h2 class="anchored" data-anchor-id="instalando-r">Instalando R</h2>
-<p><img src="Clase_1/fig_install.png" class="img-fluid"></p>
-</section>
-<section id="instalar-rstudio-posit" class="level2">
-<h2 class="anchored" data-anchor-id="instalar-rstudio-posit">Instalar RStudio / Posit</h2>
-<p><img src="Clase_1/fig_posit.png" class="img-fluid"></p>
-</section>
-<section id="panel-de-rstudio-posit" class="level2">
-<h2 class="anchored" data-anchor-id="panel-de-rstudio-posit">Panel de RStudio / Posit</h2>
-<p><img src="Clase_1/fig_1.png" class="img-fluid"></p>
-</section>
-<section id="entorno-de-rstudio" class="level2">
-<h2 class="anchored" data-anchor-id="entorno-de-rstudio">Entorno de RStudio</h2>
-<p><img src="Clase_1/fig_entorno.png" class="img-fluid"></p>
-</section>
-<section id="cómo-opera-r" class="level2">
-<h2 class="anchored" data-anchor-id="cómo-opera-r">¿Cómo opera R?</h2>
-<p>R opera de la siguiente forma: <strong>leer → evaluar → mostrar</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="datos-más-comunes" class="level2">
-<h2 class="anchored" data-anchor-id="datos-más-comunes">Datos más comunes</h2>
-<p><img src="Clase_1/fig_2.png" class="img-fluid"></p>
-</section>
-<section id="verificar-el-tipo-de-un-dato" class="level2">
-<h2 class="anchored" data-anchor-id="verificar-el-tipo-de-un-dato">Verificar el tipo de un dato</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="dv">3</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="st">"3"</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="cn">TRUE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="paquetes-en-r" class="level2">
-<h2 class="anchored" data-anchor-id="paquetes-en-r">Paquetes en R</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"ggplot2"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="bibliografía" class="level2">
-<h2 class="anchored" data-anchor-id="bibliografía">Bibliografía</h2>
+<section id="el-operador-pipe" class="level2">
+<h2 class="anchored" data-anchor-id="el-operador-pipe">El operador pipe %&gt;%</h2>
+<p><mark>Una de las ideas centrales de dplyr es el uso del operador pipe (%&gt;%).<mark></mark></mark></p>
+<p>Este operador permite encadenar funciones, haciendo que el código:</p>
 <ul>
-<li>https://swcarpentry.github.io/r-novice-gapminder-es/04-data-structures-part1.html<br>
-</li>
-<li>https://bookdown.org/jboscomendoza/r-principiantes4/tipos-de-datos.html</li>
+<li>sea más legible</li>
+<li>siga una lógica paso a paso</li>
+<li>se parezca al lenguaje natural</li>
 </ul>
+<p>Puede leerse como <strong>“y luego”</strong>.</p>
+<p>Ejemplo conceptual:</p>
+<p>Tomamos los datos y luego filtramos y luego ordenamos y luego resumimos</p>
+<p><mark>filter(): Filtrar observaciones (filas) <mark></mark></mark></p>
+<p>La función filter() se utiliza para seleccionar filas que cumplen una o más condiciones.</p>
+</section>
+<section id="pingüinos-de-la-isla-torgersen" class="level2">
+<h2 class="anchored" data-anchor-id="pingüinos-de-la-isla-torgersen">Pingüinos de la isla Torgersen</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>torgersen_penguins <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(island <span class="sc">==</span> <span class="st">"Torgersen"</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(torgersen_penguins)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 8
+  species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+  &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+1 Adelie  Torgersen           39.1          18.7               181        3750
+2 Adelie  Torgersen           39.5          17.4               186        3800
+3 Adelie  Torgersen           40.3          18                 195        3250
+4 Adelie  Torgersen           NA            NA                  NA          NA
+5 Adelie  Torgersen           36.7          19.3               193        3450
+6 Adelie  Torgersen           39.3          20.6               190        3650
+# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+</div>
+</div>
+<p>Aquí:</p>
+<ul>
+<li>Tomamos el conjunto penguins</li>
+<li>Filtramos solo los individuos de la isla Torgersen</li>
+<li>Guardamos el resultado en un nuevo objeto</li>
+</ul>
+</section>
+<section id="filtrar-con-una-condición-numérica" class="level2">
+<h2 class="anchored" data-anchor-id="filtrar-con-una-condición-numérica">Filtrar con una condición numérica</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(bill_depth_mm <span class="sc">&gt;</span> <span class="fl">16.2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 8
+  species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+  &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+1 Adelie  Torgersen           39.1          18.7               181        3750
+2 Adelie  Torgersen           39.5          17.4               186        3800
+3 Adelie  Torgersen           40.3          18                 195        3250
+4 Adelie  Torgersen           36.7          19.3               193        3450
+5 Adelie  Torgersen           39.3          20.6               190        3650
+6 Adelie  Torgersen           38.9          17.8               181        3625
+# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+</div>
+</div>
+<p>Este código selecciona únicamente los pingüinos cuya profundidad del pico es mayor a 16.2 mm.</p>
+</section>
+<section id="filtrar-usando-between" class="level2">
+<h2 class="anchored" data-anchor-id="filtrar-usando-between">Filtrar usando between()</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">between</span>(bill_depth_mm, <span class="fl">16.2</span>, <span class="fl">18.1</span>))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 108 × 8
+   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+ 1 Adelie  Torgersen           39.5          17.4               186        3800
+ 2 Adelie  Torgersen           40.3          18                 195        3250
+ 3 Adelie  Torgersen           38.9          17.8               181        3625
+ 4 Adelie  Torgersen           34.1          18.1               193        3475
+ 5 Adelie  Torgersen           37.8          17.1               186        3300
+ 6 Adelie  Torgersen           37.8          17.3               180        3700
+ 7 Adelie  Torgersen           41.1          17.6               182        3200
+ 8 Adelie  Torgersen           36.6          17.8               185        3700
+ 9 Adelie  Biscoe              38.2          18.1               185        3950
+10 Adelie  Biscoe              38.8          17.2               180        3800
+# ℹ 98 more rows
+# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+</div>
+</div>
+<p><strong>between()</strong> es útil para especificar rangos numéricos de manera clara y legible.</p>
+</section>
+<section id="arrange-ordenar-datos" class="level2">
+<h2 class="anchored" data-anchor-id="arrange-ordenar-datos">arrange(): Ordenar datos</h2>
+<p>La función <strong>arrange()</strong> permite ordenar las filas de un conjunto de datos.</p>
+<section id="orden-ascendente-por-defecto" class="level3">
+<h3 class="anchored" data-anchor-id="orden-ascendente-por-defecto">Orden ascendente (por defecto)</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(body_mass_g) <span class="sc">%&gt;%</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 8
+  species   island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+  &lt;fct&gt;     &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+1 Chinstrap Dream               46.9          16.6               192        2700
+2 Adelie    Biscoe              36.5          16.6               181        2850
+3 Adelie    Biscoe              36.4          17.1               184        2850
+4 Adelie    Biscoe              34.5          18.1               187        2900
+5 Adelie    Dream               33.1          16.1               178        2900
+6 Adelie    Torgersen           38.6          17                 188        2900
+# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="orden-descendente" class="level3">
+<h3 class="anchored" data-anchor-id="orden-descendente">Orden descendente</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(body_mass_g)) <span class="sc">%&gt;%</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 8
+  species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+  &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+1 Gentoo  Biscoe           49.2          15.2               221        6300
+2 Gentoo  Biscoe           59.6          17                 230        6050
+3 Gentoo  Biscoe           51.1          16.3               220        6000
+4 Gentoo  Biscoe           48.8          16.2               222        6000
+5 Gentoo  Biscoe           45.2          16.4               223        5950
+6 Gentoo  Biscoe           49.8          15.9               229        5950
+# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+</div>
+</div>
+<p>Esto es útil, por ejemplo, para identificar los individuos más pesados o más ligeros.</p>
+</section>
+</section>
+<section id="select-seleccionar-variables-columnas" class="level2">
+<h2 class="anchored" data-anchor-id="select-seleccionar-variables-columnas">select(): Seleccionar variables (columnas)</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(species, flipper_length_mm, sex) <span class="sc">%&gt;%</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  species flipper_length_mm sex   
+  &lt;fct&gt;               &lt;int&gt; &lt;fct&gt; 
+1 Adelie                181 male  
+2 Adelie                186 female
+3 Adelie                195 female
+4 Adelie                 NA &lt;NA&gt;  
+5 Adelie                193 female
+6 Adelie                190 male  </code></pre>
+</div>
+</div>
+<section id="selección-por-tipo-de-variable" class="level3">
+<h3 class="anchored" data-anchor-id="selección-por-tipo-de-variable">Selección por tipo de variable</h3>
+<p>Seleccionar solo variables numéricas:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">where</span>(is.numeric)) <span class="sc">%&gt;%</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 5
+  bill_length_mm bill_depth_mm flipper_length_mm body_mass_g  year
+           &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt; &lt;int&gt;
+1           39.1          18.7               181        3750  2007
+2           39.5          17.4               186        3800  2007
+3           40.3          18                 195        3250  2007
+4           NA            NA                  NA          NA  2007
+5           36.7          19.3               193        3450  2007
+6           39.3          20.6               190        3650  2007</code></pre>
+</div>
+</div>
+<p>Seleccionar solo variables no numéricas:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span><span class="fu">where</span>(is.numeric)) <span class="sc">%&gt;%</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  species island    sex   
+  &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt; 
+1 Adelie  Torgersen male  
+2 Adelie  Torgersen female
+3 Adelie  Torgersen female
+4 Adelie  Torgersen &lt;NA&gt;  
+5 Adelie  Torgersen female
+6 Adelie  Torgersen male  </code></pre>
+</div>
+</div>
+<p>Este tipo de selección es muy útil en análisis exploratorios.</p>
+</section>
+</section>
+<section id="mutate-crear-nuevas-variables" class="level2">
+<h2 class="anchored" data-anchor-id="mutate-crear-nuevas-variables">mutate(): Crear nuevas variables</h2>
+<p>La función mutate() se utiliza para crear o transformar variables.</p>
+<p>Ejemplo: convertir la masa corporal de gramos a libras.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">body_weight_pounds =</span> body_mass_g <span class="sc">/</span> <span class="fl">453.59237</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(body_mass_g, body_weight_pounds) <span class="sc">%&gt;%</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 2
+  body_mass_g body_weight_pounds
+        &lt;int&gt;              &lt;dbl&gt;
+1        3750               8.27
+2        3800               8.38
+3        3250               7.17
+4          NA              NA   
+5        3450               7.61
+6        3650               8.05</code></pre>
+</div>
+</div>
+</section>
+<section id="summarize-resumir-datos" class="level2">
+<h2 class="anchored" data-anchor-id="summarize-resumir-datos">summarize(): Resumir datos</h2>
+<p>summarize() permite calcular estadísticas descriptivas.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">avg_body_mass =</span> <span class="fu">mean</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  avg_body_mass
+          &lt;dbl&gt;
+1         4202.</code></pre>
+</div>
+</div>
+<p>El argumento na.rm = TRUE indica que los valores faltantes (NA) deben ignorarse.</p>
+</section>
+<section id="conclusiones-de-la-sesión" class="level2">
+<h2 class="anchored" data-anchor-id="conclusiones-de-la-sesión">Conclusiones de la sesión</h2>
+<p>En esta clase aprendimos a:</p>
+<ul>
+<li>Manipular datos con dplyr</li>
+<li>Usar el operador %&gt;%</li>
+<li>Filtrar, ordenar y seleccionar información</li>
+<li>Crear nuevas variables</li>
+<li>Calcular estadísticas resumen</li>
+</ul>
+<p>Estas herramientas son la base del análisis de datos moderno en R y se utilizarán continuamente a lo largo del curso.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -796,14 +1067,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../teoria/01_unidad.html" class="pagination-link" aria-label="Presentaciones de las Unidades">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Presentaciones de las Unidades</span>
+      <a href="../../teoria/04_unidad/04_apunte.html" class="pagination-link" aria-label="Introducción a R Clase 3 ggplot">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Introducción a R Clase 3 ggplot</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../teoria/02_unidad/02_apunte.html" class="pagination-link" aria-label="Introducción a R Clase 2">
-        <span class="nav-page-text">Introducción a R Clase 2</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
