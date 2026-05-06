@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Dra. Linda Kempis Calanis">
 
-<title>Unidad 2 - Apunte 1 – Curso</title>
+<title>Introducción a R – Curso</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -61,27 +62,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../../../../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../../../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../../../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../../../../">
-<link href="../../../../../imgs/favicon.png" rel="icon" type="image/png">
-<script src="../../../../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../../../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../../site_libs/quarto-html/quarto-syntax-highlighting-d3f387b2490998008262a04b43a1a0b1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-d3f387b2490998008262a04b43a1a0b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../../../../site_libs/quarto-html/quarto-syntax-highlighting-d3f387b2490998008262a04b43a1a0b1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="../../../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../../site_libs/bootstrap/bootstrap-02c7deb63853eb22bbead1ae1601495b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../../../../site_libs/bootstrap/bootstrap-dark-02c7deb63853eb22bbead1ae1601495b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="../../../../../site_libs/bootstrap/bootstrap-02c7deb63853eb22bbead1ae1601495b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../teoria/02_unidad/02_apunte.html" rel="next">
+<link href="../../imgs/favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-d3f387b2490998008262a04b43a1a0b1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-d3f387b2490998008262a04b43a1a0b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-d3f387b2490998008262a04b43a1a0b1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-1a595d4147cde4faffca3dc780215505.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-1a595d4147cde4faffca3dc780215505.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-1a595d4147cde4faffca3dc780215505.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -111,16 +113,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
+<link rel="stylesheet" href="styles/minimal.css">
 </head>
 
-<body class="nav-fixed fullcontent quarto-light">
+<body class="nav-sidebar floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../../../../index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Curso</span>
     </a>
   </div>
@@ -131,27 +134,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../../../informacion/programa.html"> 
+    <a class="nav-link" href="../../informacion/programa.html"> 
 <span class="menu-text">Información</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../../../teoria/01_unidad.html"> 
+    <a class="nav-link" href="../../teoria/01_unidad.html"> 
 <span class="menu-text">Teoría</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../../../practica/01.html"> 
+    <a class="nav-link" href="../../practica/01.html"> 
 <span class="menu-text">Práctica</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../../../proyectos/grupal.html"> 
+    <a class="nav-link" href="../../proyectos/grupal.html"> 
 <span class="menu-text">Proyectos</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../../../recursos/tutoriales/instalacion_python.html"> 
+    <a class="nav-link" href="../../recursos/tutoriales/instalacion_python.html"> 
 <span class="menu-text">Recursos</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="../../../../../none"> <i class="bi bi-github" role="img">
+    <a class="nav-link" href="../../none"> <i class="bi bi-github" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -161,25 +164,123 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../teoria/01_unidad/01_apunte.html">Unidad 1</a></li><li class="breadcrumb-item"><a href="../../teoria/01_unidad/01_apunte.html">Introducción a R</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+ <span class="menu-text">Unidad 1</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_unidad/01_apunte.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Introducción a R</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+ <span class="menu-text">Unidad 2</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/02_unidad/02_apunte.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introducción a R</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+ <span class="menu-text">Unidad 3</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/03_unidad/03_apunte.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introducción a R</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#el-entorno-de-r" id="toc-el-entorno-de-r" class="nav-link active" data-scroll-target="#el-entorno-de-r">El entorno de R</a></li>
+  <li><a href="#instalando-r" id="toc-instalando-r" class="nav-link" data-scroll-target="#instalando-r">Instalando R</a></li>
+  <li><a href="#instalar-rstudio-posit" id="toc-instalar-rstudio-posit" class="nav-link" data-scroll-target="#instalar-rstudio-posit">Instalar RStudio / Posit</a></li>
+  <li><a href="#panel-de-rstudio-posit" id="toc-panel-de-rstudio-posit" class="nav-link" data-scroll-target="#panel-de-rstudio-posit">Panel de RStudio / Posit</a></li>
+  <li><a href="#entorno-de-rstudio" id="toc-entorno-de-rstudio" class="nav-link" data-scroll-target="#entorno-de-rstudio">Entorno de RStudio</a></li>
+  <li><a href="#cómo-opera-r" id="toc-cómo-opera-r" class="nav-link" data-scroll-target="#cómo-opera-r">¿Cómo opera R?</a></li>
+  <li><a href="#datos-más-comunes" id="toc-datos-más-comunes" class="nav-link" data-scroll-target="#datos-más-comunes">Datos más comunes</a></li>
+  <li><a href="#verificar-el-tipo-de-un-dato" id="toc-verificar-el-tipo-de-un-dato" class="nav-link" data-scroll-target="#verificar-el-tipo-de-un-dato">Verificar el tipo de un dato</a></li>
+  <li><a href="#paquetes-en-r" id="toc-paquetes-en-r" class="nav-link" data-scroll-target="#paquetes-en-r">Paquetes en R</a></li>
+  <li><a href="#bibliografía" id="toc-bibliografía" class="nav-link" data-scroll-target="#bibliografía">Bibliografía</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../teoria/01_unidad/01_apunte.html">Unidad 1</a></li><li class="breadcrumb-item"><a href="../../teoria/01_unidad/01_apunte.html">Introducción a R</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Unidad 2 - Apunte 1</h1>
+<h1 class="title">Introducción a R</h1>
+<p class="subtitle lead">Clase 1</p>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Autor/a</div>
+    <div class="quarto-title-meta-contents">
+             <p>Dra. Linda Kempis Calanis </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Fecha de publicación</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">5 de mayo de 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -189,15 +290,67 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Este es un apunte generado a partir de una Jupyter Notebook.</p>
-<div id="23946e39" class="cell" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"¡Hola, mundo!"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>¡Hola, mundo!</code></pre>
-</div>
-</div>
+<section id="el-entorno-de-r" class="level2">
+<h2 class="anchored" data-anchor-id="el-entorno-de-r">El entorno de R</h2>
+<p><strong>R es un lenguaje de programación y un entorno para el análisis estadístico y gráficas de datos</strong></p>
+<ul>
+<li>R (Ihaka y Gentleman) puede considerarse derivado del lenguaje S (Chambers)</li>
+<li>Almacenamiento y manipulación de datos</li>
+<li>Operadores para cálculo sobre variables indexadas (arrays) y matrices</li>
+<li>Amplia colección de herramientas para análisis de datos</li>
+<li>Capacidades gráficas</li>
+<li>Lenguaje de programación con condicionales, ciclos y funciones</li>
+<li>Multiplataforma y de acceso libre</li>
+</ul>
+<p><img src="Clase_1/fig_R.png" class="img-fluid"></p>
+<p><strong>Instalar R:</strong> https://www.r-project.org<br>
+<strong>Instalar RStudio / Posit:</strong> https://posit.co</p>
+</section>
+<section id="instalando-r" class="level2">
+<h2 class="anchored" data-anchor-id="instalando-r">Instalando R</h2>
+<p><img src="Clase_1/fig_install.png" class="img-fluid"></p>
+</section>
+<section id="instalar-rstudio-posit" class="level2">
+<h2 class="anchored" data-anchor-id="instalar-rstudio-posit">Instalar RStudio / Posit</h2>
+<p><img src="Clase_1/fig_posit.png" class="img-fluid"></p>
+</section>
+<section id="panel-de-rstudio-posit" class="level2">
+<h2 class="anchored" data-anchor-id="panel-de-rstudio-posit">Panel de RStudio / Posit</h2>
+<p><img src="Clase_1/fig_1.png" class="img-fluid"></p>
+</section>
+<section id="entorno-de-rstudio" class="level2">
+<h2 class="anchored" data-anchor-id="entorno-de-rstudio">Entorno de RStudio</h2>
+<p><img src="Clase_1/fig_entorno.png" class="img-fluid"></p>
+</section>
+<section id="cómo-opera-r" class="level2">
+<h2 class="anchored" data-anchor-id="cómo-opera-r">¿Cómo opera R?</h2>
+<p>R opera de la siguiente forma: <strong>leer → evaluar → mostrar</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="datos-más-comunes" class="level2">
+<h2 class="anchored" data-anchor-id="datos-más-comunes">Datos más comunes</h2>
+<p><img src="Clase_1/fig_2.png" class="img-fluid"></p>
+</section>
+<section id="verificar-el-tipo-de-un-dato" class="level2">
+<h2 class="anchored" data-anchor-id="verificar-el-tipo-de-un-dato">Verificar el tipo de un dato</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="dv">3</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="st">"3"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="cn">TRUE</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="paquetes-en-r" class="level2">
+<h2 class="anchored" data-anchor-id="paquetes-en-r">Paquetes en R</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"ggplot2"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="bibliografía" class="level2">
+<h2 class="anchored" data-anchor-id="bibliografía">Bibliografía</h2>
+<ul>
+<li>https://swcarpentry.github.io/r-novice-gapminder-es/04-data-structures-part1.html<br>
+</li>
+<li>https://bookdown.org/jboscomendoza/r-principiantes4/tipos-de-datos.html</li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -273,7 +426,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/Linda-Aimara-Kempis-Calanis\.github\.io\/linda-aimara-kempis-calanis\.github\.io\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -600,6 +753,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
   });
   </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../teoria/02_unidad/02_apunte.html" class="pagination-link" aria-label="Introducción a R">
+        <span class="nav-page-text">Introducción a R</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
