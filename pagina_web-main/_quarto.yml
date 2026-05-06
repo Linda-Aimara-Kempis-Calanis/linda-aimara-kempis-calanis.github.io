@@ -49,6 +49,9 @@ website:
         - text: Unidad 4
           contents: 
             - teoria/04_unidad/04_apunte.qmd
+        - text: Unidad 5
+          contents: 
+            - teoria/05_unidad/05_apunte.qmd
         
     - title: Práctica
       contents:

@@ -1,0 +1,200 @@
+---
+title: "Introducción a R Clase 5 dplyr"
+subtitle: "Clase 5"
+author: "Dra. Linda Kempis Calanis"
+date: today
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    toc-location: left
+---
+
+# Introducción
+
+En esta sesión aprenderemos los principios básicos de manipulación de datos en R utilizando el paquete dplyr, que forma parte del ecosistema tidyverse.
+
+El objetivo principal es que el estudiantado:
+
+Comprenda la lógica de la manipulación de datos tipo tidy
+Aprenda a leer y escribir código más claro y reproducible
+Se familiarice con funciones esenciales para el análisis de datos
+
+Trabajaremos con un conjunto de datos real: penguins, ampliamente utilizado con fines educativos.
+
+## Paquetes necesarios
+
+En R, gran parte de la funcionalidad se encuentra en paquetes.
+Para esta clase utilizaremos:
+
+dplyr: manipulación de datos
+tidyverse: colección de paquetes para ciencia de datos
+palmerpenguins: conjunto de datos de pingüinos antárticos
+
+⚠️ Nota
+Si ya tienen estos paquetes instalados, NO es necesario volver a instalarlos.
+
+```{r}
+# install.packages("dplyr")
+# install.packages("tidyverse")
+# install.packages("remotes")
+# remotes::install_github("allisonhorst/palmerpenguins")
+```
+
+Cargamos los paquetes en la sesión de R:
+```{r}
+library(dplyr)
+library(tidyverse)
+library(palmerpenguins)
+```
+
+## El conjunto de datos penguins
+
+El conjunto de datos penguins contiene información morfológica de tres especies de pingüinos observados en distintas islas de la Antártida.
+
+Algunas variables incluyen:
+
+- especie
+- isla
+- longitud y profundidad del pico
+- longitud de la aleta
+- masa corporal
+- sexo
+
+Veamos los nombres de las variables disponibles:
+
+```{r}
+names(penguins)
+```
+
+## El operador pipe %>%
+
+<mark>Una de las ideas centrales de dplyr es el uso del operador pipe (%>%).<mark>
+
+Este operador permite encadenar funciones, haciendo que el código:
+
+- sea más legible
+- siga una lógica paso a paso
+- se parezca al lenguaje natural
+
+Puede leerse como **“y luego”**.
+
+Ejemplo conceptual:
+
+Tomamos los datos y luego filtramos y luego ordenamos y luego resumimos
+
+<mark>filter(): Filtrar observaciones (filas) <mark>
+
+La función filter() se utiliza para seleccionar filas que cumplen una o más condiciones.
+
+## Pingüinos de la isla Torgersen
+
+```{r}
+torgersen_penguins <- penguins %>%
+  filter(island == "Torgersen")
+
+head(torgersen_penguins)
+```
+
+Aquí:
+
+- Tomamos el conjunto penguins
+- Filtramos solo los individuos de la isla Torgersen
+- Guardamos el resultado en un nuevo objeto
+
+## Filtrar con una condición numérica
+
+```{r}
+penguins %>%
+  filter(bill_depth_mm > 16.2) %>%
+  head()
+```
+Este código selecciona únicamente los pingüinos cuya profundidad del pico es mayor a 16.2 mm.
+
+## Filtrar usando between()
+```{r}
+penguins %>%
+  filter(between(bill_depth_mm, 16.2, 18.1))
+```
+
+**between()** es útil para especificar rangos numéricos de manera clara y legible.
+
+## arrange(): Ordenar datos
+
+La función **arrange()** permite ordenar las filas de un conjunto de datos.
+
+### Orden ascendente (por defecto)
+```{r}
+penguins %>%
+  arrange(body_mass_g) %>%
+  head()
+```
+
+### Orden descendente
+
+```{r}
+penguins %>%
+  arrange(desc(body_mass_g)) %>%
+  head()
+```
+Esto es útil, por ejemplo, para identificar los individuos más pesados o más ligeros.
+
+## select(): Seleccionar variables (columnas)
+```{r}
+penguins %>%
+  select(species, flipper_length_mm, sex) %>%
+  head()
+```
+
+### Selección por tipo de variable
+
+Seleccionar solo variables numéricas:
+```{r}
+penguins %>%
+  select(where(is.numeric)) %>%
+  head()
+```
+Seleccionar solo variables no numéricas:
+```{r}
+penguins %>%
+  select(!where(is.numeric)) %>%
+  head()
+```
+Este tipo de selección es muy útil en análisis exploratorios.
+
+## mutate(): Crear nuevas variables
+
+La función mutate() se utiliza para crear o transformar variables.
+
+Ejemplo: convertir la masa corporal de gramos a libras.
+```{r}
+penguins %>%
+  mutate(body_weight_pounds = body_mass_g / 453.59237) %>%
+  select(body_mass_g, body_weight_pounds) %>%
+  head()
+```
+
+
+## summarize(): Resumir datos
+
+summarize() permite calcular estadísticas descriptivas.
+```{r}
+penguins %>%
+  summarize(avg_body_mass = mean(body_mass_g, na.rm = TRUE))
+```
+
+El argumento na.rm = TRUE indica que los valores faltantes (NA) deben ignorarse.
+
+## Conclusiones de la sesión
+
+En esta clase aprendimos a:
+
+- Manipular datos con dplyr
+- Usar el operador %>%
+- Filtrar, ordenar y seleccionar información
+- Crear nuevas variables
+- Calcular estadísticas resumen
+
+Estas herramientas son la base del análisis de datos moderno en R y se utilizarán continuamente a lo largo del curso.
