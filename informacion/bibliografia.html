@@ -23,27 +23,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -216,41 +196,15 @@ div.csl-indent {
 </header>
 
 
-<p>En esta sección se incluye la bibliografía, la cual puede dividirse en diferentes subsecciones gracias al filtro <a href="https://github.com/pandoc-ext/section-bibliographies">section-bibliographies</a>.</p>
-<p>Para generar la bibliografía de manera automática, se utilizan <em>divs</em> invisibles en los que se incluyen los identificadores BibTeX que se desean citar, por ejemplo <code>@CasellaBerger2024</code>, <code>@Gelman2013</code>, etc.</p>
-<p>Estos identificadores deben corresponder a una entrada en el archivo <code>.bib</code>, el cual se especifica en el archivo de configuración <code>_quarto.yml</code>.</p>
-<section id="principal" class="level2">
-<h2 class="anchored" data-anchor-id="principal">Principal</h2>
-<div style="visibility: hidden; height: 0;">
-<p><span class="citation" data-cites="CasellaBerger2024--1">Casella y Berger (<a href="#ref-CasellaBerger2024--1" role="doc-biblioref">2024</a>)</span> <span class="citation" data-cites="Hastie2009--1">Hastie, Tibshirani, y Friedman (<a href="#ref-Hastie2009--1" role="doc-biblioref">2009</a>)</span> <span class="citation" data-cites="Gelman2013--1">Gelman et&nbsp;al. (<a href="#ref-Gelman2013--1" role="doc-biblioref">2013</a>)</span></p>
-</div>
-<div id="refs--1" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-CasellaBerger2024--1" class="csl-entry" role="listitem">
-Casella, George, y Roger L. Berger. 2024. <em>Statistical Inference</em>. 2.ª ed. Chapman &amp; Hall/CRC.
-</div>
-<div id="ref-Gelman2013--1" class="csl-entry" role="listitem">
-Gelman, Andrew, John B. Carlin, Hal S. Stern, David B. Dunson, Aki Vehtari, y Donald B. Rubin. 2013. <em>Bayesian Data Analysis</em>. 3.ª ed. CRC Press.
-</div>
-<div id="ref-Hastie2009--1" class="csl-entry" role="listitem">
-Hastie, Trevor, Robert Tibshirani, y Jerome Friedman. 2009. <em>The Elements of Statistical Learning: Data Mining, Inference, and Prediction</em>. 2.ª ed. Springer.
-</div>
-</div>
-</section>
-<section id="complementaria" class="level2">
-<h2 class="anchored" data-anchor-id="complementaria">Complementaria</h2>
-<div style="visibility: hidden; height: 0;">
-<p><span class="citation" data-cites="Jaynes2003--2">Jaynes (<a href="#ref-Jaynes2003--2" role="doc-biblioref">2003</a>)</span> <span class="citation" data-cites="Rudin1976--2">Rudin (<a href="#ref-Rudin1976--2" role="doc-biblioref">1976</a>)</span></p>
-</div>
+<section id="recursos-recomendados" class="level3">
+<h3 class="anchored" data-anchor-id="recursos-recomendados">Recursos recomendados</h3>
+<ul>
+<li><a href="https://bookdown.org/jboscomendoza/r-principiantes4/">R para principiantes</a></li>
+<li><a href="https://swcarpentry.github.io/shell-novice/01-intro.html">Introducción a la terminal (Shell)</a></li>
+<li><a href="https://pythonforbiologists.com/python_tutorial/tutorial.html">Python para biólogos</a></li>
+</ul>
 
 
-<div id="refs--2" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-Jaynes2003--2" class="csl-entry" role="listitem">
-Jaynes, E. T. 2003. <em>Probability Theory: The Logic of Science</em>. Cambridge University Press.
-</div>
-<div id="ref-Rudin1976--2" class="csl-entry" role="listitem">
-Rudin, Walter. 1976. <em>Principles of Mathematical Analysis</em>. 3.ª ed. McGraw-Hill.
-</div>
-</div>
 </section>
 
 </main> <!-- /main -->
