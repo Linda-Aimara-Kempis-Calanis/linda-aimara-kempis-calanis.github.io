@@ -36,7 +36,6 @@ website:
         - informacion/bibliografia.qmd
     - title: Teoría
       contents:
-      
         - text: Unidad 1
           contents: 
             - teoria/01_unidad/01_apunte.qmd
