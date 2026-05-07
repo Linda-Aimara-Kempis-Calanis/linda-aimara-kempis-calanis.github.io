@@ -62,9 +62,6 @@ website:
         - proyectos/individual.qmd
     - title: Recursos
       contents:
-        - text: Ejemplos
-          contents:
-            - recursos/ejemplos/clases.qmd
         - text: Tutoriales
           contents:
             - recursos/tutoriales/instalacion_python.qmd

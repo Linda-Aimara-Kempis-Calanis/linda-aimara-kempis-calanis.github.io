@@ -1,6 +1,11 @@
 ---
-title: "Grabaciones de las clases"
+title: "Grabaciones de las Clases"
+toc: true
+
 ---
 
+## Clase 5: dplyr 📊
+
+En esta clase se explica el uso de `dplyr` en R para la manipulación y transformación de datos. Se trabajan funciones fundamentales como `select()`, `filter()`, `mutate()`, `arrange()` y `summarise()`, herramientas esenciales para el análisis de datos de manera clara y eficiente. 🚀
 
 {{< video https://youtu.be/sO6cEIuCrMU >}}
