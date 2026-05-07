@@ -56,7 +56,6 @@ website:
     - title: Práctica
       contents:
         - auto: practica/*.qmd
-        - auto: practica/*.ipynb
     - title: Proyectos
       contents:
         - proyectos/grupal.qmd
