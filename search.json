@@ -438,28 +438,6 @@
     ]
   },
   {
-    "objectID": "practica/03.html",
-    "href": "practica/03.html",
-    "title": "Unidad 3",
-    "section": "",
-    "text": "¿Por qué el siguiente bloque muestra solo un número como salida?\n\nfor i in range(3):\n    print(i)\n    break\n\n0",
-    "crumbs": [
-      "Práctica",
-      "Unidad 3"
-    ]
-  },
-  {
-    "objectID": "practica/03.html#programando",
-    "href": "practica/03.html#programando",
-    "title": "Unidad 3",
-    "section": "",
-    "text": "¿Por qué el siguiente bloque muestra solo un número como salida?\n\nfor i in range(3):\n    print(i)\n    break\n\n0",
-    "crumbs": [
-      "Práctica",
-      "Unidad 3"
-    ]
-  },
-  {
     "objectID": "practica/01.html",
     "href": "practica/01.html",
     "title": "Unidad 1,2,3,4",
@@ -530,28 +508,6 @@
     "crumbs": [
       "Información",
       "Programa"
-    ]
-  },
-  {
-    "objectID": "practica/02.html",
-    "href": "practica/02.html",
-    "title": "Unidad 2",
-    "section": "",
-    "text": "¿De qué color era el caballo blanco de San Martín?",
-    "crumbs": [
-      "Práctica",
-      "Unidad 2"
-    ]
-  },
-  {
-    "objectID": "practica/02.html#adivinanza",
-    "href": "practica/02.html#adivinanza",
-    "title": "Unidad 2",
-    "section": "",
-    "text": "¿De qué color era el caballo blanco de San Martín?",
-    "crumbs": [
-      "Práctica",
-      "Unidad 2"
     ]
   },
   {
