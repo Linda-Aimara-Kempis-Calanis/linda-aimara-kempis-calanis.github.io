@@ -343,9 +343,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="introducción" class="level1">
 <h1>Introducción</h1>
 <p>En esta sesión aprenderemos los principios básicos de manipulación de datos en R utilizando el paquete dplyr, que forma parte del ecosistema tidyverse.</p>
+<ul>
+<li><a href="https://rpubs.com/paraneda/tidyverse">Tidyverse para análisis de datos</a></li>
+</ul>
 <p>El objetivo principal es que el estudiantado:</p>
-<p>Comprenda la lógica de la manipulación de datos tipo tidy Aprenda a leer y escribir código más claro y reproducible Se familiarice con funciones esenciales para el análisis de datos</p>
-<p>Trabajaremos con un conjunto de datos real: penguins, ampliamente utilizado con fines educativos.</p>
+<ul>
+<li><p>Comprenda la lógica de la manipulación de datos tipo tidy</p></li>
+<li><p>Aprenda a leer y escribir código más claro y reproducible</p></li>
+<li><p>Se familiarice con funciones esenciales para el análisis de datos</p></li>
+<li><p>Trabajaremos con un conjunto de datos real: penguins, ampliamente utilizado con fines educativos.</p></li>
+</ul>
 <section id="paquetes-necesarios" class="level2">
 <h2 class="anchored" data-anchor-id="paquetes-necesarios">Paquetes necesarios</h2>
 <p>En R, gran parte de la funcionalidad se encuentra en paquetes. Para esta clase utilizaremos:</p>
@@ -409,7 +416,8 @@ The following objects are masked from 'package:datasets':
 <li>longitud y profundidad del pico</li>
 <li>longitud de la aleta</li>
 <li>masa corporal</li>
-<li>sexo Puedes explorar el dataset en <a href="https://allisonhorst.github.io/palmerpenguins/">este sitio</a>.</li>
+<li>sexo</li>
+<li>Puedes explorar el dataset en <a href="https://allisonhorst.github.io/palmerpenguins/">este sitio</a>.</li>
 </ul>
 <p>Veamos los nombres de las variables disponibles:</p>
 <div class="cell">
@@ -424,6 +432,12 @@ The following objects are masked from 'package:datasets':
 <section id="el-operador-pipe" class="level2">
 <h2 class="anchored" data-anchor-id="el-operador-pipe">El operador pipe %&gt;%</h2>
 <p><mark>Una de las ideas centrales de dplyr es el uso del operador pipe (%&gt;%).<mark></mark></mark></p>
+<ul>
+<li>%&gt;% o |&gt;</li>
+<li>Atajos en el teclado</li>
+<li>Windows / Linux: Ctrl + Shift +</li>
+<li>MmacOS: Cmd + Shift + M</li>
+</ul>
 <p>Este operador permite encadenar funciones, haciendo que el código:</p>
 <ul>
 <li>sea más legible</li>
