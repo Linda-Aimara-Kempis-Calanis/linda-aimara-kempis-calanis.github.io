@@ -1,23 +1,8 @@
 ---
-title: Unidad 1
+title: Unidad 1,2,3,4
 ---
 
-La práctica se genera automáticamente a partir de archivos `.qmd` y `.ipynb`.
-No es necesario enumerarlos manualmente, porque en `_quarto.yml` se incluye:
+La siguiente práctica es para evaluar los primeros temas.
 
-```yml
-    - title: Práctica
-      contents:
-        - auto: practica/*.qmd
-        - auto: practica/*.ipynb
-```
+Puedes descargar el pdf de la practica en este link: [PDF de la practica](https://dra-lindaaimara.github.io/Practica_1_2026.pdf)
 
-que incorpora todos los archivos con extensión `.qmd` o `.ipynb` dentro de la carpeta `practica`.
-
-## Suma
-
-¿Cuánto es 2 + 2?
-
-## Resta
-
-¿Cuánto es 2 - 2?
