@@ -417,35 +417,76 @@
   {
     "objectID": "recursos/tutoriales/instalacion_python.html",
     "href": "recursos/tutoriales/instalacion_python.html",
-    "title": "Instalación de Python y Positron en Windows",
+    "title": "Grabaciones de las Clases",
     "section": "",
-    "text": "Este es un recurso de ejemplo donde se usa el shortcode {{&lt; video &gt;}} para incluir un video alojado en YouTube.",
+    "text": "En esta clase se explica el uso de dplyr en R para la manipulación y transformación de datos. Se trabajan funciones fundamentales como select(), filter(), mutate(), arrange() y summarise(), herramientas esenciales para el análisis de datos de manera clara y eficiente. 🚀",
     "crumbs": [
       "Recursos",
       "Tutoriales",
-      "Instalación de Python y Positron en Windows"
+      "Grabaciones de las Clases"
     ]
   },
   {
-    "objectID": "proyectos/individual.html",
-    "href": "proyectos/individual.html",
-    "title": "Proyecto individual",
+    "objectID": "recursos/tutoriales/instalacion_python.html#clase-5-dplyr",
+    "href": "recursos/tutoriales/instalacion_python.html#clase-5-dplyr",
+    "title": "Grabaciones de las Clases",
     "section": "",
-    "text": "Luego del proyecto grupal, podría realizarse un proyecto individual.",
+    "text": "En esta clase se explica el uso de dplyr en R para la manipulación y transformación de datos. Se trabajan funciones fundamentales como select(), filter(), mutate(), arrange() y summarise(), herramientas esenciales para el análisis de datos de manera clara y eficiente. 🚀",
+    "crumbs": [
+      "Recursos",
+      "Tutoriales",
+      "Grabaciones de las Clases"
+    ]
+  },
+  {
+    "objectID": "proyectos/grupal.html",
+    "href": "proyectos/grupal.html",
+    "title": "Proyecto grupal",
+    "section": "",
+    "text": "Si aplica, se puede incluir un proyecto grupal.",
     "crumbs": [
       "Proyectos",
-      "Proyecto individual"
+      "Proyecto grupal"
     ]
   },
   {
-    "objectID": "practica/01.html",
-    "href": "practica/01.html",
-    "title": "Unidad 1,2,3,4",
+    "objectID": "informacion/programa.html",
+    "href": "informacion/programa.html",
+    "title": "Programa",
     "section": "",
-    "text": "La siguiente práctica es para evaluar los primeros temas.\nPuedes descargar el pdf de la practica en este link: PDF de la practica",
+    "text": "Introduce al estudiante a conceptos y prácticas básicas de programación, incluye conocimientos adquiridos en el desarrollo de programas que permitan ser aplicados en escenarios relevantes para el área de Bioquímica y Biología Molecular, con un entorno de responsabilidad social y ética.",
     "crumbs": [
-      "Práctica",
-      "Unidad 1,2,3,4"
+      "Información",
+      "Programa"
+    ]
+  },
+  {
+    "objectID": "informacion/bibliografia.html",
+    "href": "informacion/bibliografia.html",
+    "title": "Bibliografía",
+    "section": "",
+    "text": "Recursos recomendados\n\nR para principiantes\nIntroducción a la terminal (Shell)\nPython para biólogos",
+    "crumbs": [
+      "Información",
+      "Bibliografía"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Curso",
+    "section": "",
+    "text": "Introducción a la Computación\n      \n\n      \n      \n        \n        \n          \n           \n          Programas / Carreras\n        \n        \n        \n          \n           \n          UAEM - Universidad Autónoma del Estado de Morelos\n        \n        \n        \n          \n           \n          Semestre 4, año 2026\n        \n        \n        \n          \n           \n          Horarios de actualización de los temas: miércoles y viernes\n        \n        \n      \n      \n    \n  \n\n  \n  \n    \n  \n  \n\nNo hay resultados\n\n\n\n  \n    Docentes\n\n    \n\n    \n    \n        \n\n        Dra.Linda Aimara Kempis Calanis\n        \n          \n          \n            \n            Titular\n          \n          \n          \n          \n            \n            aimara.kempiscal@gmail.com\n          \n          \n          \n          \n            \n            Consultas virtuales solicitadas seran agendadas\n          \n          \n        \n      \n    \n        \n\n        Sebastian Mijares Guevara\n        \n          \n          \n            \n            Ayudante\n          \n          \n          \n          \n            \n            sebastian.mijares@uaem.edu.mx\n          \n          \n          \n          \n            \n            Consultas: agendar por correo\n          \n          \n        \n      \n    \n    \n  \n\nNo hay resultados"
+  },
+  {
+    "objectID": "informacion/aprobacion.html",
+    "href": "informacion/aprobacion.html",
+    "title": "Aprobación",
+    "section": "",
+    "text": "Se explican los criterios de aprobación, regularidad y promoción. Se pueden incluir:\n\nEntregas de examenes en las fechas acordadas.\nParticipación en clase(autoevaluaciones, etc).\nEvaluación del proyecto final.",
+    "crumbs": [
+      "Información",
+      "Aprobación"
     ]
   },
   {
@@ -471,66 +512,25 @@
     ]
   },
   {
-    "objectID": "informacion/aprobacion.html",
-    "href": "informacion/aprobacion.html",
-    "title": "Aprobación",
+    "objectID": "practica/01.html",
+    "href": "practica/01.html",
+    "title": "Unidad 1,2,3,4",
     "section": "",
-    "text": "Se explican los criterios de aprobación, regularidad y promoción. Se pueden incluir:\n\nEntregas de examenes en las fechas acordadas.\nParticipación en clase(autoevaluaciones, etc).\nEvaluación del proyecto final.",
+    "text": "La siguiente práctica es para evaluar los primeros temas.\nPuedes descargar el pdf de la practica en este link: PDF de la practica",
     "crumbs": [
-      "Información",
-      "Aprobación"
+      "Práctica",
+      "Unidad 1,2,3,4"
     ]
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Curso",
+    "objectID": "proyectos/individual.html",
+    "href": "proyectos/individual.html",
+    "title": "Proyecto individual",
     "section": "",
-    "text": "Introducción a la Computación\n      \n\n      \n      \n        \n        \n          \n           \n          Programas / Carreras\n        \n        \n        \n          \n           \n          UAEM - Universidad Autónoma del Estado de Morelos\n        \n        \n        \n          \n           \n          Semestre 4, año 2026\n        \n        \n        \n          \n           \n          Horarios de actualización de los temas: miércoles y viernes\n        \n        \n      \n      \n    \n  \n\n  \n  \n    \n  \n  \n\nNo hay resultados\n\n\n\n  \n    Docentes\n\n    \n\n    \n    \n        \n\n        Dra.Linda Aimara Kempis Calanis\n        \n          \n          \n            \n            Titular\n          \n          \n          \n          \n            \n            aimara.kempiscal@gmail.com\n          \n          \n          \n          \n            \n            Consultas virtuales solicitadas seran agendadas\n          \n          \n        \n      \n    \n        \n\n        Sebastian Mijares Guevara\n        \n          \n          \n            \n            Ayudante\n          \n          \n          \n          \n            \n            sebastian.mijares@uaem.edu.mx\n          \n          \n          \n          \n            \n            Consultas: agendar por correo\n          \n          \n        \n      \n    \n    \n  \n\nNo hay resultados"
-  },
-  {
-    "objectID": "informacion/bibliografia.html",
-    "href": "informacion/bibliografia.html",
-    "title": "Bibliografía",
-    "section": "",
-    "text": "Recursos recomendados\n\nR para principiantes\nIntroducción a la terminal (Shell)\nPython para biólogos",
-    "crumbs": [
-      "Información",
-      "Bibliografía"
-    ]
-  },
-  {
-    "objectID": "informacion/programa.html",
-    "href": "informacion/programa.html",
-    "title": "Programa",
-    "section": "",
-    "text": "Introduce al estudiante a conceptos y prácticas básicas de programación, incluye conocimientos adquiridos en el desarrollo de programas que permitan ser aplicados en escenarios relevantes para el área de Bioquímica y Biología Molecular, con un entorno de responsabilidad social y ética.",
-    "crumbs": [
-      "Información",
-      "Programa"
-    ]
-  },
-  {
-    "objectID": "proyectos/grupal.html",
-    "href": "proyectos/grupal.html",
-    "title": "Proyecto grupal",
-    "section": "",
-    "text": "Si aplica, se puede incluir un proyecto grupal.",
+    "text": "Luego del proyecto grupal, podría realizarse un proyecto individual.",
     "crumbs": [
       "Proyectos",
-      "Proyecto grupal"
-    ]
-  },
-  {
-    "objectID": "recursos/ejemplos/clases.html",
-    "href": "recursos/ejemplos/clases.html",
-    "title": "Cómo crear una clase en Python",
-    "section": "",
-    "text": "Se pueden incluir ejemplos de código.\nclass Persona:\n    def __init__(self, nombre, edad):\n        self.nombre = nombre\n        self.edad = edad\n\n    def saludar(self):\n        return f\"Hola, me llamo {self.nombre} y tengo {self.edad} años.\"\n\n    def es_mayor_de_edad(self):\n        return self.edad &gt;= 18\npersona = Persona(\"Matías\", 30)\npersona.saludar()\nHola, me llamo Matías y tengo 30 años.",
-    "crumbs": [
-      "Recursos",
-      "Ejemplos",
-      "Cómo crear una clase en Python"
+      "Proyecto individual"
     ]
   },
   {
