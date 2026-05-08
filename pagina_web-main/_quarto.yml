@@ -52,6 +52,9 @@ website:
         - text: Unidad 5
           contents: 
             - teoria/05_unidad/05_apunte.qmd
+        - text: Unidad 6
+          contents: 
+            - teoria/06_unidad/06_apunte.qmd
         
     - title: Práctica
       contents:
