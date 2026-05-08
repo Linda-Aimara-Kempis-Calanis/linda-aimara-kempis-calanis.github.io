@@ -1,668 +1,297 @@
 [
   {
-    "objectID": "teoria/05_unidad/05_apunte.html",
-    "href": "teoria/05_unidad/05_apunte.html",
-    "title": "Introducción a R Clase 5 dplyr",
+    "objectID": "teoria/06_unidad/06_apunte.html",
+    "href": "teoria/06_unidad/06_apunte.html",
+    "title": "Introducción a R Clase 6 Rmardown",
     "section": "",
-    "text": "En esta sesión aprenderemos los principios básicos de manipulación de datos en R utilizando el paquete dplyr, que forma parte del ecosistema tidyverse.\n\nTidyverse para análisis de datos\n\nEl objetivo principal es que el estudiantado:\n\nComprenda la lógica de la manipulación de datos tipo tidy\nAprenda a leer y escribir código más claro y reproducible\nSe familiarice con funciones esenciales para el análisis de datos\nTrabajaremos con un conjunto de datos real: penguins, ampliamente utilizado con fines educativos.\n\n\n\nEn R, gran parte de la funcionalidad se encuentra en paquetes. Para esta clase utilizaremos:\ndplyr: manipulación de datos tidyverse: colección de paquetes para ciencia de datos palmerpenguins: conjunto de datos de pingüinos antárticos\n⚠️ Nota Si ya tienen estos paquetes instalados, NO es necesario volver a instalarlos.\n\n# install.packages(\"dplyr\")\n# install.packages(\"tidyverse\")\n# install.packages(\"remotes\")\n# remotes::install_github(\"allisonhorst/palmerpenguins\")\n\nCargamos los paquetes en la sesión de R:\n\nlibrary(dplyr)\n\n\nAdjuntando el paquete: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ forcats   1.0.1     ✔ readr     2.1.6\n✔ ggplot2   4.0.2     ✔ stringr   1.6.0\n✔ lubridate 1.9.4     ✔ tibble    3.3.1\n✔ purrr     1.2.0     ✔ tidyr     1.3.2\n\n\n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(palmerpenguins)\n\n\nAdjuntando el paquete: 'palmerpenguins'\n\nThe following objects are masked from 'package:datasets':\n\n    penguins, penguins_raw\n\n\n\n\n\nEl conjunto de datos penguins contiene información morfológica de tres especies de pingüinos observados en distintas islas de la Antártida.\nAlgunas variables incluyen:\n\nespecie\nisla\nlongitud y profundidad del pico\nlongitud de la aleta\nmasa corporal\nsexo\nPuedes explorar el dataset en este sitio.\n\nVeamos los nombres de las variables disponibles:\n\nnames(penguins)\n\n[1] \"species\"           \"island\"            \"bill_length_mm\"   \n[4] \"bill_depth_mm\"     \"flipper_length_mm\" \"body_mass_g\"      \n[7] \"sex\"               \"year\"             \n\n\n\n\n\nUna de las ideas centrales de dplyr es el uso del operador pipe (%&gt;%).\n\n%&gt;% o |&gt;\nAtajos en el teclado\nWindows / Linux: Ctrl + Shift +\nMmacOS: Cmd + Shift + M\n\nEste operador permite encadenar funciones, haciendo que el código:\n\nsea más legible\nsiga una lógica paso a paso\nse parezca al lenguaje natural\n\nPuede leerse como “y luego”.\nEjemplo conceptual:\nTomamos los datos y luego filtramos y luego ordenamos y luego resumimos\nfilter(): Filtrar observaciones (filas) \nLa función filter() se utiliza para seleccionar filas que cumplen una o más condiciones.\n\n\n\n\ntorgersen_penguins &lt;- penguins %&gt;%\n  filter(island == \"Torgersen\")\n\nhead(torgersen_penguins)\n\n# A tibble: 6 × 8\n  species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n  &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n1 Adelie  Torgersen           39.1          18.7               181        3750\n2 Adelie  Torgersen           39.5          17.4               186        3800\n3 Adelie  Torgersen           40.3          18                 195        3250\n4 Adelie  Torgersen           NA            NA                  NA          NA\n5 Adelie  Torgersen           36.7          19.3               193        3450\n6 Adelie  Torgersen           39.3          20.6               190        3650\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;\n\n\nAquí:\n\nTomamos el conjunto penguins\nFiltramos solo los individuos de la isla Torgersen\nGuardamos el resultado en un nuevo objeto\n\n\n\n\n\npenguins %&gt;%\n  filter(bill_depth_mm &gt; 16.2) %&gt;%\n  head()\n\n# A tibble: 6 × 8\n  species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n  &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n1 Adelie  Torgersen           39.1          18.7               181        3750\n2 Adelie  Torgersen           39.5          17.4               186        3800\n3 Adelie  Torgersen           40.3          18                 195        3250\n4 Adelie  Torgersen           36.7          19.3               193        3450\n5 Adelie  Torgersen           39.3          20.6               190        3650\n6 Adelie  Torgersen           38.9          17.8               181        3625\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;\n\n\nEste código selecciona únicamente los pingüinos cuya profundidad del pico es mayor a 16.2 mm.\n\n\n\n\npenguins %&gt;%\n  filter(between(bill_depth_mm, 16.2, 18.1))\n\n# A tibble: 108 × 8\n   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n 1 Adelie  Torgersen           39.5          17.4               186        3800\n 2 Adelie  Torgersen           40.3          18                 195        3250\n 3 Adelie  Torgersen           38.9          17.8               181        3625\n 4 Adelie  Torgersen           34.1          18.1               193        3475\n 5 Adelie  Torgersen           37.8          17.1               186        3300\n 6 Adelie  Torgersen           37.8          17.3               180        3700\n 7 Adelie  Torgersen           41.1          17.6               182        3200\n 8 Adelie  Torgersen           36.6          17.8               185        3700\n 9 Adelie  Biscoe              38.2          18.1               185        3950\n10 Adelie  Biscoe              38.8          17.2               180        3800\n# ℹ 98 more rows\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;\n\n\nbetween() es útil para especificar rangos numéricos de manera clara y legible.\n\n\n\nLa función arrange() permite ordenar las filas de un conjunto de datos.\n\n\n\npenguins %&gt;%\n  arrange(body_mass_g) %&gt;%\n  head()\n\n# A tibble: 6 × 8\n  species   island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n  &lt;fct&gt;     &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n1 Chinstrap Dream               46.9          16.6               192        2700\n2 Adelie    Biscoe              36.5          16.6               181        2850\n3 Adelie    Biscoe              36.4          17.1               184        2850\n4 Adelie    Biscoe              34.5          18.1               187        2900\n5 Adelie    Dream               33.1          16.1               178        2900\n6 Adelie    Torgersen           38.6          17                 188        2900\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;\n\n\n\n\n\n\npenguins %&gt;%\n  arrange(desc(body_mass_g)) %&gt;%\n  head()\n\n# A tibble: 6 × 8\n  species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n  &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n1 Gentoo  Biscoe           49.2          15.2               221        6300\n2 Gentoo  Biscoe           59.6          17                 230        6050\n3 Gentoo  Biscoe           51.1          16.3               220        6000\n4 Gentoo  Biscoe           48.8          16.2               222        6000\n5 Gentoo  Biscoe           45.2          16.4               223        5950\n6 Gentoo  Biscoe           49.8          15.9               229        5950\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;\n\n\nEsto es útil, por ejemplo, para identificar los individuos más pesados o más ligeros.\n\n\n\n\n\npenguins %&gt;%\n  select(species, flipper_length_mm, sex) %&gt;%\n  head()\n\n# A tibble: 6 × 3\n  species flipper_length_mm sex   \n  &lt;fct&gt;               &lt;int&gt; &lt;fct&gt; \n1 Adelie                181 male  \n2 Adelie                186 female\n3 Adelie                195 female\n4 Adelie                 NA &lt;NA&gt;  \n5 Adelie                193 female\n6 Adelie                190 male  \n\n\n\n\nSeleccionar solo variables numéricas:\n\npenguins %&gt;%\n  select(where(is.numeric)) %&gt;%\n  head()\n\n# A tibble: 6 × 5\n  bill_length_mm bill_depth_mm flipper_length_mm body_mass_g  year\n           &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt; &lt;int&gt;\n1           39.1          18.7               181        3750  2007\n2           39.5          17.4               186        3800  2007\n3           40.3          18                 195        3250  2007\n4           NA            NA                  NA          NA  2007\n5           36.7          19.3               193        3450  2007\n6           39.3          20.6               190        3650  2007\n\n\nSeleccionar solo variables no numéricas:\n\npenguins %&gt;%\n  select(!where(is.numeric)) %&gt;%\n  head()\n\n# A tibble: 6 × 3\n  species island    sex   \n  &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt; \n1 Adelie  Torgersen male  \n2 Adelie  Torgersen female\n3 Adelie  Torgersen female\n4 Adelie  Torgersen &lt;NA&gt;  \n5 Adelie  Torgersen female\n6 Adelie  Torgersen male  \n\n\nEste tipo de selección es muy útil en análisis exploratorios.\n\n\n\n\nLa función mutate() se utiliza para crear o transformar variables.\nEjemplo: convertir la masa corporal de gramos a libras.\n\npenguins %&gt;%\n  mutate(body_weight_pounds = body_mass_g / 453.59237) %&gt;%\n  select(body_mass_g, body_weight_pounds) %&gt;%\n  head()\n\n# A tibble: 6 × 2\n  body_mass_g body_weight_pounds\n        &lt;int&gt;              &lt;dbl&gt;\n1        3750               8.27\n2        3800               8.38\n3        3250               7.17\n4          NA              NA   \n5        3450               7.61\n6        3650               8.05\n\n\n\n\n\nsummarize() permite calcular estadísticas descriptivas.\n\npenguins %&gt;%\n  summarize(avg_body_mass = mean(body_mass_g, na.rm = TRUE))\n\n# A tibble: 1 × 1\n  avg_body_mass\n          &lt;dbl&gt;\n1         4202.\n\n\nEl argumento na.rm = TRUE indica que los valores faltantes (NA) deben ignorarse.\n\n\n\nEn esta clase aprendimos a:\n\nManipular datos con dplyr\nUsar el operador %&gt;%\nFiltrar, ordenar y seleccionar información\nCrear nuevas variables\nCalcular estadísticas resumen\n\nEstas herramientas son la base del análisis de datos moderno en R y se utilizarán continuamente a lo largo del curso.",
-    "crumbs": [
-      "Teoría",
-      "Unidad 5",
-      "Introducción a R Clase 5 dplyr"
-    ]
+    "text": "Pdf de la presentación de Rmarkdown\npdf Rmarkdown"
   },
   {
-    "objectID": "teoria/05_unidad/05_apunte.html#paquetes-necesarios",
-    "href": "teoria/05_unidad/05_apunte.html#paquetes-necesarios",
-    "title": "Introducción a R Clase 5 dplyr",
+    "objectID": "teoria/04_unidad/04_apunte.html",
+    "href": "teoria/04_unidad/04_apunte.html",
+    "title": "Introducción a R Clase 3 ggplot",
     "section": "",
-    "text": "En R, gran parte de la funcionalidad se encuentra en paquetes. Para esta clase utilizaremos:\ndplyr: manipulación de datos tidyverse: colección de paquetes para ciencia de datos palmerpenguins: conjunto de datos de pingüinos antárticos\n⚠️ Nota Si ya tienen estos paquetes instalados, NO es necesario volver a instalarlos.\n\n# install.packages(\"dplyr\")\n# install.packages(\"tidyverse\")\n# install.packages(\"remotes\")\n# remotes::install_github(\"allisonhorst/palmerpenguins\")\n\nCargamos los paquetes en la sesión de R:\n\nlibrary(dplyr)\n\n\nAdjuntando el paquete: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ forcats   1.0.1     ✔ readr     2.1.6\n✔ ggplot2   4.0.2     ✔ stringr   1.6.0\n✔ lubridate 1.9.4     ✔ tibble    3.3.1\n✔ purrr     1.2.0     ✔ tidyr     1.3.2\n\n\n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(palmerpenguins)\n\n\nAdjuntando el paquete: 'palmerpenguins'\n\nThe following objects are masked from 'package:datasets':\n\n    penguins, penguins_raw",
+    "text": "Guía rápida de ggplot2 (cheatsheet)\n\n\nEl término gg, viene de “grammar of graphics”. set de componentes: - data = debe ser un data.frame - aesthetics: cómo se representarán visualmente los datos en términos ejes (x,y), color, tamaño, forma, etc. - geometry: Geometría de los objetos a graficar, Puntos,Líneas,Etc.\n\n\n\n\n\n# Load data\nlibrary(ggplot2)\ndata(ChickWeight)\nhead(ChickWeight)\n\n  weight Time Chick Diet\n1     42    0     1    1\n2     51    2     1    1\n3     59    4     1    1\n4     64    6     1    1\n5     76    8     1    1\n6     93   10     1    1\n\nsummary(ChickWeight)\n\n     weight           Time           Chick     Diet   \n Min.   : 35.0   Min.   : 0.00   13     : 12   1:220  \n 1st Qu.: 63.0   1st Qu.: 4.00   9      : 12   2:120  \n Median :103.0   Median :10.00   20     : 12   3:120  \n Mean   :121.8   Mean   :10.72   10     : 12   4:118  \n 3rd Qu.:163.8   3rd Qu.:16.00   17     : 12          \n Max.   :373.0   Max.   :21.00   19     : 12          \n                                 (Other):506          \n\n\n\n\n\nEsto incluye cosas como qué variable va en el eje X, qué variable va en el eje Y y qué tamaño, forma o color desea para sus puntos/líneas/barras/etc. ggplot2_image2 \n\n\n\nUna vez que definimos cómo asignar los datos a elementos estéticos de nuestra elección, la forma en que presentamos los datos es utilizando un objeto geométrico, el cual puede ser un diagrama de dispersión, un diagrama de caja, un diagrama de líneas, etc. \n\n\n\nTe permite decidir cómo se ve el gráfico en términos de como el color, fuente de letra, tamaño de fuente. Si no los especifica, ggplot simplemente usará la configuración predeterminada. ### Ejemplo Digamos que queremos crear un diagrama de dispersión que muestre el peso versus el tiempo de estos polluelos.\n\n#ggplot(ChickWeight)\n\n\n#ggplot(data, aes(x, y))\nggplot(ChickWeight, aes(x = Time, y = weight))\n\n\n\n\n\n\n\n\n\n\n\n\n# Crea un bar plot con ggplot2\nggplot(ChickWeight, aes(x = Time, y = weight))+\n  geom_col()\n\n\n\n\n\n\n\n\n\n\n\n\n# Crea un box plot con ggplot2\nggplot(ChickWeight, aes(x = Diet, y = weight))+\n  geom_boxplot()\n\n\n\n\n\n\n\n\n\n\n\n\n#ggplot(data, aes(x, y))\nggplot(ChickWeight, aes(x = Time, y = weight))+\n  geom_point()\n\n\n\n\n\n\n\n\n\nggplot(ChickWeight, aes(x = Time, y = weight,color = Diet)) +\n  geom_point()\n\n\n\n\n\n\n\n\n\n\n\nggplot(ChickWeight, aes(x = Time, y = weight,color = Diet)) +\n  geom_point(size=5)\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(ChickWeight, aes(x = Time, y = weight,color = Diet,size = weight)) +\n  geom_point()\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(ChickWeight, aes(x = Time, y = weight,color = Diet)) +\n  geom_point()+ facet_grid(~Diet)\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(ChickWeight, aes(x = Time, y = weight,color = Diet,size=weight)) +\n  geom_point(alpha = 0.5)\n\n\n\n\n\n\n\n\n\n\n\nggplot(ChickWeight, aes(x = Time, y = weight,color = Diet,\nsize=weight,shape=Diet))+ \n  geom_point()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(ChickWeight, aes(x = Time, y = weight,size=weight)) + geom_point(shape=23)\n\n\n\n\n\n\n\n\n\nfig &lt;-ggplot(ChickWeight, aes(x = Time, y = weight,color = Diet)) +\n  geom_point(aes(shape= Diet)) +\nscale_shape_manual(values=c(3, 16, 17, 6)) +  scale_color_manual(values=c('#999999','#E69F00', '#56B4E9','pink'))\nfig\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nhttps://r-charts.com/colors/\n\n\n#RColorBrewer tiene una bonita paleta de colores. install.packages(\"RColorBrewer\").\nlibrary(RColorBrewer)\ndisplay.brewer.all()\n\n\n\n\n\n\n\n\n\nscale_fill_brewer() for box plot, bar plot, violin plot, dot plot, etc\nscale_color_brewer() for lines and points\n\n\nfig2&lt;-ggplot(ChickWeight, aes(x = Time, y = weight,color = Diet)) +\n  geom_point(size = 4)+ scale_color_brewer(palette = \"Dark2\")\nfig2\n\n\n\n\n\n\n\n\n\n\n\n\n\nhttps://github.com/ewenme/ghibli/tree/master?tab=readme-ov-file\n\n\n\n#install.packages('ghibli')\n# load package\nlibrary(ghibli)\nghibli_palettes$TotoroMedium\n\n&lt;colors&gt;\n#0A1215FF #2D2A25FF #583B2BFF #534C53FF #446590FF #AD8152FF #BBA78CFF \n\n\n\n\n\n\n# display palettes w/ names\npar(mfrow=c(9,3))\nfor(i in names(ghibli_palettes)) print(ghibli_palette(i))\n\n\n\n\n\n\n\n\n\n##scale_[colour|fill]_ghibli_[c|d]()\nfig3&lt;-ggplot(ChickWeight, aes(x = Time, y = weight,color = Diet)) +\n  geom_point(size = 4)+ # ghibli stuff\n  scale_colour_ghibli_d(\"MarnieMedium1\", direction = -1)\nfig3\n\n\n\n\n\n\n\n\n\n\n\n##scale_[colour|fill]_ghibli_[c|d]()\nfig4&lt;-ggplot(ChickWeight, aes(x = Time, y = weight,color = Diet)) +\n  geom_point(size = 4)+ # ghibli stuff\n  scale_colour_ghibli_d(\"MarnieMedium1\", direction = -1) + ggtitle(\"Datos de la prueba de la dieta en pollitos \") + ylab(\"Peso de los pollitos(gm)\") +\nxlab(\"Tiempo(d)\")\n\n\nfig4\n\n\n\n\n\n\n\n\n####Modificar el estilo de la etiquetas y ejes con theme y labs - https://ggplot2.tidyverse.org/reference/theme.html \n\nfig4 + theme(legend.title = element_text(face = \"bold.italic\",colour=\"blue\",size=14))\n\n\n\n\n\n\n\n\n\n#install.packages('extrafont')\n#library(extrafont)\n#font_import()\n#loadfonts(device = \"win\")\n#fonts()\nfig5 &lt;- fig4 + theme(plot.title=element_text(hjust=0.5,size=15,family=\"Comic Sans MS\",face=\"bold.italic\",colour=\"red\"))\n\n\nfig5\n\n\n\n\n\n\n\n\n\n#install.packages(\"cowplot\")\nlibrary(cowplot)\ncowplot::plot_grid(fig,fig2,fig3,fig4, labels = c('A)','B)','C)','D)')) #nrow=4\n\n\n\n\n\n\n\n#figura_convertida&lt;-as.ggplot(figura_que_no_se_genero_con_ggplot2)\n\n\n\n\n\n\nhttps://ggplot2.tidyverse.org/reference/ggsave.html\nSi la figura que generaste no fue realizada con ggplot 2,conviértela con as.ggplot figura_convertida&lt;-as.ggplot(figura_que_no_se_genero_con_ggplot2)\n\n\nggsave(\"Imagenes/plot.png\", fig5, width = 5, height = 5)\n\n\n\n\n‘theme’",
     "crumbs": [
       "Teoría",
-      "Unidad 5",
-      "Introducción a R Clase 5 dplyr"
+      "Unidad 4",
+      "Introducción a R Clase 3 ggplot"
     ]
   },
   {
-    "objectID": "teoria/05_unidad/05_apunte.html#el-conjunto-de-datos-penguins",
-    "href": "teoria/05_unidad/05_apunte.html#el-conjunto-de-datos-penguins",
-    "title": "Introducción a R Clase 5 dplyr",
+    "objectID": "teoria/04_unidad/04_apunte.html#ggplot2-1",
+    "href": "teoria/04_unidad/04_apunte.html#ggplot2-1",
+    "title": "Introducción a R Clase 3 ggplot",
     "section": "",
-    "text": "El conjunto de datos penguins contiene información morfológica de tres especies de pingüinos observados en distintas islas de la Antártida.\nAlgunas variables incluyen:\n\nespecie\nisla\nlongitud y profundidad del pico\nlongitud de la aleta\nmasa corporal\nsexo\nPuedes explorar el dataset en este sitio.\n\nVeamos los nombres de las variables disponibles:\n\nnames(penguins)\n\n[1] \"species\"           \"island\"            \"bill_length_mm\"   \n[4] \"bill_depth_mm\"     \"flipper_length_mm\" \"body_mass_g\"      \n[7] \"sex\"               \"year\"",
+    "text": "El término gg, viene de “grammar of graphics”. set de componentes: - data = debe ser un data.frame - aesthetics: cómo se representarán visualmente los datos en términos ejes (x,y), color, tamaño, forma, etc. - geometry: Geometría de los objetos a graficar, Puntos,Líneas,Etc.",
     "crumbs": [
       "Teoría",
-      "Unidad 5",
-      "Introducción a R Clase 5 dplyr"
+      "Unidad 4",
+      "Introducción a R Clase 3 ggplot"
     ]
   },
   {
-    "objectID": "teoria/05_unidad/05_apunte.html#el-operador-pipe",
-    "href": "teoria/05_unidad/05_apunte.html#el-operador-pipe",
-    "title": "Introducción a R Clase 5 dplyr",
+    "objectID": "teoria/04_unidad/04_apunte.html#data",
+    "href": "teoria/04_unidad/04_apunte.html#data",
+    "title": "Introducción a R Clase 3 ggplot",
     "section": "",
-    "text": "Una de las ideas centrales de dplyr es el uso del operador pipe (%&gt;%).\n\n%&gt;% o |&gt;\nAtajos en el teclado\nWindows / Linux: Ctrl + Shift +\nMmacOS: Cmd + Shift + M\n\nEste operador permite encadenar funciones, haciendo que el código:\n\nsea más legible\nsiga una lógica paso a paso\nse parezca al lenguaje natural\n\nPuede leerse como “y luego”.\nEjemplo conceptual:\nTomamos los datos y luego filtramos y luego ordenamos y luego resumimos\nfilter(): Filtrar observaciones (filas) \nLa función filter() se utiliza para seleccionar filas que cumplen una o más condiciones.",
+    "text": "# Load data\nlibrary(ggplot2)\ndata(ChickWeight)\nhead(ChickWeight)\n\n  weight Time Chick Diet\n1     42    0     1    1\n2     51    2     1    1\n3     59    4     1    1\n4     64    6     1    1\n5     76    8     1    1\n6     93   10     1    1\n\nsummary(ChickWeight)\n\n     weight           Time           Chick     Diet   \n Min.   : 35.0   Min.   : 0.00   13     : 12   1:220  \n 1st Qu.: 63.0   1st Qu.: 4.00   9      : 12   2:120  \n Median :103.0   Median :10.00   20     : 12   3:120  \n Mean   :121.8   Mean   :10.72   10     : 12   4:118  \n 3rd Qu.:163.8   3rd Qu.:16.00   17     : 12          \n Max.   :373.0   Max.   :21.00   19     : 12          \n                                 (Other):506",
     "crumbs": [
       "Teoría",
-      "Unidad 5",
-      "Introducción a R Clase 5 dplyr"
+      "Unidad 4",
+      "Introducción a R Clase 3 ggplot"
     ]
   },
   {
-    "objectID": "teoria/05_unidad/05_apunte.html#pingüinos-de-la-isla-torgersen",
-    "href": "teoria/05_unidad/05_apunte.html#pingüinos-de-la-isla-torgersen",
-    "title": "Introducción a R Clase 5 dplyr",
+    "objectID": "teoria/04_unidad/04_apunte.html#aesthetics",
+    "href": "teoria/04_unidad/04_apunte.html#aesthetics",
+    "title": "Introducción a R Clase 3 ggplot",
     "section": "",
-    "text": "torgersen_penguins &lt;- penguins %&gt;%\n  filter(island == \"Torgersen\")\n\nhead(torgersen_penguins)\n\n# A tibble: 6 × 8\n  species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n  &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n1 Adelie  Torgersen           39.1          18.7               181        3750\n2 Adelie  Torgersen           39.5          17.4               186        3800\n3 Adelie  Torgersen           40.3          18                 195        3250\n4 Adelie  Torgersen           NA            NA                  NA          NA\n5 Adelie  Torgersen           36.7          19.3               193        3450\n6 Adelie  Torgersen           39.3          20.6               190        3650\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;\n\n\nAquí:\n\nTomamos el conjunto penguins\nFiltramos solo los individuos de la isla Torgersen\nGuardamos el resultado en un nuevo objeto",
+    "text": "Esto incluye cosas como qué variable va en el eje X, qué variable va en el eje Y y qué tamaño, forma o color desea para sus puntos/líneas/barras/etc. ggplot2_image2",
     "crumbs": [
       "Teoría",
-      "Unidad 5",
-      "Introducción a R Clase 5 dplyr"
+      "Unidad 4",
+      "Introducción a R Clase 3 ggplot"
     ]
   },
   {
-    "objectID": "teoria/05_unidad/05_apunte.html#filtrar-con-una-condición-numérica",
-    "href": "teoria/05_unidad/05_apunte.html#filtrar-con-una-condición-numérica",
-    "title": "Introducción a R Clase 5 dplyr",
+    "objectID": "teoria/04_unidad/04_apunte.html#geometry",
+    "href": "teoria/04_unidad/04_apunte.html#geometry",
+    "title": "Introducción a R Clase 3 ggplot",
     "section": "",
-    "text": "penguins %&gt;%\n  filter(bill_depth_mm &gt; 16.2) %&gt;%\n  head()\n\n# A tibble: 6 × 8\n  species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n  &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n1 Adelie  Torgersen           39.1          18.7               181        3750\n2 Adelie  Torgersen           39.5          17.4               186        3800\n3 Adelie  Torgersen           40.3          18                 195        3250\n4 Adelie  Torgersen           36.7          19.3               193        3450\n5 Adelie  Torgersen           39.3          20.6               190        3650\n6 Adelie  Torgersen           38.9          17.8               181        3625\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;\n\n\nEste código selecciona únicamente los pingüinos cuya profundidad del pico es mayor a 16.2 mm.",
+    "text": "Una vez que definimos cómo asignar los datos a elementos estéticos de nuestra elección, la forma en que presentamos los datos es utilizando un objeto geométrico, el cual puede ser un diagrama de dispersión, un diagrama de caja, un diagrama de líneas, etc.",
     "crumbs": [
       "Teoría",
-      "Unidad 5",
-      "Introducción a R Clase 5 dplyr"
+      "Unidad 4",
+      "Introducción a R Clase 3 ggplot"
     ]
   },
   {
-    "objectID": "teoria/05_unidad/05_apunte.html#filtrar-usando-between",
-    "href": "teoria/05_unidad/05_apunte.html#filtrar-usando-between",
-    "title": "Introducción a R Clase 5 dplyr",
+    "objectID": "teoria/04_unidad/04_apunte.html#theme",
+    "href": "teoria/04_unidad/04_apunte.html#theme",
+    "title": "Introducción a R Clase 3 ggplot",
     "section": "",
-    "text": "penguins %&gt;%\n  filter(between(bill_depth_mm, 16.2, 18.1))\n\n# A tibble: 108 × 8\n   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n 1 Adelie  Torgersen           39.5          17.4               186        3800\n 2 Adelie  Torgersen           40.3          18                 195        3250\n 3 Adelie  Torgersen           38.9          17.8               181        3625\n 4 Adelie  Torgersen           34.1          18.1               193        3475\n 5 Adelie  Torgersen           37.8          17.1               186        3300\n 6 Adelie  Torgersen           37.8          17.3               180        3700\n 7 Adelie  Torgersen           41.1          17.6               182        3200\n 8 Adelie  Torgersen           36.6          17.8               185        3700\n 9 Adelie  Biscoe              38.2          18.1               185        3950\n10 Adelie  Biscoe              38.8          17.2               180        3800\n# ℹ 98 more rows\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;\n\n\nbetween() es útil para especificar rangos numéricos de manera clara y legible.",
+    "text": "Te permite decidir cómo se ve el gráfico en términos de como el color, fuente de letra, tamaño de fuente. Si no los especifica, ggplot simplemente usará la configuración predeterminada. ### Ejemplo Digamos que queremos crear un diagrama de dispersión que muestre el peso versus el tiempo de estos polluelos.\n\n#ggplot(ChickWeight)\n\n\n#ggplot(data, aes(x, y))\nggplot(ChickWeight, aes(x = Time, y = weight))",
     "crumbs": [
       "Teoría",
-      "Unidad 5",
-      "Introducción a R Clase 5 dplyr"
+      "Unidad 4",
+      "Introducción a R Clase 3 ggplot"
     ]
   },
   {
-    "objectID": "teoria/05_unidad/05_apunte.html#arrange-ordenar-datos",
-    "href": "teoria/05_unidad/05_apunte.html#arrange-ordenar-datos",
-    "title": "Introducción a R Clase 5 dplyr",
+    "objectID": "teoria/04_unidad/04_apunte.html#bar-plot",
+    "href": "teoria/04_unidad/04_apunte.html#bar-plot",
+    "title": "Introducción a R Clase 3 ggplot",
     "section": "",
-    "text": "La función arrange() permite ordenar las filas de un conjunto de datos.\n\n\n\npenguins %&gt;%\n  arrange(body_mass_g) %&gt;%\n  head()\n\n# A tibble: 6 × 8\n  species   island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n  &lt;fct&gt;     &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n1 Chinstrap Dream               46.9          16.6               192        2700\n2 Adelie    Biscoe              36.5          16.6               181        2850\n3 Adelie    Biscoe              36.4          17.1               184        2850\n4 Adelie    Biscoe              34.5          18.1               187        2900\n5 Adelie    Dream               33.1          16.1               178        2900\n6 Adelie    Torgersen           38.6          17                 188        2900\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;\n\n\n\n\n\n\npenguins %&gt;%\n  arrange(desc(body_mass_g)) %&gt;%\n  head()\n\n# A tibble: 6 × 8\n  species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n  &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n1 Gentoo  Biscoe           49.2          15.2               221        6300\n2 Gentoo  Biscoe           59.6          17                 230        6050\n3 Gentoo  Biscoe           51.1          16.3               220        6000\n4 Gentoo  Biscoe           48.8          16.2               222        6000\n5 Gentoo  Biscoe           45.2          16.4               223        5950\n6 Gentoo  Biscoe           49.8          15.9               229        5950\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;\n\n\nEsto es útil, por ejemplo, para identificar los individuos más pesados o más ligeros.",
+    "text": "# Crea un bar plot con ggplot2\nggplot(ChickWeight, aes(x = Time, y = weight))+\n  geom_col()",
     "crumbs": [
       "Teoría",
-      "Unidad 5",
-      "Introducción a R Clase 5 dplyr"
+      "Unidad 4",
+      "Introducción a R Clase 3 ggplot"
     ]
   },
   {
-    "objectID": "teoria/05_unidad/05_apunte.html#select-seleccionar-variables-columnas",
-    "href": "teoria/05_unidad/05_apunte.html#select-seleccionar-variables-columnas",
-    "title": "Introducción a R Clase 5 dplyr",
+    "objectID": "teoria/04_unidad/04_apunte.html#box-plot",
+    "href": "teoria/04_unidad/04_apunte.html#box-plot",
+    "title": "Introducción a R Clase 3 ggplot",
     "section": "",
-    "text": "penguins %&gt;%\n  select(species, flipper_length_mm, sex) %&gt;%\n  head()\n\n# A tibble: 6 × 3\n  species flipper_length_mm sex   \n  &lt;fct&gt;               &lt;int&gt; &lt;fct&gt; \n1 Adelie                181 male  \n2 Adelie                186 female\n3 Adelie                195 female\n4 Adelie                 NA &lt;NA&gt;  \n5 Adelie                193 female\n6 Adelie                190 male  \n\n\n\n\nSeleccionar solo variables numéricas:\n\npenguins %&gt;%\n  select(where(is.numeric)) %&gt;%\n  head()\n\n# A tibble: 6 × 5\n  bill_length_mm bill_depth_mm flipper_length_mm body_mass_g  year\n           &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt; &lt;int&gt;\n1           39.1          18.7               181        3750  2007\n2           39.5          17.4               186        3800  2007\n3           40.3          18                 195        3250  2007\n4           NA            NA                  NA          NA  2007\n5           36.7          19.3               193        3450  2007\n6           39.3          20.6               190        3650  2007\n\n\nSeleccionar solo variables no numéricas:\n\npenguins %&gt;%\n  select(!where(is.numeric)) %&gt;%\n  head()\n\n# A tibble: 6 × 3\n  species island    sex   \n  &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt; \n1 Adelie  Torgersen male  \n2 Adelie  Torgersen female\n3 Adelie  Torgersen female\n4 Adelie  Torgersen &lt;NA&gt;  \n5 Adelie  Torgersen female\n6 Adelie  Torgersen male  \n\n\nEste tipo de selección es muy útil en análisis exploratorios.",
+    "text": "# Crea un box plot con ggplot2\nggplot(ChickWeight, aes(x = Diet, y = weight))+\n  geom_boxplot()",
     "crumbs": [
       "Teoría",
-      "Unidad 5",
-      "Introducción a R Clase 5 dplyr"
+      "Unidad 4",
+      "Introducción a R Clase 3 ggplot"
     ]
   },
   {
-    "objectID": "teoria/05_unidad/05_apunte.html#mutate-crear-nuevas-variables",
-    "href": "teoria/05_unidad/05_apunte.html#mutate-crear-nuevas-variables",
-    "title": "Introducción a R Clase 5 dplyr",
+    "objectID": "teoria/04_unidad/04_apunte.html#scatter-plot",
+    "href": "teoria/04_unidad/04_apunte.html#scatter-plot",
+    "title": "Introducción a R Clase 3 ggplot",
     "section": "",
-    "text": "La función mutate() se utiliza para crear o transformar variables.\nEjemplo: convertir la masa corporal de gramos a libras.\n\npenguins %&gt;%\n  mutate(body_weight_pounds = body_mass_g / 453.59237) %&gt;%\n  select(body_mass_g, body_weight_pounds) %&gt;%\n  head()\n\n# A tibble: 6 × 2\n  body_mass_g body_weight_pounds\n        &lt;int&gt;              &lt;dbl&gt;\n1        3750               8.27\n2        3800               8.38\n3        3250               7.17\n4          NA              NA   \n5        3450               7.61\n6        3650               8.05",
+    "text": "#ggplot(data, aes(x, y))\nggplot(ChickWeight, aes(x = Time, y = weight))+\n  geom_point()\n\n\n\n\n\n\n\n\n\nggplot(ChickWeight, aes(x = Time, y = weight,color = Diet)) +\n  geom_point()\n\n\n\n\n\n\n\n\n\n\n\nggplot(ChickWeight, aes(x = Time, y = weight,color = Diet)) +\n  geom_point(size=5)\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(ChickWeight, aes(x = Time, y = weight,color = Diet,size = weight)) +\n  geom_point()\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(ChickWeight, aes(x = Time, y = weight,color = Diet)) +\n  geom_point()+ facet_grid(~Diet)",
     "crumbs": [
       "Teoría",
-      "Unidad 5",
-      "Introducción a R Clase 5 dplyr"
+      "Unidad 4",
+      "Introducción a R Clase 3 ggplot"
     ]
   },
   {
-    "objectID": "teoria/05_unidad/05_apunte.html#summarize-resumir-datos",
-    "href": "teoria/05_unidad/05_apunte.html#summarize-resumir-datos",
-    "title": "Introducción a R Clase 5 dplyr",
+    "objectID": "teoria/04_unidad/04_apunte.html#cambiar-la-transparencia-con-alpha",
+    "href": "teoria/04_unidad/04_apunte.html#cambiar-la-transparencia-con-alpha",
+    "title": "Introducción a R Clase 3 ggplot",
     "section": "",
-    "text": "summarize() permite calcular estadísticas descriptivas.\n\npenguins %&gt;%\n  summarize(avg_body_mass = mean(body_mass_g, na.rm = TRUE))\n\n# A tibble: 1 × 1\n  avg_body_mass\n          &lt;dbl&gt;\n1         4202.\n\n\nEl argumento na.rm = TRUE indica que los valores faltantes (NA) deben ignorarse.",
+    "text": "ggplot(ChickWeight, aes(x = Time, y = weight,color = Diet,size=weight)) +\n  geom_point(alpha = 0.5)\n\n\n\n\n\n\n\n\n\n\n\nggplot(ChickWeight, aes(x = Time, y = weight,color = Diet,\nsize=weight,shape=Diet))+ \n  geom_point()",
     "crumbs": [
       "Teoría",
-      "Unidad 5",
-      "Introducción a R Clase 5 dplyr"
+      "Unidad 4",
+      "Introducción a R Clase 3 ggplot"
     ]
   },
   {
-    "objectID": "teoria/05_unidad/05_apunte.html#conclusiones-de-la-sesión",
-    "href": "teoria/05_unidad/05_apunte.html#conclusiones-de-la-sesión",
-    "title": "Introducción a R Clase 5 dplyr",
+    "objectID": "teoria/04_unidad/04_apunte.html#formas-de-puntos-en-r",
+    "href": "teoria/04_unidad/04_apunte.html#formas-de-puntos-en-r",
+    "title": "Introducción a R Clase 3 ggplot",
     "section": "",
-    "text": "En esta clase aprendimos a:\n\nManipular datos con dplyr\nUsar el operador %&gt;%\nFiltrar, ordenar y seleccionar información\nCrear nuevas variables\nCalcular estadísticas resumen\n\nEstas herramientas son la base del análisis de datos moderno en R y se utilizarán continuamente a lo largo del curso.",
+    "text": "ggplot(ChickWeight, aes(x = Time, y = weight,size=weight)) + geom_point(shape=23)\n\n\n\n\n\n\n\n\n\nfig &lt;-ggplot(ChickWeight, aes(x = Time, y = weight,color = Diet)) +\n  geom_point(aes(shape= Diet)) +\nscale_shape_manual(values=c(3, 16, 17, 6)) +  scale_color_manual(values=c('#999999','#E69F00', '#56B4E9','pink'))\nfig",
     "crumbs": [
       "Teoría",
-      "Unidad 5",
-      "Introducción a R Clase 5 dplyr"
+      "Unidad 4",
+      "Introducción a R Clase 3 ggplot"
     ]
   },
   {
-    "objectID": "teoria/03_unidad/03_apunte.html",
-    "href": "teoria/03_unidad/03_apunte.html",
-    "title": "Introducción a R Clase 3",
+    "objectID": "teoria/04_unidad/04_apunte.html#seleccionar-colores-con-una-paqueteria",
+    "href": "teoria/04_unidad/04_apunte.html#seleccionar-colores-con-una-paqueteria",
+    "title": "Introducción a R Clase 3 ggplot",
     "section": "",
-    "text": "¿Qué es una función en programación?\nUna función tiene:\n📛 un nombre\n📦 uno o más argumentos\n🧱 un cuerpo que define lo que hace\n📌 ¿Cómo se define una función?\nLas funciones definidas por el usuario se crean usando la siguiente estructura:\n\n# suma &lt;- function(x, y) {\n#  resultado &lt;- x + y\n#  return(resultado)\n#  }\n\nPartimos del algoritmo para calcular el área de un cuadrilátero: lado x lado.\nPodemos convertir esto a operaciones de R y asignarlas a una función llamada area_cuad\n\narea_cuad &lt;- function(lado1,lado2) {\n  lado1 * lado2\n}\n\n\narea_cuad(lado1 = 4, lado2 = 6)\n\n[1] 24\n\narea_cuad(4, 6)\n\n[1] 24\n\n\n\n\n\n.pull-left[ if (si) es usado cuando queremos que una operación se ejecute únicamente cuando una condición se cumple.] .pull-right[else (de otro modo) es usado para indicarle a R qué hacer en caso de la condición de un if no se cumpla.]\nUn if es la manera de decirle a R:\nSI esta condición es cierta, ENTONCES haz estas operaciones..\nEl modelo para un if es:\n\n# if(Condición) {\n# operaciones_si_la_condición_es_TRUE\n# }\n\nSi la condición se cumple, es decir, es verdadera (TRUE), entonces se realizan las operaciones. En caso contrario, no ocurre nada y el código con las operaciones no es ejecutado.\nPor ejemplo, le pedimos a R que nos muestre el texto “Verdadero” si la condición se cumple.\n\n# Se cumple la condición y se muestra \"verdadero\"\nif(10 &gt; 5) {\n  \"Verdadero\"\n}\n\n[1] \"Verdadero\"\n\n\n\n# No se cumple la condición y no pasa nada\nif(4 &gt; 5) {\n  \"Verdadero\"\n}\n\nelse complementa un if, pues indica qué ocurrirá cuando la condición no se cumple, es falsa (FALSE), en lugar de no hacer nada.\nUn if con else es la manera de decirle a R:\nSI esta condición es es cierta, ENTONCES haz estas operaciones, DE OTRO MODO haz estas otras operaciones.\nEl modelo para un if con un else es:\n\n# if(condición) {\n#  operaciones_si_la_condición_es_TRUE\n# } else {\n#   operaciones_si_la_condición_es_FALSE\n# }\n\n\n\n\n\n# Se cumple la condición y se muestra \"Verdadero\"\nif(4 &gt; 5) {\n  \"Verdadero\"\n} else {\n  \"Falso\"\n}\n\n[1] \"Falso\"\n\n\n\n# No se cumple la condición y se muestra \"Falso\"\nif(4 &gt; 5) {\n  \"Verdadero\"\n} else {\n  \"Falso\"\n}\n\n[1] \"Falso\"\n\n\n ## Stop\n\ndividir &lt;- function(a, b) {\n  if (b == 0) {\n    stop(\"Error: No se puede dividir por cero.\")\n  }\n  return(a / b)\n}\n\n# Uso:\n# dividir(10, 0) # Lanza error: Error: No se puede dividir por cero.\n\n\n\n\n\n🎯 Objetivo: Para ejemplificar el uso de if / else, crearemos una función que calcule el promedio de calificaciones de un estudiante y, según el resultado, muestre un mensaje específico 📩.\n🔧 Paso 1. Definir función de promedio Primero creamos una función que calcule el promedio usando la función base mean() de R 📊. Más adelante la ampliaremos para incluir lógica condicional.\n\n# nombre &lt;- function(argumentos) {\n# operaciones\n# }\n\n\npromedio &lt;- function(calificaciones) {\n  mean(calificaciones)\n}\n\npromedio(c(6, 7, 8, 9))\n\n[1] 7.5\n\n\n\n\n\nSi asumimos que un estudiante necesita obtener 6 o más de promedio para aprobar, podemos decir que:\nSI el promedio de un estudiante es igual o mayor a 6, ENTONCES mostrar “Aprobado”, DE OTRO MODO, mostrar “Reprobado”. Aplicamso esta lógica con un if, else en la función promedio()\n\npromedio &lt;- function(calificaciones) {\n  media &lt;- mean(calificaciones)\n  if(media &gt;= 6) {\n    \"Aprobado\"\n  } else {\n    \"Reprobado\"\n  }\n}\npromedio &lt;- function(calificaciones){\n  media &lt;-mean(calificaciones)\n  if(media &gt;=6){\n    \"Aprobado\"\n  } else{\n    \"Reprobado\"\n  }\n}\npromedio(c(6, 7, 8, 9, 5))\n\n[1] \"Aprobado\"\n\n\nEstá funcionando, aunque los resultados podrían tener una mejor presentación.\nUsaremos la función paste0() para pegar el promedio de calificaciones, como texto, con el resultado de “Aprobado” o “Reprobado”. Esta función acepta como argumentos cadenas de texto y las pega (concatena) entre sí, devolviendo como resultado una nueva cadena\n\npromedio &lt;- function(calificaciones) {\n  media &lt;- mean(calificaciones)\n  texto &lt;- paste0(\"Calificación: \",media,\", \")\n  if(media &gt;= 6) {\n    paste0(texto, \"aprobado\")\n  } else {\n    paste0(texto, \"reprobado\")\n  }\n}\npromedio(c(5, 8, 5, 6, 5))\n\n[1] \"Calificación: 5.8, reprobado\"\n\n\n\n\n\n\n#Une las cadenas e incluye un separador entre ellas.\n\ncadena1 &lt;- \"Machine\"\ncadena2 &lt;- \"Learning\"\nresultado &lt;- paste0(cadena1,cadena2)\nresultado\n\n[1] \"MachineLearning\"\n\n\n\n#Funciona de manera similar a paste(), pero no incluye ningún separador entre las cadenas.\n\ncadena1 &lt;- \"Data\"\ncadena2 &lt;- \"Science\"\nresultado &lt;- paste0(cadena1, cadena2)\nresultado\n\n[1] \"DataScience\"\n\n\n\n\n\n🔁 La función ifelse() en R nos permite vectorizar la lógica de if / else, es decir, aplicar una condición a todos los elementos de un vector sin necesidad de escribir múltiples sentencias.\n📌 Cuando intentamos usar una estructura tradicional de if / else con un vector, R solo evalúa el primer elemento y muestra una advertencia, porque if espera una sola condición lógica.\n⚡ En cambio, con ifelse() obtenemos directamente un resultado para cada elemento del vector según si cumple o no la condición.\n\n# if(1:10 &lt; 3) {\n#   \"Verdadero\"\n# }\n## Warning in if (1:10 &lt; 3) {: la condición tiene longitud &gt; 1 y sólo el\n## primer elemento será usado\n\nEn cambio, con ifelse se nos devolverá un valor para cada elemento de un vector en el que la condición sea TRUE, además nos devolverá otro valor para los elementos en que la condición sea FALSE\n\n# ifelse(vector, valor_si_TRUE, valor_si_FALSE)\n\n\n\n\n\nifelse(1:10 &lt; 3,\"Verdadero\",\"Falso\")\n\n [1] \"Verdadero\" \"Verdadero\" \"Falso\"     \"Falso\"     \"Falso\"     \"Falso\"    \n [7] \"Falso\"     \"Falso\"     \"Falso\"     \"Falso\"    \n\n\n\n#Por ejemplo, pedimos sólo los números que son exactamente divisibles entre 2 y 3.\n\nnum &lt;- 1:20\n\nifelse(num %% 2 == 0 & num %% 3, \"Divisible\", \"No divisible\")\n\n [1] \"No divisible\" \"Divisible\"    \"No divisible\" \"Divisible\"    \"No divisible\"\n [6] \"No divisible\" \"No divisible\" \"Divisible\"    \"No divisible\" \"Divisible\"   \n[11] \"No divisible\" \"No divisible\" \"No divisible\" \"Divisible\"    \"No divisible\"\n[16] \"Divisible\"    \"No divisible\" \"No divisible\" \"No divisible\" \"Divisible\"   \n\n\n\n\n\n\n#Desde luego, esto es particularmente útil para recodificar datos.\n\ntabla_estudiantes &lt;- data.frame(\n  Estudiantes=c(\"Ron\",\"Jake\",\"Ava\",\"Sophia\",\"Mia\"),\n  Calificaciones=c(3.5,7.5,4.5,3.0,8.5))\n\ntabla_estudiantes\n\n  Estudiantes Calificaciones\n1         Ron            3.5\n2        Jake            7.5\n3         Ava            4.5\n4      Sophia            3.0\n5         Mia            8.5\n\ntabla_estudiantes$Resultado =   \n  ifelse(tabla_estudiantes$Calificaciones&gt;6,\n         \"Aprobado\",\"Reprobado\")\n\ntabla_estudiantes\n\n  Estudiantes Calificaciones Resultado\n1         Ron            3.5 Reprobado\n2        Jake            7.5  Aprobado\n3         Ava            4.5 Reprobado\n4      Sophia            3.0 Reprobado\n5         Mia            8.5  Aprobado\n\n\n\n\n\n\n# Create dataframe\ndf &lt;- data.frame(id=c(11,22,33,44,55),\n                        pages=c(32,45,33,22,56),\n                        name=c(\"spark\",\"python\",\"R\",\"java\",\"jsp\"),\n                        chapters=c(76,86,11,15,7),\n                        price=c(144,553,321,567,890))\ndf\n\n  id pages   name chapters price\n1 11    32  spark       76   144\n2 22    45 python       86   553\n3 33    33      R       11   321\n4 44    22   java       15   567\n5 55    56    jsp        7   890\n\n\nAgrega una nueva columna al dataframe para saber si el libro es pequeño (Small) o grande(Big). Sera pequeño si tiene menos de 20 capítulos y más de 10 páginas\n\ndf$size &lt;- ifelse(df$pages&gt;10 & df$chapters&lt;20,\"SMALL\",\"BIG\")\ndf\n\n  id pages   name chapters price  size\n1 11    32  spark       76   144   BIG\n2 22    45 python       86   553   BIG\n3 33    33      R       11   321 SMALL\n4 44    22   java       15   567 SMALL\n5 55    56    jsp        7   890 SMALL\n\n\n\n\n\nLa instrucción for itera por los elementos de un vector o lista, ejecutando un conjunto de instrucciones en cada iteración. Su sintaxis es:\n\n# for (item in vector) {\n#   conjunto_de_instrucciones\n# }\n\n# for (i in lista) {\n  # Código\n# }\n\n\nfor (x in c(20, 4, 6)) {\n  print(x)\n}\n\n[1] 20\n[1] 4\n[1] 6\n\n\n\nfor (alumno in tabla_estudiantes$Estudiantes) {\n  print(alumno)\n}\n\n[1] \"Ron\"\n[1] \"Jake\"\n[1] \"Ava\"\n[1] \"Sophia\"\n[1] \"Mia\"\n\n\n\n\n\n\nRealiza un lista de tus frutas favoritas\nCrea un ciclo for para leer la lista\nEl ciclo for debe regresar cada fruta de la lista\n\n\nfruits &lt;- list(\"apple\", \"banana\", \"grape\")\nfor (x in fruits) {\n  print(x)\n}\n\n[1] \"apple\"\n[1] \"banana\"\n[1] \"grape\"\n\n\n\nfor (x in fruits) {\n  if (x == \"banana\") {\n    break\n  }\n  print(x)\n}\n\n[1] \"apple\"\n\n\n\n\n\nEste es un tipo de bucle que ocurre mientras una condición es verdadera (TRUE). La operación se realiza hasta que se se llega a cumplir un criterio previamente establecido.\n\n# while(condicion) {\n#  operaciones\n# }\n\nProbemos sumar +1 a un valor, mientras que este sea menor que 5. Al igual que con for, necesitamos la función print() para mostrar los resultados en la consola.\n\numbral &lt;- 5\nvalor &lt;- 0\n\nwhile(valor &lt; umbral) {\n  print(\"Todavía no.\")\n  valor &lt;- valor + 1\n}\n\n[1] \"Todavía no.\"\n[1] \"Todavía no.\"\n[1] \"Todavía no.\"\n[1] \"Todavía no.\"\n[1] \"Todavía no.\"\n\n\n\n\n\n\n\n\nImagina que cada hora las células en cultivo aumentan su número en un 30 % debido a la división celular. Queremos simular cuántas horas pasan hasta que la población supera cierto umbral, por ejemplo 50 000 células.\n\n# Crecimiento celular simulado\npoblacion &lt;- 100     # Población inicial\nobjetivo &lt;- 50000\nhoras &lt;- 0\n\nwhile (poblacion &lt; objetivo) {\n  poblacion &lt;- poblacion * 1.3  # Crecimiento del 30%\n  horas &lt;- horas + 1\n}\nmensaje &lt;- paste0(\n  \"Horas necesarias: \", horas, \n  \" |Población final: \", round(poblacion))\nmensaje\n\n[1] \"Horas necesarias: 24 |Población final: 54280\"\n\n\n\n\n\n\nLa Tasa de Metabolismo Basal (TMB), es la cantidad mínima de energía que necesita tu cuerpo para funcionar. Nunca debemos ingerir menos cantidad de calorías de las que marca la tasa metabólica. La TMB se calcula siguiendo las siguientes ecuaciones TMB Mujer = 655 + (9.6 * P) + (1.8 * A) – (4.7 * E) TMB Hombre = 66 + (13.7 * P) + (5 * A) – (6.8 * E) donde necesitamos información del Sexo, A=Altura, P=Peso y E=Edad de cada persona, nuestros argumentos.\n##📌 Instrucciones del ejercicio:\n\nEscribe una función en R llamada calcularTMB() que reciba cuatro argumentos:\n\n\nsexo (carácter: “hombre” o “mujer”)\npeso (numérico, en kg)\naltura (numérico, en cm)\nedad (numérico, en años)\n\n\nDentro de la función, utiliza if / else o ifelse() para decidir qué fórmula aplicar según el valor de sexo.\nLa función debe retornar el valor de la TMB calculado.\nLuego de definirla, prueba tu función con estos datos:\n\n\nPersona A: “mujer”, peso = 70 kg, altura = 168 cm, edad = 38 años\nPersona B: “hombre”, peso = 78 kg, altura = 167 cm, edad = 40 años\n\n🔎 Opcional: modifica la función para que, además de retornar el valor numérico de la TMB, muestre un mensaje indicando la cantidad mínima de calorías que esa persona necesita, por ejemplo:\n“ Tu TMB es 1451 kcal/día — no deberías consumir menos que esto.”\n\n\n\n\n# 📊 Función para calcular TMB\ncalcularTMB &lt;- function(sexo, peso, altura, edad) {\n  \n  # Convertir a minúsculas por si el usuario escribe \"Hombre\" o \"MUJER\"\n  sexo &lt;- tolower(sexo)\n  \n  # 🧠 Validar el sexo y aplicar la fórmula adecuada\n  if (sexo == \"hombre\") {\n    # Fórmula para hombre\n    tmb &lt;- 66 + (13.7 * peso) + (5 * altura) - (6.8 * edad)\n  } else if (sexo == \"mujer\") {\n    # Fórmula para mujer\n    tmb &lt;- 655 + (9.6 * peso) + (1.8 * altura) - (4.7 * edad)\n  } else {\n    stop(\"⚠️ Sexo no válido. Usa 'hombre' o 'mujer'.\")\n  }\n  \n  # Retornar el resultado\n  #return(tmb)\n  return(paste(\n  \"Tu TMB es\", tmb,\n  \"kcal/día — no deberías consumir menos que esto.\")\n  )\n\n}\n\n\n# ♀️ Mujer de ejemplo\ntmb_mujer &lt;- calcularTMB(\"mujer\", 70, 168, 38)\ntmb_mujer\n\n[1] \"Tu TMB es 1450.8 kcal/día — no deberías consumir menos que esto.\"\n\n# ♂️ Hombre de ejemplo\ntmb_hombre &lt;- calcularTMB(\"hombre\", 78, 167, 40)\ntmb_hombre\n\n[1] \"Tu TMB es 1697.6 kcal/día — no deberías consumir menos que esto.\"\n\n\n\n\n\n\nEstructuras de control\nEjemplo práctico\ngrepl y grep\nsub y gsub",
+    "text": "https://r-charts.com/colors/\n\n\n#RColorBrewer tiene una bonita paleta de colores. install.packages(\"RColorBrewer\").\nlibrary(RColorBrewer)\ndisplay.brewer.all()\n\n\n\n\n\n\n\n\n\nscale_fill_brewer() for box plot, bar plot, violin plot, dot plot, etc\nscale_color_brewer() for lines and points\n\n\nfig2&lt;-ggplot(ChickWeight, aes(x = Time, y = weight,color = Diet)) +\n  geom_point(size = 4)+ scale_color_brewer(palette = \"Dark2\")\nfig2",
     "crumbs": [
       "Teoría",
-      "Unidad 3",
-      "Introducción a R Clase 3"
+      "Unidad 4",
+      "Introducción a R Clase 3 ggplot"
     ]
   },
   {
-    "objectID": "teoria/03_unidad/03_apunte.html#funciones-1",
-    "href": "teoria/03_unidad/03_apunte.html#funciones-1",
-    "title": "Introducción a R Clase 3",
+    "objectID": "teoria/04_unidad/04_apunte.html#paleta-magica-con-ghibli",
+    "href": "teoria/04_unidad/04_apunte.html#paleta-magica-con-ghibli",
+    "title": "Introducción a R Clase 3 ggplot",
     "section": "",
-    "text": "¿Qué es una función en programación?\nUna función tiene:\n📛 un nombre\n📦 uno o más argumentos\n🧱 un cuerpo que define lo que hace\n📌 ¿Cómo se define una función?\nLas funciones definidas por el usuario se crean usando la siguiente estructura:\n\n# suma &lt;- function(x, y) {\n#  resultado &lt;- x + y\n#  return(resultado)\n#  }\n\nPartimos del algoritmo para calcular el área de un cuadrilátero: lado x lado.\nPodemos convertir esto a operaciones de R y asignarlas a una función llamada area_cuad\n\narea_cuad &lt;- function(lado1,lado2) {\n  lado1 * lado2\n}\n\n\narea_cuad(lado1 = 4, lado2 = 6)\n\n[1] 24\n\narea_cuad(4, 6)\n\n[1] 24",
+    "text": "https://github.com/ewenme/ghibli/tree/master?tab=readme-ov-file\n\n\n\n#install.packages('ghibli')\n# load package\nlibrary(ghibli)\nghibli_palettes$TotoroMedium\n\n&lt;colors&gt;\n#0A1215FF #2D2A25FF #583B2BFF #534C53FF #446590FF #AD8152FF #BBA78CFF",
     "crumbs": [
       "Teoría",
-      "Unidad 3",
-      "Introducción a R Clase 3"
+      "Unidad 4",
+      "Introducción a R Clase 3 ggplot"
     ]
   },
   {
-    "objectID": "teoria/03_unidad/03_apunte.html#if-else",
-    "href": "teoria/03_unidad/03_apunte.html#if-else",
-    "title": "Introducción a R Clase 3",
+    "objectID": "teoria/04_unidad/04_apunte.html#espolvorea-un-poco-de-la-magia-de-la-paleta-de-studio-ghibli-sobre-tus-gráficas",
+    "href": "teoria/04_unidad/04_apunte.html#espolvorea-un-poco-de-la-magia-de-la-paleta-de-studio-ghibli-sobre-tus-gráficas",
+    "title": "Introducción a R Clase 3 ggplot",
     "section": "",
-    "text": ".pull-left[ if (si) es usado cuando queremos que una operación se ejecute únicamente cuando una condición se cumple.] .pull-right[else (de otro modo) es usado para indicarle a R qué hacer en caso de la condición de un if no se cumpla.]\nUn if es la manera de decirle a R:\nSI esta condición es cierta, ENTONCES haz estas operaciones..\nEl modelo para un if es:\n\n# if(Condición) {\n# operaciones_si_la_condición_es_TRUE\n# }\n\nSi la condición se cumple, es decir, es verdadera (TRUE), entonces se realizan las operaciones. En caso contrario, no ocurre nada y el código con las operaciones no es ejecutado.\nPor ejemplo, le pedimos a R que nos muestre el texto “Verdadero” si la condición se cumple.\n\n# Se cumple la condición y se muestra \"verdadero\"\nif(10 &gt; 5) {\n  \"Verdadero\"\n}\n\n[1] \"Verdadero\"\n\n\n\n# No se cumple la condición y no pasa nada\nif(4 &gt; 5) {\n  \"Verdadero\"\n}\n\nelse complementa un if, pues indica qué ocurrirá cuando la condición no se cumple, es falsa (FALSE), en lugar de no hacer nada.\nUn if con else es la manera de decirle a R:\nSI esta condición es es cierta, ENTONCES haz estas operaciones, DE OTRO MODO haz estas otras operaciones.\nEl modelo para un if con un else es:\n\n# if(condición) {\n#  operaciones_si_la_condición_es_TRUE\n# } else {\n#   operaciones_si_la_condición_es_FALSE\n# }",
+    "text": "# display palettes w/ names\npar(mfrow=c(9,3))\nfor(i in names(ghibli_palettes)) print(ghibli_palette(i))\n\n\n\n\n\n\n\n\n\n##scale_[colour|fill]_ghibli_[c|d]()\nfig3&lt;-ggplot(ChickWeight, aes(x = Time, y = weight,color = Diet)) +\n  geom_point(size = 4)+ # ghibli stuff\n  scale_colour_ghibli_d(\"MarnieMedium1\", direction = -1)\nfig3\n\n\n\n\n\n\n\n\n\n\n\n##scale_[colour|fill]_ghibli_[c|d]()\nfig4&lt;-ggplot(ChickWeight, aes(x = Time, y = weight,color = Diet)) +\n  geom_point(size = 4)+ # ghibli stuff\n  scale_colour_ghibli_d(\"MarnieMedium1\", direction = -1) + ggtitle(\"Datos de la prueba de la dieta en pollitos \") + ylab(\"Peso de los pollitos(gm)\") +\nxlab(\"Tiempo(d)\")\n\n\nfig4\n\n\n\n\n\n\n\n\n####Modificar el estilo de la etiquetas y ejes con theme y labs - https://ggplot2.tidyverse.org/reference/theme.html \n\nfig4 + theme(legend.title = element_text(face = \"bold.italic\",colour=\"blue\",size=14))\n\n\n\n\n\n\n\n\n\n#install.packages('extrafont')\n#library(extrafont)\n#font_import()\n#loadfonts(device = \"win\")\n#fonts()\nfig5 &lt;- fig4 + theme(plot.title=element_text(hjust=0.5,size=15,family=\"Comic Sans MS\",face=\"bold.italic\",colour=\"red\"))\n\n\nfig5\n\n\n\n\n\n\n\n\n\n#install.packages(\"cowplot\")\nlibrary(cowplot)\ncowplot::plot_grid(fig,fig2,fig3,fig4, labels = c('A)','B)','C)','D)')) #nrow=4\n\n\n\n\n\n\n\n#figura_convertida&lt;-as.ggplot(figura_que_no_se_genero_con_ggplot2)",
     "crumbs": [
       "Teoría",
-      "Unidad 3",
-      "Introducción a R Clase 3"
+      "Unidad 4",
+      "Introducción a R Clase 3 ggplot"
     ]
   },
   {
-    "objectID": "teoria/03_unidad/03_apunte.html#agregando-el-else",
-    "href": "teoria/03_unidad/03_apunte.html#agregando-el-else",
-    "title": "Introducción a R Clase 3",
+    "objectID": "teoria/04_unidad/04_apunte.html#guardar-la-imagen-con-ggsave",
+    "href": "teoria/04_unidad/04_apunte.html#guardar-la-imagen-con-ggsave",
+    "title": "Introducción a R Clase 3 ggplot",
     "section": "",
-    "text": "# Se cumple la condición y se muestra \"Verdadero\"\nif(4 &gt; 5) {\n  \"Verdadero\"\n} else {\n  \"Falso\"\n}\n\n[1] \"Falso\"\n\n\n\n# No se cumple la condición y se muestra \"Falso\"\nif(4 &gt; 5) {\n  \"Verdadero\"\n} else {\n  \"Falso\"\n}\n\n[1] \"Falso\"\n\n\n ## Stop\n\ndividir &lt;- function(a, b) {\n  if (b == 0) {\n    stop(\"Error: No se puede dividir por cero.\")\n  }\n  return(a / b)\n}\n\n# Uso:\n# dividir(10, 0) # Lanza error: Error: No se puede dividir por cero.",
+    "text": "https://ggplot2.tidyverse.org/reference/ggsave.html\nSi la figura que generaste no fue realizada con ggplot 2,conviértela con as.ggplot figura_convertida&lt;-as.ggplot(figura_que_no_se_genero_con_ggplot2)\n\n\nggsave(\"Imagenes/plot.png\", fig5, width = 5, height = 5)\n\n\n\n\n‘theme’",
     "crumbs": [
       "Teoría",
-      "Unidad 3",
-      "Introducción a R Clase 3"
+      "Unidad 4",
+      "Introducción a R Clase 3 ggplot"
     ]
   },
   {
-    "objectID": "teoria/03_unidad/03_apunte.html#usando-if-y-else",
-    "href": "teoria/03_unidad/03_apunte.html#usando-if-y-else",
-    "title": "Introducción a R Clase 3",
-    "section": "",
-    "text": "🎯 Objetivo: Para ejemplificar el uso de if / else, crearemos una función que calcule el promedio de calificaciones de un estudiante y, según el resultado, muestre un mensaje específico 📩.\n🔧 Paso 1. Definir función de promedio Primero creamos una función que calcule el promedio usando la función base mean() de R 📊. Más adelante la ampliaremos para incluir lógica condicional.\n\n# nombre &lt;- function(argumentos) {\n# operaciones\n# }\n\n\npromedio &lt;- function(calificaciones) {\n  mean(calificaciones)\n}\n\npromedio(c(6, 7, 8, 9))\n\n[1] 7.5",
+    "objectID": "teoria/04_unidad/04_apunte.html#barplot",
+    "href": "teoria/04_unidad/04_apunte.html#barplot",
+    "title": "Introducción a R Clase 3 ggplot",
+    "section": "Barplot",
+    "text": "Barplot\nLibreria palmerpenguins ## 🐧 Palmer Penguins\nDataset ideal para aprender visualización en R.\n\n3 especies de pingüinos\nDatos reales de la Antártida\nAlternativa moderna a iris\n\n🔗 Explorar dataset\n\nlibrary(palmerpenguins)\n\nggplot(penguins, aes(x = species))+ geom_bar()",
     "crumbs": [
       "Teoría",
-      "Unidad 3",
-      "Introducción a R Clase 3"
+      "Unidad 4",
+      "Introducción a R Clase 3 ggplot"
     ]
   },
   {
-    "objectID": "teoria/03_unidad/03_apunte.html#ejemplos",
-    "href": "teoria/03_unidad/03_apunte.html#ejemplos",
-    "title": "Introducción a R Clase 3",
-    "section": "",
-    "text": "Si asumimos que un estudiante necesita obtener 6 o más de promedio para aprobar, podemos decir que:\nSI el promedio de un estudiante es igual o mayor a 6, ENTONCES mostrar “Aprobado”, DE OTRO MODO, mostrar “Reprobado”. Aplicamso esta lógica con un if, else en la función promedio()\n\npromedio &lt;- function(calificaciones) {\n  media &lt;- mean(calificaciones)\n  if(media &gt;= 6) {\n    \"Aprobado\"\n  } else {\n    \"Reprobado\"\n  }\n}\npromedio &lt;- function(calificaciones){\n  media &lt;-mean(calificaciones)\n  if(media &gt;=6){\n    \"Aprobado\"\n  } else{\n    \"Reprobado\"\n  }\n}\npromedio(c(6, 7, 8, 9, 5))\n\n[1] \"Aprobado\"\n\n\nEstá funcionando, aunque los resultados podrían tener una mejor presentación.\nUsaremos la función paste0() para pegar el promedio de calificaciones, como texto, con el resultado de “Aprobado” o “Reprobado”. Esta función acepta como argumentos cadenas de texto y las pega (concatena) entre sí, devolviendo como resultado una nueva cadena\n\npromedio &lt;- function(calificaciones) {\n  media &lt;- mean(calificaciones)\n  texto &lt;- paste0(\"Calificación: \",media,\", \")\n  if(media &gt;= 6) {\n    paste0(texto, \"aprobado\")\n  } else {\n    paste0(texto, \"reprobado\")\n  }\n}\npromedio(c(5, 8, 5, 6, 5))\n\n[1] \"Calificación: 5.8, reprobado\"",
+    "objectID": "teoria/04_unidad/04_apunte.html#barplot-1",
+    "href": "teoria/04_unidad/04_apunte.html#barplot-1",
+    "title": "Introducción a R Clase 3 ggplot",
+    "section": "Barplot",
+    "text": "Barplot\n\n# plot the distribution of race with modified colors and labels\nggplot(penguins,aes(x = species,fill = species)) + geom_bar() + labs(x = \"Species\", y = \"Frequency\",title = \"Penguins\")",
     "crumbs": [
       "Teoría",
-      "Unidad 3",
-      "Introducción a R Clase 3"
+      "Unidad 4",
+      "Introducción a R Clase 3 ggplot"
     ]
   },
   {
-    "objectID": "teoria/03_unidad/03_apunte.html#paste0-o-paste",
-    "href": "teoria/03_unidad/03_apunte.html#paste0-o-paste",
-    "title": "Introducción a R Clase 3",
-    "section": "",
-    "text": "#Une las cadenas e incluye un separador entre ellas.\n\ncadena1 &lt;- \"Machine\"\ncadena2 &lt;- \"Learning\"\nresultado &lt;- paste0(cadena1,cadena2)\nresultado\n\n[1] \"MachineLearning\"\n\n\n\n#Funciona de manera similar a paste(), pero no incluye ningún separador entre las cadenas.\n\ncadena1 &lt;- \"Data\"\ncadena2 &lt;- \"Science\"\nresultado &lt;- paste0(cadena1, cadena2)\nresultado\n\n[1] \"DataScience\"",
+    "objectID": "teoria/04_unidad/04_apunte.html#barplot-2",
+    "href": "teoria/04_unidad/04_apunte.html#barplot-2",
+    "title": "Introducción a R Clase 3 ggplot",
+    "section": "Barplot",
+    "text": "Barplot\n\n# plot the distribution as percentages\nggplot(penguins, aes(x = species,fill = species, y = after_stat(count/sum(count)))) + geom_bar() + labs(x = \"Species\", y = \"Percent\", title  = \"Penguins\") + scale_y_continuous(labels = scales::percent)",
     "crumbs": [
       "Teoría",
-      "Unidad 3",
-      "Introducción a R Clase 3"
+      "Unidad 4",
+      "Introducción a R Clase 3 ggplot"
     ]
   },
   {
-    "objectID": "teoria/03_unidad/03_apunte.html#ifelse",
-    "href": "teoria/03_unidad/03_apunte.html#ifelse",
-    "title": "Introducción a R Clase 3",
-    "section": "",
-    "text": "🔁 La función ifelse() en R nos permite vectorizar la lógica de if / else, es decir, aplicar una condición a todos los elementos de un vector sin necesidad de escribir múltiples sentencias.\n📌 Cuando intentamos usar una estructura tradicional de if / else con un vector, R solo evalúa el primer elemento y muestra una advertencia, porque if espera una sola condición lógica.\n⚡ En cambio, con ifelse() obtenemos directamente un resultado para cada elemento del vector según si cumple o no la condición.\n\n# if(1:10 &lt; 3) {\n#   \"Verdadero\"\n# }\n## Warning in if (1:10 &lt; 3) {: la condición tiene longitud &gt; 1 y sólo el\n## primer elemento será usado\n\nEn cambio, con ifelse se nos devolverá un valor para cada elemento de un vector en el que la condición sea TRUE, además nos devolverá otro valor para los elementos en que la condición sea FALSE\n\n# ifelse(vector, valor_si_TRUE, valor_si_FALSE)",
+    "objectID": "teoria/04_unidad/04_apunte.html#barplot-3",
+    "href": "teoria/04_unidad/04_apunte.html#barplot-3",
+    "title": "Introducción a R Clase 3 ggplot",
+    "section": "Barplot",
+    "text": "Barplot\n\nggplot(penguins, \n       aes(x = species,fill=species, y = after_stat(count/sum(count)))) + \n  geom_bar() +\n  labs(x = \"Species\", \n       y = \"Percent\", \n       title  = \"Penguins\") +\n  scale_y_continuous(labels = scales::percent)+  coord_flip()",
     "crumbs": [
       "Teoría",
-      "Unidad 3",
-      "Introducción a R Clase 3"
+      "Unidad 4",
+      "Introducción a R Clase 3 ggplot"
     ]
   },
   {
-    "objectID": "teoria/03_unidad/03_apunte.html#ifelse-1",
-    "href": "teoria/03_unidad/03_apunte.html#ifelse-1",
-    "title": "Introducción a R Clase 3",
-    "section": "",
-    "text": "ifelse(1:10 &lt; 3,\"Verdadero\",\"Falso\")\n\n [1] \"Verdadero\" \"Verdadero\" \"Falso\"     \"Falso\"     \"Falso\"     \"Falso\"    \n [7] \"Falso\"     \"Falso\"     \"Falso\"     \"Falso\"    \n\n\n\n#Por ejemplo, pedimos sólo los números que son exactamente divisibles entre 2 y 3.\n\nnum &lt;- 1:20\n\nifelse(num %% 2 == 0 & num %% 3, \"Divisible\", \"No divisible\")\n\n [1] \"No divisible\" \"Divisible\"    \"No divisible\" \"Divisible\"    \"No divisible\"\n [6] \"No divisible\" \"No divisible\" \"Divisible\"    \"No divisible\" \"Divisible\"   \n[11] \"No divisible\" \"No divisible\" \"No divisible\" \"Divisible\"    \"No divisible\"\n[16] \"Divisible\"    \"No divisible\" \"No divisible\" \"No divisible\" \"Divisible\"",
+    "objectID": "teoria/04_unidad/04_apunte.html#barplot-4",
+    "href": "teoria/04_unidad/04_apunte.html#barplot-4",
+    "title": "Introducción a R Clase 3 ggplot",
+    "section": "Barplot",
+    "text": "Barplot\n\nggplot(penguins, \n       aes(x = species,fill=species, y = after_stat(count/sum(count)))) + \n  geom_bar() +\n  labs(x = \"Species\", \n       y = \"Percent\", \n       title  = \"Penguins\") +\n  scale_y_continuous(labels = scales::percent)+\n  theme(axis.text.x = element_text(angle = 45,\n                                   hjust = 1))",
     "crumbs": [
       "Teoría",
-      "Unidad 3",
-      "Introducción a R Clase 3"
+      "Unidad 4",
+      "Introducción a R Clase 3 ggplot"
     ]
   },
   {
-    "objectID": "teoria/03_unidad/03_apunte.html#ejemplo-ifelse-y-dataframe",
-    "href": "teoria/03_unidad/03_apunte.html#ejemplo-ifelse-y-dataframe",
-    "title": "Introducción a R Clase 3",
-    "section": "",
-    "text": "#Desde luego, esto es particularmente útil para recodificar datos.\n\ntabla_estudiantes &lt;- data.frame(\n  Estudiantes=c(\"Ron\",\"Jake\",\"Ava\",\"Sophia\",\"Mia\"),\n  Calificaciones=c(3.5,7.5,4.5,3.0,8.5))\n\ntabla_estudiantes\n\n  Estudiantes Calificaciones\n1         Ron            3.5\n2        Jake            7.5\n3         Ava            4.5\n4      Sophia            3.0\n5         Mia            8.5\n\ntabla_estudiantes$Resultado =   \n  ifelse(tabla_estudiantes$Calificaciones&gt;6,\n         \"Aprobado\",\"Reprobado\")\n\ntabla_estudiantes\n\n  Estudiantes Calificaciones Resultado\n1         Ron            3.5 Reprobado\n2        Jake            7.5  Aprobado\n3         Ava            4.5 Reprobado\n4      Sophia            3.0 Reprobado\n5         Mia            8.5  Aprobado",
+    "objectID": "teoria/04_unidad/04_apunte.html#pie-chart",
+    "href": "teoria/04_unidad/04_apunte.html#pie-chart",
+    "title": "Introducción a R Clase 3 ggplot",
+    "section": "Pie chart",
+    "text": "Pie chart\n\n# create a basic ggplot2 pie chart\n#if(!require(remotes)){\n#   install.packages(\"remotes\")\n#}\n#remotes::install_github(\"rkabacoff/ggpie\")\nlibrary(ggpie)\nggpie(penguins, species,offset = 1.5,legend=FALSE,title=\"% de especies\")\n\nWarning in geom_col(width = 1, size = border.width, col = border.color):\nIgnoring unknown parameters: `size`\n\n\n\n\n\n\n\n\n\n\nggpie(penguins, species,offset = 1.5,legend=F,title=\"% de especies\") +\n  scale_fill_brewer(palette=\"Set1\") +\n  theme(legend.position = \"top\")\n\nWarning in geom_col(width = 1, size = border.width, col = border.color):\nIgnoring unknown parameters: `size`",
     "crumbs": [
       "Teoría",
-      "Unidad 3",
-      "Introducción a R Clase 3"
+      "Unidad 4",
+      "Introducción a R Clase 3 ggplot"
     ]
   },
   {
-    "objectID": "teoria/03_unidad/03_apunte.html#ejercicio",
-    "href": "teoria/03_unidad/03_apunte.html#ejercicio",
-    "title": "Introducción a R Clase 3",
-    "section": "",
-    "text": "# Create dataframe\ndf &lt;- data.frame(id=c(11,22,33,44,55),\n                        pages=c(32,45,33,22,56),\n                        name=c(\"spark\",\"python\",\"R\",\"java\",\"jsp\"),\n                        chapters=c(76,86,11,15,7),\n                        price=c(144,553,321,567,890))\ndf\n\n  id pages   name chapters price\n1 11    32  spark       76   144\n2 22    45 python       86   553\n3 33    33      R       11   321\n4 44    22   java       15   567\n5 55    56    jsp        7   890\n\n\nAgrega una nueva columna al dataframe para saber si el libro es pequeño (Small) o grande(Big). Sera pequeño si tiene menos de 20 capítulos y más de 10 páginas\n\ndf$size &lt;- ifelse(df$pages&gt;10 & df$chapters&lt;20,\"SMALL\",\"BIG\")\ndf\n\n  id pages   name chapters price  size\n1 11    32  spark       76   144   BIG\n2 22    45 python       86   553   BIG\n3 33    33      R       11   321 SMALL\n4 44    22   java       15   567 SMALL\n5 55    56    jsp        7   890 SMALL",
+    "objectID": "teoria/04_unidad/04_apunte.html#cuál-es-la-distribución-porcentual-de-las-especies-de-pingüinos-en-cada-isla-del-conjunto-de-datos-penguins",
+    "href": "teoria/04_unidad/04_apunte.html#cuál-es-la-distribución-porcentual-de-las-especies-de-pingüinos-en-cada-isla-del-conjunto-de-datos-penguins",
+    "title": "Introducción a R Clase 3 ggplot",
+    "section": "¿Cuál es la distribución porcentual de las especies de pingüinos en cada isla del conjunto de datos penguins?",
+    "text": "¿Cuál es la distribución porcentual de las especies de pingüinos en cada isla del conjunto de datos penguins?\n\nggpie(penguins,species,island, \n      offset=1.3, \n      label.size=3,\n      legend=FALSE, \n      title=\"% de especies por isla\")\n\nWarning in geom_col(width = 1, size = border.width, col = border.color):\nIgnoring unknown parameters: `size`",
     "crumbs": [
       "Teoría",
-      "Unidad 3",
-      "Introducción a R Clase 3"
+      "Unidad 4",
+      "Introducción a R Clase 3 ggplot"
     ]
   },
   {
-    "objectID": "teoria/03_unidad/03_apunte.html#sentencia-for",
-    "href": "teoria/03_unidad/03_apunte.html#sentencia-for",
-    "title": "Introducción a R Clase 3",
-    "section": "",
-    "text": "La instrucción for itera por los elementos de un vector o lista, ejecutando un conjunto de instrucciones en cada iteración. Su sintaxis es:\n\n# for (item in vector) {\n#   conjunto_de_instrucciones\n# }\n\n# for (i in lista) {\n  # Código\n# }\n\n\nfor (x in c(20, 4, 6)) {\n  print(x)\n}\n\n[1] 20\n[1] 4\n[1] 6\n\n\n\nfor (alumno in tabla_estudiantes$Estudiantes) {\n  print(alumno)\n}\n\n[1] \"Ron\"\n[1] \"Jake\"\n[1] \"Ava\"\n[1] \"Sophia\"\n[1] \"Mia\"",
+    "objectID": "teoria/04_unidad/04_apunte.html#pie-chart-en-ggplot2",
+    "href": "teoria/04_unidad/04_apunte.html#pie-chart-en-ggplot2",
+    "title": "Introducción a R Clase 3 ggplot",
+    "section": "🥧 Pie chart en ggplot2",
+    "text": "🥧 Pie chart en ggplot2\nVer tutorial de ggpie",
     "crumbs": [
       "Teoría",
-      "Unidad 3",
-      "Introducción a R Clase 3"
+      "Unidad 4",
+      "Introducción a R Clase 3 ggplot"
     ]
   },
   {
-    "objectID": "teoria/03_unidad/03_apunte.html#ejercicio-1",
-    "href": "teoria/03_unidad/03_apunte.html#ejercicio-1",
-    "title": "Introducción a R Clase 3",
-    "section": "",
-    "text": "Realiza un lista de tus frutas favoritas\nCrea un ciclo for para leer la lista\nEl ciclo for debe regresar cada fruta de la lista\n\n\nfruits &lt;- list(\"apple\", \"banana\", \"grape\")\nfor (x in fruits) {\n  print(x)\n}\n\n[1] \"apple\"\n[1] \"banana\"\n[1] \"grape\"\n\n\n\nfor (x in fruits) {\n  if (x == \"banana\") {\n    break\n  }\n  print(x)\n}\n\n[1] \"apple\"",
+    "objectID": "teoria/04_unidad/04_apunte.html#recursos-ggplot2",
+    "href": "teoria/04_unidad/04_apunte.html#recursos-ggplot2",
+    "title": "Introducción a R Clase 3 ggplot",
+    "section": "📊 Recursos ggplot2",
+    "text": "📊 Recursos ggplot2\n\nIntroducción\n\nIntro ggplot2\nTutorial completo\n\n\n\nLibro\n\nggplot2 book\n\n\n\nDatos\n\nChickWeight dataset\n\n\n\nPersonalización\n\nShapes\ntheme()\n\n\n\nAvanzado\n\nFuentes\nInteractividad ggiraph\nggpie",
     "crumbs": [
       "Teoría",
-      "Unidad 3",
-      "Introducción a R Clase 3"
-    ]
-  },
-  {
-    "objectID": "teoria/03_unidad/03_apunte.html#sentencia-while",
-    "href": "teoria/03_unidad/03_apunte.html#sentencia-while",
-    "title": "Introducción a R Clase 3",
-    "section": "",
-    "text": "Este es un tipo de bucle que ocurre mientras una condición es verdadera (TRUE). La operación se realiza hasta que se se llega a cumplir un criterio previamente establecido.\n\n# while(condicion) {\n#  operaciones\n# }\n\nProbemos sumar +1 a un valor, mientras que este sea menor que 5. Al igual que con for, necesitamos la función print() para mostrar los resultados en la consola.\n\numbral &lt;- 5\nvalor &lt;- 0\n\nwhile(valor &lt; umbral) {\n  print(\"Todavía no.\")\n  valor &lt;- valor + 1\n}\n\n[1] \"Todavía no.\"\n[1] \"Todavía no.\"\n[1] \"Todavía no.\"\n[1] \"Todavía no.\"\n[1] \"Todavía no.\"",
-    "crumbs": [
-      "Teoría",
-      "Unidad 3",
-      "Introducción a R Clase 3"
-    ]
-  },
-  {
-    "objectID": "teoria/03_unidad/03_apunte.html#ejemplo-while",
-    "href": "teoria/03_unidad/03_apunte.html#ejemplo-while",
-    "title": "Introducción a R Clase 3",
-    "section": "",
-    "text": "Imagina que cada hora las células en cultivo aumentan su número en un 30 % debido a la división celular. Queremos simular cuántas horas pasan hasta que la población supera cierto umbral, por ejemplo 50 000 células.\n\n# Crecimiento celular simulado\npoblacion &lt;- 100     # Población inicial\nobjetivo &lt;- 50000\nhoras &lt;- 0\n\nwhile (poblacion &lt; objetivo) {\n  poblacion &lt;- poblacion * 1.3  # Crecimiento del 30%\n  horas &lt;- horas + 1\n}\nmensaje &lt;- paste0(\n  \"Horas necesarias: \", horas, \n  \" |Población final: \", round(poblacion))\nmensaje\n\n[1] \"Horas necesarias: 24 |Población final: 54280\"",
-    "crumbs": [
-      "Teoría",
-      "Unidad 3",
-      "Introducción a R Clase 3"
-    ]
-  },
-  {
-    "objectID": "teoria/03_unidad/03_apunte.html#cálculo-de-la-tasa-de-metabolismo-basal",
-    "href": "teoria/03_unidad/03_apunte.html#cálculo-de-la-tasa-de-metabolismo-basal",
-    "title": "Introducción a R Clase 3",
-    "section": "",
-    "text": "La Tasa de Metabolismo Basal (TMB), es la cantidad mínima de energía que necesita tu cuerpo para funcionar. Nunca debemos ingerir menos cantidad de calorías de las que marca la tasa metabólica. La TMB se calcula siguiendo las siguientes ecuaciones TMB Mujer = 655 + (9.6 * P) + (1.8 * A) – (4.7 * E) TMB Hombre = 66 + (13.7 * P) + (5 * A) – (6.8 * E) donde necesitamos información del Sexo, A=Altura, P=Peso y E=Edad de cada persona, nuestros argumentos.\n##📌 Instrucciones del ejercicio:\n\nEscribe una función en R llamada calcularTMB() que reciba cuatro argumentos:\n\n\nsexo (carácter: “hombre” o “mujer”)\npeso (numérico, en kg)\naltura (numérico, en cm)\nedad (numérico, en años)\n\n\nDentro de la función, utiliza if / else o ifelse() para decidir qué fórmula aplicar según el valor de sexo.\nLa función debe retornar el valor de la TMB calculado.\nLuego de definirla, prueba tu función con estos datos:\n\n\nPersona A: “mujer”, peso = 70 kg, altura = 168 cm, edad = 38 años\nPersona B: “hombre”, peso = 78 kg, altura = 167 cm, edad = 40 años\n\n🔎 Opcional: modifica la función para que, además de retornar el valor numérico de la TMB, muestre un mensaje indicando la cantidad mínima de calorías que esa persona necesita, por ejemplo:\n“ Tu TMB es 1451 kcal/día — no deberías consumir menos que esto.”",
-    "crumbs": [
-      "Teoría",
-      "Unidad 3",
-      "Introducción a R Clase 3"
-    ]
-  },
-  {
-    "objectID": "teoria/03_unidad/03_apunte.html#respuesta",
-    "href": "teoria/03_unidad/03_apunte.html#respuesta",
-    "title": "Introducción a R Clase 3",
-    "section": "",
-    "text": "# 📊 Función para calcular TMB\ncalcularTMB &lt;- function(sexo, peso, altura, edad) {\n  \n  # Convertir a minúsculas por si el usuario escribe \"Hombre\" o \"MUJER\"\n  sexo &lt;- tolower(sexo)\n  \n  # 🧠 Validar el sexo y aplicar la fórmula adecuada\n  if (sexo == \"hombre\") {\n    # Fórmula para hombre\n    tmb &lt;- 66 + (13.7 * peso) + (5 * altura) - (6.8 * edad)\n  } else if (sexo == \"mujer\") {\n    # Fórmula para mujer\n    tmb &lt;- 655 + (9.6 * peso) + (1.8 * altura) - (4.7 * edad)\n  } else {\n    stop(\"⚠️ Sexo no válido. Usa 'hombre' o 'mujer'.\")\n  }\n  \n  # Retornar el resultado\n  #return(tmb)\n  return(paste(\n  \"Tu TMB es\", tmb,\n  \"kcal/día — no deberías consumir menos que esto.\")\n  )\n\n}\n\n\n# ♀️ Mujer de ejemplo\ntmb_mujer &lt;- calcularTMB(\"mujer\", 70, 168, 38)\ntmb_mujer\n\n[1] \"Tu TMB es 1450.8 kcal/día — no deberías consumir menos que esto.\"\n\n# ♂️ Hombre de ejemplo\ntmb_hombre &lt;- calcularTMB(\"hombre\", 78, 167, 40)\ntmb_hombre\n\n[1] \"Tu TMB es 1697.6 kcal/día — no deberías consumir menos que esto.\"",
-    "crumbs": [
-      "Teoría",
-      "Unidad 3",
-      "Introducción a R Clase 3"
-    ]
-  },
-  {
-    "objectID": "teoria/03_unidad/03_apunte.html#referencias",
-    "href": "teoria/03_unidad/03_apunte.html#referencias",
-    "title": "Introducción a R Clase 3",
-    "section": "",
-    "text": "Estructuras de control\nEjemplo práctico\ngrepl y grep\nsub y gsub",
-    "crumbs": [
-      "Teoría",
-      "Unidad 3",
-      "Introducción a R Clase 3"
-    ]
-  },
-  {
-    "objectID": "teoria/01_unidad.html",
-    "href": "teoria/01_unidad.html",
-    "title": "Presentaciones de las Unidades",
-    "section": "",
-    "text": "Presentaciones de las lecciones.",
-    "crumbs": [
-      "Teoría",
-      "Presentaciones de las Unidades"
-    ]
-  },
-  {
-    "objectID": "teoria/01_unidad.html#unidad-1",
-    "href": "teoria/01_unidad.html#unidad-1",
-    "title": "Presentaciones de las Unidades",
-    "section": "Unidad 1",
-    "text": "Unidad 1\nMaterial introductorio para comenzar a utilizar R:\n🔗 Acceder a la clase",
-    "crumbs": [
-      "Teoría",
-      "Presentaciones de las Unidades"
-    ]
-  },
-  {
-    "objectID": "teoria/01_unidad.html#unidad-2-estructura-de-datos-en-r",
-    "href": "teoria/01_unidad.html#unidad-2-estructura-de-datos-en-r",
-    "title": "Presentaciones de las Unidades",
-    "section": "Unidad 2 📄 Estructura de datos en R",
-    "text": "Unidad 2 📄 Estructura de datos en R\nMaterial de la clase sobre el tema 2 Estructura de datos en R:\n🔗 Acceder a la clase",
-    "crumbs": [
-      "Teoría",
-      "Presentaciones de las Unidades"
-    ]
-  },
-  {
-    "objectID": "teoria/01_unidad.html#unidad-3-funciones-y-estructuras-condicionales",
-    "href": "teoria/01_unidad.html#unidad-3-funciones-y-estructuras-condicionales",
-    "title": "Presentaciones de las Unidades",
-    "section": "Unidad 3 ⚙️ Funciones y estructuras condicionales",
-    "text": "Unidad 3 ⚙️ Funciones y estructuras condicionales\nMaterial de la clase sobre funciones y control de flujo en R:\n🔗 Acceder a la clase",
-    "crumbs": [
-      "Teoría",
-      "Presentaciones de las Unidades"
-    ]
-  },
-  {
-    "objectID": "teoria/01_unidad.html#unidad-4-ggplot",
-    "href": "teoria/01_unidad.html#unidad-4-ggplot",
-    "title": "Presentaciones de las Unidades",
-    "section": "Unidad 4 📊 ggplot",
-    "text": "Unidad 4 📊 ggplot\nMaterial completo sobre visualización con ggplot2:\n🔗 Acceder a la clase 4",
-    "crumbs": [
-      "Teoría",
-      "Presentaciones de las Unidades"
-    ]
-  },
-  {
-    "objectID": "recursos/tutoriales/instalacion_python.html",
-    "href": "recursos/tutoriales/instalacion_python.html",
-    "title": "Grabaciones de las Clases",
-    "section": "",
-    "text": "En esta clase se explica el uso de dplyr en R para la manipulación y transformación de datos. Se trabajan funciones fundamentales como select(), filter(), mutate(), arrange() y summarise(), herramientas esenciales para el análisis de datos de manera clara y eficiente. 🚀",
-    "crumbs": [
-      "Recursos",
-      "Tutoriales",
-      "Grabaciones de las Clases"
-    ]
-  },
-  {
-    "objectID": "recursos/tutoriales/instalacion_python.html#clase-5-dplyr",
-    "href": "recursos/tutoriales/instalacion_python.html#clase-5-dplyr",
-    "title": "Grabaciones de las Clases",
-    "section": "",
-    "text": "En esta clase se explica el uso de dplyr en R para la manipulación y transformación de datos. Se trabajan funciones fundamentales como select(), filter(), mutate(), arrange() y summarise(), herramientas esenciales para el análisis de datos de manera clara y eficiente. 🚀",
-    "crumbs": [
-      "Recursos",
-      "Tutoriales",
-      "Grabaciones de las Clases"
-    ]
-  },
-  {
-    "objectID": "proyectos/grupal.html",
-    "href": "proyectos/grupal.html",
-    "title": "Proyecto grupal",
-    "section": "",
-    "text": "Si aplica, se puede incluir un proyecto grupal.",
-    "crumbs": [
-      "Proyectos",
-      "Proyecto grupal"
-    ]
-  },
-  {
-    "objectID": "informacion/programa.html",
-    "href": "informacion/programa.html",
-    "title": "Programa",
-    "section": "",
-    "text": "Introduce al estudiante a conceptos y prácticas básicas de programación, incluye conocimientos adquiridos en el desarrollo de programas que permitan ser aplicados en escenarios relevantes para el área de Bioquímica y Biología Molecular, con un entorno de responsabilidad social y ética.",
-    "crumbs": [
-      "Información",
-      "Programa"
-    ]
-  },
-  {
-    "objectID": "informacion/bibliografia.html",
-    "href": "informacion/bibliografia.html",
-    "title": "Bibliografía",
-    "section": "",
-    "text": "Recursos recomendados\n\nR para principiantes\nIntroducción a la terminal (Shell)\nPython para biólogos",
-    "crumbs": [
-      "Información",
-      "Bibliografía"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Curso",
-    "section": "",
-    "text": "Introducción a la Computación\n      \n\n      \n      \n        \n        \n          \n           \n          Programas / Carreras\n        \n        \n        \n          \n           \n          UAEM - Universidad Autónoma del Estado de Morelos\n        \n        \n        \n          \n           \n          Semestre 4, año 2026\n        \n        \n        \n          \n           \n          Horarios de actualización de los temas: miércoles y viernes\n        \n        \n      \n      \n    \n  \n\n  \n  \n    \n  \n  \n\nNo hay resultados\n\n\n\n  \n    Docentes\n\n    \n\n    \n    \n        \n\n        Dra.Linda Aimara Kempis Calanis\n        \n          \n          \n            \n            Titular\n          \n          \n          \n          \n            \n            aimara.kempiscal@gmail.com\n          \n          \n          \n          \n            \n            Consultas virtuales solicitadas seran agendadas\n          \n          \n        \n      \n    \n        \n\n        Sebastian Mijares Guevara\n        \n          \n          \n            \n            Ayudante\n          \n          \n          \n          \n            \n            sebastian.mijares@uaem.edu.mx\n          \n          \n          \n          \n            \n            Consultas: agendar por correo\n          \n          \n        \n      \n    \n    \n  \n\nNo hay resultados"
-  },
-  {
-    "objectID": "informacion/aprobacion.html",
-    "href": "informacion/aprobacion.html",
-    "title": "Aprobación",
-    "section": "",
-    "text": "Se explican los criterios de aprobación, regularidad y promoción. Se pueden incluir:\n\nEntregas de examenes en las fechas acordadas.\nParticipación en clase(autoevaluaciones, etc).\nEvaluación del proyecto final.",
-    "crumbs": [
-      "Información",
-      "Aprobación"
-    ]
-  },
-  {
-    "objectID": "informacion/calendario.html",
-    "href": "informacion/calendario.html",
-    "title": "Calendario",
-    "section": "",
-    "text": "Puedes consultar el cronograma aquí: PDF del cronograma",
-    "crumbs": [
-      "Información",
-      "Calendario"
-    ]
-  },
-  {
-    "objectID": "informacion/calendario.html#cronograma-de-las-actividades-de-la-clase",
-    "href": "informacion/calendario.html#cronograma-de-las-actividades-de-la-clase",
-    "title": "Calendario",
-    "section": "",
-    "text": "Puedes consultar el cronograma aquí: PDF del cronograma",
-    "crumbs": [
-      "Información",
-      "Calendario"
-    ]
-  },
-  {
-    "objectID": "practica/01.html",
-    "href": "practica/01.html",
-    "title": "Unidad 1,2,3,4",
-    "section": "",
-    "text": "La siguiente práctica es para evaluar los primeros temas.\nPuedes descargar el pdf de la practica en este link: PDF de la practica",
-    "crumbs": [
-      "Práctica",
-      "Unidad 1,2,3,4"
-    ]
-  },
-  {
-    "objectID": "proyectos/individual.html",
-    "href": "proyectos/individual.html",
-    "title": "Proyecto individual",
-    "section": "",
-    "text": "Luego del proyecto grupal, podría realizarse un proyecto individual.",
-    "crumbs": [
-      "Proyectos",
-      "Proyecto individual"
-    ]
-  },
-  {
-    "objectID": "teoria/01_unidad/01_apunte.html",
-    "href": "teoria/01_unidad/01_apunte.html",
-    "title": "Introducción a R Clase 1",
-    "section": "",
-    "text": "R es un lenguaje de programación y un entorno para el análisis estadístico y gráficas de datos\n\nR (Ihaka y Gentleman) puede considerarse derivado del lenguaje S (Chambers)\nAlmacenamiento y manipulación de datos\nOperadores para cálculo sobre variables indexadas (arrays) y matrices\nAmplia colección de herramientas para análisis de datos\nCapacidades gráficas\nLenguaje de programación con condicionales, ciclos y funciones\nMultiplataforma y de acceso libre\n\n\nInstalar R: https://www.r-project.org\nInstalar RStudio / Posit: https://posit.co",
-    "crumbs": [
-      "Teoría",
-      "Unidad 1",
-      "Introducción a R Clase 1"
-    ]
-  },
-  {
-    "objectID": "teoria/01_unidad/01_apunte.html#el-entorno-de-r",
-    "href": "teoria/01_unidad/01_apunte.html#el-entorno-de-r",
-    "title": "Introducción a R Clase 1",
-    "section": "",
-    "text": "R es un lenguaje de programación y un entorno para el análisis estadístico y gráficas de datos\n\nR (Ihaka y Gentleman) puede considerarse derivado del lenguaje S (Chambers)\nAlmacenamiento y manipulación de datos\nOperadores para cálculo sobre variables indexadas (arrays) y matrices\nAmplia colección de herramientas para análisis de datos\nCapacidades gráficas\nLenguaje de programación con condicionales, ciclos y funciones\nMultiplataforma y de acceso libre\n\n\nInstalar R: https://www.r-project.org\nInstalar RStudio / Posit: https://posit.co",
-    "crumbs": [
-      "Teoría",
-      "Unidad 1",
-      "Introducción a R Clase 1"
-    ]
-  },
-  {
-    "objectID": "teoria/01_unidad/01_apunte.html#instalando-r",
-    "href": "teoria/01_unidad/01_apunte.html#instalando-r",
-    "title": "Introducción a R Clase 1",
-    "section": "Instalando R",
-    "text": "Instalando R",
-    "crumbs": [
-      "Teoría",
-      "Unidad 1",
-      "Introducción a R Clase 1"
-    ]
-  },
-  {
-    "objectID": "teoria/01_unidad/01_apunte.html#instalar-rstudio-posit",
-    "href": "teoria/01_unidad/01_apunte.html#instalar-rstudio-posit",
-    "title": "Introducción a R Clase 1",
-    "section": "Instalar RStudio / Posit",
-    "text": "Instalar RStudio / Posit",
-    "crumbs": [
-      "Teoría",
-      "Unidad 1",
-      "Introducción a R Clase 1"
-    ]
-  },
-  {
-    "objectID": "teoria/01_unidad/01_apunte.html#panel-de-rstudio-posit",
-    "href": "teoria/01_unidad/01_apunte.html#panel-de-rstudio-posit",
-    "title": "Introducción a R Clase 1",
-    "section": "Panel de RStudio / Posit",
-    "text": "Panel de RStudio / Posit",
-    "crumbs": [
-      "Teoría",
-      "Unidad 1",
-      "Introducción a R Clase 1"
-    ]
-  },
-  {
-    "objectID": "teoria/01_unidad/01_apunte.html#entorno-de-rstudio",
-    "href": "teoria/01_unidad/01_apunte.html#entorno-de-rstudio",
-    "title": "Introducción a R Clase 1",
-    "section": "Entorno de RStudio",
-    "text": "Entorno de RStudio",
-    "crumbs": [
-      "Teoría",
-      "Unidad 1",
-      "Introducción a R Clase 1"
-    ]
-  },
-  {
-    "objectID": "teoria/01_unidad/01_apunte.html#cómo-opera-r",
-    "href": "teoria/01_unidad/01_apunte.html#cómo-opera-r",
-    "title": "Introducción a R Clase 1",
-    "section": "¿Cómo opera R?",
-    "text": "¿Cómo opera R?\nR opera de la siguiente forma: leer → evaluar → mostrar\n2 + 2",
-    "crumbs": [
-      "Teoría",
-      "Unidad 1",
-      "Introducción a R Clase 1"
-    ]
-  },
-  {
-    "objectID": "teoria/01_unidad/01_apunte.html#datos-más-comunes",
-    "href": "teoria/01_unidad/01_apunte.html#datos-más-comunes",
-    "title": "Introducción a R Clase 1",
-    "section": "Datos más comunes",
-    "text": "Datos más comunes",
-    "crumbs": [
-      "Teoría",
-      "Unidad 1",
-      "Introducción a R Clase 1"
-    ]
-  },
-  {
-    "objectID": "teoria/01_unidad/01_apunte.html#verificar-el-tipo-de-un-dato",
-    "href": "teoria/01_unidad/01_apunte.html#verificar-el-tipo-de-un-dato",
-    "title": "Introducción a R Clase 1",
-    "section": "Verificar el tipo de un dato",
-    "text": "Verificar el tipo de un dato\nclass(3)\nclass(\"3\")\nclass(TRUE)",
-    "crumbs": [
-      "Teoría",
-      "Unidad 1",
-      "Introducción a R Clase 1"
-    ]
-  },
-  {
-    "objectID": "teoria/01_unidad/01_apunte.html#paquetes-en-r",
-    "href": "teoria/01_unidad/01_apunte.html#paquetes-en-r",
-    "title": "Introducción a R Clase 1",
-    "section": "Paquetes en R",
-    "text": "Paquetes en R\ninstall.packages(\"ggplot2\")",
-    "crumbs": [
-      "Teoría",
-      "Unidad 1",
-      "Introducción a R Clase 1"
-    ]
-  },
-  {
-    "objectID": "teoria/01_unidad/01_apunte.html#bibliografía",
-    "href": "teoria/01_unidad/01_apunte.html#bibliografía",
-    "title": "Introducción a R Clase 1",
-    "section": "Bibliografía",
-    "text": "Bibliografía\n\nhttps://swcarpentry.github.io/r-novice-gapminder-es/04-data-structures-part1.html\n\nhttps://bookdown.org/jboscomendoza/r-principiantes4/tipos-de-datos.html",
-    "crumbs": [
-      "Teoría",
-      "Unidad 1",
-      "Introducción a R Clase 1"
+      "Unidad 4",
+      "Introducción a R Clase 3 ggplot"
     ]
   },
   {
@@ -954,291 +583,669 @@
     ]
   },
   {
-    "objectID": "teoria/04_unidad/04_apunte.html",
-    "href": "teoria/04_unidad/04_apunte.html",
-    "title": "Introducción a R Clase 3 ggplot",
+    "objectID": "teoria/01_unidad/01_apunte.html",
+    "href": "teoria/01_unidad/01_apunte.html",
+    "title": "Introducción a R Clase 1",
     "section": "",
-    "text": "Guía rápida de ggplot2 (cheatsheet)\n\n\nEl término gg, viene de “grammar of graphics”. set de componentes: - data = debe ser un data.frame - aesthetics: cómo se representarán visualmente los datos en términos ejes (x,y), color, tamaño, forma, etc. - geometry: Geometría de los objetos a graficar, Puntos,Líneas,Etc.\n\n\n\n\n\n# Load data\nlibrary(ggplot2)\ndata(ChickWeight)\nhead(ChickWeight)\n\n  weight Time Chick Diet\n1     42    0     1    1\n2     51    2     1    1\n3     59    4     1    1\n4     64    6     1    1\n5     76    8     1    1\n6     93   10     1    1\n\nsummary(ChickWeight)\n\n     weight           Time           Chick     Diet   \n Min.   : 35.0   Min.   : 0.00   13     : 12   1:220  \n 1st Qu.: 63.0   1st Qu.: 4.00   9      : 12   2:120  \n Median :103.0   Median :10.00   20     : 12   3:120  \n Mean   :121.8   Mean   :10.72   10     : 12   4:118  \n 3rd Qu.:163.8   3rd Qu.:16.00   17     : 12          \n Max.   :373.0   Max.   :21.00   19     : 12          \n                                 (Other):506          \n\n\n\n\n\nEsto incluye cosas como qué variable va en el eje X, qué variable va en el eje Y y qué tamaño, forma o color desea para sus puntos/líneas/barras/etc. ggplot2_image2 \n\n\n\nUna vez que definimos cómo asignar los datos a elementos estéticos de nuestra elección, la forma en que presentamos los datos es utilizando un objeto geométrico, el cual puede ser un diagrama de dispersión, un diagrama de caja, un diagrama de líneas, etc. \n\n\n\nTe permite decidir cómo se ve el gráfico en términos de como el color, fuente de letra, tamaño de fuente. Si no los especifica, ggplot simplemente usará la configuración predeterminada. ### Ejemplo Digamos que queremos crear un diagrama de dispersión que muestre el peso versus el tiempo de estos polluelos.\n\n#ggplot(ChickWeight)\n\n\n#ggplot(data, aes(x, y))\nggplot(ChickWeight, aes(x = Time, y = weight))\n\n\n\n\n\n\n\n\n\n\n\n\n# Crea un bar plot con ggplot2\nggplot(ChickWeight, aes(x = Time, y = weight))+\n  geom_col()\n\n\n\n\n\n\n\n\n\n\n\n\n# Crea un box plot con ggplot2\nggplot(ChickWeight, aes(x = Diet, y = weight))+\n  geom_boxplot()\n\n\n\n\n\n\n\n\n\n\n\n\n#ggplot(data, aes(x, y))\nggplot(ChickWeight, aes(x = Time, y = weight))+\n  geom_point()\n\n\n\n\n\n\n\n\n\nggplot(ChickWeight, aes(x = Time, y = weight,color = Diet)) +\n  geom_point()\n\n\n\n\n\n\n\n\n\n\n\nggplot(ChickWeight, aes(x = Time, y = weight,color = Diet)) +\n  geom_point(size=5)\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(ChickWeight, aes(x = Time, y = weight,color = Diet,size = weight)) +\n  geom_point()\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(ChickWeight, aes(x = Time, y = weight,color = Diet)) +\n  geom_point()+ facet_grid(~Diet)\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(ChickWeight, aes(x = Time, y = weight,color = Diet,size=weight)) +\n  geom_point(alpha = 0.5)\n\n\n\n\n\n\n\n\n\n\n\nggplot(ChickWeight, aes(x = Time, y = weight,color = Diet,\nsize=weight,shape=Diet))+ \n  geom_point()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(ChickWeight, aes(x = Time, y = weight,size=weight)) + geom_point(shape=23)\n\n\n\n\n\n\n\n\n\nfig &lt;-ggplot(ChickWeight, aes(x = Time, y = weight,color = Diet)) +\n  geom_point(aes(shape= Diet)) +\nscale_shape_manual(values=c(3, 16, 17, 6)) +  scale_color_manual(values=c('#999999','#E69F00', '#56B4E9','pink'))\nfig\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nhttps://r-charts.com/colors/\n\n\n#RColorBrewer tiene una bonita paleta de colores. install.packages(\"RColorBrewer\").\nlibrary(RColorBrewer)\ndisplay.brewer.all()\n\n\n\n\n\n\n\n\n\nscale_fill_brewer() for box plot, bar plot, violin plot, dot plot, etc\nscale_color_brewer() for lines and points\n\n\nfig2&lt;-ggplot(ChickWeight, aes(x = Time, y = weight,color = Diet)) +\n  geom_point(size = 4)+ scale_color_brewer(palette = \"Dark2\")\nfig2\n\n\n\n\n\n\n\n\n\n\n\n\n\nhttps://github.com/ewenme/ghibli/tree/master?tab=readme-ov-file\n\n\n\n#install.packages('ghibli')\n# load package\nlibrary(ghibli)\nghibli_palettes$TotoroMedium\n\n&lt;colors&gt;\n#0A1215FF #2D2A25FF #583B2BFF #534C53FF #446590FF #AD8152FF #BBA78CFF \n\n\n\n\n\n\n# display palettes w/ names\npar(mfrow=c(9,3))\nfor(i in names(ghibli_palettes)) print(ghibli_palette(i))\n\n\n\n\n\n\n\n\n\n##scale_[colour|fill]_ghibli_[c|d]()\nfig3&lt;-ggplot(ChickWeight, aes(x = Time, y = weight,color = Diet)) +\n  geom_point(size = 4)+ # ghibli stuff\n  scale_colour_ghibli_d(\"MarnieMedium1\", direction = -1)\nfig3\n\n\n\n\n\n\n\n\n\n\n\n##scale_[colour|fill]_ghibli_[c|d]()\nfig4&lt;-ggplot(ChickWeight, aes(x = Time, y = weight,color = Diet)) +\n  geom_point(size = 4)+ # ghibli stuff\n  scale_colour_ghibli_d(\"MarnieMedium1\", direction = -1) + ggtitle(\"Datos de la prueba de la dieta en pollitos \") + ylab(\"Peso de los pollitos(gm)\") +\nxlab(\"Tiempo(d)\")\n\n\nfig4\n\n\n\n\n\n\n\n\n####Modificar el estilo de la etiquetas y ejes con theme y labs - https://ggplot2.tidyverse.org/reference/theme.html \n\nfig4 + theme(legend.title = element_text(face = \"bold.italic\",colour=\"blue\",size=14))\n\n\n\n\n\n\n\n\n\n#install.packages('extrafont')\n#library(extrafont)\n#font_import()\n#loadfonts(device = \"win\")\n#fonts()\nfig5 &lt;- fig4 + theme(plot.title=element_text(hjust=0.5,size=15,family=\"Comic Sans MS\",face=\"bold.italic\",colour=\"red\"))\n\n\nfig5\n\n\n\n\n\n\n\n\n\n#install.packages(\"cowplot\")\nlibrary(cowplot)\ncowplot::plot_grid(fig,fig2,fig3,fig4, labels = c('A)','B)','C)','D)')) #nrow=4\n\n\n\n\n\n\n\n#figura_convertida&lt;-as.ggplot(figura_que_no_se_genero_con_ggplot2)\n\n\n\n\n\n\nhttps://ggplot2.tidyverse.org/reference/ggsave.html\nSi la figura que generaste no fue realizada con ggplot 2,conviértela con as.ggplot figura_convertida&lt;-as.ggplot(figura_que_no_se_genero_con_ggplot2)\n\n\nggsave(\"Imagenes/plot.png\", fig5, width = 5, height = 5)\n\n\n\n\n‘theme’",
+    "text": "R es un lenguaje de programación y un entorno para el análisis estadístico y gráficas de datos\n\nR (Ihaka y Gentleman) puede considerarse derivado del lenguaje S (Chambers)\nAlmacenamiento y manipulación de datos\nOperadores para cálculo sobre variables indexadas (arrays) y matrices\nAmplia colección de herramientas para análisis de datos\nCapacidades gráficas\nLenguaje de programación con condicionales, ciclos y funciones\nMultiplataforma y de acceso libre\n\n\nInstalar R: https://www.r-project.org\nInstalar RStudio / Posit: https://posit.co",
     "crumbs": [
       "Teoría",
-      "Unidad 4",
-      "Introducción a R Clase 3 ggplot"
+      "Unidad 1",
+      "Introducción a R Clase 1"
     ]
   },
   {
-    "objectID": "teoria/04_unidad/04_apunte.html#ggplot2-1",
-    "href": "teoria/04_unidad/04_apunte.html#ggplot2-1",
-    "title": "Introducción a R Clase 3 ggplot",
+    "objectID": "teoria/01_unidad/01_apunte.html#el-entorno-de-r",
+    "href": "teoria/01_unidad/01_apunte.html#el-entorno-de-r",
+    "title": "Introducción a R Clase 1",
     "section": "",
-    "text": "El término gg, viene de “grammar of graphics”. set de componentes: - data = debe ser un data.frame - aesthetics: cómo se representarán visualmente los datos en términos ejes (x,y), color, tamaño, forma, etc. - geometry: Geometría de los objetos a graficar, Puntos,Líneas,Etc.",
+    "text": "R es un lenguaje de programación y un entorno para el análisis estadístico y gráficas de datos\n\nR (Ihaka y Gentleman) puede considerarse derivado del lenguaje S (Chambers)\nAlmacenamiento y manipulación de datos\nOperadores para cálculo sobre variables indexadas (arrays) y matrices\nAmplia colección de herramientas para análisis de datos\nCapacidades gráficas\nLenguaje de programación con condicionales, ciclos y funciones\nMultiplataforma y de acceso libre\n\n\nInstalar R: https://www.r-project.org\nInstalar RStudio / Posit: https://posit.co",
     "crumbs": [
       "Teoría",
-      "Unidad 4",
-      "Introducción a R Clase 3 ggplot"
+      "Unidad 1",
+      "Introducción a R Clase 1"
     ]
   },
   {
-    "objectID": "teoria/04_unidad/04_apunte.html#data",
-    "href": "teoria/04_unidad/04_apunte.html#data",
-    "title": "Introducción a R Clase 3 ggplot",
+    "objectID": "teoria/01_unidad/01_apunte.html#instalando-r",
+    "href": "teoria/01_unidad/01_apunte.html#instalando-r",
+    "title": "Introducción a R Clase 1",
+    "section": "Instalando R",
+    "text": "Instalando R",
+    "crumbs": [
+      "Teoría",
+      "Unidad 1",
+      "Introducción a R Clase 1"
+    ]
+  },
+  {
+    "objectID": "teoria/01_unidad/01_apunte.html#instalar-rstudio-posit",
+    "href": "teoria/01_unidad/01_apunte.html#instalar-rstudio-posit",
+    "title": "Introducción a R Clase 1",
+    "section": "Instalar RStudio / Posit",
+    "text": "Instalar RStudio / Posit",
+    "crumbs": [
+      "Teoría",
+      "Unidad 1",
+      "Introducción a R Clase 1"
+    ]
+  },
+  {
+    "objectID": "teoria/01_unidad/01_apunte.html#panel-de-rstudio-posit",
+    "href": "teoria/01_unidad/01_apunte.html#panel-de-rstudio-posit",
+    "title": "Introducción a R Clase 1",
+    "section": "Panel de RStudio / Posit",
+    "text": "Panel de RStudio / Posit",
+    "crumbs": [
+      "Teoría",
+      "Unidad 1",
+      "Introducción a R Clase 1"
+    ]
+  },
+  {
+    "objectID": "teoria/01_unidad/01_apunte.html#entorno-de-rstudio",
+    "href": "teoria/01_unidad/01_apunte.html#entorno-de-rstudio",
+    "title": "Introducción a R Clase 1",
+    "section": "Entorno de RStudio",
+    "text": "Entorno de RStudio",
+    "crumbs": [
+      "Teoría",
+      "Unidad 1",
+      "Introducción a R Clase 1"
+    ]
+  },
+  {
+    "objectID": "teoria/01_unidad/01_apunte.html#cómo-opera-r",
+    "href": "teoria/01_unidad/01_apunte.html#cómo-opera-r",
+    "title": "Introducción a R Clase 1",
+    "section": "¿Cómo opera R?",
+    "text": "¿Cómo opera R?\nR opera de la siguiente forma: leer → evaluar → mostrar\n2 + 2",
+    "crumbs": [
+      "Teoría",
+      "Unidad 1",
+      "Introducción a R Clase 1"
+    ]
+  },
+  {
+    "objectID": "teoria/01_unidad/01_apunte.html#datos-más-comunes",
+    "href": "teoria/01_unidad/01_apunte.html#datos-más-comunes",
+    "title": "Introducción a R Clase 1",
+    "section": "Datos más comunes",
+    "text": "Datos más comunes",
+    "crumbs": [
+      "Teoría",
+      "Unidad 1",
+      "Introducción a R Clase 1"
+    ]
+  },
+  {
+    "objectID": "teoria/01_unidad/01_apunte.html#verificar-el-tipo-de-un-dato",
+    "href": "teoria/01_unidad/01_apunte.html#verificar-el-tipo-de-un-dato",
+    "title": "Introducción a R Clase 1",
+    "section": "Verificar el tipo de un dato",
+    "text": "Verificar el tipo de un dato\nclass(3)\nclass(\"3\")\nclass(TRUE)",
+    "crumbs": [
+      "Teoría",
+      "Unidad 1",
+      "Introducción a R Clase 1"
+    ]
+  },
+  {
+    "objectID": "teoria/01_unidad/01_apunte.html#paquetes-en-r",
+    "href": "teoria/01_unidad/01_apunte.html#paquetes-en-r",
+    "title": "Introducción a R Clase 1",
+    "section": "Paquetes en R",
+    "text": "Paquetes en R\ninstall.packages(\"ggplot2\")",
+    "crumbs": [
+      "Teoría",
+      "Unidad 1",
+      "Introducción a R Clase 1"
+    ]
+  },
+  {
+    "objectID": "teoria/01_unidad/01_apunte.html#bibliografía",
+    "href": "teoria/01_unidad/01_apunte.html#bibliografía",
+    "title": "Introducción a R Clase 1",
+    "section": "Bibliografía",
+    "text": "Bibliografía\n\nhttps://swcarpentry.github.io/r-novice-gapminder-es/04-data-structures-part1.html\n\nhttps://bookdown.org/jboscomendoza/r-principiantes4/tipos-de-datos.html",
+    "crumbs": [
+      "Teoría",
+      "Unidad 1",
+      "Introducción a R Clase 1"
+    ]
+  },
+  {
+    "objectID": "proyectos/individual.html",
+    "href": "proyectos/individual.html",
+    "title": "Proyecto individual",
     "section": "",
-    "text": "# Load data\nlibrary(ggplot2)\ndata(ChickWeight)\nhead(ChickWeight)\n\n  weight Time Chick Diet\n1     42    0     1    1\n2     51    2     1    1\n3     59    4     1    1\n4     64    6     1    1\n5     76    8     1    1\n6     93   10     1    1\n\nsummary(ChickWeight)\n\n     weight           Time           Chick     Diet   \n Min.   : 35.0   Min.   : 0.00   13     : 12   1:220  \n 1st Qu.: 63.0   1st Qu.: 4.00   9      : 12   2:120  \n Median :103.0   Median :10.00   20     : 12   3:120  \n Mean   :121.8   Mean   :10.72   10     : 12   4:118  \n 3rd Qu.:163.8   3rd Qu.:16.00   17     : 12          \n Max.   :373.0   Max.   :21.00   19     : 12          \n                                 (Other):506",
+    "text": "Luego del proyecto grupal, podría realizarse un proyecto individual.",
     "crumbs": [
-      "Teoría",
-      "Unidad 4",
-      "Introducción a R Clase 3 ggplot"
+      "Proyectos",
+      "Proyecto individual"
     ]
   },
   {
-    "objectID": "teoria/04_unidad/04_apunte.html#aesthetics",
-    "href": "teoria/04_unidad/04_apunte.html#aesthetics",
-    "title": "Introducción a R Clase 3 ggplot",
+    "objectID": "practica/01.html",
+    "href": "practica/01.html",
+    "title": "Unidad 1,2,3,4",
     "section": "",
-    "text": "Esto incluye cosas como qué variable va en el eje X, qué variable va en el eje Y y qué tamaño, forma o color desea para sus puntos/líneas/barras/etc. ggplot2_image2",
+    "text": "La siguiente práctica es para evaluar los primeros temas.\nPuedes descargar el pdf de la practica en este link: PDF de la practica",
     "crumbs": [
-      "Teoría",
-      "Unidad 4",
-      "Introducción a R Clase 3 ggplot"
+      "Práctica",
+      "Unidad 1,2,3,4"
     ]
   },
   {
-    "objectID": "teoria/04_unidad/04_apunte.html#geometry",
-    "href": "teoria/04_unidad/04_apunte.html#geometry",
-    "title": "Introducción a R Clase 3 ggplot",
+    "objectID": "informacion/calendario.html",
+    "href": "informacion/calendario.html",
+    "title": "Calendario",
     "section": "",
-    "text": "Una vez que definimos cómo asignar los datos a elementos estéticos de nuestra elección, la forma en que presentamos los datos es utilizando un objeto geométrico, el cual puede ser un diagrama de dispersión, un diagrama de caja, un diagrama de líneas, etc.",
+    "text": "Puedes consultar el cronograma aquí: PDF del cronograma",
     "crumbs": [
-      "Teoría",
-      "Unidad 4",
-      "Introducción a R Clase 3 ggplot"
+      "Información",
+      "Calendario"
     ]
   },
   {
-    "objectID": "teoria/04_unidad/04_apunte.html#theme",
-    "href": "teoria/04_unidad/04_apunte.html#theme",
-    "title": "Introducción a R Clase 3 ggplot",
+    "objectID": "informacion/calendario.html#cronograma-de-las-actividades-de-la-clase",
+    "href": "informacion/calendario.html#cronograma-de-las-actividades-de-la-clase",
+    "title": "Calendario",
     "section": "",
-    "text": "Te permite decidir cómo se ve el gráfico en términos de como el color, fuente de letra, tamaño de fuente. Si no los especifica, ggplot simplemente usará la configuración predeterminada. ### Ejemplo Digamos que queremos crear un diagrama de dispersión que muestre el peso versus el tiempo de estos polluelos.\n\n#ggplot(ChickWeight)\n\n\n#ggplot(data, aes(x, y))\nggplot(ChickWeight, aes(x = Time, y = weight))",
+    "text": "Puedes consultar el cronograma aquí: PDF del cronograma",
     "crumbs": [
-      "Teoría",
-      "Unidad 4",
-      "Introducción a R Clase 3 ggplot"
+      "Información",
+      "Calendario"
     ]
   },
   {
-    "objectID": "teoria/04_unidad/04_apunte.html#bar-plot",
-    "href": "teoria/04_unidad/04_apunte.html#bar-plot",
-    "title": "Introducción a R Clase 3 ggplot",
+    "objectID": "informacion/aprobacion.html",
+    "href": "informacion/aprobacion.html",
+    "title": "Aprobación",
     "section": "",
-    "text": "# Crea un bar plot con ggplot2\nggplot(ChickWeight, aes(x = Time, y = weight))+\n  geom_col()",
+    "text": "Se explican los criterios de aprobación, regularidad y promoción. Se pueden incluir:\n\nEntregas de examenes en las fechas acordadas.\nParticipación en clase(autoevaluaciones, etc).\nEvaluación del proyecto final.",
     "crumbs": [
-      "Teoría",
-      "Unidad 4",
-      "Introducción a R Clase 3 ggplot"
+      "Información",
+      "Aprobación"
     ]
   },
   {
-    "objectID": "teoria/04_unidad/04_apunte.html#box-plot",
-    "href": "teoria/04_unidad/04_apunte.html#box-plot",
-    "title": "Introducción a R Clase 3 ggplot",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Curso",
     "section": "",
-    "text": "# Crea un box plot con ggplot2\nggplot(ChickWeight, aes(x = Diet, y = weight))+\n  geom_boxplot()",
-    "crumbs": [
-      "Teoría",
-      "Unidad 4",
-      "Introducción a R Clase 3 ggplot"
-    ]
+    "text": "Introducción a la Computación\n      \n\n      \n      \n        \n        \n          \n           \n          Programas / Carreras\n        \n        \n        \n          \n           \n          UAEM - Universidad Autónoma del Estado de Morelos\n        \n        \n        \n          \n           \n          Semestre 4, año 2026\n        \n        \n        \n          \n           \n          Horarios de actualización de los temas: miércoles y viernes\n        \n        \n      \n      \n    \n  \n\n  \n  \n    \n  \n  \n\nNo hay resultados\n\n\n\n  \n    Docentes\n\n    \n\n    \n    \n        \n\n        Dra.Linda Aimara Kempis Calanis\n        \n          \n          \n            \n            Titular\n          \n          \n          \n          \n            \n            aimara.kempiscal@gmail.com\n          \n          \n          \n          \n            \n            Consultas virtuales solicitadas seran agendadas\n          \n          \n        \n      \n    \n        \n\n        Sebastian Mijares Guevara\n        \n          \n          \n            \n            Ayudante\n          \n          \n          \n          \n            \n            sebastian.mijares@uaem.edu.mx\n          \n          \n          \n          \n            \n            Consultas: agendar por correo\n          \n          \n        \n      \n    \n    \n  \n\nNo hay resultados"
   },
   {
-    "objectID": "teoria/04_unidad/04_apunte.html#scatter-plot",
-    "href": "teoria/04_unidad/04_apunte.html#scatter-plot",
-    "title": "Introducción a R Clase 3 ggplot",
+    "objectID": "informacion/bibliografia.html",
+    "href": "informacion/bibliografia.html",
+    "title": "Bibliografía",
     "section": "",
-    "text": "#ggplot(data, aes(x, y))\nggplot(ChickWeight, aes(x = Time, y = weight))+\n  geom_point()\n\n\n\n\n\n\n\n\n\nggplot(ChickWeight, aes(x = Time, y = weight,color = Diet)) +\n  geom_point()\n\n\n\n\n\n\n\n\n\n\n\nggplot(ChickWeight, aes(x = Time, y = weight,color = Diet)) +\n  geom_point(size=5)\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(ChickWeight, aes(x = Time, y = weight,color = Diet,size = weight)) +\n  geom_point()\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(ChickWeight, aes(x = Time, y = weight,color = Diet)) +\n  geom_point()+ facet_grid(~Diet)",
+    "text": "Recursos recomendados\n\nR para principiantes\nIntroducción a la terminal (Shell)\nPython para biólogos",
     "crumbs": [
-      "Teoría",
-      "Unidad 4",
-      "Introducción a R Clase 3 ggplot"
+      "Información",
+      "Bibliografía"
     ]
   },
   {
-    "objectID": "teoria/04_unidad/04_apunte.html#cambiar-la-transparencia-con-alpha",
-    "href": "teoria/04_unidad/04_apunte.html#cambiar-la-transparencia-con-alpha",
-    "title": "Introducción a R Clase 3 ggplot",
+    "objectID": "informacion/programa.html",
+    "href": "informacion/programa.html",
+    "title": "Programa",
     "section": "",
-    "text": "ggplot(ChickWeight, aes(x = Time, y = weight,color = Diet,size=weight)) +\n  geom_point(alpha = 0.5)\n\n\n\n\n\n\n\n\n\n\n\nggplot(ChickWeight, aes(x = Time, y = weight,color = Diet,\nsize=weight,shape=Diet))+ \n  geom_point()",
+    "text": "Introduce al estudiante a conceptos y prácticas básicas de programación, incluye conocimientos adquiridos en el desarrollo de programas que permitan ser aplicados en escenarios relevantes para el área de Bioquímica y Biología Molecular, con un entorno de responsabilidad social y ética.",
     "crumbs": [
-      "Teoría",
-      "Unidad 4",
-      "Introducción a R Clase 3 ggplot"
+      "Información",
+      "Programa"
     ]
   },
   {
-    "objectID": "teoria/04_unidad/04_apunte.html#formas-de-puntos-en-r",
-    "href": "teoria/04_unidad/04_apunte.html#formas-de-puntos-en-r",
-    "title": "Introducción a R Clase 3 ggplot",
+    "objectID": "proyectos/grupal.html",
+    "href": "proyectos/grupal.html",
+    "title": "Proyecto grupal",
     "section": "",
-    "text": "ggplot(ChickWeight, aes(x = Time, y = weight,size=weight)) + geom_point(shape=23)\n\n\n\n\n\n\n\n\n\nfig &lt;-ggplot(ChickWeight, aes(x = Time, y = weight,color = Diet)) +\n  geom_point(aes(shape= Diet)) +\nscale_shape_manual(values=c(3, 16, 17, 6)) +  scale_color_manual(values=c('#999999','#E69F00', '#56B4E9','pink'))\nfig",
+    "text": "Si aplica, se puede incluir un proyecto grupal.",
     "crumbs": [
-      "Teoría",
-      "Unidad 4",
-      "Introducción a R Clase 3 ggplot"
+      "Proyectos",
+      "Proyecto grupal"
     ]
   },
   {
-    "objectID": "teoria/04_unidad/04_apunte.html#seleccionar-colores-con-una-paqueteria",
-    "href": "teoria/04_unidad/04_apunte.html#seleccionar-colores-con-una-paqueteria",
-    "title": "Introducción a R Clase 3 ggplot",
+    "objectID": "recursos/tutoriales/instalacion_python.html",
+    "href": "recursos/tutoriales/instalacion_python.html",
+    "title": "Grabaciones de las Clases",
     "section": "",
-    "text": "https://r-charts.com/colors/\n\n\n#RColorBrewer tiene una bonita paleta de colores. install.packages(\"RColorBrewer\").\nlibrary(RColorBrewer)\ndisplay.brewer.all()\n\n\n\n\n\n\n\n\n\nscale_fill_brewer() for box plot, bar plot, violin plot, dot plot, etc\nscale_color_brewer() for lines and points\n\n\nfig2&lt;-ggplot(ChickWeight, aes(x = Time, y = weight,color = Diet)) +\n  geom_point(size = 4)+ scale_color_brewer(palette = \"Dark2\")\nfig2",
+    "text": "En esta clase se explica el uso de dplyr en R para la manipulación y transformación de datos. Se trabajan funciones fundamentales como select(), filter(), mutate(), arrange() y summarise(), herramientas esenciales para el análisis de datos de manera clara y eficiente. 🚀",
     "crumbs": [
-      "Teoría",
-      "Unidad 4",
-      "Introducción a R Clase 3 ggplot"
+      "Recursos",
+      "Tutoriales",
+      "Grabaciones de las Clases"
     ]
   },
   {
-    "objectID": "teoria/04_unidad/04_apunte.html#paleta-magica-con-ghibli",
-    "href": "teoria/04_unidad/04_apunte.html#paleta-magica-con-ghibli",
-    "title": "Introducción a R Clase 3 ggplot",
+    "objectID": "recursos/tutoriales/instalacion_python.html#clase-5-dplyr",
+    "href": "recursos/tutoriales/instalacion_python.html#clase-5-dplyr",
+    "title": "Grabaciones de las Clases",
     "section": "",
-    "text": "https://github.com/ewenme/ghibli/tree/master?tab=readme-ov-file\n\n\n\n#install.packages('ghibli')\n# load package\nlibrary(ghibli)\nghibli_palettes$TotoroMedium\n\n&lt;colors&gt;\n#0A1215FF #2D2A25FF #583B2BFF #534C53FF #446590FF #AD8152FF #BBA78CFF",
+    "text": "En esta clase se explica el uso de dplyr en R para la manipulación y transformación de datos. Se trabajan funciones fundamentales como select(), filter(), mutate(), arrange() y summarise(), herramientas esenciales para el análisis de datos de manera clara y eficiente. 🚀",
     "crumbs": [
-      "Teoría",
-      "Unidad 4",
-      "Introducción a R Clase 3 ggplot"
+      "Recursos",
+      "Tutoriales",
+      "Grabaciones de las Clases"
     ]
   },
   {
-    "objectID": "teoria/04_unidad/04_apunte.html#espolvorea-un-poco-de-la-magia-de-la-paleta-de-studio-ghibli-sobre-tus-gráficas",
-    "href": "teoria/04_unidad/04_apunte.html#espolvorea-un-poco-de-la-magia-de-la-paleta-de-studio-ghibli-sobre-tus-gráficas",
-    "title": "Introducción a R Clase 3 ggplot",
+    "objectID": "teoria/01_unidad.html",
+    "href": "teoria/01_unidad.html",
+    "title": "Presentaciones de las Unidades",
     "section": "",
-    "text": "# display palettes w/ names\npar(mfrow=c(9,3))\nfor(i in names(ghibli_palettes)) print(ghibli_palette(i))\n\n\n\n\n\n\n\n\n\n##scale_[colour|fill]_ghibli_[c|d]()\nfig3&lt;-ggplot(ChickWeight, aes(x = Time, y = weight,color = Diet)) +\n  geom_point(size = 4)+ # ghibli stuff\n  scale_colour_ghibli_d(\"MarnieMedium1\", direction = -1)\nfig3\n\n\n\n\n\n\n\n\n\n\n\n##scale_[colour|fill]_ghibli_[c|d]()\nfig4&lt;-ggplot(ChickWeight, aes(x = Time, y = weight,color = Diet)) +\n  geom_point(size = 4)+ # ghibli stuff\n  scale_colour_ghibli_d(\"MarnieMedium1\", direction = -1) + ggtitle(\"Datos de la prueba de la dieta en pollitos \") + ylab(\"Peso de los pollitos(gm)\") +\nxlab(\"Tiempo(d)\")\n\n\nfig4\n\n\n\n\n\n\n\n\n####Modificar el estilo de la etiquetas y ejes con theme y labs - https://ggplot2.tidyverse.org/reference/theme.html \n\nfig4 + theme(legend.title = element_text(face = \"bold.italic\",colour=\"blue\",size=14))\n\n\n\n\n\n\n\n\n\n#install.packages('extrafont')\n#library(extrafont)\n#font_import()\n#loadfonts(device = \"win\")\n#fonts()\nfig5 &lt;- fig4 + theme(plot.title=element_text(hjust=0.5,size=15,family=\"Comic Sans MS\",face=\"bold.italic\",colour=\"red\"))\n\n\nfig5\n\n\n\n\n\n\n\n\n\n#install.packages(\"cowplot\")\nlibrary(cowplot)\ncowplot::plot_grid(fig,fig2,fig3,fig4, labels = c('A)','B)','C)','D)')) #nrow=4\n\n\n\n\n\n\n\n#figura_convertida&lt;-as.ggplot(figura_que_no_se_genero_con_ggplot2)",
+    "text": "Presentaciones de las lecciones.",
     "crumbs": [
       "Teoría",
-      "Unidad 4",
-      "Introducción a R Clase 3 ggplot"
+      "Presentaciones de las Unidades"
     ]
   },
   {
-    "objectID": "teoria/04_unidad/04_apunte.html#guardar-la-imagen-con-ggsave",
-    "href": "teoria/04_unidad/04_apunte.html#guardar-la-imagen-con-ggsave",
-    "title": "Introducción a R Clase 3 ggplot",
+    "objectID": "teoria/01_unidad.html#unidad-1",
+    "href": "teoria/01_unidad.html#unidad-1",
+    "title": "Presentaciones de las Unidades",
+    "section": "Unidad 1",
+    "text": "Unidad 1\nMaterial introductorio para comenzar a utilizar R:\n🔗 Acceder a la clase",
+    "crumbs": [
+      "Teoría",
+      "Presentaciones de las Unidades"
+    ]
+  },
+  {
+    "objectID": "teoria/01_unidad.html#unidad-2-estructura-de-datos-en-r",
+    "href": "teoria/01_unidad.html#unidad-2-estructura-de-datos-en-r",
+    "title": "Presentaciones de las Unidades",
+    "section": "Unidad 2 📄 Estructura de datos en R",
+    "text": "Unidad 2 📄 Estructura de datos en R\nMaterial de la clase sobre el tema 2 Estructura de datos en R:\n🔗 Acceder a la clase",
+    "crumbs": [
+      "Teoría",
+      "Presentaciones de las Unidades"
+    ]
+  },
+  {
+    "objectID": "teoria/01_unidad.html#unidad-3-funciones-y-estructuras-condicionales",
+    "href": "teoria/01_unidad.html#unidad-3-funciones-y-estructuras-condicionales",
+    "title": "Presentaciones de las Unidades",
+    "section": "Unidad 3 ⚙️ Funciones y estructuras condicionales",
+    "text": "Unidad 3 ⚙️ Funciones y estructuras condicionales\nMaterial de la clase sobre funciones y control de flujo en R:\n🔗 Acceder a la clase",
+    "crumbs": [
+      "Teoría",
+      "Presentaciones de las Unidades"
+    ]
+  },
+  {
+    "objectID": "teoria/01_unidad.html#unidad-4-ggplot",
+    "href": "teoria/01_unidad.html#unidad-4-ggplot",
+    "title": "Presentaciones de las Unidades",
+    "section": "Unidad 4 📊 ggplot",
+    "text": "Unidad 4 📊 ggplot\nMaterial completo sobre visualización con ggplot2:\n🔗 Acceder a la clase 4",
+    "crumbs": [
+      "Teoría",
+      "Presentaciones de las Unidades"
+    ]
+  },
+  {
+    "objectID": "teoria/03_unidad/03_apunte.html",
+    "href": "teoria/03_unidad/03_apunte.html",
+    "title": "Introducción a R Clase 3",
     "section": "",
-    "text": "https://ggplot2.tidyverse.org/reference/ggsave.html\nSi la figura que generaste no fue realizada con ggplot 2,conviértela con as.ggplot figura_convertida&lt;-as.ggplot(figura_que_no_se_genero_con_ggplot2)\n\n\nggsave(\"Imagenes/plot.png\", fig5, width = 5, height = 5)\n\n\n\n\n‘theme’",
+    "text": "¿Qué es una función en programación?\nUna función tiene:\n📛 un nombre\n📦 uno o más argumentos\n🧱 un cuerpo que define lo que hace\n📌 ¿Cómo se define una función?\nLas funciones definidas por el usuario se crean usando la siguiente estructura:\n\n# suma &lt;- function(x, y) {\n#  resultado &lt;- x + y\n#  return(resultado)\n#  }\n\nPartimos del algoritmo para calcular el área de un cuadrilátero: lado x lado.\nPodemos convertir esto a operaciones de R y asignarlas a una función llamada area_cuad\n\narea_cuad &lt;- function(lado1,lado2) {\n  lado1 * lado2\n}\n\n\narea_cuad(lado1 = 4, lado2 = 6)\n\n[1] 24\n\narea_cuad(4, 6)\n\n[1] 24\n\n\n\n\n\n.pull-left[ if (si) es usado cuando queremos que una operación se ejecute únicamente cuando una condición se cumple.] .pull-right[else (de otro modo) es usado para indicarle a R qué hacer en caso de la condición de un if no se cumpla.]\nUn if es la manera de decirle a R:\nSI esta condición es cierta, ENTONCES haz estas operaciones..\nEl modelo para un if es:\n\n# if(Condición) {\n# operaciones_si_la_condición_es_TRUE\n# }\n\nSi la condición se cumple, es decir, es verdadera (TRUE), entonces se realizan las operaciones. En caso contrario, no ocurre nada y el código con las operaciones no es ejecutado.\nPor ejemplo, le pedimos a R que nos muestre el texto “Verdadero” si la condición se cumple.\n\n# Se cumple la condición y se muestra \"verdadero\"\nif(10 &gt; 5) {\n  \"Verdadero\"\n}\n\n[1] \"Verdadero\"\n\n\n\n# No se cumple la condición y no pasa nada\nif(4 &gt; 5) {\n  \"Verdadero\"\n}\n\nelse complementa un if, pues indica qué ocurrirá cuando la condición no se cumple, es falsa (FALSE), en lugar de no hacer nada.\nUn if con else es la manera de decirle a R:\nSI esta condición es es cierta, ENTONCES haz estas operaciones, DE OTRO MODO haz estas otras operaciones.\nEl modelo para un if con un else es:\n\n# if(condición) {\n#  operaciones_si_la_condición_es_TRUE\n# } else {\n#   operaciones_si_la_condición_es_FALSE\n# }\n\n\n\n\n\n# Se cumple la condición y se muestra \"Verdadero\"\nif(4 &gt; 5) {\n  \"Verdadero\"\n} else {\n  \"Falso\"\n}\n\n[1] \"Falso\"\n\n\n\n# No se cumple la condición y se muestra \"Falso\"\nif(4 &gt; 5) {\n  \"Verdadero\"\n} else {\n  \"Falso\"\n}\n\n[1] \"Falso\"\n\n\n ## Stop\n\ndividir &lt;- function(a, b) {\n  if (b == 0) {\n    stop(\"Error: No se puede dividir por cero.\")\n  }\n  return(a / b)\n}\n\n# Uso:\n# dividir(10, 0) # Lanza error: Error: No se puede dividir por cero.\n\n\n\n\n\n🎯 Objetivo: Para ejemplificar el uso de if / else, crearemos una función que calcule el promedio de calificaciones de un estudiante y, según el resultado, muestre un mensaje específico 📩.\n🔧 Paso 1. Definir función de promedio Primero creamos una función que calcule el promedio usando la función base mean() de R 📊. Más adelante la ampliaremos para incluir lógica condicional.\n\n# nombre &lt;- function(argumentos) {\n# operaciones\n# }\n\n\npromedio &lt;- function(calificaciones) {\n  mean(calificaciones)\n}\n\npromedio(c(6, 7, 8, 9))\n\n[1] 7.5\n\n\n\n\n\nSi asumimos que un estudiante necesita obtener 6 o más de promedio para aprobar, podemos decir que:\nSI el promedio de un estudiante es igual o mayor a 6, ENTONCES mostrar “Aprobado”, DE OTRO MODO, mostrar “Reprobado”. Aplicamso esta lógica con un if, else en la función promedio()\n\npromedio &lt;- function(calificaciones) {\n  media &lt;- mean(calificaciones)\n  if(media &gt;= 6) {\n    \"Aprobado\"\n  } else {\n    \"Reprobado\"\n  }\n}\npromedio &lt;- function(calificaciones){\n  media &lt;-mean(calificaciones)\n  if(media &gt;=6){\n    \"Aprobado\"\n  } else{\n    \"Reprobado\"\n  }\n}\npromedio(c(6, 7, 8, 9, 5))\n\n[1] \"Aprobado\"\n\n\nEstá funcionando, aunque los resultados podrían tener una mejor presentación.\nUsaremos la función paste0() para pegar el promedio de calificaciones, como texto, con el resultado de “Aprobado” o “Reprobado”. Esta función acepta como argumentos cadenas de texto y las pega (concatena) entre sí, devolviendo como resultado una nueva cadena\n\npromedio &lt;- function(calificaciones) {\n  media &lt;- mean(calificaciones)\n  texto &lt;- paste0(\"Calificación: \",media,\", \")\n  if(media &gt;= 6) {\n    paste0(texto, \"aprobado\")\n  } else {\n    paste0(texto, \"reprobado\")\n  }\n}\npromedio(c(5, 8, 5, 6, 5))\n\n[1] \"Calificación: 5.8, reprobado\"\n\n\n\n\n\n\n#Une las cadenas e incluye un separador entre ellas.\n\ncadena1 &lt;- \"Machine\"\ncadena2 &lt;- \"Learning\"\nresultado &lt;- paste0(cadena1,cadena2)\nresultado\n\n[1] \"MachineLearning\"\n\n\n\n#Funciona de manera similar a paste(), pero no incluye ningún separador entre las cadenas.\n\ncadena1 &lt;- \"Data\"\ncadena2 &lt;- \"Science\"\nresultado &lt;- paste0(cadena1, cadena2)\nresultado\n\n[1] \"DataScience\"\n\n\n\n\n\n🔁 La función ifelse() en R nos permite vectorizar la lógica de if / else, es decir, aplicar una condición a todos los elementos de un vector sin necesidad de escribir múltiples sentencias.\n📌 Cuando intentamos usar una estructura tradicional de if / else con un vector, R solo evalúa el primer elemento y muestra una advertencia, porque if espera una sola condición lógica.\n⚡ En cambio, con ifelse() obtenemos directamente un resultado para cada elemento del vector según si cumple o no la condición.\n\n# if(1:10 &lt; 3) {\n#   \"Verdadero\"\n# }\n## Warning in if (1:10 &lt; 3) {: la condición tiene longitud &gt; 1 y sólo el\n## primer elemento será usado\n\nEn cambio, con ifelse se nos devolverá un valor para cada elemento de un vector en el que la condición sea TRUE, además nos devolverá otro valor para los elementos en que la condición sea FALSE\n\n# ifelse(vector, valor_si_TRUE, valor_si_FALSE)\n\n\n\n\n\nifelse(1:10 &lt; 3,\"Verdadero\",\"Falso\")\n\n [1] \"Verdadero\" \"Verdadero\" \"Falso\"     \"Falso\"     \"Falso\"     \"Falso\"    \n [7] \"Falso\"     \"Falso\"     \"Falso\"     \"Falso\"    \n\n\n\n#Por ejemplo, pedimos sólo los números que son exactamente divisibles entre 2 y 3.\n\nnum &lt;- 1:20\n\nifelse(num %% 2 == 0 & num %% 3, \"Divisible\", \"No divisible\")\n\n [1] \"No divisible\" \"Divisible\"    \"No divisible\" \"Divisible\"    \"No divisible\"\n [6] \"No divisible\" \"No divisible\" \"Divisible\"    \"No divisible\" \"Divisible\"   \n[11] \"No divisible\" \"No divisible\" \"No divisible\" \"Divisible\"    \"No divisible\"\n[16] \"Divisible\"    \"No divisible\" \"No divisible\" \"No divisible\" \"Divisible\"   \n\n\n\n\n\n\n#Desde luego, esto es particularmente útil para recodificar datos.\n\ntabla_estudiantes &lt;- data.frame(\n  Estudiantes=c(\"Ron\",\"Jake\",\"Ava\",\"Sophia\",\"Mia\"),\n  Calificaciones=c(3.5,7.5,4.5,3.0,8.5))\n\ntabla_estudiantes\n\n  Estudiantes Calificaciones\n1         Ron            3.5\n2        Jake            7.5\n3         Ava            4.5\n4      Sophia            3.0\n5         Mia            8.5\n\ntabla_estudiantes$Resultado =   \n  ifelse(tabla_estudiantes$Calificaciones&gt;6,\n         \"Aprobado\",\"Reprobado\")\n\ntabla_estudiantes\n\n  Estudiantes Calificaciones Resultado\n1         Ron            3.5 Reprobado\n2        Jake            7.5  Aprobado\n3         Ava            4.5 Reprobado\n4      Sophia            3.0 Reprobado\n5         Mia            8.5  Aprobado\n\n\n\n\n\n\n# Create dataframe\ndf &lt;- data.frame(id=c(11,22,33,44,55),\n                        pages=c(32,45,33,22,56),\n                        name=c(\"spark\",\"python\",\"R\",\"java\",\"jsp\"),\n                        chapters=c(76,86,11,15,7),\n                        price=c(144,553,321,567,890))\ndf\n\n  id pages   name chapters price\n1 11    32  spark       76   144\n2 22    45 python       86   553\n3 33    33      R       11   321\n4 44    22   java       15   567\n5 55    56    jsp        7   890\n\n\nAgrega una nueva columna al dataframe para saber si el libro es pequeño (Small) o grande(Big). Sera pequeño si tiene menos de 20 capítulos y más de 10 páginas\n\ndf$size &lt;- ifelse(df$pages&gt;10 & df$chapters&lt;20,\"SMALL\",\"BIG\")\ndf\n\n  id pages   name chapters price  size\n1 11    32  spark       76   144   BIG\n2 22    45 python       86   553   BIG\n3 33    33      R       11   321 SMALL\n4 44    22   java       15   567 SMALL\n5 55    56    jsp        7   890 SMALL\n\n\n\n\n\nLa instrucción for itera por los elementos de un vector o lista, ejecutando un conjunto de instrucciones en cada iteración. Su sintaxis es:\n\n# for (item in vector) {\n#   conjunto_de_instrucciones\n# }\n\n# for (i in lista) {\n  # Código\n# }\n\n\nfor (x in c(20, 4, 6)) {\n  print(x)\n}\n\n[1] 20\n[1] 4\n[1] 6\n\n\n\nfor (alumno in tabla_estudiantes$Estudiantes) {\n  print(alumno)\n}\n\n[1] \"Ron\"\n[1] \"Jake\"\n[1] \"Ava\"\n[1] \"Sophia\"\n[1] \"Mia\"\n\n\n\n\n\n\nRealiza un lista de tus frutas favoritas\nCrea un ciclo for para leer la lista\nEl ciclo for debe regresar cada fruta de la lista\n\n\nfruits &lt;- list(\"apple\", \"banana\", \"grape\")\nfor (x in fruits) {\n  print(x)\n}\n\n[1] \"apple\"\n[1] \"banana\"\n[1] \"grape\"\n\n\n\nfor (x in fruits) {\n  if (x == \"banana\") {\n    break\n  }\n  print(x)\n}\n\n[1] \"apple\"\n\n\n\n\n\nEste es un tipo de bucle que ocurre mientras una condición es verdadera (TRUE). La operación se realiza hasta que se se llega a cumplir un criterio previamente establecido.\n\n# while(condicion) {\n#  operaciones\n# }\n\nProbemos sumar +1 a un valor, mientras que este sea menor que 5. Al igual que con for, necesitamos la función print() para mostrar los resultados en la consola.\n\numbral &lt;- 5\nvalor &lt;- 0\n\nwhile(valor &lt; umbral) {\n  print(\"Todavía no.\")\n  valor &lt;- valor + 1\n}\n\n[1] \"Todavía no.\"\n[1] \"Todavía no.\"\n[1] \"Todavía no.\"\n[1] \"Todavía no.\"\n[1] \"Todavía no.\"\n\n\n\n\n\n\n\n\nImagina que cada hora las células en cultivo aumentan su número en un 30 % debido a la división celular. Queremos simular cuántas horas pasan hasta que la población supera cierto umbral, por ejemplo 50 000 células.\n\n# Crecimiento celular simulado\npoblacion &lt;- 100     # Población inicial\nobjetivo &lt;- 50000\nhoras &lt;- 0\n\nwhile (poblacion &lt; objetivo) {\n  poblacion &lt;- poblacion * 1.3  # Crecimiento del 30%\n  horas &lt;- horas + 1\n}\nmensaje &lt;- paste0(\n  \"Horas necesarias: \", horas, \n  \" |Población final: \", round(poblacion))\nmensaje\n\n[1] \"Horas necesarias: 24 |Población final: 54280\"\n\n\n\n\n\n\nLa Tasa de Metabolismo Basal (TMB), es la cantidad mínima de energía que necesita tu cuerpo para funcionar. Nunca debemos ingerir menos cantidad de calorías de las que marca la tasa metabólica. La TMB se calcula siguiendo las siguientes ecuaciones TMB Mujer = 655 + (9.6 * P) + (1.8 * A) – (4.7 * E) TMB Hombre = 66 + (13.7 * P) + (5 * A) – (6.8 * E) donde necesitamos información del Sexo, A=Altura, P=Peso y E=Edad de cada persona, nuestros argumentos.\n##📌 Instrucciones del ejercicio:\n\nEscribe una función en R llamada calcularTMB() que reciba cuatro argumentos:\n\n\nsexo (carácter: “hombre” o “mujer”)\npeso (numérico, en kg)\naltura (numérico, en cm)\nedad (numérico, en años)\n\n\nDentro de la función, utiliza if / else o ifelse() para decidir qué fórmula aplicar según el valor de sexo.\nLa función debe retornar el valor de la TMB calculado.\nLuego de definirla, prueba tu función con estos datos:\n\n\nPersona A: “mujer”, peso = 70 kg, altura = 168 cm, edad = 38 años\nPersona B: “hombre”, peso = 78 kg, altura = 167 cm, edad = 40 años\n\n🔎 Opcional: modifica la función para que, además de retornar el valor numérico de la TMB, muestre un mensaje indicando la cantidad mínima de calorías que esa persona necesita, por ejemplo:\n“ Tu TMB es 1451 kcal/día — no deberías consumir menos que esto.”\n\n\n\n\n# 📊 Función para calcular TMB\ncalcularTMB &lt;- function(sexo, peso, altura, edad) {\n  \n  # Convertir a minúsculas por si el usuario escribe \"Hombre\" o \"MUJER\"\n  sexo &lt;- tolower(sexo)\n  \n  # 🧠 Validar el sexo y aplicar la fórmula adecuada\n  if (sexo == \"hombre\") {\n    # Fórmula para hombre\n    tmb &lt;- 66 + (13.7 * peso) + (5 * altura) - (6.8 * edad)\n  } else if (sexo == \"mujer\") {\n    # Fórmula para mujer\n    tmb &lt;- 655 + (9.6 * peso) + (1.8 * altura) - (4.7 * edad)\n  } else {\n    stop(\"⚠️ Sexo no válido. Usa 'hombre' o 'mujer'.\")\n  }\n  \n  # Retornar el resultado\n  #return(tmb)\n  return(paste(\n  \"Tu TMB es\", tmb,\n  \"kcal/día — no deberías consumir menos que esto.\")\n  )\n\n}\n\n\n# ♀️ Mujer de ejemplo\ntmb_mujer &lt;- calcularTMB(\"mujer\", 70, 168, 38)\ntmb_mujer\n\n[1] \"Tu TMB es 1450.8 kcal/día — no deberías consumir menos que esto.\"\n\n# ♂️ Hombre de ejemplo\ntmb_hombre &lt;- calcularTMB(\"hombre\", 78, 167, 40)\ntmb_hombre\n\n[1] \"Tu TMB es 1697.6 kcal/día — no deberías consumir menos que esto.\"\n\n\n\n\n\n\nEstructuras de control\nEjemplo práctico\ngrepl y grep\nsub y gsub",
     "crumbs": [
       "Teoría",
-      "Unidad 4",
-      "Introducción a R Clase 3 ggplot"
+      "Unidad 3",
+      "Introducción a R Clase 3"
     ]
   },
   {
-    "objectID": "teoria/04_unidad/04_apunte.html#barplot",
-    "href": "teoria/04_unidad/04_apunte.html#barplot",
-    "title": "Introducción a R Clase 3 ggplot",
-    "section": "Barplot",
-    "text": "Barplot\nLibreria palmerpenguins ## 🐧 Palmer Penguins\nDataset ideal para aprender visualización en R.\n\n3 especies de pingüinos\nDatos reales de la Antártida\nAlternativa moderna a iris\n\n🔗 Explorar dataset\n\nlibrary(palmerpenguins)\n\nggplot(penguins, aes(x = species))+ geom_bar()",
+    "objectID": "teoria/03_unidad/03_apunte.html#funciones-1",
+    "href": "teoria/03_unidad/03_apunte.html#funciones-1",
+    "title": "Introducción a R Clase 3",
+    "section": "",
+    "text": "¿Qué es una función en programación?\nUna función tiene:\n📛 un nombre\n📦 uno o más argumentos\n🧱 un cuerpo que define lo que hace\n📌 ¿Cómo se define una función?\nLas funciones definidas por el usuario se crean usando la siguiente estructura:\n\n# suma &lt;- function(x, y) {\n#  resultado &lt;- x + y\n#  return(resultado)\n#  }\n\nPartimos del algoritmo para calcular el área de un cuadrilátero: lado x lado.\nPodemos convertir esto a operaciones de R y asignarlas a una función llamada area_cuad\n\narea_cuad &lt;- function(lado1,lado2) {\n  lado1 * lado2\n}\n\n\narea_cuad(lado1 = 4, lado2 = 6)\n\n[1] 24\n\narea_cuad(4, 6)\n\n[1] 24",
     "crumbs": [
       "Teoría",
-      "Unidad 4",
-      "Introducción a R Clase 3 ggplot"
+      "Unidad 3",
+      "Introducción a R Clase 3"
     ]
   },
   {
-    "objectID": "teoria/04_unidad/04_apunte.html#barplot-1",
-    "href": "teoria/04_unidad/04_apunte.html#barplot-1",
-    "title": "Introducción a R Clase 3 ggplot",
-    "section": "Barplot",
-    "text": "Barplot\n\n# plot the distribution of race with modified colors and labels\nggplot(penguins,aes(x = species,fill = species)) + geom_bar() + labs(x = \"Species\", y = \"Frequency\",title = \"Penguins\")",
+    "objectID": "teoria/03_unidad/03_apunte.html#if-else",
+    "href": "teoria/03_unidad/03_apunte.html#if-else",
+    "title": "Introducción a R Clase 3",
+    "section": "",
+    "text": ".pull-left[ if (si) es usado cuando queremos que una operación se ejecute únicamente cuando una condición se cumple.] .pull-right[else (de otro modo) es usado para indicarle a R qué hacer en caso de la condición de un if no se cumpla.]\nUn if es la manera de decirle a R:\nSI esta condición es cierta, ENTONCES haz estas operaciones..\nEl modelo para un if es:\n\n# if(Condición) {\n# operaciones_si_la_condición_es_TRUE\n# }\n\nSi la condición se cumple, es decir, es verdadera (TRUE), entonces se realizan las operaciones. En caso contrario, no ocurre nada y el código con las operaciones no es ejecutado.\nPor ejemplo, le pedimos a R que nos muestre el texto “Verdadero” si la condición se cumple.\n\n# Se cumple la condición y se muestra \"verdadero\"\nif(10 &gt; 5) {\n  \"Verdadero\"\n}\n\n[1] \"Verdadero\"\n\n\n\n# No se cumple la condición y no pasa nada\nif(4 &gt; 5) {\n  \"Verdadero\"\n}\n\nelse complementa un if, pues indica qué ocurrirá cuando la condición no se cumple, es falsa (FALSE), en lugar de no hacer nada.\nUn if con else es la manera de decirle a R:\nSI esta condición es es cierta, ENTONCES haz estas operaciones, DE OTRO MODO haz estas otras operaciones.\nEl modelo para un if con un else es:\n\n# if(condición) {\n#  operaciones_si_la_condición_es_TRUE\n# } else {\n#   operaciones_si_la_condición_es_FALSE\n# }",
     "crumbs": [
       "Teoría",
-      "Unidad 4",
-      "Introducción a R Clase 3 ggplot"
+      "Unidad 3",
+      "Introducción a R Clase 3"
     ]
   },
   {
-    "objectID": "teoria/04_unidad/04_apunte.html#barplot-2",
-    "href": "teoria/04_unidad/04_apunte.html#barplot-2",
-    "title": "Introducción a R Clase 3 ggplot",
-    "section": "Barplot",
-    "text": "Barplot\n\n# plot the distribution as percentages\nggplot(penguins, aes(x = species,fill = species, y = after_stat(count/sum(count)))) + geom_bar() + labs(x = \"Species\", y = \"Percent\", title  = \"Penguins\") + scale_y_continuous(labels = scales::percent)",
+    "objectID": "teoria/03_unidad/03_apunte.html#agregando-el-else",
+    "href": "teoria/03_unidad/03_apunte.html#agregando-el-else",
+    "title": "Introducción a R Clase 3",
+    "section": "",
+    "text": "# Se cumple la condición y se muestra \"Verdadero\"\nif(4 &gt; 5) {\n  \"Verdadero\"\n} else {\n  \"Falso\"\n}\n\n[1] \"Falso\"\n\n\n\n# No se cumple la condición y se muestra \"Falso\"\nif(4 &gt; 5) {\n  \"Verdadero\"\n} else {\n  \"Falso\"\n}\n\n[1] \"Falso\"\n\n\n ## Stop\n\ndividir &lt;- function(a, b) {\n  if (b == 0) {\n    stop(\"Error: No se puede dividir por cero.\")\n  }\n  return(a / b)\n}\n\n# Uso:\n# dividir(10, 0) # Lanza error: Error: No se puede dividir por cero.",
     "crumbs": [
       "Teoría",
-      "Unidad 4",
-      "Introducción a R Clase 3 ggplot"
+      "Unidad 3",
+      "Introducción a R Clase 3"
     ]
   },
   {
-    "objectID": "teoria/04_unidad/04_apunte.html#barplot-3",
-    "href": "teoria/04_unidad/04_apunte.html#barplot-3",
-    "title": "Introducción a R Clase 3 ggplot",
-    "section": "Barplot",
-    "text": "Barplot\n\nggplot(penguins, \n       aes(x = species,fill=species, y = after_stat(count/sum(count)))) + \n  geom_bar() +\n  labs(x = \"Species\", \n       y = \"Percent\", \n       title  = \"Penguins\") +\n  scale_y_continuous(labels = scales::percent)+  coord_flip()",
+    "objectID": "teoria/03_unidad/03_apunte.html#usando-if-y-else",
+    "href": "teoria/03_unidad/03_apunte.html#usando-if-y-else",
+    "title": "Introducción a R Clase 3",
+    "section": "",
+    "text": "🎯 Objetivo: Para ejemplificar el uso de if / else, crearemos una función que calcule el promedio de calificaciones de un estudiante y, según el resultado, muestre un mensaje específico 📩.\n🔧 Paso 1. Definir función de promedio Primero creamos una función que calcule el promedio usando la función base mean() de R 📊. Más adelante la ampliaremos para incluir lógica condicional.\n\n# nombre &lt;- function(argumentos) {\n# operaciones\n# }\n\n\npromedio &lt;- function(calificaciones) {\n  mean(calificaciones)\n}\n\npromedio(c(6, 7, 8, 9))\n\n[1] 7.5",
     "crumbs": [
       "Teoría",
-      "Unidad 4",
-      "Introducción a R Clase 3 ggplot"
+      "Unidad 3",
+      "Introducción a R Clase 3"
     ]
   },
   {
-    "objectID": "teoria/04_unidad/04_apunte.html#barplot-4",
-    "href": "teoria/04_unidad/04_apunte.html#barplot-4",
-    "title": "Introducción a R Clase 3 ggplot",
-    "section": "Barplot",
-    "text": "Barplot\n\nggplot(penguins, \n       aes(x = species,fill=species, y = after_stat(count/sum(count)))) + \n  geom_bar() +\n  labs(x = \"Species\", \n       y = \"Percent\", \n       title  = \"Penguins\") +\n  scale_y_continuous(labels = scales::percent)+\n  theme(axis.text.x = element_text(angle = 45,\n                                   hjust = 1))",
+    "objectID": "teoria/03_unidad/03_apunte.html#ejemplos",
+    "href": "teoria/03_unidad/03_apunte.html#ejemplos",
+    "title": "Introducción a R Clase 3",
+    "section": "",
+    "text": "Si asumimos que un estudiante necesita obtener 6 o más de promedio para aprobar, podemos decir que:\nSI el promedio de un estudiante es igual o mayor a 6, ENTONCES mostrar “Aprobado”, DE OTRO MODO, mostrar “Reprobado”. Aplicamso esta lógica con un if, else en la función promedio()\n\npromedio &lt;- function(calificaciones) {\n  media &lt;- mean(calificaciones)\n  if(media &gt;= 6) {\n    \"Aprobado\"\n  } else {\n    \"Reprobado\"\n  }\n}\npromedio &lt;- function(calificaciones){\n  media &lt;-mean(calificaciones)\n  if(media &gt;=6){\n    \"Aprobado\"\n  } else{\n    \"Reprobado\"\n  }\n}\npromedio(c(6, 7, 8, 9, 5))\n\n[1] \"Aprobado\"\n\n\nEstá funcionando, aunque los resultados podrían tener una mejor presentación.\nUsaremos la función paste0() para pegar el promedio de calificaciones, como texto, con el resultado de “Aprobado” o “Reprobado”. Esta función acepta como argumentos cadenas de texto y las pega (concatena) entre sí, devolviendo como resultado una nueva cadena\n\npromedio &lt;- function(calificaciones) {\n  media &lt;- mean(calificaciones)\n  texto &lt;- paste0(\"Calificación: \",media,\", \")\n  if(media &gt;= 6) {\n    paste0(texto, \"aprobado\")\n  } else {\n    paste0(texto, \"reprobado\")\n  }\n}\npromedio(c(5, 8, 5, 6, 5))\n\n[1] \"Calificación: 5.8, reprobado\"",
     "crumbs": [
       "Teoría",
-      "Unidad 4",
-      "Introducción a R Clase 3 ggplot"
+      "Unidad 3",
+      "Introducción a R Clase 3"
     ]
   },
   {
-    "objectID": "teoria/04_unidad/04_apunte.html#pie-chart",
-    "href": "teoria/04_unidad/04_apunte.html#pie-chart",
-    "title": "Introducción a R Clase 3 ggplot",
-    "section": "Pie chart",
-    "text": "Pie chart\n\n# create a basic ggplot2 pie chart\n#if(!require(remotes)){\n#   install.packages(\"remotes\")\n#}\n#remotes::install_github(\"rkabacoff/ggpie\")\nlibrary(ggpie)\nggpie(penguins, species,offset = 1.5,legend=FALSE,title=\"% de especies\")\n\nWarning in geom_col(width = 1, size = border.width, col = border.color):\nIgnoring unknown parameters: `size`\n\n\n\n\n\n\n\n\n\n\nggpie(penguins, species,offset = 1.5,legend=F,title=\"% de especies\") +\n  scale_fill_brewer(palette=\"Set1\") +\n  theme(legend.position = \"top\")\n\nWarning in geom_col(width = 1, size = border.width, col = border.color):\nIgnoring unknown parameters: `size`",
+    "objectID": "teoria/03_unidad/03_apunte.html#paste0-o-paste",
+    "href": "teoria/03_unidad/03_apunte.html#paste0-o-paste",
+    "title": "Introducción a R Clase 3",
+    "section": "",
+    "text": "#Une las cadenas e incluye un separador entre ellas.\n\ncadena1 &lt;- \"Machine\"\ncadena2 &lt;- \"Learning\"\nresultado &lt;- paste0(cadena1,cadena2)\nresultado\n\n[1] \"MachineLearning\"\n\n\n\n#Funciona de manera similar a paste(), pero no incluye ningún separador entre las cadenas.\n\ncadena1 &lt;- \"Data\"\ncadena2 &lt;- \"Science\"\nresultado &lt;- paste0(cadena1, cadena2)\nresultado\n\n[1] \"DataScience\"",
     "crumbs": [
       "Teoría",
-      "Unidad 4",
-      "Introducción a R Clase 3 ggplot"
+      "Unidad 3",
+      "Introducción a R Clase 3"
     ]
   },
   {
-    "objectID": "teoria/04_unidad/04_apunte.html#cuál-es-la-distribución-porcentual-de-las-especies-de-pingüinos-en-cada-isla-del-conjunto-de-datos-penguins",
-    "href": "teoria/04_unidad/04_apunte.html#cuál-es-la-distribución-porcentual-de-las-especies-de-pingüinos-en-cada-isla-del-conjunto-de-datos-penguins",
-    "title": "Introducción a R Clase 3 ggplot",
-    "section": "¿Cuál es la distribución porcentual de las especies de pingüinos en cada isla del conjunto de datos penguins?",
-    "text": "¿Cuál es la distribución porcentual de las especies de pingüinos en cada isla del conjunto de datos penguins?\n\nggpie(penguins,species,island, \n      offset=1.3, \n      label.size=3,\n      legend=FALSE, \n      title=\"% de especies por isla\")\n\nWarning in geom_col(width = 1, size = border.width, col = border.color):\nIgnoring unknown parameters: `size`",
+    "objectID": "teoria/03_unidad/03_apunte.html#ifelse",
+    "href": "teoria/03_unidad/03_apunte.html#ifelse",
+    "title": "Introducción a R Clase 3",
+    "section": "",
+    "text": "🔁 La función ifelse() en R nos permite vectorizar la lógica de if / else, es decir, aplicar una condición a todos los elementos de un vector sin necesidad de escribir múltiples sentencias.\n📌 Cuando intentamos usar una estructura tradicional de if / else con un vector, R solo evalúa el primer elemento y muestra una advertencia, porque if espera una sola condición lógica.\n⚡ En cambio, con ifelse() obtenemos directamente un resultado para cada elemento del vector según si cumple o no la condición.\n\n# if(1:10 &lt; 3) {\n#   \"Verdadero\"\n# }\n## Warning in if (1:10 &lt; 3) {: la condición tiene longitud &gt; 1 y sólo el\n## primer elemento será usado\n\nEn cambio, con ifelse se nos devolverá un valor para cada elemento de un vector en el que la condición sea TRUE, además nos devolverá otro valor para los elementos en que la condición sea FALSE\n\n# ifelse(vector, valor_si_TRUE, valor_si_FALSE)",
     "crumbs": [
       "Teoría",
-      "Unidad 4",
-      "Introducción a R Clase 3 ggplot"
+      "Unidad 3",
+      "Introducción a R Clase 3"
     ]
   },
   {
-    "objectID": "teoria/04_unidad/04_apunte.html#pie-chart-en-ggplot2",
-    "href": "teoria/04_unidad/04_apunte.html#pie-chart-en-ggplot2",
-    "title": "Introducción a R Clase 3 ggplot",
-    "section": "🥧 Pie chart en ggplot2",
-    "text": "🥧 Pie chart en ggplot2\nVer tutorial de ggpie",
+    "objectID": "teoria/03_unidad/03_apunte.html#ifelse-1",
+    "href": "teoria/03_unidad/03_apunte.html#ifelse-1",
+    "title": "Introducción a R Clase 3",
+    "section": "",
+    "text": "ifelse(1:10 &lt; 3,\"Verdadero\",\"Falso\")\n\n [1] \"Verdadero\" \"Verdadero\" \"Falso\"     \"Falso\"     \"Falso\"     \"Falso\"    \n [7] \"Falso\"     \"Falso\"     \"Falso\"     \"Falso\"    \n\n\n\n#Por ejemplo, pedimos sólo los números que son exactamente divisibles entre 2 y 3.\n\nnum &lt;- 1:20\n\nifelse(num %% 2 == 0 & num %% 3, \"Divisible\", \"No divisible\")\n\n [1] \"No divisible\" \"Divisible\"    \"No divisible\" \"Divisible\"    \"No divisible\"\n [6] \"No divisible\" \"No divisible\" \"Divisible\"    \"No divisible\" \"Divisible\"   \n[11] \"No divisible\" \"No divisible\" \"No divisible\" \"Divisible\"    \"No divisible\"\n[16] \"Divisible\"    \"No divisible\" \"No divisible\" \"No divisible\" \"Divisible\"",
     "crumbs": [
       "Teoría",
-      "Unidad 4",
-      "Introducción a R Clase 3 ggplot"
+      "Unidad 3",
+      "Introducción a R Clase 3"
     ]
   },
   {
-    "objectID": "teoria/04_unidad/04_apunte.html#recursos-ggplot2",
-    "href": "teoria/04_unidad/04_apunte.html#recursos-ggplot2",
-    "title": "Introducción a R Clase 3 ggplot",
-    "section": "📊 Recursos ggplot2",
-    "text": "📊 Recursos ggplot2\n\nIntroducción\n\nIntro ggplot2\nTutorial completo\n\n\n\nLibro\n\nggplot2 book\n\n\n\nDatos\n\nChickWeight dataset\n\n\n\nPersonalización\n\nShapes\ntheme()\n\n\n\nAvanzado\n\nFuentes\nInteractividad ggiraph\nggpie",
+    "objectID": "teoria/03_unidad/03_apunte.html#ejemplo-ifelse-y-dataframe",
+    "href": "teoria/03_unidad/03_apunte.html#ejemplo-ifelse-y-dataframe",
+    "title": "Introducción a R Clase 3",
+    "section": "",
+    "text": "#Desde luego, esto es particularmente útil para recodificar datos.\n\ntabla_estudiantes &lt;- data.frame(\n  Estudiantes=c(\"Ron\",\"Jake\",\"Ava\",\"Sophia\",\"Mia\"),\n  Calificaciones=c(3.5,7.5,4.5,3.0,8.5))\n\ntabla_estudiantes\n\n  Estudiantes Calificaciones\n1         Ron            3.5\n2        Jake            7.5\n3         Ava            4.5\n4      Sophia            3.0\n5         Mia            8.5\n\ntabla_estudiantes$Resultado =   \n  ifelse(tabla_estudiantes$Calificaciones&gt;6,\n         \"Aprobado\",\"Reprobado\")\n\ntabla_estudiantes\n\n  Estudiantes Calificaciones Resultado\n1         Ron            3.5 Reprobado\n2        Jake            7.5  Aprobado\n3         Ava            4.5 Reprobado\n4      Sophia            3.0 Reprobado\n5         Mia            8.5  Aprobado",
     "crumbs": [
       "Teoría",
-      "Unidad 4",
-      "Introducción a R Clase 3 ggplot"
+      "Unidad 3",
+      "Introducción a R Clase 3"
+    ]
+  },
+  {
+    "objectID": "teoria/03_unidad/03_apunte.html#ejercicio",
+    "href": "teoria/03_unidad/03_apunte.html#ejercicio",
+    "title": "Introducción a R Clase 3",
+    "section": "",
+    "text": "# Create dataframe\ndf &lt;- data.frame(id=c(11,22,33,44,55),\n                        pages=c(32,45,33,22,56),\n                        name=c(\"spark\",\"python\",\"R\",\"java\",\"jsp\"),\n                        chapters=c(76,86,11,15,7),\n                        price=c(144,553,321,567,890))\ndf\n\n  id pages   name chapters price\n1 11    32  spark       76   144\n2 22    45 python       86   553\n3 33    33      R       11   321\n4 44    22   java       15   567\n5 55    56    jsp        7   890\n\n\nAgrega una nueva columna al dataframe para saber si el libro es pequeño (Small) o grande(Big). Sera pequeño si tiene menos de 20 capítulos y más de 10 páginas\n\ndf$size &lt;- ifelse(df$pages&gt;10 & df$chapters&lt;20,\"SMALL\",\"BIG\")\ndf\n\n  id pages   name chapters price  size\n1 11    32  spark       76   144   BIG\n2 22    45 python       86   553   BIG\n3 33    33      R       11   321 SMALL\n4 44    22   java       15   567 SMALL\n5 55    56    jsp        7   890 SMALL",
+    "crumbs": [
+      "Teoría",
+      "Unidad 3",
+      "Introducción a R Clase 3"
+    ]
+  },
+  {
+    "objectID": "teoria/03_unidad/03_apunte.html#sentencia-for",
+    "href": "teoria/03_unidad/03_apunte.html#sentencia-for",
+    "title": "Introducción a R Clase 3",
+    "section": "",
+    "text": "La instrucción for itera por los elementos de un vector o lista, ejecutando un conjunto de instrucciones en cada iteración. Su sintaxis es:\n\n# for (item in vector) {\n#   conjunto_de_instrucciones\n# }\n\n# for (i in lista) {\n  # Código\n# }\n\n\nfor (x in c(20, 4, 6)) {\n  print(x)\n}\n\n[1] 20\n[1] 4\n[1] 6\n\n\n\nfor (alumno in tabla_estudiantes$Estudiantes) {\n  print(alumno)\n}\n\n[1] \"Ron\"\n[1] \"Jake\"\n[1] \"Ava\"\n[1] \"Sophia\"\n[1] \"Mia\"",
+    "crumbs": [
+      "Teoría",
+      "Unidad 3",
+      "Introducción a R Clase 3"
+    ]
+  },
+  {
+    "objectID": "teoria/03_unidad/03_apunte.html#ejercicio-1",
+    "href": "teoria/03_unidad/03_apunte.html#ejercicio-1",
+    "title": "Introducción a R Clase 3",
+    "section": "",
+    "text": "Realiza un lista de tus frutas favoritas\nCrea un ciclo for para leer la lista\nEl ciclo for debe regresar cada fruta de la lista\n\n\nfruits &lt;- list(\"apple\", \"banana\", \"grape\")\nfor (x in fruits) {\n  print(x)\n}\n\n[1] \"apple\"\n[1] \"banana\"\n[1] \"grape\"\n\n\n\nfor (x in fruits) {\n  if (x == \"banana\") {\n    break\n  }\n  print(x)\n}\n\n[1] \"apple\"",
+    "crumbs": [
+      "Teoría",
+      "Unidad 3",
+      "Introducción a R Clase 3"
+    ]
+  },
+  {
+    "objectID": "teoria/03_unidad/03_apunte.html#sentencia-while",
+    "href": "teoria/03_unidad/03_apunte.html#sentencia-while",
+    "title": "Introducción a R Clase 3",
+    "section": "",
+    "text": "Este es un tipo de bucle que ocurre mientras una condición es verdadera (TRUE). La operación se realiza hasta que se se llega a cumplir un criterio previamente establecido.\n\n# while(condicion) {\n#  operaciones\n# }\n\nProbemos sumar +1 a un valor, mientras que este sea menor que 5. Al igual que con for, necesitamos la función print() para mostrar los resultados en la consola.\n\numbral &lt;- 5\nvalor &lt;- 0\n\nwhile(valor &lt; umbral) {\n  print(\"Todavía no.\")\n  valor &lt;- valor + 1\n}\n\n[1] \"Todavía no.\"\n[1] \"Todavía no.\"\n[1] \"Todavía no.\"\n[1] \"Todavía no.\"\n[1] \"Todavía no.\"",
+    "crumbs": [
+      "Teoría",
+      "Unidad 3",
+      "Introducción a R Clase 3"
+    ]
+  },
+  {
+    "objectID": "teoria/03_unidad/03_apunte.html#ejemplo-while",
+    "href": "teoria/03_unidad/03_apunte.html#ejemplo-while",
+    "title": "Introducción a R Clase 3",
+    "section": "",
+    "text": "Imagina que cada hora las células en cultivo aumentan su número en un 30 % debido a la división celular. Queremos simular cuántas horas pasan hasta que la población supera cierto umbral, por ejemplo 50 000 células.\n\n# Crecimiento celular simulado\npoblacion &lt;- 100     # Población inicial\nobjetivo &lt;- 50000\nhoras &lt;- 0\n\nwhile (poblacion &lt; objetivo) {\n  poblacion &lt;- poblacion * 1.3  # Crecimiento del 30%\n  horas &lt;- horas + 1\n}\nmensaje &lt;- paste0(\n  \"Horas necesarias: \", horas, \n  \" |Población final: \", round(poblacion))\nmensaje\n\n[1] \"Horas necesarias: 24 |Población final: 54280\"",
+    "crumbs": [
+      "Teoría",
+      "Unidad 3",
+      "Introducción a R Clase 3"
+    ]
+  },
+  {
+    "objectID": "teoria/03_unidad/03_apunte.html#cálculo-de-la-tasa-de-metabolismo-basal",
+    "href": "teoria/03_unidad/03_apunte.html#cálculo-de-la-tasa-de-metabolismo-basal",
+    "title": "Introducción a R Clase 3",
+    "section": "",
+    "text": "La Tasa de Metabolismo Basal (TMB), es la cantidad mínima de energía que necesita tu cuerpo para funcionar. Nunca debemos ingerir menos cantidad de calorías de las que marca la tasa metabólica. La TMB se calcula siguiendo las siguientes ecuaciones TMB Mujer = 655 + (9.6 * P) + (1.8 * A) – (4.7 * E) TMB Hombre = 66 + (13.7 * P) + (5 * A) – (6.8 * E) donde necesitamos información del Sexo, A=Altura, P=Peso y E=Edad de cada persona, nuestros argumentos.\n##📌 Instrucciones del ejercicio:\n\nEscribe una función en R llamada calcularTMB() que reciba cuatro argumentos:\n\n\nsexo (carácter: “hombre” o “mujer”)\npeso (numérico, en kg)\naltura (numérico, en cm)\nedad (numérico, en años)\n\n\nDentro de la función, utiliza if / else o ifelse() para decidir qué fórmula aplicar según el valor de sexo.\nLa función debe retornar el valor de la TMB calculado.\nLuego de definirla, prueba tu función con estos datos:\n\n\nPersona A: “mujer”, peso = 70 kg, altura = 168 cm, edad = 38 años\nPersona B: “hombre”, peso = 78 kg, altura = 167 cm, edad = 40 años\n\n🔎 Opcional: modifica la función para que, además de retornar el valor numérico de la TMB, muestre un mensaje indicando la cantidad mínima de calorías que esa persona necesita, por ejemplo:\n“ Tu TMB es 1451 kcal/día — no deberías consumir menos que esto.”",
+    "crumbs": [
+      "Teoría",
+      "Unidad 3",
+      "Introducción a R Clase 3"
+    ]
+  },
+  {
+    "objectID": "teoria/03_unidad/03_apunte.html#respuesta",
+    "href": "teoria/03_unidad/03_apunte.html#respuesta",
+    "title": "Introducción a R Clase 3",
+    "section": "",
+    "text": "# 📊 Función para calcular TMB\ncalcularTMB &lt;- function(sexo, peso, altura, edad) {\n  \n  # Convertir a minúsculas por si el usuario escribe \"Hombre\" o \"MUJER\"\n  sexo &lt;- tolower(sexo)\n  \n  # 🧠 Validar el sexo y aplicar la fórmula adecuada\n  if (sexo == \"hombre\") {\n    # Fórmula para hombre\n    tmb &lt;- 66 + (13.7 * peso) + (5 * altura) - (6.8 * edad)\n  } else if (sexo == \"mujer\") {\n    # Fórmula para mujer\n    tmb &lt;- 655 + (9.6 * peso) + (1.8 * altura) - (4.7 * edad)\n  } else {\n    stop(\"⚠️ Sexo no válido. Usa 'hombre' o 'mujer'.\")\n  }\n  \n  # Retornar el resultado\n  #return(tmb)\n  return(paste(\n  \"Tu TMB es\", tmb,\n  \"kcal/día — no deberías consumir menos que esto.\")\n  )\n\n}\n\n\n# ♀️ Mujer de ejemplo\ntmb_mujer &lt;- calcularTMB(\"mujer\", 70, 168, 38)\ntmb_mujer\n\n[1] \"Tu TMB es 1450.8 kcal/día — no deberías consumir menos que esto.\"\n\n# ♂️ Hombre de ejemplo\ntmb_hombre &lt;- calcularTMB(\"hombre\", 78, 167, 40)\ntmb_hombre\n\n[1] \"Tu TMB es 1697.6 kcal/día — no deberías consumir menos que esto.\"",
+    "crumbs": [
+      "Teoría",
+      "Unidad 3",
+      "Introducción a R Clase 3"
+    ]
+  },
+  {
+    "objectID": "teoria/03_unidad/03_apunte.html#referencias",
+    "href": "teoria/03_unidad/03_apunte.html#referencias",
+    "title": "Introducción a R Clase 3",
+    "section": "",
+    "text": "Estructuras de control\nEjemplo práctico\ngrepl y grep\nsub y gsub",
+    "crumbs": [
+      "Teoría",
+      "Unidad 3",
+      "Introducción a R Clase 3"
+    ]
+  },
+  {
+    "objectID": "teoria/05_unidad/05_apunte.html",
+    "href": "teoria/05_unidad/05_apunte.html",
+    "title": "Introducción a R Clase 5 dplyr",
+    "section": "",
+    "text": "En esta sesión aprenderemos los principios básicos de manipulación de datos en R utilizando el paquete dplyr, que forma parte del ecosistema tidyverse.\n\nTidyverse para análisis de datos\n\nEl objetivo principal es que el estudiantado:\n\nComprenda la lógica de la manipulación de datos tipo tidy\nAprenda a leer y escribir código más claro y reproducible\nSe familiarice con funciones esenciales para el análisis de datos\nTrabajaremos con un conjunto de datos real: penguins, ampliamente utilizado con fines educativos.\n\n\n\nEn R, gran parte de la funcionalidad se encuentra en paquetes. Para esta clase utilizaremos:\ndplyr: manipulación de datos tidyverse: colección de paquetes para ciencia de datos palmerpenguins: conjunto de datos de pingüinos antárticos\n⚠️ Nota Si ya tienen estos paquetes instalados, NO es necesario volver a instalarlos.\n\n# install.packages(\"dplyr\")\n# install.packages(\"tidyverse\")\n# install.packages(\"remotes\")\n# remotes::install_github(\"allisonhorst/palmerpenguins\")\n\nCargamos los paquetes en la sesión de R:\n\nlibrary(dplyr)\n\n\nAdjuntando el paquete: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ forcats   1.0.1     ✔ readr     2.1.6\n✔ ggplot2   4.0.2     ✔ stringr   1.6.0\n✔ lubridate 1.9.4     ✔ tibble    3.3.1\n✔ purrr     1.2.0     ✔ tidyr     1.3.2\n\n\n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(palmerpenguins)\n\n\nAdjuntando el paquete: 'palmerpenguins'\n\nThe following objects are masked from 'package:datasets':\n\n    penguins, penguins_raw\n\n\n\n\n\nEl conjunto de datos penguins contiene información morfológica de tres especies de pingüinos observados en distintas islas de la Antártida.\nAlgunas variables incluyen:\n\nespecie\nisla\nlongitud y profundidad del pico\nlongitud de la aleta\nmasa corporal\nsexo\nPuedes explorar el dataset en este sitio.\n\nVeamos los nombres de las variables disponibles:\n\nnames(penguins)\n\n[1] \"species\"           \"island\"            \"bill_length_mm\"   \n[4] \"bill_depth_mm\"     \"flipper_length_mm\" \"body_mass_g\"      \n[7] \"sex\"               \"year\"             \n\n\n\n\n\nUna de las ideas centrales de dplyr es el uso del operador pipe (%&gt;%).\n\n%&gt;% o |&gt;\nAtajos en el teclado\nWindows / Linux: Ctrl + Shift +\nMmacOS: Cmd + Shift + M\n\nEste operador permite encadenar funciones, haciendo que el código:\n\nsea más legible\nsiga una lógica paso a paso\nse parezca al lenguaje natural\n\nPuede leerse como “y luego”.\nEjemplo conceptual:\nTomamos los datos y luego filtramos y luego ordenamos y luego resumimos\nfilter(): Filtrar observaciones (filas) \nLa función filter() se utiliza para seleccionar filas que cumplen una o más condiciones.\n\n\n\n\ntorgersen_penguins &lt;- penguins %&gt;%\n  filter(island == \"Torgersen\")\n\nhead(torgersen_penguins)\n\n# A tibble: 6 × 8\n  species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n  &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n1 Adelie  Torgersen           39.1          18.7               181        3750\n2 Adelie  Torgersen           39.5          17.4               186        3800\n3 Adelie  Torgersen           40.3          18                 195        3250\n4 Adelie  Torgersen           NA            NA                  NA          NA\n5 Adelie  Torgersen           36.7          19.3               193        3450\n6 Adelie  Torgersen           39.3          20.6               190        3650\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;\n\n\nAquí:\n\nTomamos el conjunto penguins\nFiltramos solo los individuos de la isla Torgersen\nGuardamos el resultado en un nuevo objeto\n\n\n\n\n\npenguins %&gt;%\n  filter(bill_depth_mm &gt; 16.2) %&gt;%\n  head()\n\n# A tibble: 6 × 8\n  species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n  &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n1 Adelie  Torgersen           39.1          18.7               181        3750\n2 Adelie  Torgersen           39.5          17.4               186        3800\n3 Adelie  Torgersen           40.3          18                 195        3250\n4 Adelie  Torgersen           36.7          19.3               193        3450\n5 Adelie  Torgersen           39.3          20.6               190        3650\n6 Adelie  Torgersen           38.9          17.8               181        3625\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;\n\n\nEste código selecciona únicamente los pingüinos cuya profundidad del pico es mayor a 16.2 mm.\n\n\n\n\npenguins %&gt;%\n  filter(between(bill_depth_mm, 16.2, 18.1))\n\n# A tibble: 108 × 8\n   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n 1 Adelie  Torgersen           39.5          17.4               186        3800\n 2 Adelie  Torgersen           40.3          18                 195        3250\n 3 Adelie  Torgersen           38.9          17.8               181        3625\n 4 Adelie  Torgersen           34.1          18.1               193        3475\n 5 Adelie  Torgersen           37.8          17.1               186        3300\n 6 Adelie  Torgersen           37.8          17.3               180        3700\n 7 Adelie  Torgersen           41.1          17.6               182        3200\n 8 Adelie  Torgersen           36.6          17.8               185        3700\n 9 Adelie  Biscoe              38.2          18.1               185        3950\n10 Adelie  Biscoe              38.8          17.2               180        3800\n# ℹ 98 more rows\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;\n\n\nbetween() es útil para especificar rangos numéricos de manera clara y legible.\n\n\n\nLa función arrange() permite ordenar las filas de un conjunto de datos.\n\n\n\npenguins %&gt;%\n  arrange(body_mass_g) %&gt;%\n  head()\n\n# A tibble: 6 × 8\n  species   island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n  &lt;fct&gt;     &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n1 Chinstrap Dream               46.9          16.6               192        2700\n2 Adelie    Biscoe              36.5          16.6               181        2850\n3 Adelie    Biscoe              36.4          17.1               184        2850\n4 Adelie    Biscoe              34.5          18.1               187        2900\n5 Adelie    Dream               33.1          16.1               178        2900\n6 Adelie    Torgersen           38.6          17                 188        2900\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;\n\n\n\n\n\n\npenguins %&gt;%\n  arrange(desc(body_mass_g)) %&gt;%\n  head()\n\n# A tibble: 6 × 8\n  species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n  &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n1 Gentoo  Biscoe           49.2          15.2               221        6300\n2 Gentoo  Biscoe           59.6          17                 230        6050\n3 Gentoo  Biscoe           51.1          16.3               220        6000\n4 Gentoo  Biscoe           48.8          16.2               222        6000\n5 Gentoo  Biscoe           45.2          16.4               223        5950\n6 Gentoo  Biscoe           49.8          15.9               229        5950\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;\n\n\nEsto es útil, por ejemplo, para identificar los individuos más pesados o más ligeros.\n\n\n\n\n\npenguins %&gt;%\n  select(species, flipper_length_mm, sex) %&gt;%\n  head()\n\n# A tibble: 6 × 3\n  species flipper_length_mm sex   \n  &lt;fct&gt;               &lt;int&gt; &lt;fct&gt; \n1 Adelie                181 male  \n2 Adelie                186 female\n3 Adelie                195 female\n4 Adelie                 NA &lt;NA&gt;  \n5 Adelie                193 female\n6 Adelie                190 male  \n\n\n\n\nSeleccionar solo variables numéricas:\n\npenguins %&gt;%\n  select(where(is.numeric)) %&gt;%\n  head()\n\n# A tibble: 6 × 5\n  bill_length_mm bill_depth_mm flipper_length_mm body_mass_g  year\n           &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt; &lt;int&gt;\n1           39.1          18.7               181        3750  2007\n2           39.5          17.4               186        3800  2007\n3           40.3          18                 195        3250  2007\n4           NA            NA                  NA          NA  2007\n5           36.7          19.3               193        3450  2007\n6           39.3          20.6               190        3650  2007\n\n\nSeleccionar solo variables no numéricas:\n\npenguins %&gt;%\n  select(!where(is.numeric)) %&gt;%\n  head()\n\n# A tibble: 6 × 3\n  species island    sex   \n  &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt; \n1 Adelie  Torgersen male  \n2 Adelie  Torgersen female\n3 Adelie  Torgersen female\n4 Adelie  Torgersen &lt;NA&gt;  \n5 Adelie  Torgersen female\n6 Adelie  Torgersen male  \n\n\nEste tipo de selección es muy útil en análisis exploratorios.\n\n\n\n\nLa función mutate() se utiliza para crear o transformar variables.\nEjemplo: convertir la masa corporal de gramos a libras.\n\npenguins %&gt;%\n  mutate(body_weight_pounds = body_mass_g / 453.59237) %&gt;%\n  select(body_mass_g, body_weight_pounds) %&gt;%\n  head()\n\n# A tibble: 6 × 2\n  body_mass_g body_weight_pounds\n        &lt;int&gt;              &lt;dbl&gt;\n1        3750               8.27\n2        3800               8.38\n3        3250               7.17\n4          NA              NA   \n5        3450               7.61\n6        3650               8.05\n\n\n\n\n\nsummarize() permite calcular estadísticas descriptivas.\n\npenguins %&gt;%\n  summarize(avg_body_mass = mean(body_mass_g, na.rm = TRUE))\n\n# A tibble: 1 × 1\n  avg_body_mass\n          &lt;dbl&gt;\n1         4202.\n\n\nEl argumento na.rm = TRUE indica que los valores faltantes (NA) deben ignorarse.\n\n\n\nEn esta clase aprendimos a:\n\nManipular datos con dplyr\nUsar el operador %&gt;%\nFiltrar, ordenar y seleccionar información\nCrear nuevas variables\nCalcular estadísticas resumen\n\nEstas herramientas son la base del análisis de datos moderno en R y se utilizarán continuamente a lo largo del curso.",
+    "crumbs": [
+      "Teoría",
+      "Unidad 5",
+      "Introducción a R Clase 5 dplyr"
+    ]
+  },
+  {
+    "objectID": "teoria/05_unidad/05_apunte.html#paquetes-necesarios",
+    "href": "teoria/05_unidad/05_apunte.html#paquetes-necesarios",
+    "title": "Introducción a R Clase 5 dplyr",
+    "section": "",
+    "text": "En R, gran parte de la funcionalidad se encuentra en paquetes. Para esta clase utilizaremos:\ndplyr: manipulación de datos tidyverse: colección de paquetes para ciencia de datos palmerpenguins: conjunto de datos de pingüinos antárticos\n⚠️ Nota Si ya tienen estos paquetes instalados, NO es necesario volver a instalarlos.\n\n# install.packages(\"dplyr\")\n# install.packages(\"tidyverse\")\n# install.packages(\"remotes\")\n# remotes::install_github(\"allisonhorst/palmerpenguins\")\n\nCargamos los paquetes en la sesión de R:\n\nlibrary(dplyr)\n\n\nAdjuntando el paquete: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ forcats   1.0.1     ✔ readr     2.1.6\n✔ ggplot2   4.0.2     ✔ stringr   1.6.0\n✔ lubridate 1.9.4     ✔ tibble    3.3.1\n✔ purrr     1.2.0     ✔ tidyr     1.3.2\n\n\n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(palmerpenguins)\n\n\nAdjuntando el paquete: 'palmerpenguins'\n\nThe following objects are masked from 'package:datasets':\n\n    penguins, penguins_raw",
+    "crumbs": [
+      "Teoría",
+      "Unidad 5",
+      "Introducción a R Clase 5 dplyr"
+    ]
+  },
+  {
+    "objectID": "teoria/05_unidad/05_apunte.html#el-conjunto-de-datos-penguins",
+    "href": "teoria/05_unidad/05_apunte.html#el-conjunto-de-datos-penguins",
+    "title": "Introducción a R Clase 5 dplyr",
+    "section": "",
+    "text": "El conjunto de datos penguins contiene información morfológica de tres especies de pingüinos observados en distintas islas de la Antártida.\nAlgunas variables incluyen:\n\nespecie\nisla\nlongitud y profundidad del pico\nlongitud de la aleta\nmasa corporal\nsexo\nPuedes explorar el dataset en este sitio.\n\nVeamos los nombres de las variables disponibles:\n\nnames(penguins)\n\n[1] \"species\"           \"island\"            \"bill_length_mm\"   \n[4] \"bill_depth_mm\"     \"flipper_length_mm\" \"body_mass_g\"      \n[7] \"sex\"               \"year\"",
+    "crumbs": [
+      "Teoría",
+      "Unidad 5",
+      "Introducción a R Clase 5 dplyr"
+    ]
+  },
+  {
+    "objectID": "teoria/05_unidad/05_apunte.html#el-operador-pipe",
+    "href": "teoria/05_unidad/05_apunte.html#el-operador-pipe",
+    "title": "Introducción a R Clase 5 dplyr",
+    "section": "",
+    "text": "Una de las ideas centrales de dplyr es el uso del operador pipe (%&gt;%).\n\n%&gt;% o |&gt;\nAtajos en el teclado\nWindows / Linux: Ctrl + Shift +\nMmacOS: Cmd + Shift + M\n\nEste operador permite encadenar funciones, haciendo que el código:\n\nsea más legible\nsiga una lógica paso a paso\nse parezca al lenguaje natural\n\nPuede leerse como “y luego”.\nEjemplo conceptual:\nTomamos los datos y luego filtramos y luego ordenamos y luego resumimos\nfilter(): Filtrar observaciones (filas) \nLa función filter() se utiliza para seleccionar filas que cumplen una o más condiciones.",
+    "crumbs": [
+      "Teoría",
+      "Unidad 5",
+      "Introducción a R Clase 5 dplyr"
+    ]
+  },
+  {
+    "objectID": "teoria/05_unidad/05_apunte.html#pingüinos-de-la-isla-torgersen",
+    "href": "teoria/05_unidad/05_apunte.html#pingüinos-de-la-isla-torgersen",
+    "title": "Introducción a R Clase 5 dplyr",
+    "section": "",
+    "text": "torgersen_penguins &lt;- penguins %&gt;%\n  filter(island == \"Torgersen\")\n\nhead(torgersen_penguins)\n\n# A tibble: 6 × 8\n  species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n  &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n1 Adelie  Torgersen           39.1          18.7               181        3750\n2 Adelie  Torgersen           39.5          17.4               186        3800\n3 Adelie  Torgersen           40.3          18                 195        3250\n4 Adelie  Torgersen           NA            NA                  NA          NA\n5 Adelie  Torgersen           36.7          19.3               193        3450\n6 Adelie  Torgersen           39.3          20.6               190        3650\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;\n\n\nAquí:\n\nTomamos el conjunto penguins\nFiltramos solo los individuos de la isla Torgersen\nGuardamos el resultado en un nuevo objeto",
+    "crumbs": [
+      "Teoría",
+      "Unidad 5",
+      "Introducción a R Clase 5 dplyr"
+    ]
+  },
+  {
+    "objectID": "teoria/05_unidad/05_apunte.html#filtrar-con-una-condición-numérica",
+    "href": "teoria/05_unidad/05_apunte.html#filtrar-con-una-condición-numérica",
+    "title": "Introducción a R Clase 5 dplyr",
+    "section": "",
+    "text": "penguins %&gt;%\n  filter(bill_depth_mm &gt; 16.2) %&gt;%\n  head()\n\n# A tibble: 6 × 8\n  species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n  &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n1 Adelie  Torgersen           39.1          18.7               181        3750\n2 Adelie  Torgersen           39.5          17.4               186        3800\n3 Adelie  Torgersen           40.3          18                 195        3250\n4 Adelie  Torgersen           36.7          19.3               193        3450\n5 Adelie  Torgersen           39.3          20.6               190        3650\n6 Adelie  Torgersen           38.9          17.8               181        3625\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;\n\n\nEste código selecciona únicamente los pingüinos cuya profundidad del pico es mayor a 16.2 mm.",
+    "crumbs": [
+      "Teoría",
+      "Unidad 5",
+      "Introducción a R Clase 5 dplyr"
+    ]
+  },
+  {
+    "objectID": "teoria/05_unidad/05_apunte.html#filtrar-usando-between",
+    "href": "teoria/05_unidad/05_apunte.html#filtrar-usando-between",
+    "title": "Introducción a R Clase 5 dplyr",
+    "section": "",
+    "text": "penguins %&gt;%\n  filter(between(bill_depth_mm, 16.2, 18.1))\n\n# A tibble: 108 × 8\n   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n 1 Adelie  Torgersen           39.5          17.4               186        3800\n 2 Adelie  Torgersen           40.3          18                 195        3250\n 3 Adelie  Torgersen           38.9          17.8               181        3625\n 4 Adelie  Torgersen           34.1          18.1               193        3475\n 5 Adelie  Torgersen           37.8          17.1               186        3300\n 6 Adelie  Torgersen           37.8          17.3               180        3700\n 7 Adelie  Torgersen           41.1          17.6               182        3200\n 8 Adelie  Torgersen           36.6          17.8               185        3700\n 9 Adelie  Biscoe              38.2          18.1               185        3950\n10 Adelie  Biscoe              38.8          17.2               180        3800\n# ℹ 98 more rows\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;\n\n\nbetween() es útil para especificar rangos numéricos de manera clara y legible.",
+    "crumbs": [
+      "Teoría",
+      "Unidad 5",
+      "Introducción a R Clase 5 dplyr"
+    ]
+  },
+  {
+    "objectID": "teoria/05_unidad/05_apunte.html#arrange-ordenar-datos",
+    "href": "teoria/05_unidad/05_apunte.html#arrange-ordenar-datos",
+    "title": "Introducción a R Clase 5 dplyr",
+    "section": "",
+    "text": "La función arrange() permite ordenar las filas de un conjunto de datos.\n\n\n\npenguins %&gt;%\n  arrange(body_mass_g) %&gt;%\n  head()\n\n# A tibble: 6 × 8\n  species   island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n  &lt;fct&gt;     &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n1 Chinstrap Dream               46.9          16.6               192        2700\n2 Adelie    Biscoe              36.5          16.6               181        2850\n3 Adelie    Biscoe              36.4          17.1               184        2850\n4 Adelie    Biscoe              34.5          18.1               187        2900\n5 Adelie    Dream               33.1          16.1               178        2900\n6 Adelie    Torgersen           38.6          17                 188        2900\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;\n\n\n\n\n\n\npenguins %&gt;%\n  arrange(desc(body_mass_g)) %&gt;%\n  head()\n\n# A tibble: 6 × 8\n  species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n  &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n1 Gentoo  Biscoe           49.2          15.2               221        6300\n2 Gentoo  Biscoe           59.6          17                 230        6050\n3 Gentoo  Biscoe           51.1          16.3               220        6000\n4 Gentoo  Biscoe           48.8          16.2               222        6000\n5 Gentoo  Biscoe           45.2          16.4               223        5950\n6 Gentoo  Biscoe           49.8          15.9               229        5950\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;\n\n\nEsto es útil, por ejemplo, para identificar los individuos más pesados o más ligeros.",
+    "crumbs": [
+      "Teoría",
+      "Unidad 5",
+      "Introducción a R Clase 5 dplyr"
+    ]
+  },
+  {
+    "objectID": "teoria/05_unidad/05_apunte.html#select-seleccionar-variables-columnas",
+    "href": "teoria/05_unidad/05_apunte.html#select-seleccionar-variables-columnas",
+    "title": "Introducción a R Clase 5 dplyr",
+    "section": "",
+    "text": "penguins %&gt;%\n  select(species, flipper_length_mm, sex) %&gt;%\n  head()\n\n# A tibble: 6 × 3\n  species flipper_length_mm sex   \n  &lt;fct&gt;               &lt;int&gt; &lt;fct&gt; \n1 Adelie                181 male  \n2 Adelie                186 female\n3 Adelie                195 female\n4 Adelie                 NA &lt;NA&gt;  \n5 Adelie                193 female\n6 Adelie                190 male  \n\n\n\n\nSeleccionar solo variables numéricas:\n\npenguins %&gt;%\n  select(where(is.numeric)) %&gt;%\n  head()\n\n# A tibble: 6 × 5\n  bill_length_mm bill_depth_mm flipper_length_mm body_mass_g  year\n           &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt; &lt;int&gt;\n1           39.1          18.7               181        3750  2007\n2           39.5          17.4               186        3800  2007\n3           40.3          18                 195        3250  2007\n4           NA            NA                  NA          NA  2007\n5           36.7          19.3               193        3450  2007\n6           39.3          20.6               190        3650  2007\n\n\nSeleccionar solo variables no numéricas:\n\npenguins %&gt;%\n  select(!where(is.numeric)) %&gt;%\n  head()\n\n# A tibble: 6 × 3\n  species island    sex   \n  &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt; \n1 Adelie  Torgersen male  \n2 Adelie  Torgersen female\n3 Adelie  Torgersen female\n4 Adelie  Torgersen &lt;NA&gt;  \n5 Adelie  Torgersen female\n6 Adelie  Torgersen male  \n\n\nEste tipo de selección es muy útil en análisis exploratorios.",
+    "crumbs": [
+      "Teoría",
+      "Unidad 5",
+      "Introducción a R Clase 5 dplyr"
+    ]
+  },
+  {
+    "objectID": "teoria/05_unidad/05_apunte.html#mutate-crear-nuevas-variables",
+    "href": "teoria/05_unidad/05_apunte.html#mutate-crear-nuevas-variables",
+    "title": "Introducción a R Clase 5 dplyr",
+    "section": "",
+    "text": "La función mutate() se utiliza para crear o transformar variables.\nEjemplo: convertir la masa corporal de gramos a libras.\n\npenguins %&gt;%\n  mutate(body_weight_pounds = body_mass_g / 453.59237) %&gt;%\n  select(body_mass_g, body_weight_pounds) %&gt;%\n  head()\n\n# A tibble: 6 × 2\n  body_mass_g body_weight_pounds\n        &lt;int&gt;              &lt;dbl&gt;\n1        3750               8.27\n2        3800               8.38\n3        3250               7.17\n4          NA              NA   \n5        3450               7.61\n6        3650               8.05",
+    "crumbs": [
+      "Teoría",
+      "Unidad 5",
+      "Introducción a R Clase 5 dplyr"
+    ]
+  },
+  {
+    "objectID": "teoria/05_unidad/05_apunte.html#summarize-resumir-datos",
+    "href": "teoria/05_unidad/05_apunte.html#summarize-resumir-datos",
+    "title": "Introducción a R Clase 5 dplyr",
+    "section": "",
+    "text": "summarize() permite calcular estadísticas descriptivas.\n\npenguins %&gt;%\n  summarize(avg_body_mass = mean(body_mass_g, na.rm = TRUE))\n\n# A tibble: 1 × 1\n  avg_body_mass\n          &lt;dbl&gt;\n1         4202.\n\n\nEl argumento na.rm = TRUE indica que los valores faltantes (NA) deben ignorarse.",
+    "crumbs": [
+      "Teoría",
+      "Unidad 5",
+      "Introducción a R Clase 5 dplyr"
+    ]
+  },
+  {
+    "objectID": "teoria/05_unidad/05_apunte.html#conclusiones-de-la-sesión",
+    "href": "teoria/05_unidad/05_apunte.html#conclusiones-de-la-sesión",
+    "title": "Introducción a R Clase 5 dplyr",
+    "section": "",
+    "text": "En esta clase aprendimos a:\n\nManipular datos con dplyr\nUsar el operador %&gt;%\nFiltrar, ordenar y seleccionar información\nCrear nuevas variables\nCalcular estadísticas resumen\n\nEstas herramientas son la base del análisis de datos moderno en R y se utilizarán continuamente a lo largo del curso.",
+    "crumbs": [
+      "Teoría",
+      "Unidad 5",
+      "Introducción a R Clase 5 dplyr"
     ]
   }
 ]
