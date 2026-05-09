@@ -23,12 +23,14 @@ En este video te explico qué es RMarkdown, cómo funciona y cómo puedes usarlo
 - Bloques de código (chunks)
 - Cómo generar HTML, PDF y Word
 - Integración con R y visualizaciones
+
 ## Archivos creados en la clase
 
 - [Descargar archivo Rmd dplyr theme cerulean ](Archivos_Rmarkdown/Rmardown_dplyr_theme_cerulean.Rmd)
 - [Descargar archivo Rmd dplyr theme prettydoc](Archivos_Rmarkdown/Rmardown_theme_prettydoc.Rmd)
 
-
-
+<a href="Archivos_Rmarkdown/Rmardown_dplyr_theme_cerulean.Rmd>
+<a href="Archivos_Rmarkdown/Rmardown_theme_prettydoc.Rmd>
+  Descargar archivo Rmd
 
 {{< video https://www.youtube.com/watch?v=6vDMQlzO1tM >}}
