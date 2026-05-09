@@ -20,7 +20,7 @@ website:
       - text: Proyectos
         file: proyectos/grupal.qmd
       - text: Recursos
-        file: recursos/tutoriales/instalacion_python.qmd
+        file: recursos/tutoriales/videos_de_la_clase.qmd
       - icon: github
         href: none
   page-footer:
@@ -67,7 +67,7 @@ website:
       contents:
         - text: Tutoriales
           contents:
-            - recursos/tutoriales/instalacion_python.qmd
+            - recursos/tutoriales/videos_de_la_clase.qmd
 
 format:
   html:

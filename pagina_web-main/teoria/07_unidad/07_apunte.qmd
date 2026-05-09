@@ -1,0 +1,18 @@
+---
+title: "Introducción a R Clase 6 Rmardown"
+subtitle: "Clase 6"
+author: "Dra. Linda Kempis Calanis"
+date: today
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    toc-location: left
+---
+
+# Pdf de la presentación de Rmarkdown 
+
+[pdf Rmarkdown](https://dra-lindaaimara.github.io/Rmarkdown_2026.pdf)
+
