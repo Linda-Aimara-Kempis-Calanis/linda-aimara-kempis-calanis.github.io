@@ -29,8 +29,8 @@ En este video te explico qué es RMarkdown, cómo funciona y cómo puedes usarlo
 - [Descargar archivo Rmd dplyr theme cerulean ](Archivos_Rmarkdown/Rmardown_dplyr_theme_cerulean.Rmd)
 - [Descargar archivo Rmd dplyr theme prettydoc](Archivos_Rmarkdown/Rmardown_theme_prettydoc.Rmd)
 
-<a href="Archivos_Rmarkdown/Rmardown_dplyr_theme_cerulean.Rmd>
-<a href="Archivos_Rmarkdown/Rmardown_theme_prettydoc.Rmd>
-  Descargar archivo Rmd
+<a href="Archivos_Rmarkdown/Rmardown_dplyr_theme_cerulean.Rmd> Descargar archivo Rmd cerulean
+<a href="Archivos_Rmarkdown/Rmardown_theme_prettydoc.Rmd> Descargar archivo Rmd prettydoc
+  
 
 {{< video https://www.youtube.com/watch?v=6vDMQlzO1tM >}}
