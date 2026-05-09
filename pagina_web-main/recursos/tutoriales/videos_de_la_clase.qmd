@@ -25,8 +25,9 @@ En este video te explico qué es RMarkdown, cómo funciona y cómo puedes usarlo
 - Integración con R y visualizaciones
 ## Archivos creados en la clase
 
-[Descargar archivo Rmd dplyr theme cerulean ](Archivos_Rmarkdown/Rmardown_dplyr_theme_cerulean.Rmd)
-[Descargar archivo Rmd dplyr theme prettydoc](Archivos_RmarkdRmardown_theme_prettydoc.Rmd.Rmd)
+- [Descargar archivo Rmd dplyr theme cerulean ](Archivos_Rmarkdown/Rmardown_dplyr_theme_cerulean.Rmd)
+- [Descargar archivo Rmd dplyr theme prettydoc](Archivos_Rmarkdown/Rmardown_theme_prettydoc.Rmd)
+
 
 
 
