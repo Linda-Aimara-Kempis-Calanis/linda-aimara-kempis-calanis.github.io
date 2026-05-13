@@ -1,8 +1,0 @@
-[1,"==> quarto preview index.qmd --to html --no-watch-inputs --no-browse\n\n"]
-[1,"pandoc \n  to: html\n  output-file: index.html\n  standalone: true\n  title-prefix: Curso\n  section-divs: true\n  html-math-method: mathjax\n  wrap: none\n  default-image-extension: png\n  toc: false\n  variables: {}\n  \nmetadata\n  pagetitle: Curso\n  document-css: false\n  link-citations: true\n  date-format: long\n  lang: es\n  csl: citas/chicago-author-date.csl\n  bibliography:\n    - citas/references.bib\n  engines:\n    - path: C:\\Users\\aimar\\AppData\\Local\\Programs\\Quarto\\share\\extension-subtrees\\julia-engine\\_extensions\\julia-engine\\julia-engine.js\n  theme: styles.scss\n  page-layout: full\n  sidebar: false\n  listing:\n    - id: front\n      contents: templates/front.yml\n      template: templates/front.ejs\n    - id: instructors\n      contents: templates/instructors.yml\n      template: templates/instructors.ejs\n  \n"]
-[1,"Output created: _site\\index.html\n\nPreparing to preview\n"]
-[1,"\nWatching files for changes\nBrowse at http://localhost:4549/\nListening on http://127.0.0.1:4549/\n"]
-[1,"GET: /\n"]
-[1,"GET: /teoria/01_unidad.html\n"]
-[1,"GET: /teoria/06_unidad/06_apunte.html\n"]
-[1,"GET: /teoria/06_unidad/06_apunte.html\n"]

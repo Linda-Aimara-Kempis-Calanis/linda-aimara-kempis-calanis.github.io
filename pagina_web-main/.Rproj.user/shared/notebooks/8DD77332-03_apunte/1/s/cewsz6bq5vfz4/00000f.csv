@@ -1,5 +1,0 @@
-"0","if(1:10 < 3) {"
-"0","  ""Verdadero"""
-"0","}"
-"2","Error en if (1:10 < 3) {: the condition has length > 1
-"
