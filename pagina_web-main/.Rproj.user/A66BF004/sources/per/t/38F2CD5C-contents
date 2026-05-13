@@ -1,0 +1,85 @@
+project:
+  type: website
+  output-dir: _site
+
+execute:
+  freeze: false
+
+website:
+  title: "Curso"
+  description: "Una descripción breve del curso."
+  favicon: "imgs/favicon.png"
+  page-navigation: true
+  navbar:
+    title: "Curso"
+    pinned: true
+    right:
+      - text: Información
+        file: informacion/programa.qmd
+      - text: Teoría
+        file: teoria/01_unidad.qmd
+      - text: Práctica
+        file: practica/01.qmd
+      - text: Proyectos
+        file: proyectos/grupal.qmd
+      - text: Recursos
+        file: recursos/tutoriales/videos_de_la_clase.qmd
+      - icon: github
+        href: none
+  page-footer:
+    right: "Esta página fue hecha con ❤️ y [Quarto](https://quarto.org/)."
+
+
+  sidebar:
+    - title: Información
+      contents:
+        - informacion/programa.qmd
+        - informacion/aprobacion.qmd
+        - informacion/calendario.qmd
+        - informacion/bibliografia.qmd
+    - title: Teoría
+      contents:
+        - teoria/01_unidad.qmd
+        - text: Unidad 1
+          contents:
+            - teoria/01_unidad/01_apunte.qmd
+        - text: Unidad 2
+          contents:
+            - teoria/02_unidad/02_apunte.qmd
+        - text: Unidad 3
+          contents:
+            - teoria/03_unidad/03_apunte.qmd
+        - text: Unidad 4
+          contents: 
+            - teoria/04_unidad/04_apunte.qmd
+        - text: Unidad 5
+          contents: 
+            - teoria/05_unidad/05_apunte.qmd
+        - text: Unidad 6
+          contents: 
+            - teoria/06_unidad/06_apunte.qmd        
+        - text: Unidad 7
+          contents: 
+            - teoria/07_unidad/07_apunte.qmd
+    - title: Práctica
+      contents:
+        - auto: practica/*.qmd
+    - title: Proyectos
+      contents:
+        - proyectos/grupal.qmd
+        - proyectos/individual.qmd
+    - title: Recursos
+      contents:
+        - text: Tutoriales
+          contents:
+            - recursos/tutoriales/videos_de_la_clase.qmd
+
+format:
+  html:
+    theme: styles.scss
+    toc: false
+    lang: es
+    highlight-style: arrow-light
+
+csl: citas/chicago-author-date.csl
+bibliography: citas/references.bib
