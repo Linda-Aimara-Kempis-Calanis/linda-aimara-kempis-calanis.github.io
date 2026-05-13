@@ -1,0 +1,20 @@
+---
+title: "Introducción a R Clase 7 Rmardown"
+subtitle: "Clase 7"
+author: "Sebastian Mijares Guevara"
+date: today
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    toc-location: left
+---
+
+# Pdf de la presentación de Tidyverse
+
+[pdf 7 presentación](https://dra-lindaaimara.github.io/clase_20260513.pdf)
+
+
+
