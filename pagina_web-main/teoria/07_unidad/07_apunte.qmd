@@ -1,7 +1,7 @@
 ---
-title: "Introducción a R Clase 6 Rmardown"
-subtitle: "Clase 6"
-author: "Dra. Linda Kempis Calanis"
+title: "Introducción a R Clase 7 Rmardown"
+subtitle: "Clase 7"
+author: "Sebastian Mijares Guevara"
 date: today
 
 format:
@@ -12,7 +12,9 @@ format:
     toc-location: left
 ---
 
-# Pdf de la presentación de Rmarkdown 
+# Pdf de la presentación de Tidyverse
 
-[pdf Rmarkdown](https://dra-lindaaimara.github.io/Rmarkdown_2026.pdf)
+[pdf 7 presentación](https://dra-lindaaimara.github.io/clase_20260513.pdf)
+
+
 
