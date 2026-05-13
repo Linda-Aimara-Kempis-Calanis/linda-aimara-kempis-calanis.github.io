@@ -2,6 +2,9 @@ project:
   type: website
   output-dir: _site
 
+execute:
+  freeze: false
+
 website:
   title: "Curso"
   description: "Una descripción breve del curso."
