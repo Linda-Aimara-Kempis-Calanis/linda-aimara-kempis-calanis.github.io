@@ -1,0 +1,140 @@
+{
+    "sources": [
+        {
+            "author": [
+                {
+                    "family": "Casella",
+                    "given": "George"
+                },
+                {
+                    "family": "Berger",
+                    "given": "Roger L."
+                }
+            ],
+            "edition": "2",
+            "id": "CasellaBerger2024",
+            "issued": {
+                "date-parts": [
+                    [
+                        2024
+                    ]
+                ]
+            },
+            "publisher": "Chapman & Hall/CRC",
+            "title": "Statistical inference",
+            "type": "book"
+        },
+        {
+            "author": [
+                {
+                    "family": "Hastie",
+                    "given": "Trevor"
+                },
+                {
+                    "family": "Tibshirani",
+                    "given": "Robert"
+                },
+                {
+                    "family": "Friedman",
+                    "given": "Jerome"
+                }
+            ],
+            "edition": "2",
+            "id": "Hastie2009",
+            "issued": {
+                "date-parts": [
+                    [
+                        2009
+                    ]
+                ]
+            },
+            "publisher": "Springer",
+            "title": "The elements of statistical learning: Data mining, inference, and prediction",
+            "title-short": "The elements of statistical learning",
+            "type": "book"
+        },
+        {
+            "author": [
+                {
+                    "family": "Gelman",
+                    "given": "Andrew"
+                },
+                {
+                    "family": "Carlin",
+                    "given": "John B."
+                },
+                {
+                    "family": "Stern",
+                    "given": "Hal S."
+                },
+                {
+                    "family": "Dunson",
+                    "given": "David B."
+                },
+                {
+                    "family": "Vehtari",
+                    "given": "Aki"
+                },
+                {
+                    "family": "Rubin",
+                    "given": "Donald B."
+                }
+            ],
+            "edition": "3",
+            "id": "Gelman2013",
+            "issued": {
+                "date-parts": [
+                    [
+                        2013
+                    ]
+                ]
+            },
+            "publisher": "CRC Press",
+            "title": "Bayesian data analysis",
+            "type": "book"
+        },
+        {
+            "author": [
+                {
+                    "family": "Jaynes",
+                    "given": "E. T."
+                }
+            ],
+            "id": "Jaynes2003",
+            "issued": {
+                "date-parts": [
+                    [
+                        2003
+                    ]
+                ]
+            },
+            "publisher": "Cambridge University Press",
+            "title": "Probability theory: The logic of science",
+            "title-short": "Probability theory",
+            "type": "book"
+        },
+        {
+            "author": [
+                {
+                    "family": "Rudin",
+                    "given": "Walter"
+                }
+            ],
+            "edition": "3",
+            "id": "Rudin1976",
+            "issued": {
+                "date-parts": [
+                    [
+                        1976
+                    ]
+                ]
+            },
+            "publisher": "McGraw-Hill",
+            "title": "Principles of mathematical analysis",
+            "type": "book"
+        }
+    ],
+    "project_biblios": [
+        "citas/references.bib"
+    ]
+}

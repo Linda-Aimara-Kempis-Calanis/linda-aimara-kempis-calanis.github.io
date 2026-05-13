@@ -1,0 +1,15 @@
+{
+  "hash": "eff6f8c39e07dd6c06908fcab2f231be",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"dplyr\"\nauthor: \"Linda\"\ndate: \"2026-05-08\"\noutput:\n  pdf_document:\n    toc: true\n  html_document:\n    toc: true\n    number_sections: true\n    toc_float: true\n    theme: cerulean\n    code_folding: hide\n---\n\n# Unidad de dplyr\n\n## Librerias \n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(dplyr)\nlibrary(tidyverse)\nlibrary(palmerpenguins)\nlibrary(knitr)\n```\n:::\n\n\n## Nombres de las columnas de mi dataset\n\n\n::: {.cell}\n\n```{.r .cell-code}\nnames(penguins)\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] \"species\"           \"island\"            \"bill_length_mm\"   \n[4] \"bill_depth_mm\"     \"flipper_length_mm\" \"body_mass_g\"      \n[7] \"sex\"               \"year\"             \n```\n\n\n:::\n:::\n\n\n## filter()\n\n::: {.cell}\n\n```{.r .cell-code}\ntorgersen_penguins <- penguins %>%\n  filter(island == \"Torgersen\")\n\nhead(torgersen_penguins)\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n# A tibble: 6 × 8\n  species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n  <fct>   <fct>              <dbl>         <dbl>             <int>       <int>\n1 Adelie  Torgersen           39.1          18.7               181        3750\n2 Adelie  Torgersen           39.5          17.4               186        3800\n3 Adelie  Torgersen           40.3          18                 195        3250\n4 Adelie  Torgersen           NA            NA                  NA          NA\n5 Adelie  Torgersen           36.7          19.3               193        3450\n6 Adelie  Torgersen           39.3          20.6               190        3650\n# ℹ 2 more variables: sex <fct>, year <int>\n```\n\n\n:::\n\n```{.r .cell-code}\nbill_depth <- penguins %>%\n  filter(bill_depth_mm > 16.2) %>%\n  head()\nkable(head(torgersen_penguins))\n```\n\n::: {.cell-output-display}\n\n\n|species |island    | bill_length_mm| bill_depth_mm| flipper_length_mm| body_mass_g|sex    | year|\n|:-------|:---------|--------------:|-------------:|-----------------:|-----------:|:------|----:|\n|Adelie  |Torgersen |           39.1|          18.7|               181|        3750|male   | 2007|\n|Adelie  |Torgersen |           39.5|          17.4|               186|        3800|female | 2007|\n|Adelie  |Torgersen |           40.3|          18.0|               195|        3250|female | 2007|\n|Adelie  |Torgersen |             NA|            NA|                NA|          NA|NA     | 2007|\n|Adelie  |Torgersen |           36.7|          19.3|               193|        3450|female | 2007|\n|Adelie  |Torgersen |           39.3|          20.6|               190|        3650|male   | 2007|\n\n\n:::\n:::\n\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

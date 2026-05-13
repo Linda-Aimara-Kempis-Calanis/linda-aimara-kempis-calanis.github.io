@@ -1,0 +1,164 @@
+{
+  "index.qmd": {
+    "index.html": "cc6ff481"
+  },
+  "informacion/aprobacion.qmd": {
+    "aprobacion.html": "a33e80ad"
+  },
+  "informacion/bibliografia.qmd": {
+    "bibliografia.html": "86158a15"
+  },
+  "informacion/calendario.qmd": {
+    "calendario.html": "268388b0"
+  },
+  "informacion/programa.qmd": {
+    "programa.html": "52150ae8"
+  },
+  "practica/01.qmd": {
+    "01.html": "fb63d2c7"
+  },
+  "practica/02.qmd": {
+    "02.html": "a39b4c6a"
+  },
+  "practica/03.ipynb": {
+    "03.html": "12811fbb"
+  },
+  "proyectos/grupal.qmd": {
+    "grupal.html": "49fe4143"
+  },
+  "proyectos/individual.qmd": {
+    "individual.html": "092f867d"
+  },
+  "recursos/ejemplos/clases.qmd": {
+    "clases.html": "527a854d"
+  },
+  "recursos/tutoriales/instalacion_python.qmd": {
+    "instalacion_python.html": "61810de4"
+  },
+  "teoria/01_unidad.qmd": {
+    "01_unidad.html": "98479429"
+  },
+  "teoria/02_unidad/01_apunte.ipynb": {
+    "01_apunte.html": "259d4b5f"
+  },
+  "teoria/02_unidad/02_apunte.qmd": {
+    "02_apunte.html": "b62b335a"
+  },
+  "teoria/Clase_1/Introduccion_R_Clase1.qmd": {
+    "Introduccion_R_Clase1.html": "53916934"
+  },
+  "02_apunte.qmd": {
+    "02_apunte.html": "129f45fe"
+  },
+  "Clases/Bioquimica/quarto-curso-plantilla-main/index.qmd": {
+    "index.html": "5861f502"
+  },
+  "Clases/Bioquimica/quarto-curso-plantilla-main/informacion/aprobacion.qmd": {
+    "aprobacion.html": "afcc4c74"
+  },
+  "Clases/Bioquimica/quarto-curso-plantilla-main/informacion/bibliografia.qmd": {
+    "bibliografia.html": "91196eec"
+  },
+  "Clases/Bioquimica/quarto-curso-plantilla-main/informacion/calendario.qmd": {
+    "calendario.html": "98e88025"
+  },
+  "Clases/Bioquimica/quarto-curso-plantilla-main/informacion/programa.qmd": {
+    "programa.html": "7133a269"
+  },
+  "Clases/Bioquimica/quarto-curso-plantilla-main/practica/01.qmd": {
+    "01.html": "f7ef08e4"
+  },
+  "Clases/Bioquimica/quarto-curso-plantilla-main/practica/02.qmd": {
+    "02.html": "3adf5162"
+  },
+  "Clases/Bioquimica/quarto-curso-plantilla-main/practica/03.ipynb": {
+    "03.html": "4e97da2a"
+  },
+  "Clases/Bioquimica/quarto-curso-plantilla-main/proyectos/grupal.qmd": {
+    "grupal.html": "16ee172b"
+  },
+  "Clases/Bioquimica/quarto-curso-plantilla-main/proyectos/individual.qmd": {
+    "individual.html": "de0692e7"
+  },
+  "Clases/Bioquimica/quarto-curso-plantilla-main/recursos/ejemplos/clases.qmd": {
+    "clases.html": "82d64040"
+  },
+  "Clases/Bioquimica/quarto-curso-plantilla-main/recursos/tutoriales/instalacion_python.qmd": {
+    "instalacion_python.html": "e65b3705"
+  },
+  "Clases/Bioquimica/quarto-curso-plantilla-main/teoria/01_unidad.qmd": {
+    "01_unidad.html": "41d6a1e6"
+  },
+  "Clases/Bioquimica/quarto-curso-plantilla-main/teoria/02_unidad/01_apunte.ipynb": {
+    "01_apunte.html": "5487e1b2"
+  },
+  "Clases/Bioquimica/quarto-curso-plantilla-main/teoria/02_unidad/02_apunte.qmd": {
+    "02_apunte.html": "3c20ec8b"
+  },
+  "Introduccion_a_R_Clase_1.qmd": {
+    "Introduccion_a_R_Clase_1.html": "6e825277"
+  },
+  "teoria/02_unidad/Introduccion_a_R_Clase_1.qmd": {
+    "Introduccion_a_R_Clase_1.html": "cf96389f"
+  },
+  "clase_2_2.qmd": {
+    "clase_2_2.html": "79ace9f0"
+  },
+  "Clase_2_2026.qmd": {
+    "Clase_2_2026.html": "a45e6096"
+  },
+  "teoria/03_unidad/Clase_2_2026.qmd": {
+    "Clase_2_2026.html": "797f8cdc"
+  },
+  "03_apunte.qmd": {
+    "03_apunte.html": "247aa40c"
+  },
+  "teoria/03_unidad/03_apunte.qmd": {
+    "03_apunte.html": "6ec0f76d"
+  },
+  "teoria/01_unidad/01_apunte.qmd": {
+    "01_apunte.html": "30bf4de0"
+  },
+  "01_apunte.qmd": {
+    "01_apunte.html": "343b2956"
+  },
+  "teoria/04_unidad/04_apunte.qmd": {
+    "04_apunte.html": "f2ca7486"
+  },
+  "01_unidad.qmd": {
+    "01_unidad.html": "7fec774c"
+  },
+  "teoria/05_unidad/05_apunte.qmd": {
+    "05_apunte.html": "06973f12"
+  },
+  "calendario.qmd": {
+    "calendario.html": "d2776400"
+  },
+  "01.qmd": {
+    "01.html": "689e8adb"
+  },
+  "instalacion_python.qmd": {
+    "instalacion_python.html": "09797d69"
+  },
+  "06_apunte.qmd": {
+    "06_apunte.html": "655502de"
+  },
+  "teoria/06_unidad/06_apunte.qmd": {
+    "06_apunte.html": "53152d1b"
+  },
+  "recursos/tutoriales/videos_de_la_clase.qmd": {
+    "videos_de_la_clase.html": "1e1720b7"
+  },
+  "teoria/07_unidad/07_apunte.qmd": {
+    "07_apunte.html": "0c869e01"
+  },
+  "videos_de_la_clase.qmd": {
+    "videos_de_la_clase.html": "d33fc6ff"
+  },
+  "recursos/tutoriales/Archivos_Rmarkdown/Rmardown_dplyr_theme_cerulean.Rmd": {
+    "Rmardown_dplyr_theme_cerulean.html": "b840af0f"
+  },
+  "recursos/tutoriales/Archivos_Rmarkdown/Rmardown_theme_prettydoc.Rmd": {
+    "Rmardown_theme_prettydoc.html": "c6c17655"
+  }
+}
