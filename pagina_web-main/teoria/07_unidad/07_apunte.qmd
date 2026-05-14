@@ -14,7 +14,7 @@ format:
 
 # Pdf de la presentación de Tidyverse
 
-[pdf 7 presentación](https://dra-lindaaimara.github.io/clase_20260513.pdf)
+[pdf 7 presentación](https://dra-lindaaimara.github.io/clase_20260513_SM.pdf)
 
 
 
