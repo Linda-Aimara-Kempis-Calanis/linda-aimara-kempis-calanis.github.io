@@ -1,0 +1,12 @@
+---
+title: Unidades 5 y 6
+---
+
+
+La siguiente práctica es para evaluar los temas 5 y 6.
+
+Puedes descargar el pdf de la practica en este link: [PDF de la practica](https://dra-lindaaimara.github.io/Practica_2_dplyr.pdf)
+
+Entregar por classroom los archivos generados.
+
+
