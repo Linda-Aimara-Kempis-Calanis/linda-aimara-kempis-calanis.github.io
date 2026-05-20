@@ -1,0 +1,20 @@
+---
+title: "Introducción a R Clase 8 trabajar con proyectos"
+subtitle: "Clase 8"
+author: "Dra. Linda Kempis Calanis"
+date: today
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    toc-location: left
+---
+
+# Pdf de la presentación trabajar con proyectos en R
+
+[html de la presentación 8](https://dra-lindaaimara.github.io/Trabajar_con_proyectos_en_R/Proyectos.html)
+
+
+
