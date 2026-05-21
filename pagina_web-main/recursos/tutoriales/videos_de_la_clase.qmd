@@ -41,12 +41,12 @@ En este video explicamos qué es un RProject, por qué es importante trabajar co
 
 📌 En esta clase aprenderás:
 
-Qué es un RProject
-Ventajas de trabajar con proyectos en RStudio
-Cómo crear un nuevo proyecto
-Organización de carpetas y archivos
-Uso de la librería here
-Cómo evitar errores de rutas
+- Qué es un RProject
+- Ventajas de trabajar con proyectos en RStudio
+- Cómo crear un nuevo proyecto
+- Organización de carpetas y archivos
+- Uso de la librería here
+- Cómo evitar errores de rutas
 
 
 {{< video https://youtu.be/yZyALiyXuwU >}}
