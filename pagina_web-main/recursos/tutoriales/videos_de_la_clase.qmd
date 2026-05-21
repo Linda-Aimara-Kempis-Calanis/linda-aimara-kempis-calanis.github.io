@@ -30,3 +30,25 @@ En este video te explico qué es RMarkdown, cómo funciona y cómo puedes usarlo
 - [ theme prettydoc](https://dra-lindaaimara.github.io/Archivos_Rmarkdown/Rmardown_theme_prettydoc.Rmd)
 
 {{< video https://www.youtube.com/watch?v=6vDMQlzO1tM >}}
+
+
+## Clase 8
+
+
+Aprende qué es un RProject y cómo usar la librería RStudio junto con here para organizar tus proyectos de manera profesional 📊💻
+
+En este video explicamos qué es un RProject, por qué es importante trabajar con proyectos en RStudio y cómo la librería here ayuda a manejar rutas de archivos de forma sencilla y sin errores. 🚀
+
+📌 En esta clase aprenderás:
+
+Qué es un RProject
+Ventajas de trabajar con proyectos en RStudio
+Cómo crear un nuevo proyecto
+Organización de carpetas y archivos
+Uso de la librería here
+Cómo evitar errores de rutas
+
+
+{{< video https://youtu.be/yZyALiyXuwU >}}
+
+
