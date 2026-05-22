@@ -51,4 +51,12 @@ En este video explicamos qué es un RProject, por qué es importante trabajar co
 
 {{< video https://youtu.be/yZyALiyXuwU >}}
 
+## Clase 9
+
+En esta clase se presenta una introducción práctica a la prueba de hipótesis utilizando el lenguaje de programación R 💻. A lo largo del video se revisan y aplican algunas de las pruebas estadísticas más utilizadas en el análisis de datos, como el t-test y el z-test 📐, las cuales permiten evaluar afirmaciones sobre parámetros poblacionales a partir de información muestral.
+
+Además, se emplea la librería ggpubr 📈 para facilitar la visualización y presentación de los resultados, integrando el análisis estadístico con gráficos claros y bien estructurados. El objetivo de esta sesión es que el estudiante comprenda tanto el fundamento teórico 🧠 como la implementación práctica en R 🛠️ de las pruebas de hipótesis, fortaleciendo sus habilidades de análisis e interpretación de datos
+
+{{< video https://www.youtube.com/watch?v=_afjDsjTTug >}}
+
 
