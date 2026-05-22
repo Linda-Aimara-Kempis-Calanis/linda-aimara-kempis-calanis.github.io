@@ -9,7 +9,7 @@ Puedes descargar el pdf de la practica en este link: [PDF de la practica](https:
 
 Entregar por classroom los archivos generados.
 
-📝 Nota sobre el reporte que van a entregar en R Markdown
+### 📝 Nota sobre el reporte que van a entregar en R Markdown 📝
 
 Recuerden que un archivo R Markdown lee, ejecuta y muestra automáticamente el resultado del código incluido en cada chunk. Cuando se trabaja con objetos grandes, como bases de datos completas, imprimirlos directamente puede hacer que el reporte sea muy largo y poco legible.
 

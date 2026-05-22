@@ -14,7 +14,8 @@ format:
 
 # Pdf de la presentación introducción práctica a la prueba de hipótesis utilizando el lenguaje de programación R
 
-Durante la clase llegaron hasta la diapopsitiva 28
+Durante la clase llegaron hasta la diapositiva 28
+
 [html de la presentación 9](https://dra-lindaaimara.github.io/Bioest/EstadisticaInferencial.html)
 
 
