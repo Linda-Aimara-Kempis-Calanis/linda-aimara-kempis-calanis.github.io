@@ -1,0 +1,21 @@
+---
+title: "Introducción a R Clase 9 prueba de hipótesis"
+subtitle: "Clase 9"
+author: "Dra. Linda Kempis Calanis"
+date: today
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    toc-location: left
+---
+
+# Pdf de la presentación introducción práctica a la prueba de hipótesis utilizando el lenguaje de programación R
+
+Durante la clase llegaron hasta la diapopsitiva 28
+[html de la presentación 9](https://dra-lindaaimara.github.io/Bioest/EstadisticaInferencial.html)
+
+
+
