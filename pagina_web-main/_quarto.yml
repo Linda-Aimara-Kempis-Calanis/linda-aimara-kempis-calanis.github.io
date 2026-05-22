@@ -64,6 +64,9 @@ website:
         - text: Unidad 8
           contents: 
             - teoria/08_unidad/08_apunte.qmd
+        - text: Unidad 9
+          contents: 
+            - teoria/09_unidad/09_apunte.qmd
     - title: Práctica
       contents:
         - auto: practica/*.qmd
