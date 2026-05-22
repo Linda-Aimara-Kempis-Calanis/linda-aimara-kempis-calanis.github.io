@@ -4,7 +4,7 @@
     "href": "teoria/09_unidad/09_apunte.html",
     "title": "Introducción a R Clase 9 prueba de hipótesis",
     "section": "",
-    "text": "Pdf de la presentación introducción práctica a la prueba de hipótesis utilizando el lenguaje de programación R\nDurante la clase llegaron hasta la diapopsitiva 28 html de la presentación 9",
+    "text": "Pdf de la presentación introducción práctica a la prueba de hipótesis utilizando el lenguaje de programación R\nDurante la clase llegaron hasta la diapositiva 28\nhtml de la presentación 9",
     "crumbs": [
       "Teoría",
       "Unidad 9",
@@ -627,7 +627,7 @@
     "href": "practica/02.html",
     "title": "Unidades 5 y 6",
     "section": "",
-    "text": "La siguiente práctica es para evaluar los temas 5 y 6.\nPuedes descargar el pdf de la practica en este link: PDF de la practica\nEntregar por classroom los archivos generados.\n📝 Nota sobre el reporte que van a entregar en R Markdown\nRecuerden que un archivo R Markdown lee, ejecuta y muestra automáticamente el resultado del código incluido en cada chunk. Cuando se trabaja con objetos grandes, como bases de datos completas, imprimirlos directamente puede hacer que el reporte sea muy largo y poco legible.\nPara evitar esto, se recomienda:\nGuardar el resultado en una variable y luego mostrar solo una parte del mismo:\n\ndatos_numericos &lt;- penguins %&gt;%\n  select(where(is.numeric))\n\nhead(datos_numericos)\n\nO bien, limitar la salida directamente dentro de la cadena de operaciones:\n\npenguins %&gt;%\n  select(where(is.numeric)) %&gt;%\n  head()",
+    "text": "La siguiente práctica es para evaluar los temas 5 y 6.\nPuedes descargar el pdf de la practica en este link: PDF de la practica\nEntregar por classroom los archivos generados.\n\n📝 Nota sobre el reporte que van a entregar en R Markdown 📝\nRecuerden que un archivo R Markdown lee, ejecuta y muestra automáticamente el resultado del código incluido en cada chunk. Cuando se trabaja con objetos grandes, como bases de datos completas, imprimirlos directamente puede hacer que el reporte sea muy largo y poco legible.\nPara evitar esto, se recomienda:\nGuardar el resultado en una variable y luego mostrar solo una parte del mismo:\n\ndatos_numericos &lt;- penguins %&gt;%\n  select(where(is.numeric))\n\nhead(datos_numericos)\n\nO bien, limitar la salida directamente dentro de la cadena de operaciones:\n\npenguins %&gt;%\n  select(where(is.numeric)) %&gt;%\n  head()",
     "crumbs": [
       "Práctica",
       "Unidades 5 y 6"
