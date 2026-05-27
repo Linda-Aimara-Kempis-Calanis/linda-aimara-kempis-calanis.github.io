@@ -66,13 +66,13 @@ En esta clase aprenderás a usar Google Colab desde cero y darás tus primeros p
 
 Durante la práctica vimos:
 
-✅ Cómo usar notebooks en Google Colab
-✅ Variables y operaciones básicas en Python
-✅ Listas y ciclos for
-✅ Introducción a pandas
-✅ Creación de DataFrames
-✅ Visualización de datos con gráficas
-✅ Comparación entre R y Python
+- ✅ Cómo usar notebooks en Google Colab
+- ✅ Variables y operaciones básicas en Python
+- ✅ Listas y ciclos for
+- ✅ Introducción a pandas
+- ✅ Creación de DataFrames
+- ✅ Visualización de datos con gráficas
+- ✅ Comparación entre R y Python
 
 
 {{< video https://www.youtube.com/watch?v=DWVUEBW4fac >}}
